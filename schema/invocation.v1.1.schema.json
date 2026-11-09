@@ -1,0 +1,482 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flux-de-fichiers.local/schema/invocation.v1.1.schema.json",
+  "title": "Invocation générique v1.1 (durcie #40)",
+  "description": "Extension additive de invocation.v1 : schemaVersion 1.1.0 ; warningsPreserved ; capture_expired ; console.policy → console-capture.v1.1. Ne modifie pas invocation.v1.schema.json.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/request"
+    },
+    {
+      "$ref": "#/$defs/response"
+    },
+    {
+      "$ref": "#/$defs/event"
+    }
+  ],
+  "$defs": {
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "kind",
+        "operationId",
+        "operationVersion",
+        "invocationId",
+        "correlationId",
+        "params"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": "1.1.0"
+        },
+        "kind": {
+          "const": "invocation.request"
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+          "maxLength": 128
+        },
+        "operationVersion": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+        },
+        "invocationId": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+          "maxLength": 128
+        },
+        "correlationId": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+          "maxLength": 128
+        },
+        "params": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[a-z][a-zA-Z0-9]*$",
+            "maxLength": 64
+          },
+          "additionalProperties": {
+            "$ref": "common.v1.schema.json#/$defs/value"
+          },
+          "maxProperties": 64
+        },
+        "timeoutSeconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 86400
+        }
+      }
+    },
+    "response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "kind",
+        "operationId",
+        "operationVersion",
+        "invocationId",
+        "correlationId",
+        "attemptId",
+        "status",
+        "exitCode",
+        "signal",
+        "outputs",
+        "console",
+        "metadata"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": "1.1.0"
+        },
+        "kind": {
+          "const": "invocation.response"
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+          "maxLength": 128
+        },
+        "operationVersion": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+        },
+        "invocationId": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+          "maxLength": 128
+        },
+        "correlationId": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+          "maxLength": 128
+        },
+        "attemptId": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+          "maxLength": 128
+        },
+        "status": {
+          "enum": [
+            "succeeded",
+            "failed",
+            "timed_out",
+            "cancelled",
+            "rejected"
+          ]
+        },
+        "exitCode": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 255,
+          "description": "null si not_started, signalled, ou unknown_after_worker_loss. Un 0 ne suffit pas à publier."
+        },
+        "signal": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 64
+        },
+        "error": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "code",
+            "message",
+            "retryable"
+          ],
+          "properties": {
+            "code": {
+              "enum": [
+                "invalid_input",
+                "permission_denied",
+                "unsupported_version",
+                "capability_unavailable",
+                "spawn_failed",
+                "tool_failed",
+                "output_invalid",
+                "process_signalled",
+                "capture_failed",
+                "log_limit",
+                "deadline_exceeded",
+                "cancelled",
+                "worker_lost",
+                "capture_expired"
+              ]
+            },
+            "message": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "retryable": {
+              "const": false
+            }
+          }
+        },
+        "outputs": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[a-z][a-zA-Z0-9]*$",
+            "maxLength": 64
+          },
+          "additionalProperties": {
+            "$ref": "common.v1.schema.json#/$defs/value"
+          },
+          "maxProperties": 64
+        },
+        "console": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "stdout",
+            "stderr",
+            "masked",
+            "policy",
+            "expiresAt",
+            "eventsDropped"
+          ],
+          "properties": {
+            "stdout": {
+              "$ref": "console-capture.v1.schema.json#/$defs/stream"
+            },
+            "stderr": {
+              "$ref": "console-capture.v1.schema.json#/$defs/stream"
+            },
+            "masked": {
+              "const": true
+            },
+            "policy": {
+              "$ref": "console-capture.v1.1.schema.json"
+            },
+            "expiresAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "eventsDropped": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "nodeId",
+            "providerId",
+            "toolId",
+            "toolVersion",
+            "startedAt",
+            "finishedAt",
+            "durationMs",
+            "warnings"
+          ],
+          "properties": {
+            "nodeId": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+              "maxLength": 128
+            },
+            "providerId": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+              "maxLength": 128
+            },
+            "toolId": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+              "maxLength": 128
+            },
+            "toolVersion": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "startedAt": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time"
+            },
+            "finishedAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "durationMs": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "warnings": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 500
+              },
+              "maxItems": 32
+            }
+          }
+        },
+        "warningsPreserved": {
+          "type": "boolean",
+          "description": "true si exitCode dans warningValues (ex. mkvmerge 1)."
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "succeeded"
+              }
+            }
+          },
+          "then": {
+            "not": {
+              "required": [
+                "error"
+              ]
+            },
+            "properties": {
+              "exitCode": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 255
+              },
+              "signal": {
+                "const": null
+              }
+            }
+          },
+          "else": {
+            "required": [
+              "error"
+            ],
+            "properties": {
+              "outputs": {
+                "maxProperties": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "rejected"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "exitCode": {
+                "const": null
+              },
+              "signal": {
+                "const": null
+              }
+            }
+          }
+        }
+      ]
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "kind",
+        "invocationId",
+        "attemptId",
+        "correlationId",
+        "sequence",
+        "at",
+        "state"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": "1.1.0"
+        },
+        "kind": {
+          "const": "invocation.event"
+        },
+        "invocationId": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+          "maxLength": 128
+        },
+        "attemptId": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+          "maxLength": 128
+        },
+        "correlationId": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+          "maxLength": 128
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "state": {
+          "enum": [
+            "queued",
+            "running",
+            "cancelling"
+          ]
+        },
+        "progress": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind"
+          ],
+          "properties": {
+            "kind": {
+              "enum": [
+                "percent",
+                "bytes",
+                "phase",
+                "heartbeat"
+              ]
+            },
+            "percent": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "bytesProcessed": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "message": {
+              "type": "string",
+              "maxLength": 500
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "kind": {
+                    "const": "percent"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "percent"
+                ]
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "kind": {
+                    "const": "bytes"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "bytesProcessed"
+                ]
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "kind": {
+                    "const": "phase"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "message"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,295 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flux-de-fichiers.local/schema/flow.v1.schema.json",
+  "title": "Flow de blocs v1",
+  "description": "Graphe acyclique de dépendances de données, versions exactes, arrêt sur erreur. Validation des connexions et cycles requise en plus de JSON Schema ; aucun moteur livré.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "version",
+    "name",
+    "execution",
+    "errorPolicy",
+    "inputs",
+    "outputs",
+    "nodes",
+    "edges"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+      "maxLength": 128
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "execution": {
+      "const": "dag"
+    },
+    "errorPolicy": {
+      "const": "stop"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "label",
+          "dataType"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-zA-Z0-9]*$",
+            "maxLength": 64
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "dataType": {
+            "enum": [
+              "file",
+              "string",
+              "integer",
+              "number",
+              "boolean",
+              "json"
+            ]
+          },
+          "mediaType": {
+            "type": "string",
+            "pattern": "^[a-z0-9!#$&^_.+-]+/[a-z0-9!#$&^_.+-]+$",
+            "maxLength": 128
+          }
+        }
+      },
+      "maxItems": 32
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "label",
+          "dataType"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-zA-Z0-9]*$",
+            "maxLength": 64
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "dataType": {
+            "enum": [
+              "file",
+              "string",
+              "integer",
+              "number",
+              "boolean",
+              "json"
+            ]
+          },
+          "mediaType": {
+            "type": "string",
+            "pattern": "^[a-z0-9!#$&^_.+-]+/[a-z0-9!#$&^_.+-]+$",
+            "maxLength": 128
+          }
+        }
+      },
+      "maxItems": 32
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "blockId",
+          "blockVersion",
+          "params"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-zA-Z0-9]*$",
+            "maxLength": 64
+          },
+          "blockId": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+            "maxLength": 128
+          },
+          "blockVersion": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+          },
+          "params": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string",
+              "pattern": "^[a-z][a-zA-Z0-9]*$",
+              "maxLength": 64
+            },
+            "additionalProperties": {
+              "$ref": "common.v1.schema.json#/$defs/value"
+            },
+            "maxProperties": 64
+          },
+          "presetId": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+            "maxLength": 128
+          },
+          "presetVersion": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+          }
+        },
+        "dependentRequired": {
+          "presetId": [
+            "presetVersion"
+          ],
+          "presetVersion": [
+            "presetId"
+          ]
+        }
+      },
+      "minItems": 1,
+      "maxItems": 256
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "from",
+          "to"
+        ],
+        "properties": {
+          "from": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "socketId"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "flow_input"
+                  },
+                  "socketId": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-zA-Z0-9]*$",
+                    "maxLength": 64
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "nodeId",
+                  "socketId"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "node_output"
+                  },
+                  "nodeId": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-zA-Z0-9]*$",
+                    "maxLength": 64
+                  },
+                  "socketId": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-zA-Z0-9]*$",
+                    "maxLength": 64
+                  }
+                }
+              }
+            ]
+          },
+          "to": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "nodeId",
+                  "socketId"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "node_input"
+                  },
+                  "nodeId": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-zA-Z0-9]*$",
+                    "maxLength": 64
+                  },
+                  "socketId": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-zA-Z0-9]*$",
+                    "maxLength": 64
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "socketId"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "flow_output"
+                  },
+                  "socketId": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-zA-Z0-9]*$",
+                    "maxLength": 64
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "maxItems": 1024
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "flow.remux-rapide.example",
+  "version": "1.1.0",
+  "name": "Composition pédagogique de deux remuxages MKV",
+  "description": "Deux instances du même bloc échangent un fichier typé. Le second remux est redondant et illustre uniquement une arête réelle ; aucun moteur livré.",
+  "execution": "dag",
+  "errorPolicy": "stop",
+  "inputs": [
+    {
+      "id": "source",
+      "label": "MKV source",
+      "dataType": "file",
+      "mediaType": "video/x-matroska"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "result",
+      "label": "MKV final",
+      "dataType": "file",
+      "mediaType": "video/x-matroska"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "remuxInitial",
+      "blockId": "block.remux-mkv.example",
+      "blockVersion": "1.1.0",
+      "params": {},
+      "presetId": "preset.remux-defaut.example",
+      "presetVersion": "0.0.0"
+    },
+    {
+      "id": "remuxFinal",
+      "blockId": "block.remux-mkv.example",
+      "blockVersion": "1.1.0",
+      "params": {},
+      "presetId": "preset.remux-defaut.example",
+      "presetVersion": "0.0.0"
+    }
+  ],
+  "edges": [
+    {
+      "from": { "kind": "flow_input", "socketId": "source" },
+      "to": {
+        "kind": "node_input",
+        "nodeId": "remuxInitial",
+        "socketId": "source"
+      },
+      "dataType": "file"
+    },
+    {
+      "from": {
+        "kind": "node_output",
+        "nodeId": "remuxInitial",
+        "socketId": "result"
+      },
+      "to": {
+        "kind": "node_input",
+        "nodeId": "remuxFinal",
+        "socketId": "source"
+      },
+      "dataType": "file"
+    },
+    {
+      "from": {
+        "kind": "node_output",
+        "nodeId": "remuxFinal",
+        "socketId": "result"
+      },
+      "to": { "kind": "flow_output", "socketId": "result" },
+      "dataType": "file"
+    }
+  ],
+  "runtimeNote": "Declarative only — no flow engine in this repository."
+}

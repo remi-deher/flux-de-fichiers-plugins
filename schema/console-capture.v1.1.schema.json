@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flux-de-fichiers.local/schema/console-capture.v1.1.schema.json",
+  "title": "Capture console v1.1 (durcie #40)",
+  "description": "Extension additive de console-capture.v1 : failClosed masquage, nullMeans pour exitCode, pas de rétention illimitée. Ne modifie pas console-capture.v1.schema.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "streams",
+    "exitCode",
+    "progress",
+    "secretMasking",
+    "limits",
+    "retention",
+    "cancellation"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.1.0" },
+    "streams": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stdout", "stderr"],
+      "properties": {
+        "stdout": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["capture", "encoding", "maxRetainedBytes"],
+          "properties": {
+            "capture": { "const": true },
+            "encoding": { "const": "bytes-base64" },
+            "maxRetainedBytes": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1073741824
+            }
+          }
+        },
+        "stderr": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["capture", "encoding", "maxRetainedBytes"],
+          "properties": {
+            "capture": { "const": true },
+            "encoding": { "const": "bytes-base64" },
+            "maxRetainedBytes": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1073741824
+            }
+          }
+        }
+      }
+    },
+    "exitCode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["capture", "successValues", "warningValues", "nullMeans"],
+      "properties": {
+        "capture": { "const": true },
+        "successValues": {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 0, "maximum": 255 },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "warningValues": {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 0, "maximum": 255 },
+          "uniqueItems": true,
+          "description": "Codes succeeded avec avertissements (mkvmerge: 1)."
+        },
+        "nullMeans": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "not_started",
+              "signalled",
+              "unknown_after_worker_loss"
+            ]
+          }
+        }
+      }
+    },
+    "progress": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "maxEvents", "maxEventBytes"],
+      "properties": {
+        "source": { "enum": ["runtime", "none"] },
+        "maxEvents": { "type": "integer", "minimum": 1, "maximum": 100000 },
+        "maxEventBytes": { "type": "integer", "minimum": 128, "maximum": 65536 }
+      }
+    },
+    "secretMasking": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "enabled",
+        "redactionToken",
+        "beforePersistence",
+        "crossChunk",
+        "failClosed"
+      ],
+      "properties": {
+        "enabled": { "const": true },
+        "redactionToken": { "const": "***" },
+        "beforePersistence": { "const": true },
+        "crossChunk": { "const": true },
+        "failClosed": {
+          "const": true,
+          "description": "Filtre indisponible → capture_failed, jamais journal non masqué."
+        }
+      }
+    },
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "maxTotalRetainedBytes",
+        "maxObservedBytesPerStream",
+        "maxInMemoryBytes",
+        "timeoutSeconds",
+        "cancelGraceSeconds"
+      ],
+      "properties": {
+        "maxTotalRetainedBytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483648
+        },
+        "maxObservedBytesPerStream": { "type": "integer", "minimum": 1 },
+        "maxInMemoryBytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16777216
+        },
+        "timeoutSeconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 86400
+        },
+        "cancelGraceSeconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        }
+      }
+    },
+    "retention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "ttlSeconds", "noUnlimitedRetention"],
+      "properties": {
+        "mode": { "const": "ttl" },
+        "ttlSeconds": {
+          "type": "integer",
+          "minimum": 60,
+          "maximum": 2592000
+        },
+        "noUnlimitedRetention": { "const": true }
+      }
+    },
+    "cancellation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["supported", "signal", "killAfterGrace"],
+      "properties": {
+        "supported": { "const": true },
+        "signal": { "const": "SIGTERM" },
+        "killAfterGrace": { "const": true }
+      }
+    }
+  },
+  "$defs": {
+    "stream": {
+      "$ref": "console-capture.v1.schema.json#/$defs/stream"
+    }
+  }
+}

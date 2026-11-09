@@ -1,0 +1,9 @@
+{
+  "kind": "inline",
+  "encoding": "bytes-base64",
+  "observedBytes": 16,
+  "retainedBytes": 4,
+  "truncated": true,
+  "redacted": false,
+  "data": "YWJjZA=="
+}

@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flux-de-fichiers.local/schema/block.v1.schema.json",
+  "title": "Bloc composable v1",
+  "description": "Façade Leptos/Scratch déclarative d’une opération épinglée. Les sorties correspondent à des sorties d’opération, jamais à des sockets lus comme entrées.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "version",
+    "name",
+    "operationId",
+    "operationVersion",
+    "category",
+    "sockets",
+    "ui"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+      "maxLength": 128
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "operationId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+      "maxLength": 128
+    },
+    "operationVersion": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+    },
+    "category": {
+      "enum": [
+        "media",
+        "data",
+        "io",
+        "other"
+      ]
+    },
+    "sockets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "inputs",
+        "outputs"
+      ],
+      "properties": {
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "label",
+              "dataType",
+              "operationInput"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-zA-Z0-9]*$",
+                "maxLength": 64
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "dataType": {
+                "enum": [
+                  "file",
+                  "string",
+                  "integer",
+                  "number",
+                  "boolean",
+                  "json"
+                ]
+              },
+              "mediaType": {
+                "type": "string",
+                "pattern": "^[a-z0-9!#$&^_.+-]+/[a-z0-9!#$&^_.+-]+$",
+                "maxLength": 128
+              },
+              "operationInput": {
+                "type": "string",
+                "pattern": "^[a-z][a-zA-Z0-9]*$",
+                "maxLength": 64
+              }
+            }
+          },
+          "maxItems": 32
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "label",
+              "dataType",
+              "operationOutput"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-zA-Z0-9]*$",
+                "maxLength": 64
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "dataType": {
+                "enum": [
+                  "file",
+                  "string",
+                  "integer",
+                  "number",
+                  "boolean",
+                  "json"
+                ]
+              },
+              "mediaType": {
+                "type": "string",
+                "pattern": "^[a-z0-9!#$&^_.+-]+/[a-z0-9!#$&^_.+-]+$",
+                "maxLength": 128
+              },
+              "operationOutput": {
+                "type": "string",
+                "pattern": "^[a-z][a-zA-Z0-9]*$",
+                "maxLength": 64
+              }
+            }
+          },
+          "maxItems": 32
+        }
+      }
+    },
+    "ui": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label"
+      ],
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        }
+      }
+    }
+  }
+}

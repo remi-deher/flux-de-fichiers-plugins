@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flux-de-fichiers.local/schema/tool-distribution.v1.schema.json",
+  "title": "Distribution d'outil binaire Option B v1",
+  "description": "Contrat déclaratif pour outils livrés hors conteneur applicatif : archives par architecture, chemin relatif du binaire, SHA-256 obligatoire, permissions. Aucun téléchargement ni installation dans ce dépôt catalogue.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "toolId",
+    "toolVersion",
+    "distributionMode",
+    "artifacts",
+    "installPolicy"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "toolId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+      "maxLength": 128
+    },
+    "toolVersion": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+    },
+    "distributionMode": {
+      "const": "autonomous-binary",
+      "description": "Option B : binaires autonomes hors image applicative."
+    },
+    "releaseStatus": {
+      "enum": ["contract-only", "candidate", "released"],
+      "description": "contract-only = empreintes/URL illustratives, non installables en prod."
+    },
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "items": { "$ref": "#/$defs/artifact" }
+    },
+    "installPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "verifySha256BeforeExec",
+        "refuseMismatchedDigest",
+        "cacheRootRelative",
+        "noShellUnpack",
+        "executableAllowlist"
+      ],
+      "properties": {
+        "verifySha256BeforeExec": { "const": true },
+        "refuseMismatchedDigest": { "const": true },
+        "cacheRootRelative": {
+          "type": "string",
+          "pattern": "^tools-cache/[a-z0-9][a-z0-9._-]*/[0-9]+\\.[0-9]+\\.[0-9]+$",
+          "description": "Racine relative du cache nœud (hors dépôt catalogue)."
+        },
+        "noShellUnpack": {
+          "const": true,
+          "description": "Extraction via API runtime, jamais /bin/sh -c."
+        },
+        "executableAllowlist": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._+-]*$",
+            "maxLength": 80
+          }
+        },
+        "networkAtInstall": {
+          "enum": ["explicit-allowlist", "offline-preseeded"],
+          "description": "Téléchargement uniquement si allowlist ; sinon artefacts préchargés."
+        }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "maxItems": 16,
+      "items": { "type": "string", "maxLength": 1000 }
+    }
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "arch",
+        "archiveUrl",
+        "archiveFormat",
+        "archiveSha256",
+        "binaryRelativePath",
+        "permissions"
+      ],
+      "properties": {
+        "arch": {
+          "enum": ["x86_64", "aarch64"],
+          "description": "Architecture cible Linux."
+        },
+        "archiveUrl": {
+          "type": "string",
+          "format": "uri",
+          "maxLength": 2048,
+          "description": "URL HTTPS de l'archive (ou URI illustrative contract-only)."
+        },
+        "archiveFormat": {
+          "enum": ["tar.gz", "tar.xz", "zip"]
+        },
+        "archiveSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$",
+          "description": "Empreinte SHA-256 de l'archive complète."
+        },
+        "binaryRelativePath": {
+          "type": "string",
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*\\\\)[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)*$",
+          "maxLength": 512,
+          "description": "Chemin relatif du binaire dans l'archive extraite (pas de ..)."
+        },
+        "binarySha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$",
+          "description": "Empreinte optionnelle du binaire extrait (recommandée)."
+        },
+        "permissions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["unixMode", "owner", "executableBit"],
+          "properties": {
+            "unixMode": {
+              "type": "string",
+              "pattern": "^0[0-7]{3}$",
+              "description": "Mode octal attendu après installation (ex. 0755)."
+            },
+            "owner": {
+              "enum": ["runtime-user", "root-forbidden"]
+            },
+            "executableBit": { "const": true }
+          }
+        },
+        "os": {
+          "const": "linux"
+        }
+      }
+    }
+  }
+}

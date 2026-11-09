@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "block.remux-mkv.example",
+  "type": "block",
+  "version": "0.0.0",
+  "name": "Bloc de remuxage MKV",
+  "description": "Façade low-code de l’opération du plugin MKV, réservée au futur runtime.",
+  "author": "flux-de-fichiers",
+  "license": "UNLICENSED",
+  "files": [
+    {
+      "path": "block.json",
+      "role": "block",
+      "mediaType": "application/json"
+    }
+  ],
+  "blocks": [
+    "block.json"
+  ],
+  "dependencies": [
+    {
+      "id": "plugin.remux-mkv.example",
+      "versionRange": "0.0.0",
+      "kind": "plugin"
+    }
+  ]
+}

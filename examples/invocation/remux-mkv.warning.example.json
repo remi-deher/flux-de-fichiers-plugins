@@ -1,0 +1,115 @@
+{
+  "schemaVersion": "1.1.0",
+  "kind": "invocation.response",
+  "operationId": "operation.mkvtoolnix.mkvmerge.remux",
+  "operationVersion": "1.1.0",
+  "invocationId": "invocation.example",
+  "correlationId": "correlation.example",
+  "attemptId": "attempt.example",
+  "status": "succeeded",
+  "exitCode": 1,
+  "signal": null,
+  "outputs": {
+    "result": {
+      "kind": "fileRef",
+      "fileId": "file.result-example",
+      "state": "available",
+      "access": "read",
+      "mediaType": "video/x-matroska"
+    }
+  },
+  "console": {
+    "stdout": {
+      "kind": "inline",
+      "encoding": "bytes-base64",
+      "observedBytes": 0,
+      "retainedBytes": 0,
+      "truncated": false,
+      "redacted": false,
+      "data": ""
+    },
+    "stderr": {
+      "kind": "inline",
+      "encoding": "bytes-base64",
+      "observedBytes": 22,
+      "retainedBytes": 22,
+      "truncated": false,
+      "redacted": false,
+      "data": "QXZlcnRpc3NlbWVudCBmaWN0aWYuCg=="
+    },
+    "masked": true,
+    "policy": {
+      "schemaVersion": "1.1.0",
+      "streams": {
+        "stdout": {
+          "capture": true,
+          "encoding": "bytes-base64",
+          "maxRetainedBytes": 1048576
+        },
+        "stderr": {
+          "capture": true,
+          "encoding": "bytes-base64",
+          "maxRetainedBytes": 1048576
+        }
+      },
+      "exitCode": {
+        "capture": true,
+        "successValues": [
+          0
+        ],
+        "warningValues": [
+          1
+        ],
+        "nullMeans": [
+          "not_started",
+          "signalled",
+          "unknown_after_worker_loss"
+        ]
+      },
+      "progress": {
+        "source": "runtime",
+        "maxEvents": 1000,
+        "maxEventBytes": 4096
+      },
+      "secretMasking": {
+        "enabled": true,
+        "redactionToken": "***",
+        "beforePersistence": true,
+        "crossChunk": true,
+        "failClosed": true
+      },
+      "limits": {
+        "maxTotalRetainedBytes": 2097152,
+        "maxObservedBytesPerStream": 1073741824,
+        "maxInMemoryBytes": 65536,
+        "timeoutSeconds": 600,
+        "cancelGraceSeconds": 5
+      },
+      "retention": {
+        "mode": "ttl",
+        "ttlSeconds": 86400,
+        "noUnlimitedRetention": true
+      },
+      "cancellation": {
+        "supported": true,
+        "signal": "SIGTERM",
+        "killAfterGrace": true
+      }
+    },
+    "expiresAt": "2026-11-10T13:00:02Z",
+    "eventsDropped": 0
+  },
+  "metadata": {
+    "nodeId": "node.example",
+    "providerId": "plugin.remux-mkv.example",
+    "toolId": "tool.mkvtoolnix",
+    "toolVersion": "non-mesurée-exemple",
+    "startedAt": "2026-11-09T13:00:00Z",
+    "finishedAt": "2026-11-09T13:00:02Z",
+    "durationMs": 2000,
+    "warnings": [
+      "Avertissement fictif : exemple de politique de code 1, sans trace réelle de mkvmerge."
+    ]
+  },
+  "warningsPreserved": true
+}

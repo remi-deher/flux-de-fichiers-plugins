@@ -1,0 +1,243 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flux-de-fichiers.local/schema/macro-block.v1.schema.json",
+  "title": "Macro-bloc / opération composite v1",
+  "description": "Encapsule plusieurs opérations versionnées en une étape de flow lisible et testable unitairement. Pas de shell ; chaque étape est une opération argv sûre ; chemins opaques via paramètres typés.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "version",
+    "name",
+    "kind",
+    "sockets",
+    "steps",
+    "errorPolicy",
+    "unitTestSurface",
+    "runtimeNote"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+      "maxLength": 128
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+    },
+    "name": { "type": "string", "minLength": 1, "maxLength": 120 },
+    "description": { "type": "string", "maxLength": 2000 },
+    "kind": { "const": "macro-block" },
+    "category": {
+      "enum": ["media", "data", "io", "control", "telemetry", "other"]
+    },
+    "sockets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["inputs", "outputs"],
+      "properties": {
+        "inputs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/socket" },
+          "maxItems": 32
+        },
+        "outputs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/socket" },
+          "maxItems": 32
+        }
+      }
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 32,
+      "description": "Séquence ordonnée ; pas d'expression libre ni de shell.",
+      "items": { "$ref": "#/$defs/step" }
+    },
+    "errorPolicy": {
+      "const": "stop",
+      "description": "Échec d'une étape → arrêt ; aucune compensation automatique."
+    },
+    "unitTestSurface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["testableAsSingleUnit", "exposeStepResults"],
+      "properties": {
+        "testableAsSingleUnit": {
+          "const": true,
+          "description": "Le macro-bloc est l'unité de test déclarative (entrée → sorties)."
+        },
+        "exposeStepResults": {
+          "type": "boolean",
+          "description": "Si true, le runtime futur peut journaliser les résultats intermédiaires masqués."
+        },
+        "fixtureHint": {
+          "type": "string",
+          "maxLength": 500
+        }
+      }
+    },
+    "runtimeNote": {
+      "const": "Declarative only — no macro-block engine in this repository."
+    },
+    "ui": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "label": { "type": "string", "maxLength": 120 },
+        "collapsedByDefault": { "type": "boolean" }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "maxItems": 16,
+      "items": { "type": "string", "maxLength": 1000 }
+    }
+  },
+  "$defs": {
+    "socket": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "dataType"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-zA-Z0-9]*$",
+          "maxLength": 64
+        },
+        "label": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "dataType": {
+          "enum": ["file", "string", "integer", "number", "boolean", "json"]
+        },
+        "mediaType": {
+          "type": "string",
+          "pattern": "^[a-z0-9!#$&^_.+-]+/[a-z0-9!#$&^_.+-]+$",
+          "maxLength": 128
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "dataType": { "const": "file" } },
+            "required": ["dataType"]
+          },
+          "then": { "required": ["mediaType"] }
+        }
+      ]
+    },
+    "step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "operationId",
+        "operationVersion",
+        "paramBindings"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-zA-Z0-9]*$",
+          "maxLength": 64
+        },
+        "label": { "type": "string", "maxLength": 120 },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+          "maxLength": 128
+        },
+        "operationVersion": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+        },
+        "paramBindings": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 64,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["paramId", "from"],
+            "properties": {
+              "paramId": {
+                "type": "string",
+                "pattern": "^[a-z][a-zA-Z0-9]*$",
+                "maxLength": 64
+              },
+              "from": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["kind", "socketId"],
+                    "properties": {
+                      "kind": { "const": "macro_input" },
+                      "socketId": {
+                        "type": "string",
+                        "pattern": "^[a-z][a-zA-Z0-9]*$",
+                        "maxLength": 64
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["kind", "stepId", "outputId"],
+                    "properties": {
+                      "kind": { "const": "step_output" },
+                      "stepId": {
+                        "type": "string",
+                        "pattern": "^[a-z][a-zA-Z0-9]*$",
+                        "maxLength": 64
+                      },
+                      "outputId": {
+                        "type": "string",
+                        "pattern": "^[a-z][a-zA-Z0-9]*$",
+                        "maxLength": 64
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["kind", "value"],
+                    "properties": {
+                      "kind": { "const": "literal" },
+                      "value": {}
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "publishOutputs": {
+          "type": "array",
+          "description": "Lie des sorties d'étape aux sockets de sortie du macro-bloc.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["stepOutputId", "macroSocketId"],
+            "properties": {
+              "stepOutputId": {
+                "type": "string",
+                "pattern": "^[a-z][a-zA-Z0-9]*$",
+                "maxLength": 64
+              },
+              "macroSocketId": {
+                "type": "string",
+                "pattern": "^[a-z][a-zA-Z0-9]*$",
+                "maxLength": 64
+              }
+            }
+          },
+          "maxItems": 32
+        }
+      }
+    }
+  }
+}

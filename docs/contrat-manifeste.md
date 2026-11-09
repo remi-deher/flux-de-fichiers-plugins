@@ -1,26 +1,59 @@
-# Contrat manifeste v1
+# Manifestes, découverte et versions
 
-## Fichiers
+## Lecture ascendante explicite
 
-| Fichier | Rôle |
-|---------|------|
-| `schema/manifest.v1.schema.json` | Schéma d’une fiche individuelle |
-| `schema/catalogue-index.v1.schema.json` | Schéma de l’index |
-| `catalogue/index.json` | Index réel (références uniquement) |
+[schema/manifest.v1.schema.json](../schema/manifest.v1.schema.json) et
+[schema/catalogue-index.v1.schema.json](../schema/catalogue-index.v1.schema.json)
+restent inchangés. Tous les anciens manifestes, y compris les ressources,
+[le catalogue historique](../catalogue/index.json), le flow à étapes `flow.json`
+et le preset historique `preset.json` sont conservés à l'identique.
 
-## Règles
+Les nouveaux contrats sont référencés par
+[catalogue/contracts.v1.json](../catalogue/contracts.v1.json), validé avec
+[contracts-index.v1](../schema/contracts-index.v1.schema.json). Ses chemins sont
+**relatifs à la racine du dépôt**, y compris `legacyIndex` ; ceux d'un manifeste
+(`files`, `operations`, `blocks`, `app.installation`) sont relatifs au paquet.
+Les chemins absolus, traversées et liens sortants sont interdits.
 
-1. Chaque élément exposé au catalogue possède un `manifest.json` à sa racine.
-2. `id` est stable ; un renommage de dossier ne change pas l’`id`.
-3. L’index référence `manifestPath` + métadonnées courtes (`name`, `type`, `version`) ; la description longue reste dans la fiche.
-4. `license: UNLICENSED` marque un exemple local sans licence tierce inventée.
-5. Aucun actif binaire tiers n’est embarqué dans ce squelette.
-6. `schemaVersion: "1.0.0"` est figé pour v1 ; une rupture de contrat imposera `manifest.v2`.
+Un lecteur de contrats charge l'ancien index, puis le complément. Pour chaque
+entrée, il vérifie que `id`, `type` et `version` correspondent au manifeste,
+résout ses contrats et refuse les identifiants dupliqués ou divergents. Il ne
+fusionne jamais deux définitions concurrentes selon leur ordre de lecture.
 
-## Champs obligatoires
+[manifest.v1.1](../schema/manifest.v1.1.schema.json) accepte soit **exactement**
+l'ancien manifeste 1.0.0, soit un manifeste `schemaVersion: "1.1.0"` permettant
+`app`, `block`, `operations`, `blocks` et les métadonnées d'app. Les champs nouveaux
+ne deviennent pas autorisés dans un document étiqueté 1.0.0. Les deux nouvelles
+fiches app/bloc sont uniquement dans l'index complémentaire.
 
-`schemaVersion`, `id`, `type`, `version`, `name`, `description`, `author`, `license`.
+| Consommateur | Fiche 1.0.0 | Fiche 1.1.0 |
+| --- | --- | --- |
+| Ancien lecteur v1 | Comportement existant | Refus explicite ; pas de repli vers une exécution |
+| Lecteur v1.1 | Branche du schéma v1 inchangée | Branche étendue du schéma v1.1 |
 
-## Champs optionnels utiles
+Compatibilité ascendante signifie donc qu'un nouveau lecteur lit l'ancien
+catalogue. Elle ne signifie pas qu'un ancien lecteur connaît les apps ou blocs.
+Aucune migration des ressources ni nouvelle API applicative n'est livrée ici.
 
-`icon`, `previews`, `files`, `compatibility`, `dependencies`, `integrity`, `tool` (outils).
+## Trois versions différentes
+
+- `schemaVersion` choisit la forme du document. Les nouveaux contrats d'opération,
+  bloc, flow, preset, installation et invocation utilisent **1.0.0**.
+- `version` versionne le contenu d'un élément ; l'exemple vaut **0.0.0**, jamais
+  une preuve de validation fonctionnelle. Une version publiée est immuable.
+- La version réelle du binaire apparaît dans `metadata.toolVersion`, indépendamment
+  de la version de fiche catalogue `tool.mkvtoolnix@1.0.0`.
+
+Le graphe, ses blocs, opérations et dépendances installées utilisent des versions
+**exactes** ; les plages des anciennes fiches restent des indications historiques.
+Le résolveur doit vérifier la cohérence globale avant activation. Un changement
+de nom/type d'entrée, de sortie, d'effet ou de permission exige une nouvelle
+version de contenu et un refus de substitution automatique. Une rupture du
+format de contrat exige un nouveau schéma majeur ; un ajout de champ exige un
+schéma identifié, car les objets sont fermés (`additionalProperties: false`).
+
+Les `$id` sous `https://flux-de-fichiers.local/schema/` sont des identifiants,
+**pas des services réseau**. Le consommateur construit un registre local depuis
+`schema/` et résout les `$ref` relatifs sans téléchargement. Les schémas ne
+valident ni les droits, ni les cycles, ni les sommes de quotas : voir les
+[contrôles sémantiques](garanties-execution-v1.md#validation-sémantique-en-complément-des-schémas).

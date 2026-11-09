@@ -1,0 +1,378 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flux-de-fichiers.local/schema/operation.v1.schema.json",
+  "title": "Opération de plugin v1",
+  "description": "Version de définition indépendante de schemaVersion et du binaire. Exemple déclaratif, pas de validation du futur runtime. Les droits ne sont jamais accordés par ce document.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "version",
+    "name",
+    "providerId",
+    "providerKind",
+    "capability",
+    "status",
+    "tool",
+    "permissions",
+    "parameters",
+    "inputs",
+    "outputs",
+    "command",
+    "console",
+    "outputVerification",
+    "retryPolicy"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+      "maxLength": 128
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "providerId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+      "maxLength": 128
+    },
+    "providerKind": {
+      "const": "plugin"
+    },
+    "capability": {
+      "enum": [
+        "remux",
+        "analyze",
+        "other"
+      ]
+    },
+    "status": {
+      "const": "example"
+    },
+    "tool": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "version"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+          "maxLength": 128
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+        }
+      }
+    },
+    "permissions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "readInputs",
+        "writeOutputs",
+        "network"
+      ],
+      "properties": {
+        "readInputs": {
+          "type": "boolean"
+        },
+        "writeOutputs": {
+          "type": "boolean"
+        },
+        "network": {
+          "const": "none"
+        }
+      }
+    },
+    "parameters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "type",
+          "direction",
+          "required"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-zA-Z0-9]*$",
+            "maxLength": 64
+          },
+          "type": {
+            "enum": [
+              "string",
+              "integer",
+              "number",
+              "boolean",
+              "enum",
+              "file",
+              "string[]",
+              "file[]",
+              "json",
+              "secretRef"
+            ]
+          },
+          "direction": {
+            "enum": [
+              "input",
+              "output"
+            ]
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 1000
+          },
+          "default": {
+            "$ref": "common.v1.schema.json#/$defs/value"
+          },
+          "enumValues": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "minimum": {
+            "type": "number"
+          },
+          "maximum": {
+            "type": "number"
+          },
+          "maxLength": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 4096
+          },
+          "mediaType": {
+            "type": "string",
+            "pattern": "^[a-z0-9!#$&^_.+-]+/[a-z0-9!#$&^_.+-]+$",
+            "maxLength": 128
+          },
+          "fileAccess": {
+            "enum": [
+              "read",
+              "write"
+            ]
+          },
+          "secret": {
+            "type": "boolean"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "enum": [
+                    "file",
+                    "file[]"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "mediaType",
+                "fileAccess"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "enum"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "enumValues"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "secretRef"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "secret"
+              ],
+              "properties": {
+                "secret": {
+                  "const": true
+                }
+              },
+              "not": {
+                "required": [
+                  "default"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "maxItems": 64
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "paramId",
+          "dataType"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-zA-Z0-9]*$",
+            "maxLength": 64
+          },
+          "paramId": {
+            "type": "string",
+            "pattern": "^[a-z][a-zA-Z0-9]*$",
+            "maxLength": 64
+          },
+          "dataType": {
+            "enum": [
+              "file",
+              "string",
+              "integer",
+              "number",
+              "boolean",
+              "json"
+            ]
+          },
+          "mediaType": {
+            "type": "string",
+            "pattern": "^[a-z0-9!#$&^_.+-]+/[a-z0-9!#$&^_.+-]+$",
+            "maxLength": 128
+          }
+        }
+      },
+      "maxItems": 32
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "dataType",
+          "binding"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-zA-Z0-9]*$",
+            "maxLength": 64
+          },
+          "dataType": {
+            "enum": [
+              "file",
+              "integer"
+            ]
+          },
+          "mediaType": {
+            "type": "string",
+            "pattern": "^[a-z0-9!#$&^_.+-]+/[a-z0-9!#$&^_.+-]+$",
+            "maxLength": 128
+          },
+          "binding": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "paramId"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "fileParam"
+                  },
+                  "paramId": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-zA-Z0-9]*$",
+                    "maxLength": 64
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "exitCode"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "maxItems": 32
+    },
+    "command": {
+      "$ref": "command-argv.v1.schema.json"
+    },
+    "console": {
+      "$ref": "console-capture.v1.schema.json"
+    },
+    "outputVerification": {
+      "enum": [
+        "remux-equivalent",
+        "none"
+      ]
+    },
+    "retryPolicy": {
+      "const": "never-automatic"
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 1000
+      },
+      "maxItems": 16
+    }
+  }
+}

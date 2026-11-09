@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flux-de-fichiers.local/schema/command-argv.v1.1.schema.json",
+  "title": "Adaptateur argv v1.1 (durci #40)",
+  "description": "Extension additive de command-argv.v1 : forbidden obligatoire et non désactivable ; optionPolicy liste fermée ; pathPolicy sandbox ; executable borné (pas de chemin) ; argv sans argv[0]. Ne modifie pas command-argv.v1.schema.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "toolId",
+    "executable",
+    "argv",
+    "workingDirectory",
+    "stdin",
+    "shell",
+    "forbidden",
+    "pathPolicy",
+    "optionPolicy",
+    "env"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.1.0" },
+    "toolId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+      "maxLength": 128
+    },
+    "executable": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._+-]*$",
+      "maxLength": 80,
+      "description": "Nom de binaire uniquement. DOIT figurer dans permissions.executableAllowlist de l'opération et dans l'allowlist du tool installé. Le runtime pose executable en argv[0]."
+    },
+    "argv": {
+      "type": "array",
+      "description": "Arguments APRÈS l'exécutable. Ne pas répéter executable.",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096,
+            "pattern": "^[^\\u0000`$]*$",
+            "description": "Littéral. Pas de backticks ni $. Les littéraux -… doivent être dans optionPolicy.allowedFlags."
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["$param", "as"],
+            "properties": {
+              "$param": {
+                "type": "string",
+                "pattern": "^[a-z][a-zA-Z0-9]*$",
+                "maxLength": 64,
+                "description": "Paramètre NON secret (secret/secretRef interdit ici — validation sémantique runtime)."
+              },
+              "as": {
+                "enum": ["scalar", "filePath", "repeat"]
+              }
+            }
+          }
+        ]
+      },
+      "maxItems": 256
+    },
+    "workingDirectory": { "const": "invocation" },
+    "stdin": { "const": "closed" },
+    "shell": { "const": false },
+    "forbidden": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["shell", "interpolation", "eval", "responseFiles"],
+      "properties": {
+        "shell": { "const": true },
+        "interpolation": { "const": true },
+        "eval": { "const": true },
+        "responseFiles": {
+          "const": true,
+          "description": "@file / scripts / plugins chargés par l'outil interdits."
+        }
+      }
+    },
+    "pathPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "refsOpaque",
+        "denyDotDot",
+        "denyOutboundSymlinks",
+        "denyAbsoluteClientPaths",
+        "sandboxVolumesOnly",
+        "generatedPathsMustNotStartWithDashOrAt"
+      ],
+      "properties": {
+        "refsOpaque": { "const": true },
+        "denyDotDot": { "const": true },
+        "denyOutboundSymlinks": { "const": true },
+        "denyAbsoluteClientPaths": { "const": true },
+        "sandboxVolumesOnly": { "const": true },
+        "generatedPathsMustNotStartWithDashOrAt": { "const": true }
+      }
+    },
+    "optionPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "allowedFlags", "forbidDoubleDashSeparator"],
+      "properties": {
+        "mode": { "const": "closed-list" },
+        "allowedFlags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^--?[A-Za-z0-9][A-Za-z0-9_-]*$"
+          },
+          "uniqueItems": true,
+          "description": "Liste fermée des littéraux d'options autorisés dans argv."
+        },
+        "forbidDoubleDashSeparator": {
+          "const": true,
+          "description": "Pour mkvmerge, -- seul serait lu comme fichier."
+        }
+      }
+    },
+    "env": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "value"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^[A-Z_][A-Z0-9_]*$",
+            "maxLength": 80,
+            "not": {
+              "enum": ["LD_PRELOAD", "LD_LIBRARY_PATH", "DYLD_INSERT_LIBRARIES"]
+            }
+          },
+          "value": {
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^[^\\u0000]*$",
+                "maxLength": 4096
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["$param"],
+                "properties": {
+                  "$param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-zA-Z0-9]*$",
+                    "maxLength": 64
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["$secretFile"],
+                "properties": {
+                  "$secretFile": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-zA-Z0-9]*$",
+                    "maxLength": 64
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "maxItems": 32
+    },
+    "noGlobalEnvInheritance": { "const": true }
+  }
+}

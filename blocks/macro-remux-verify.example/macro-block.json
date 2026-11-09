@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "macro.remux-verify.example",
+  "version": "0.1.0",
+  "name": "Remux puis vérifier (macro)",
+  "description": "Exemple pédagogique : deux opérations encapsulées — remux MKVToolNix puis une étape de vérification déclarative. Aucun moteur ici.",
+  "kind": "macro-block",
+  "category": "media",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Source MKV",
+        "dataType": "file",
+        "mediaType": "video/x-matroska"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "result",
+        "label": "MKV remuxé",
+        "dataType": "file",
+        "mediaType": "video/x-matroska"
+      }
+    ]
+  },
+  "steps": [
+    {
+      "id": "remux",
+      "label": "Remux mkvmerge",
+      "operationId": "operation.mkvtoolnix.mkvmerge.remux",
+      "operationVersion": "1.1.0",
+      "paramBindings": [
+        {
+          "paramId": "source",
+          "from": { "kind": "macro_input", "socketId": "source" }
+        },
+        {
+          "paramId": "destination",
+          "from": { "kind": "literal", "value": { "kind": "fileRef", "fileId": "file.macro-temp-remux", "state": "reserved", "access": "write", "mediaType": "video/x-matroska" } }
+        }
+      ],
+      "publishOutputs": [
+        {
+          "stepOutputId": "result",
+          "macroSocketId": "result"
+        }
+      ]
+    },
+    {
+      "id": "verify",
+      "label": "Vérifier équivalence (placeholder opération)",
+      "operationId": "operation.mkvtoolnix.verify.remux-equivalent.example",
+      "operationVersion": "0.0.0",
+      "paramBindings": [
+        {
+          "paramId": "source",
+          "from": { "kind": "macro_input", "socketId": "source" }
+        },
+        {
+          "paramId": "candidate",
+          "from": {
+            "kind": "step_output",
+            "stepId": "remux",
+            "outputId": "result"
+          }
+        }
+      ]
+    }
+  ],
+  "errorPolicy": "stop",
+  "unitTestSurface": {
+    "testableAsSingleUnit": true,
+    "exposeStepResults": true,
+    "fixtureHint": "Fournir un MKV synthétique isolé ; attendre result + exit 0/1 mkvmerge."
+  },
+  "runtimeNote": "Declarative only — no macro-block engine in this repository.",
+  "ui": {
+    "label": "Remux + vérifier",
+    "collapsedByDefault": true
+  },
+  "notes": [
+    "La seconde opération est un id d'exemple ; non exécutée dans ce dépôt.",
+    "Chaque étape reste une opération argv sûre — pas de shell composite."
+  ]
+}

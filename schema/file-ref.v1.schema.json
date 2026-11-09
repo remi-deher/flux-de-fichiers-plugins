@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flux-de-fichiers.local/schema/file-ref.v1.schema.json",
+  "title": "Référence fichier v1",
+  "description": "Identité opaque résolue et autorisée par le runtime. Aucun chemin hôte ni URL libre. Un identifiant ne confère aucun droit.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "kind",
+    "fileId",
+    "state",
+    "access",
+    "mediaType"
+  ],
+  "properties": {
+    "kind": {
+      "const": "fileRef"
+    },
+    "fileId": {
+      "type": "string",
+      "pattern": "^file[.][a-z0-9]+([.-][a-z0-9]+)*$",
+      "maxLength": 128
+    },
+    "state": {
+      "enum": [
+        "reserved",
+        "available"
+      ]
+    },
+    "access": {
+      "enum": [
+        "read",
+        "write"
+      ]
+    },
+    "mediaType": {
+      "type": "string",
+      "pattern": "^[a-z0-9!#$&^_.+-]+/[a-z0-9!#$&^_.+-]+$",
+      "maxLength": 128
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sizeBytes": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "reserved"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "access": {
+            "const": "write"
+          }
+        },
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "sha256"
+              ]
+            },
+            {
+              "required": [
+                "sizeBytes"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "available"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "access": {
+            "const": "read"
+          }
+        }
+      }
+    }
+  ]
+}

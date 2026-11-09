@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.1.0",
+  "kind": "invocation.request",
+  "operationId": "operation.mkvtoolnix.mkvmerge.remux",
+  "operationVersion": "1.1.0",
+  "invocationId": "invocation.example",
+  "correlationId": "correlation.example",
+  "params": {
+    "source": {
+      "kind": "fileRef",
+      "fileId": "file.source-example",
+      "state": "available",
+      "access": "read",
+      "mediaType": "video/x-matroska"
+    },
+    "destination": {
+      "kind": "fileRef",
+      "fileId": "file.result-example",
+      "state": "reserved",
+      "access": "write",
+      "mediaType": "video/x-matroska"
+    }
+  },
+  "timeoutSeconds": 600
+}

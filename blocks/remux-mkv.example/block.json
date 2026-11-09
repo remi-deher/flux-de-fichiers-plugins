@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "block.remux-mkv.example",
+  "version": "1.1.0",
+  "name": "Remuxer un MKV",
+  "operationId": "operation.mkvtoolnix.mkvmerge.remux",
+  "operationVersion": "1.1.0",
+  "category": "media",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Source MKV",
+        "dataType": "file",
+        "mediaType": "video/x-matroska",
+        "operationInput": "source"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "result",
+        "label": "MKV remuxé et vérifié",
+        "dataType": "file",
+        "mediaType": "video/x-matroska",
+        "operationOutput": "result"
+      }
+    ]
+  },
+  "ui": {
+    "label": "Remuxer un MKV avec MKVToolNix"
+  }
+}

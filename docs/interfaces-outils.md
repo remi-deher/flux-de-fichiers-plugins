@@ -14,7 +14,7 @@ Responsabilité : remuxage sans réencodage d’un conteneur média.
 | Élément | Valeur actuelle |
 |---------|-----------------|
 | Implémentation | MKVToolNix (`mkvmerge`) |
-| Invocation | binaire dans l’image Docker applicative |
+| Invocation | Option B — binaire autonome hors image (`host-binary` + `distribution.v1.json`) |
 | Fiche catalogue | `tool.mkvtoolnix` |
 
 Opérations minimales à prévoir côté application :
@@ -43,8 +43,26 @@ Frontière stricte :
 - **Déploiement instance** (image Postgres, `pg_hba`, TLS, secrets fichiers) :
   modèles documentés sous `tools/postgresql/deploy/`.
 
+## `MediaProbe` (FFmpeg distribué)
+
+| Élément | Valeur |
+|---------|--------|
+| Implémentation | FFmpeg / ffprobe |
+| Invocation | Option B — binaire autonome |
+| Fiche | `tool.ffmpeg` |
+| Rôle validé | Médias synthétiques de tests / analyse |
+| Non validé | Remux / MP4 production (`examples/pending/`) |
+
+## `NodeTelemetryProbe`
+
+| Élément | Valeur |
+|---------|--------|
+| Implémentation | `flux-telemetry` (interne) |
+| Invocation | Option B — binaire autonome, préférer préchargement offline |
+| Fiche | `tool.internal.telemetry` |
+| Métriques | CPU, RAM, GPU, stockage |
+
 ## Capacités futures (non validées)
 
-Le schéma réserve `capability: transcode | analyze | other` pour d’autres outils.
-Aucune fiche « alternative » n’est créée volontairement, afin d’éviter un choix
-implicite.
+Le schéma réserve `capability: transcode | analyze | other`. FFmpeg n’est pas
+le remuxer production ; MKVToolNix reste le choix remux.

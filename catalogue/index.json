@@ -9,7 +9,28 @@
       "name": "MKVToolNix (mkvmerge)",
       "manifestPath": "tools/mkvtoolnix/manifest.json",
       "capability": "remux",
-      "currentChoice": true
+      "currentChoice": true,
+      "distribution": "autonomous-binary"
+    },
+    {
+      "id": "tool.ffmpeg",
+      "type": "tool",
+      "version": "1.0.0",
+      "name": "FFmpeg (distribué)",
+      "manifestPath": "tools/ffmpeg/manifest.json",
+      "capability": "analyze",
+      "currentChoice": false,
+      "distribution": "autonomous-binary"
+    },
+    {
+      "id": "tool.internal.telemetry",
+      "type": "tool",
+      "version": "0.1.0",
+      "name": "Sonde interne de télémétrie",
+      "manifestPath": "tools/internal-telemetry/manifest.json",
+      "capability": "other",
+      "currentChoice": true,
+      "distribution": "autonomous-binary"
     },
     {
       "id": "tool.postgresql",
@@ -19,6 +40,13 @@
       "manifestPath": "tools/postgresql/manifest.json",
       "capability": "database",
       "currentChoice": true
+    },
+    {
+      "id": "macro.remux-verify.example",
+      "type": "block",
+      "version": "0.1.0",
+      "name": "Macro remux + vérifier (exemple)",
+      "manifestPath": "blocks/macro-remux-verify.example/manifest.json"
     },
     {
       "id": "plugin.remux-mkv.example",

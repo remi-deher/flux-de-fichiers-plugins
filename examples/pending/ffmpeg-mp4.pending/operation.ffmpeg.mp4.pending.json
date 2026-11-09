@@ -1,0 +1,122 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "operation.ffmpeg.mp4.pending",
+  "version": "0.0.0",
+  "name": "PENDING — conteneur MP4 via FFmpeg",
+  "description": "Brouillon non validé. Ne pas traiter comme support production. FFmpeg reste réservé aux médias synthétiques de tests applicatifs.",
+  "providerId": "tool.ffmpeg.pending",
+  "providerKind": "plugin",
+  "capability": "other",
+  "status": "example",
+  "tool": {
+    "id": "tool.ffmpeg.pending",
+    "version": "0.0.0"
+  },
+  "permissions": {
+    "readInputs": true,
+    "writeOutputs": true,
+    "network": "none"
+  },
+  "parameters": [
+    {
+      "id": "source",
+      "type": "file",
+      "direction": "input",
+      "required": true,
+      "mediaType": "video/mp4",
+      "fileAccess": "read"
+    },
+    {
+      "id": "destination",
+      "type": "file",
+      "direction": "output",
+      "required": true,
+      "mediaType": "video/mp4",
+      "fileAccess": "write"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "source",
+      "paramId": "source",
+      "dataType": "file",
+      "mediaType": "video/mp4"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "result",
+      "dataType": "file",
+      "mediaType": "video/mp4",
+      "binding": { "kind": "fileParam", "paramId": "destination" }
+    }
+  ],
+  "command": {
+    "schemaVersion": "1.0.0",
+    "toolId": "tool.ffmpeg.pending",
+    "executable": "ffmpeg",
+    "argv": [
+      "-i",
+      { "$param": "source", "as": "filePath" },
+      "-c",
+      "copy",
+      { "$param": "destination", "as": "filePath" }
+    ],
+    "workingDirectory": "invocation",
+    "stdin": "closed",
+    "shell": false,
+    "env": []
+  },
+  "console": {
+    "schemaVersion": "1.0.0",
+    "streams": {
+      "stdout": {
+        "capture": true,
+        "encoding": "bytes-base64",
+        "maxRetainedBytes": 1048576
+      },
+      "stderr": {
+        "capture": true,
+        "encoding": "bytes-base64",
+        "maxRetainedBytes": 1048576
+      }
+    },
+    "exitCode": {
+      "capture": true,
+      "successValues": [0],
+      "warningValues": []
+    },
+    "progress": {
+      "source": "none",
+      "maxEvents": 100,
+      "maxEventBytes": 4096
+    },
+    "secretMasking": {
+      "enabled": true,
+      "redactionToken": "***",
+      "beforePersistence": true,
+      "crossChunk": true
+    },
+    "limits": {
+      "maxTotalRetainedBytes": 2097152,
+      "maxObservedBytesPerStream": 1073741824,
+      "maxInMemoryBytes": 65536,
+      "timeoutSeconds": 3600,
+      "cancelGraceSeconds": 5
+    },
+    "retention": {
+      "mode": "ttl",
+      "ttlSeconds": 86400
+    },
+    "cancellation": {
+      "supported": true,
+      "signal": "SIGTERM",
+      "killAfterGrace": true
+    }
+  },
+  "outputVerification": "none",
+  "retryPolicy": "never-automatic",
+  "notes": [
+    "PENDING-DECISION : hors catalogue validé. Ne pas activer sans arbitrage utilisateur."
+  ]
+}

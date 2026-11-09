@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "1.1.0",
+  "kind": "invocation.response",
+  "operationId": "operation.mkvtoolnix.mkvmerge.remux",
+  "operationVersion": "1.1.0",
+  "invocationId": "invocation.example",
+  "correlationId": "correlation.example",
+  "attemptId": "attempt.example",
+  "status": "timed_out",
+  "exitCode": null,
+  "signal": 15,
+  "outputs": {},
+  "console": {
+    "stdout": {
+      "kind": "inline",
+      "encoding": "bytes-base64",
+      "observedBytes": 0,
+      "retainedBytes": 0,
+      "truncated": false,
+      "redacted": false,
+      "data": ""
+    },
+    "stderr": {
+      "kind": "inline",
+      "encoding": "bytes-base64",
+      "observedBytes": 0,
+      "retainedBytes": 0,
+      "truncated": false,
+      "redacted": false,
+      "data": ""
+    },
+    "masked": true,
+    "policy": {
+      "schemaVersion": "1.1.0",
+      "streams": {
+        "stdout": {
+          "capture": true,
+          "encoding": "bytes-base64",
+          "maxRetainedBytes": 1048576
+        },
+        "stderr": {
+          "capture": true,
+          "encoding": "bytes-base64",
+          "maxRetainedBytes": 1048576
+        }
+      },
+      "exitCode": {
+        "capture": true,
+        "successValues": [
+          0
+        ],
+        "warningValues": [
+          1
+        ],
+        "nullMeans": [
+          "not_started",
+          "signalled",
+          "unknown_after_worker_loss"
+        ]
+      },
+      "progress": {
+        "source": "runtime",
+        "maxEvents": 1000,
+        "maxEventBytes": 4096
+      },
+      "secretMasking": {
+        "enabled": true,
+        "redactionToken": "***",
+        "beforePersistence": true,
+        "crossChunk": true,
+        "failClosed": true
+      },
+      "limits": {
+        "maxTotalRetainedBytes": 2097152,
+        "maxObservedBytesPerStream": 1073741824,
+        "maxInMemoryBytes": 65536,
+        "timeoutSeconds": 600,
+        "cancelGraceSeconds": 5
+      },
+      "retention": {
+        "mode": "ttl",
+        "ttlSeconds": 86400,
+        "noUnlimitedRetention": true
+      },
+      "cancellation": {
+        "supported": true,
+        "signal": "SIGTERM",
+        "killAfterGrace": true
+      }
+    },
+    "expiresAt": "2026-11-10T13:10:05Z",
+    "eventsDropped": 0
+  },
+  "metadata": {
+    "nodeId": "node.example",
+    "providerId": "plugin.remux-mkv.example",
+    "toolId": "tool.mkvtoolnix",
+    "toolVersion": "non-mesurée-exemple",
+    "startedAt": "2026-11-09T13:00:00Z",
+    "finishedAt": "2026-11-09T13:10:05Z",
+    "durationMs": 605000,
+    "warnings": []
+  },
+  "error": {
+    "code": "deadline_exceeded",
+    "message": "Le délai autorisé est dépassé.",
+    "retryable": false
+  }
+}

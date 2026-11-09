@@ -1,15 +1,22 @@
-# Outil : MKVToolNix
+# tool.mkvtoolnix
 
-Choix **actuel** de remuxage pour flux-de-fichiers (`mkvmerge`).
+Remuxage Matroska via `mkvmerge` — choix applicatif actuel.
 
-## Rôle
+## Distribution (Option B)
 
-- Implémente l’interface applicative `Remuxer` (voir `docs/interfaces-outils.md`).
-- Exécution prévue via l’image applicative Docker (binaire présent dans l’image
-  runtime), pas via un paquet stocké dans ce dépôt.
+Voir [`distribution.v1.json`](distribution.v1.json) : archives `x86_64` /
+`aarch64`, chemin relatif `bin/mkvmerge`, SHA-256 obligatoire, permissions
+`0755` sous `runtime-user`.
 
-## Hors périmètre de cette fiche
+`releaseStatus: contract-only` — URL et empreintes illustratives, non
+installables en production tant qu'une release ne les remplace pas.
 
-- Aucune installation locale du binaire ici.
-- Aucune alternative (FFmpeg remux, autre conteneur) n’est validée : FFmpeg reste
-  réservé aux médias synthétiques de test dans le dépôt applicatif.
+## Sécurité
+
+- Pas de shell ; argv paramétré (voir opérations du plugin remux).
+- Allowlist exécutable : `mkvmerge` uniquement.
+- Chemins opaques résolus par le runtime futur.
+
+## Hors périmètre
+
+Aucun binaire versionné dans ce dépôt. Pas de MP4.

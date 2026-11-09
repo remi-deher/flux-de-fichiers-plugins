@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "preset.remux-defaut.example",
+  "version": "0.0.0",
+  "operationId": "operation.mkvtoolnix.mkvmerge.remux",
+  "operationVersion": "0.0.0",
+  "params": {},
+  "timeoutSeconds": 600
+}

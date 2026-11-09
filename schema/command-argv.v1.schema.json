@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flux-de-fichiers.local/schema/command-argv.v1.schema.json",
+  "title": "Adaptateur argv v1",
+  "description": "argv exclut argv[0] : executable est résolu dans le tool autorisé, puis chaque argument est passé séparément à tokio::process::Command. Aucun shell, chemin exécutable client ou secret en clair.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "toolId",
+    "executable",
+    "argv",
+    "workingDirectory",
+    "stdin",
+    "shell",
+    "env"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "toolId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+      "maxLength": 128
+    },
+    "executable": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$",
+      "maxLength": 80
+    },
+    "argv": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string",
+            "pattern": "^[^\\u0000]*$",
+            "maxLength": 4096
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "$param",
+              "as"
+            ],
+            "properties": {
+              "$param": {
+                "type": "string",
+                "pattern": "^[a-z][a-zA-Z0-9]*$",
+                "maxLength": 64
+              },
+              "as": {
+                "enum": [
+                  "scalar",
+                  "filePath",
+                  "repeat"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "maxItems": 256
+    },
+    "workingDirectory": {
+      "const": "invocation"
+    },
+    "stdin": {
+      "const": "closed"
+    },
+    "shell": {
+      "const": false
+    },
+    "env": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "value"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^[A-Z_][A-Z0-9_]*$",
+            "maxLength": 80
+          },
+          "value": {
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^[^\\u0000]*$",
+                "maxLength": 4096
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "$param"
+                ],
+                "properties": {
+                  "$param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-zA-Z0-9]*$",
+                    "maxLength": 64
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "$secretFile"
+                ],
+                "properties": {
+                  "$secretFile": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-zA-Z0-9]*$",
+                    "maxLength": 64
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "maxItems": 32
+    }
+  }
+}

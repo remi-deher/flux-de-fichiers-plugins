@@ -1,36 +1,33 @@
-# Intégration à l’application
+# Intégration future au socle
 
-## Principes
+Le dépôt applicatif conserve le binaire Rust unique (coordinateur Axum/Tokio,
+worker distant ou exécuteur intégré), SQLx/PostgreSQL, Docker, TLS, API autorisée
+et frontend Leptos. Aucun fichier applicatif n'est modifié par ces contrats.
+Le coordinateur reste seul à accéder à PostgreSQL ; les workers passent par HTTPS.
+Aucun changement de HA ou de stratégie de bascule n'est impliqué.
 
-1. Le dépôt applicatif reste le runtime (Rust, Docker, Compose, migrations).
-2. Ce dépôt fournit le **catalogue** et les **contrats** ; le chargeur reste à concevoir plus tard.
-3. #10 (socle / frontend différé) ne doit pas être bloqué : aucune modification des
-   fichiers applicatifs n’a été faite depuis #11.
-4. Secrets : toujours par fichiers / orchestrateur ; jamais dans ce dépôt.
+Le futur lecteur charge [l'index historique](../catalogue/index.json), puis
+[l'index complémentaire](../catalogue/contracts.v1.json). Il sélectionne le bon
+schéma par famille et `schemaVersion`, avec registre local de `$ref`, puis valide
+les références et règles sémantiques. Le choix de distribution et de confiance
+est [ouvert](questions-ouvertes.md). Aucun `FLUX_PLUGINS_ROOT` opérationnel n'est
+ajouté au code actuel.
 
-## Changements applicatifs futurs (à planifier, non faits ici)
+| Zone du socle | Obligation future |
+| --- | --- |
+| Catalogue | Vérifier schémas, versions, dépendances, chemins et confiance |
+| Autorisation | Intersection des droits de l'appelant et du nœud ; aucune permission autoaccordée |
+| Stockage | Résoudre les fileRef, réserver les sorties, vérifier avant publication |
+| Worker/local | Adaptateur argv fixe, captures concurrentes bornées, masquage et arrêt supervisé |
+| Coordinateur | Corrélation, états/baux, résultat durable et idempotence du transport |
+| Frontend Leptos | Fiches, blocs et app déclarative ; console affichée comme texte non fiable |
 
-| Zone | Adaptation |
-|------|------------|
-| Worker remux | Extraire un trait / module `Remuxer` autour de l’appel `mkvmerge` |
-| Config | Référence optionnelle vers un `toolId` catalogue (défaut `tool.mkvtoolnix`) |
-| Compose / image | Continuer d’embarquer MKVToolNix dans l’image runtime tant qu’il est le choix actuel |
-| SQLx / DB | Inchangé ; PostgreSQL reste requis |
-| Frontend Leptos (futur) | Lire `catalogue/index.json` + fiches pour présentation (icône, licence, description) |
+La commande du [plugin MKV](../plugins/remux-mkv.example/operations/remux.json)
+reprend les options de `src/media.rs`. Ce module ignore encore la console de
+remux ; les nouveaux contrats ne sont donc pas un adaptateur déjà implémenté.
+La vérification actuelle des médias reste la référence de publication.
 
-## Chemin de lecture envisagé
-
-```text
-FLUX_PLUGINS_ROOT/
-  catalogue/index.json
-  tools|plugins|flows|…/<id>/manifest.json
-```
-
-`FLUX_PLUGINS_ROOT` pourra être un clone, un volume monté ou un artefact publié
-(#12). Format exact de distribution : décision ouverte.
-
-## Non-régression
-
-- `compose.yaml` et `deploy/` du dépôt applicatif restent la vérité runtime.
-- Les exemples sous `tools/postgresql/deploy/*.example` ne remplacent rien tant
-  qu’une bascule n’est pas explicitement demandée.
+Les fichiers Compose, images, migrations et déploiements du dépôt applicatif
+restent la source de vérité. Les modèles sous `tools/postgresql/deploy/` ne
+remplacent aucune configuration. Installation, exécution générique et scénarios
+de validation du futur runtime restent à réaliser après les arbitrages.
