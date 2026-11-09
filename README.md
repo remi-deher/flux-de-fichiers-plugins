@@ -35,8 +35,10 @@ illustratifs. Il ne contient pas de chargeur d’exécution ni de binaire tiers.
 5. [Éléments de déploiement](docs/elements-deploiement.md)
 6. [Limites et revue](docs/limites-et-revue.md)
 
+
 ## État
 
-Squelette initial pour revue indépendante. Aucun commit/publication depuis ce
-dossier n’est effectué par la préparation DevOps (#11) : la publication GitHub
-est un ticket séparé (#12).
+Squelette initial publié sur GitHub. Ce dépôt est maintenant versionné et accessible
+à l'URL https://github.com/remi-deher/flux-de-fichiers-plugins.
+
+Préparation DevOps validée (#11), publication effectuée (#12).
