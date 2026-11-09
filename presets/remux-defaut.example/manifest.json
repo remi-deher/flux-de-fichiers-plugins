@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "preset.remux-defaut.example",
+  "type": "preset",
+  "version": "0.0.0",
+  "name": "Exemple preset remux",
+  "description": "Réglages nommés illustratifs pour un remuxage MKVToolNix.",
+  "author": "flux-de-fichiers",
+  "license": "UNLICENSED",
+  "files": [
+    {
+      "path": "preset.json",
+      "role": "config",
+      "mediaType": "application/json"
+    }
+  ]
+}

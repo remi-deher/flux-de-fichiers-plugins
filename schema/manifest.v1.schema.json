@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flux-de-fichiers.local/schema/manifest.v1.schema.json",
+  "title": "FluxDeFichiersManifestV1",
+  "description": "Fiche de présentation d'un élément du dépôt plugins (contrat illustratif v1).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "type",
+    "version",
+    "name",
+    "description",
+    "author",
+    "license"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0.0",
+      "description": "Version du contrat de manifeste."
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+      "minLength": 2,
+      "maxLength": 128,
+      "description": "Identifiant stable unique dans le catalogue."
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "plugin",
+        "tool",
+        "flow",
+        "preset",
+        "resource.font",
+        "resource.image",
+        "resource.audio",
+        "resource.color",
+        "resource.language",
+        "resource.template"
+      ]
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+([+-][0-9A-Za-z.-]+)?$",
+      "description": "Version semver de l'élément."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "author": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "license": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Identifiant SPDX ou mention explicite (ex. UNLICENSED pour un exemple local)."
+    },
+    "icon": {
+      "type": "string",
+      "description": "Chemin relatif vers une icône dans le paquet de l'élément."
+    },
+    "previews": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "type": "string",
+        "description": "Chemin relatif vers un aperçu."
+      }
+    },
+    "files": {
+      "type": "array",
+      "description": "Fichiers fournis par l'élément (chemins relatifs).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "role"],
+        "properties": {
+          "path": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": [
+              "primary",
+              "config",
+              "schema",
+              "docs",
+              "asset",
+              "deploy"
+            ]
+          },
+          "mediaType": { "type": "string" }
+        }
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "appMin": {
+          "type": "string",
+          "description": "Version minimale de l'application (semver)."
+        },
+        "appMax": {
+          "type": "string",
+          "description": "Version maximale exclusive de l'application (semver)."
+        },
+        "platforms": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["linux/amd64", "linux/arm64"]
+          }
+        }
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifiant catalogue d'une dépendance."
+          },
+          "versionRange": {
+            "type": "string",
+            "description": "Plage semver illustrative (ex. ^1.0.0)."
+          },
+          "kind": {
+            "type": "string",
+            "enum": ["tool", "plugin", "resource", "runtime"]
+          }
+        }
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "enum": ["sha256"]
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$",
+          "description": "Empreinte du paquet ou du fichier primaire (si fournie)."
+        }
+      }
+    },
+    "tool": {
+      "type": "object",
+      "description": "Métadonnées spécifiques aux éléments de type tool.",
+      "additionalProperties": false,
+      "properties": {
+        "capability": {
+          "type": "string",
+          "enum": [
+            "remux",
+            "database",
+            "transcode",
+            "analyze",
+            "other"
+          ]
+        },
+        "interface": {
+          "type": "string",
+          "description": "Nom de l'interface applicative attendue (voir docs/interfaces-outils.md)."
+        },
+        "invocation": {
+          "type": "string",
+          "enum": ["docker-image", "host-binary", "compose-service", "none"],
+          "description": "Mode d'invocation prévu ; none = fiche descriptive seule."
+        },
+        "currentChoice": {
+          "type": "boolean",
+          "description": "true si c'est le choix opérationnel actuel de l'application."
+        }
+      }
+    }
+  }
+}

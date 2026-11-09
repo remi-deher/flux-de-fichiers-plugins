@@ -1,0 +1,7 @@
+# Artifacts locaux
+.DS_Store
+*.tmp
+var/
+.env
+.env.*
+!/.env.example

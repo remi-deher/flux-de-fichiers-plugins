@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "resource.template.placeholder.example",
+  "type": "resource.template",
+  "version": "0.0.0",
+  "name": "Exemple ressource template",
+  "description": "Placeholder illustratif pour resources/templates. Aucun actif tiers n'est embarqué.",
+  "author": "flux-de-fichiers",
+  "license": "UNLICENSED",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    }
+  ]
+}

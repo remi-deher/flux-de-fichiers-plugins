@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "resource.font.placeholder.example",
+  "type": "resource.font",
+  "version": "0.0.0",
+  "name": "Exemple ressource font",
+  "description": "Placeholder illustratif pour resources/fonts. Aucun actif tiers n'est embarqué.",
+  "author": "flux-de-fichiers",
+  "license": "UNLICENSED",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    }
+  ]
+}

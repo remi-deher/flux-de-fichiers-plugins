@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flux-de-fichiers.local/schema/catalogue-index.v1.schema.json",
+  "title": "FluxDeFichiersCatalogueIndexV1",
+  "description": "Index du catalogue : références aux fiches sans recopier leur description complète.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "generatedFor", "entries"],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "generatedFor": {
+      "type": "string",
+      "description": "Identifiant logique du dépôt ou de la révision catalogue."
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "type", "version", "manifestPath", "name"],
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string" },
+          "version": { "type": "string" },
+          "name": {
+            "type": "string",
+            "description": "Titre court pour l'UI ; la description longue reste dans le manifeste."
+          },
+          "manifestPath": {
+            "type": "string",
+            "description": "Chemin relatif vers manifest.json depuis la racine du dépôt."
+          },
+          "capability": {
+            "type": "string",
+            "description": "Raccourci optionnel pour filtrer les outils (remux, database, …)."
+          },
+          "currentChoice": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

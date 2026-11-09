@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "tool.postgresql",
+  "type": "tool",
+  "version": "1.0.0",
+  "name": "PostgreSQL",
+  "description": "Base de métadonnées requise. Les éléments de déploiement partageables (modèles) vivent sous tools/postgresql/deploy/ ; les migrations applicatives restent dans le dépôt applicatif.",
+  "author": "flux-de-fichiers",
+  "license": "UNLICENSED",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "deploy/README.md",
+      "role": "deploy",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "deploy/pg_hba.conf.example",
+      "role": "deploy",
+      "mediaType": "text/plain"
+    },
+    {
+      "path": "deploy/init-postgres.sh.example",
+      "role": "deploy",
+      "mediaType": "text/x-shellscript"
+    }
+  ],
+  "compatibility": {
+    "platforms": ["linux/amd64"]
+  },
+  "tool": {
+    "capability": "database",
+    "interface": "MetadataStore",
+    "invocation": "compose-service",
+    "currentChoice": true
+  }
+}

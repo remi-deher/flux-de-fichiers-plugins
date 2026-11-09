@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "tool.mkvtoolnix",
+  "type": "tool",
+  "version": "1.0.0",
+  "name": "MKVToolNix (mkvmerge)",
+  "description": "Outil de remuxage sans réencodage actuellement retenu par l'application. Cette fiche décrit le contrat d'interface Remuxer ; elle n'embarque pas le binaire.",
+  "author": "flux-de-fichiers",
+  "license": "UNLICENSED",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    }
+  ],
+  "compatibility": {
+    "platforms": ["linux/amd64"]
+  },
+  "dependencies": [],
+  "tool": {
+    "capability": "remux",
+    "interface": "Remuxer",
+    "invocation": "docker-image",
+    "currentChoice": true
+  }
+}

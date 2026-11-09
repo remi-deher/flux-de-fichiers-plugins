@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "resource.language.fr.example",
+  "type": "resource.language",
+  "version": "0.0.0",
+  "name": "Exemple ressource langue FR",
+  "description": "Placeholder illustratif pour une ressource de langue française. Aucun pack de traduction tiers.",
+  "author": "flux-de-fichiers",
+  "license": "UNLICENSED",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    }
+  ]
+}

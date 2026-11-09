@@ -1,0 +1,8 @@
+{
+  "id": "preset.remux-defaut.example",
+  "remux": {
+    "copyTracks": true,
+    "reencode": false
+  },
+  "note": "Illustratif — aucune option mkvmerge réelle n'est garantie ici."
+}
