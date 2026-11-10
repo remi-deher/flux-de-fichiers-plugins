@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "block.video.remux-mp4",
+  "version": "1.0.0",
+  "name": "Remuxage & Optimisation MP4 (MP4Box)",
+  "description": "Remuxe sans réencodage vers un conteneur MP4/M4V et optimise les atomes de métadonnées (moov en début de fichier / faststart) pour la lecture fluide sur le web et les NAS.",
+  "category": "media",
+  "operationId": "operation.mp4box.remux",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier source (MKV, AVI, MOV, TS)",
+        "dataType": "file",
+        "mediaType": "video/*"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "destination",
+        "label": "Fichier cible MP4 optimisé",
+        "dataType": "file",
+        "mediaType": "video/mp4"
+      }
+    ]
+  },
+  "ui": {
+    "icon": "fas fa-film",
+    "color": "#3F51B5",
+    "fields": [
+      {
+        "name": "faststart",
+        "label": "Optimisation streaming (moov au début)",
+        "type": "boolean",
+        "default": true,
+        "description": "Indispensable pour débuter la lecture immédiatement sans devoir charger tout le fichier vidéo."
+      },
+      {
+        "name": "custom_parameters",
+        "label": "Paramètres personnalisés (MP4Box)",
+        "type": "string",
+        "default": "",
+        "description": "Options additionnelles MP4Box (ex: -lang fr -brand mp42)."
+      }
+    ]
+  }
+}

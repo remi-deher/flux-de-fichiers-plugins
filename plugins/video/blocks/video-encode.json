@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "block.video.encode",
+  "version": "1.0.0",
+  "name": "Encodage Vidéo (FFMPEG Builder)",
+  "description": "Configure l'encodage vidéo avec des préréglages simples : équilibre direct entre qualité, vitesse d'encodage et taille de fichier.",
+  "category": "media",
+  "operationId": "operation.ffmpeg.video.encode",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier source",
+        "dataType": "file",
+        "mediaType": "video/*"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "destination",
+        "label": "Fichier encodé",
+        "dataType": "file",
+        "mediaType": "video/*"
+      }
+    ]
+  },
+  "ui": {
+    "icon": "fas fa-film",
+    "color": "#E91E63",
+    "fields": [
+      {
+        "name": "codec",
+        "label": "Codec",
+        "type": "select",
+        "default": "h265",
+        "options": [
+          { "label": "H.264", "value": "h264" },
+          { "label": "HEVC (Automatic)", "value": "h265" },
+          { "label": "HEVC (10-Bit)", "value": "h265_10bit" },
+          { "label": "AV1", "value": "av1" },
+          { "label": "AV1 (10-Bit)", "value": "av1_10bit" },
+          { "label": "VP9", "value": "vp9" }
+        ]
+      },
+      {
+        "name": "encoder",
+        "label": "Encodeur",
+        "type": "select",
+        "default": "Intel QSV",
+        "description": "L'encodeur à utiliser. Si vous spécifiez un encodeur matériel indisponible, l'encodage échouera.",
+        "options": [
+          { "label": "Automatique", "value": "auto" },
+          { "label": "Processeur (CPU)", "value": "cpu" },
+          { "label": "NVIDIA (NVENC)", "value": "nvidia" },
+          { "label": "Intel QSV", "value": "intel_qsv" },
+          { "label": "VAAPI (Linux)", "value": "vaapi" },
+          { "label": "AMD AMF", "value": "amd_amf" }
+        ]
+      },
+      {
+        "name": "quality",
+        "label": "Qualité",
+        "type": "range",
+        "min": 1,
+        "max": 9,
+        "default": 6,
+        "description": "Des valeurs plus élevées offrent une meilleure qualité et des fichiers plus volumineux. Des valeurs plus basses réduisent la qualité et la taille du fichier."
+      },
+      {
+        "name": "speed",
+        "label": "Vitesse",
+        "type": "range",
+        "min": 1,
+        "max": 5,
+        "default": 3,
+        "description": "Un encodage plus rapide réduit l'efficacité de la compression, ce qui entraîne une qualité inférieure ou des fichiers plus volumineux."
+      },
+      {
+        "name": "custom_parameters",
+        "label": "Paramètres d'encodage personnalisés (FFmpeg)",
+        "type": "string",
+        "default": "",
+        "description": "Arguments FFmpeg additionnels injectés à la ligne de commande (ex: -tune film -bf 3)."
+      }
+    ]
+  }
+}

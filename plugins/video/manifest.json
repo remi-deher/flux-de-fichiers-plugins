@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "plugin.video",
+  "type": "plugin",
+  "version": "1.0.0",
+  "name": "Plugin Traitement Vidéo",
+  "description": "Encodage vidéo paramétrable (H.264, HEVC, AV1, VP9) avec préréglages faciles, sélection d'encodeur matériel (Intel QSV, NVIDIA, VAAPI, CPU) et remuxage MKVToolNix sans perte.",
+  "author": "flux-de-fichiers",
+  "license": "GPL-2.0-or-later",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "blocks/video-encode.json",
+      "role": "config",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "blocks/remux-mkv.json",
+      "role": "config",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "blocks/remux-mp4.json",
+      "role": "config",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "blocks/media-inspect.json",
+      "role": "config",
+      "mediaType": "application/json"
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "tool.ffmpeg",
+      "versionRange": "^1.0.0",
+      "kind": "tool"
+    },
+    {
+      "id": "tool.mkvtoolnix",
+      "versionRange": "^1.0.0",
+      "kind": "tool"
+    },
+    {
+      "id": "tool.mp4box",
+      "versionRange": "^1.0.0",
+      "kind": "tool"
+    },
+    {
+      "id": "tool.mediainfo",
+      "versionRange": "^1.0.0",
+      "kind": "tool"
+    }
+  ],
+  "compatibility": {
+    "appMin": "1.0.0",
+    "platforms": ["linux/amd64", "linux/arm64"]
+  }
+}

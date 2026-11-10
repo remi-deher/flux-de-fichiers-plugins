@@ -1,7 +1,65 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedFor": "flux-de-fichiers-plugins@skeleton",
+  "generatedFor": "flux-de-fichiers-plugins@multimedia",
   "entries": [
+    {
+      "id": "app.media",
+      "type": "app",
+      "version": "1.0.0",
+      "name": "Studio Multimédia",
+      "manifestPath": "apps/media/manifest.json"
+    },
+    {
+      "id": "plugin.video",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Plugin Traitement Vidéo",
+      "manifestPath": "plugins/video/manifest.json",
+      "capability": "video"
+    },
+    {
+      "id": "plugin.audio",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Plugin Traitement Audio",
+      "manifestPath": "plugins/audio/manifest.json",
+      "capability": "audio"
+    },
+    {
+      "id": "block.media.inspect",
+      "type": "block",
+      "version": "1.0.0",
+      "name": "Inspection Média Universelle (MediaInfo)",
+      "manifestPath": "plugins/video/blocks/media-inspect.json"
+    },
+    {
+      "id": "block.video.encode",
+      "type": "block",
+      "version": "1.0.0",
+      "name": "Encodage Vidéo (FFMPEG Builder)",
+      "manifestPath": "plugins/video/blocks/video-encode.json"
+    },
+    {
+      "id": "block.video.remux-mkv",
+      "type": "block",
+      "version": "1.0.0",
+      "name": "Remuxage MKV (MKVToolNix)",
+      "manifestPath": "plugins/video/blocks/remux-mkv.json"
+    },
+    {
+      "id": "block.video.remux-mp4",
+      "type": "block",
+      "version": "1.0.0",
+      "name": "Remuxage & Optimisation MP4 (MP4Box)",
+      "manifestPath": "plugins/video/blocks/remux-mp4.json"
+    },
+    {
+      "id": "block.audio.encode",
+      "type": "block",
+      "version": "1.0.0",
+      "name": "Encodage & Conversion Audio",
+      "manifestPath": "plugins/audio/blocks/audio-encode.json"
+    },
     {
       "id": "tool.mkvtoolnix",
       "type": "tool",
@@ -9,6 +67,26 @@
       "name": "MKVToolNix (mkvmerge)",
       "manifestPath": "tools/mkvtoolnix/manifest.json",
       "capability": "remux",
+      "currentChoice": true,
+      "distribution": "autonomous-binary"
+    },
+    {
+      "id": "tool.mp4box",
+      "type": "tool",
+      "version": "1.0.0",
+      "name": "MP4Box (GPAC)",
+      "manifestPath": "tools/mp4box/manifest.json",
+      "capability": "remux-mp4",
+      "currentChoice": true,
+      "distribution": "autonomous-binary"
+    },
+    {
+      "id": "tool.mediainfo",
+      "type": "tool",
+      "version": "1.0.0",
+      "name": "MediaInfo CLI",
+      "manifestPath": "tools/mediainfo/manifest.json",
+      "capability": "probe",
       "currentChoice": true,
       "distribution": "autonomous-binary"
     },

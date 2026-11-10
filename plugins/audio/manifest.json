@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "plugin.audio",
+  "type": "plugin",
+  "version": "1.0.0",
+  "name": "Plugin Traitement Audio",
+  "description": "Traitement, conversion de pistes audio (AAC, AC3, E-AC3, FLAC, MP3, Opus), extraction et normalisation sonore intelligente (EBU R128) via FFmpeg.",
+  "author": "flux-de-fichiers",
+  "license": "GPL-2.0-or-later",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "blocks/audio-encode.json",
+      "role": "config",
+      "mediaType": "application/json"
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "tool.ffmpeg",
+      "versionRange": "^1.0.0",
+      "kind": "tool"
+    }
+  ],
+  "compatibility": {
+    "appMin": "1.0.0",
+    "platforms": ["linux/amd64", "linux/arm64"]
+  }
+}

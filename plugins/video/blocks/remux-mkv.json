@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "block.video.remux-mkv",
+  "version": "1.0.0",
+  "name": "Remuxage MKV (MKVToolNix)",
+  "description": "Remuxe sans réencodage un conteneur multimédia vers le format Matroska (.mkv) avec intégrité garantie.",
+  "category": "media",
+  "operationId": "operation.mkvtoolnix.mkvmerge.remux",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier source (MP4, AVI, TS, MKV)",
+        "dataType": "file",
+        "mediaType": "video/*"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "destination",
+        "label": "Fichier cible MKV",
+        "dataType": "file",
+        "mediaType": "video/x-matroska"
+      }
+    ]
+  },
+  "ui": {
+    "icon": "fas fa-box-archive",
+    "color": "#00BCD4",
+    "fields": [
+      {
+        "name": "disable_track_stats",
+        "label": "Désactiver les tags de statistiques de pistes",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "charset",
+        "label": "Jeu de caractères de sortie",
+        "type": "select",
+        "default": "UTF-8",
+        "options": [
+          { "label": "UTF-8", "value": "UTF-8" }
+        ]
+      },
+      {
+        "name": "audio_languages",
+        "label": "Langues audio à conserver",
+        "type": "string",
+        "default": "all",
+        "description": "Code ISO des langues séparés par des virgules (ex: fra,eng) ou 'all' pour tout conserver."
+      },
+      {
+        "name": "subtitle_languages",
+        "label": "Langues de sous-titres à conserver",
+        "type": "string",
+        "default": "all",
+        "description": "Code ISO des langues séparés par des virgules (ex: fra) ou 'none' pour exclure les sous-titres."
+      },
+      {
+        "name": "custom_parameters",
+        "label": "Paramètres personnalisés (mkvmerge)",
+        "type": "string",
+        "default": "",
+        "description": "Arguments mkvmerge additionnels (ex: --default-track 1:yes --track-name 1:'VFF')."
+      }
+    ]
+  }
+}

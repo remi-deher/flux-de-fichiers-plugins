@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "block.audio.encode",
+  "version": "1.0.0",
+  "name": "Encodage & Conversion Audio",
+  "description": "Convertit une piste sonore vers un format standard (AAC, E-AC3, FLAC, MP3, Opus) avec réglage du débit et normalisation EBU R128.",
+  "category": "media",
+  "operationId": "operation.ffmpeg.audio.encode",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier ou flux audio",
+        "dataType": "file",
+        "mediaType": "audio/*"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "destination",
+        "label": "Fichier audio converti",
+        "dataType": "file",
+        "mediaType": "audio/*"
+      }
+    ]
+  },
+  "ui": {
+    "icon": "fas fa-headphones",
+    "color": "#4CAF50",
+    "fields": [
+      {
+        "name": "codec",
+        "label": "Format / Codec Audio",
+        "type": "select",
+        "default": "aac",
+        "options": [
+          { "label": "AAC (Universel)", "value": "aac" },
+          { "label": "E-AC3 / Dolby Digital Plus", "value": "eac3" },
+          { "label": "AC3 / Dolby Digital", "value": "ac3" },
+          { "label": "FLAC (Sans perte)", "value": "flac" },
+          { "label": "MP3", "value": "mp3" },
+          { "label": "Opus", "value": "opus" }
+        ]
+      },
+      {
+        "name": "bitrate",
+        "label": "Débit binaire (kbps)",
+        "type": "select",
+        "default": "192",
+        "options": [
+          { "label": "128 kbps", "value": "128" },
+          { "label": "192 kbps (Recommandé)", "value": "192" },
+          { "label": "256 kbps", "value": "256" },
+          { "label": "320 kbps (Haute qualité)", "value": "320" },
+          { "label": "640 kbps (Dolby 5.1)", "value": "640" }
+        ]
+      },
+      {
+        "name": "channels",
+        "label": "Canaux",
+        "type": "select",
+        "default": "preserve",
+        "options": [
+          { "label": "Conserver la disposition d'origine", "value": "preserve" },
+          { "label": "Stéréo (2.0)", "value": "stereo" },
+          { "label": "Surround (5.1)", "value": "5.1" }
+        ]
+      },
+      {
+        "name": "normalize",
+        "label": "Normalisation sonore (EBU R128)",
+        "type": "boolean",
+        "default": false,
+        "description": "Applique un filtre de volume pour égaliser le niveau sonore des dialogues et explosions."
+      },
+      {
+        "name": "custom_parameters",
+        "label": "Paramètres audio personnalisés (FFmpeg)",
+        "type": "string",
+        "default": "",
+        "description": "Arguments ou filtres FFmpeg audio additionnels (ex: -ar 48000 -filter:a volume=1.2)."
+      }
+    ]
+  }
+}

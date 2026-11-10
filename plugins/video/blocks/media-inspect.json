@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "block.media.inspect",
+  "version": "1.0.0",
+  "name": "Inspection Média Universelle (MediaInfo)",
+  "description": "Bloc d'analyse initial non configurable : extrait automatiquement l'intégralité des métadonnées techniques (vidéo, audio, sous-titres, conteneur) au début de chaque traitement.",
+  "category": "media",
+  "operationId": "operation.mediainfo.probe",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier multimédia source",
+        "dataType": "file",
+        "mediaType": "*/*"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "file",
+        "label": "Fichier vérifié (flux traversant)",
+        "dataType": "file",
+        "mediaType": "*/*"
+      },
+      {
+        "id": "metadata",
+        "label": "Arbre technique complet (JSON)",
+        "dataType": "data",
+        "mediaType": "application/json"
+      }
+    ]
+  },
+  "ui": {
+    "icon": "fas fa-magnifying-glass-chart",
+    "color": "#9C27B0",
+    "implicitStart": true,
+    "fields": []
+  }
+}
