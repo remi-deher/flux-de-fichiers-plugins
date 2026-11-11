@@ -26,6 +26,22 @@
       "capability": "audio"
     },
     {
+      "id": "plugin.sonarr",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Sonarr Integration",
+      "manifestPath": "plugins/sonarr/manifest.json",
+      "capability": "integration"
+    },
+    {
+      "id": "plugin.radarr",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Radarr Integration",
+      "manifestPath": "plugins/radarr/manifest.json",
+      "capability": "integration"
+    },
+    {
       "id": "block.media.inspect",
       "type": "block",
       "version": "1.0.0",

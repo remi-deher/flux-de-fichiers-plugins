@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "plugin.radarr",
+  "type": "plugin",
+  "version": "1.0.0",
+  "name": "Radarr Integration",
+  "description": "Intégration automatisée avec Radarr (*arr) pour l'actualisation de la collection de films, la mise à jour des codecs détectés et le renommage après encodage.",
+  "author": "flux-de-fichiers",
+  "license": "GPL-2.0-or-later",
+  "settingsSchema": {
+    "fields": [
+      {
+        "name": "url",
+        "label": "URL du serveur Radarr",
+        "type": "url",
+        "default": "http://192.168.1.50:7878",
+        "required": true,
+        "description": "Adresse HTTP/HTTPS complète de votre instance Radarr."
+      },
+      {
+        "name": "apiKey",
+        "label": "Clé d'API Radarr",
+        "type": "secret",
+        "required": true,
+        "description": "Trouvable dans Radarr > Paramètres > Général > Clé API."
+      },
+      {
+        "name": "pathMappingLocal",
+        "label": "Chemin local (Flux de Fichiers)",
+        "type": "string",
+        "default": "/data",
+        "required": false,
+        "description": "Racine du stockage vue par les workers de transcodage."
+      },
+      {
+        "name": "pathMappingRemote",
+        "label": "Chemin distant (Radarr)",
+        "type": "string",
+        "default": "/movies",
+        "required": false,
+        "description": "Racine correspondante telle que montée dans le conteneur Radarr."
+      }
+    ]
+  },
+  "blocks": [
+    {
+      "id": "block.radarr.rescan",
+      "name": "Radarr : Actualiser le film",
+      "description": "Déclenche un rescan du film dans Radarr pour enregistrer les nouveaux codecs et caractéristiques techniques du fichier.",
+      "type": "integration"
+    },
+    {
+      "id": "block.radarr.rename",
+      "name": "Radarr : Renommer le film",
+      "description": "Demande à Radarr de renommer le fichier selon le modèle de nommage officiel de votre médiathèque.",
+      "type": "integration"
+    }
+  ],
+  "compatibility": {
+    "platforms": ["linux/amd64", "linux/arm64"]
+  }
+}

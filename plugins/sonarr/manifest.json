@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "plugin.sonarr",
+  "type": "plugin",
+  "version": "1.0.0",
+  "name": "Sonarr Integration",
+  "description": "Intégration automatisée avec Sonarr (*arr) pour la notification d'achèvement de traitement, l'actualisation des métadonnées de série et le renommage d'épisode.",
+  "author": "flux-de-fichiers",
+  "license": "GPL-2.0-or-later",
+  "settingsSchema": {
+    "fields": [
+      {
+        "name": "url",
+        "label": "URL du serveur Sonarr",
+        "type": "url",
+        "default": "http://192.168.1.50:8989",
+        "required": true,
+        "description": "Adresse HTTP/HTTPS complète de votre instance Sonarr."
+      },
+      {
+        "name": "apiKey",
+        "label": "Clé d'API Sonarr",
+        "type": "secret",
+        "required": true,
+        "description": "Trouvable dans Sonarr > Paramètres > Général > Clé API."
+      },
+      {
+        "name": "pathMappingLocal",
+        "label": "Chemin local (Flux de Fichiers)",
+        "type": "string",
+        "default": "/data",
+        "required": false,
+        "description": "Racine du stockage vue par les workers de transcodage."
+      },
+      {
+        "name": "pathMappingRemote",
+        "label": "Chemin distant (Sonarr)",
+        "type": "string",
+        "default": "/tv",
+        "required": false,
+        "description": "Racine correspondante telle que montée dans le conteneur Sonarr."
+      }
+    ]
+  },
+  "blocks": [
+    {
+      "id": "block.sonarr.rescan",
+      "name": "Sonarr : Actualiser la série",
+      "description": "Déclenche un rescan de la série après transcodage ou remuxage pour actualiser les métadonnées de fichier.",
+      "type": "integration"
+    },
+    {
+      "id": "block.sonarr.rename",
+      "name": "Sonarr : Renommer l'épisode",
+      "description": "Demande à Sonarr d'appliquer son modèle de nommage officiel à l'épisode traité.",
+      "type": "integration"
+    }
+  ],
+  "compatibility": {
+    "platforms": ["linux/amd64", "linux/arm64"]
+  }
+}
