@@ -150,6 +150,30 @@
       "manifestPath": "plugins/remux-mkv.example/manifest.json"
     },
     {
+      "id": "flow.default.mkv",
+      "type": "flow",
+      "version": "1.0.0",
+      "name": "Remuxage Matroska propre",
+      "manifestPath": "flows/remux-matroska/manifest.json",
+      "capability": "remux"
+    },
+    {
+      "id": "flow.smart.adr0008",
+      "type": "flow",
+      "version": "1.0.0",
+      "name": "Aiguillage conditionnel & In-Place (ADR-0008)",
+      "manifestPath": "flows/smart-inplace-hevc/manifest.json",
+      "capability": "in-place"
+    },
+    {
+      "id": "flow.remux.mp4",
+      "type": "flow",
+      "version": "1.0.0",
+      "name": "Optimisation Web MP4 (FastStart)",
+      "manifestPath": "flows/web-faststart-mp4/manifest.json",
+      "capability": "faststart"
+    },
+    {
       "id": "flow.remux-rapide.example",
       "type": "flow",
       "version": "0.0.0",
