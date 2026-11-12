@@ -9,7 +9,7 @@
   "capability": "remux",
   "status": "example",
   "tool": {
-    "id": "tool.mkvtoolnix",
+    "id": "app.mkvtoolnix",
     "version": "1.0.0"
   },
   "permissions": {
@@ -64,7 +64,7 @@
   ],
   "command": {
     "schemaVersion": "1.1.0",
-    "toolId": "tool.mkvtoolnix",
+    "toolId": "app.mkvtoolnix",
     "executable": "mkvmerge",
     "argv": [
       "--output-charset",

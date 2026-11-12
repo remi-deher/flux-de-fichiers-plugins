@@ -6,7 +6,7 @@ L'[index complémentaire](../../catalogue/contracts.v1.json) lui associe
 [un bloc](../../blocks/remux-mkv.example/block.json),
 [un preset](../../presets/remux-defaut.example/preset.v1.json),
 [un flow composé](../../flows/remux-rapide.example/flow.v1.json) et
-[une app déclarative](../../apps/pilotage.example/installation.json).
+[une app déclarative](../../packs/pilotage.example/installation.json).
 
 Le plugin expose l'opération ; MKVToolNix fournit le binaire. L'argv reprend la
 chaîne Rust actuelle : UTF-8, désactivation des tags statistiques, sortie réservée

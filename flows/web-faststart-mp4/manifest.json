@@ -19,6 +19,6 @@
     ]
   },
   "dependencies": [
-    { "id": "tool.mp4box", "versionRange": "^1.0.0", "kind": "tool" }
+    { "id": "app.mp4box", "versionRange": "^1.0.0", "kind": "app" }
   ]
 }

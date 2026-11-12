@@ -28,6 +28,6 @@ remux ; les nouveaux contrats ne sont donc pas un adaptateur déjà implémenté
 La vérification actuelle des médias reste la référence de publication.
 
 Les fichiers Compose, images, migrations et déploiements du dépôt applicatif
-restent la source de vérité. Les modèles sous `tools/postgresql/deploy/` ne
+restent la source de vérité. Les modèles sous `apps/postgresql/deploy/` ne
 remplacent aucune configuration. Installation, exécution générique et scénarios
 de validation du futur runtime restent à réaliser après les arbitrages.

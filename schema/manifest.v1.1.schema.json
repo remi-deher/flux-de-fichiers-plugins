@@ -40,7 +40,7 @@
           "type": "string",
           "enum": [
             "plugin",
-            "tool",
+            "app",
             "flow",
             "preset",
             "resource.font",
@@ -49,7 +49,7 @@
             "resource.color",
             "resource.language",
             "resource.template",
-            "app",
+            "pack",
             "block"
           ]
         },
@@ -168,11 +168,11 @@
               "kind": {
                 "type": "string",
                 "enum": [
-                  "tool",
+                  "app",
                   "plugin",
                   "resource",
                   "runtime",
-                  "app",
+                  "pack",
                   "flow",
                   "preset",
                   "block"
@@ -251,7 +251,7 @@
           },
           "maxItems": 64
         },
-        "app": {
+        "pack": {
           "type": "object",
           "additionalProperties": false,
           "required": [
@@ -282,13 +282,13 @@
           "if": {
             "properties": {
               "type": {
-                "const": "app"
+                "const": "pack"
               }
             }
           },
           "then": {
             "required": [
-              "app"
+              "pack"
             ]
           }
         }

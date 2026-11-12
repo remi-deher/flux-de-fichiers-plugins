@@ -3,11 +3,11 @@
   "generatedFor": "flux-de-fichiers-plugins@multimedia",
   "entries": [
     {
-      "id": "app.media",
-      "type": "app",
+      "id": "pack.media",
+      "type": "pack",
       "version": "1.0.0",
       "name": "Studio Multimédia",
-      "manifestPath": "apps/media/manifest.json"
+      "manifestPath": "packs/media/manifest.json"
     },
     {
       "id": "plugin.video",
@@ -77,61 +77,61 @@
       "manifestPath": "plugins/audio/blocks/audio-encode.json"
     },
     {
-      "id": "tool.mkvtoolnix",
-      "type": "tool",
+      "id": "app.mkvtoolnix",
+      "type": "app",
       "version": "1.0.0",
       "name": "MKVToolNix (mkvmerge)",
-      "manifestPath": "tools/mkvtoolnix/manifest.json",
+      "manifestPath": "apps/mkvtoolnix/manifest.json",
       "capability": "remux",
       "currentChoice": true,
       "distribution": "autonomous-binary"
     },
     {
-      "id": "tool.mp4box",
-      "type": "tool",
+      "id": "app.mp4box",
+      "type": "app",
       "version": "1.0.0",
       "name": "MP4Box (GPAC)",
-      "manifestPath": "tools/mp4box/manifest.json",
+      "manifestPath": "apps/mp4box/manifest.json",
       "capability": "remux-mp4",
       "currentChoice": true,
       "distribution": "autonomous-binary"
     },
     {
-      "id": "tool.mediainfo",
-      "type": "tool",
+      "id": "app.mediainfo",
+      "type": "app",
       "version": "1.0.0",
       "name": "MediaInfo CLI",
-      "manifestPath": "tools/mediainfo/manifest.json",
+      "manifestPath": "apps/mediainfo/manifest.json",
       "capability": "probe",
       "currentChoice": true,
       "distribution": "autonomous-binary"
     },
     {
-      "id": "tool.ffmpeg",
-      "type": "tool",
+      "id": "app.ffmpeg",
+      "type": "app",
       "version": "1.0.0",
       "name": "FFmpeg (distribué)",
-      "manifestPath": "tools/ffmpeg/manifest.json",
+      "manifestPath": "apps/ffmpeg/manifest.json",
       "capability": "analyze",
       "currentChoice": false,
       "distribution": "autonomous-binary"
     },
     {
-      "id": "tool.internal.telemetry",
-      "type": "tool",
+      "id": "app.internal.telemetry",
+      "type": "app",
       "version": "0.1.0",
       "name": "Sonde interne de télémétrie",
-      "manifestPath": "tools/internal-telemetry/manifest.json",
+      "manifestPath": "apps/internal-telemetry/manifest.json",
       "capability": "other",
       "currentChoice": true,
       "distribution": "autonomous-binary"
     },
     {
-      "id": "tool.postgresql",
-      "type": "tool",
+      "id": "app.postgresql",
+      "type": "app",
       "version": "1.0.0",
       "name": "PostgreSQL",
-      "manifestPath": "tools/postgresql/manifest.json",
+      "manifestPath": "apps/postgresql/manifest.json",
       "capability": "database",
       "currentChoice": true
     },

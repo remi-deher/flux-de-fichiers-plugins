@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0.0",
+  "toolId": "app.ffmpeg",
+  "toolVersion": "1.0.0",
+  "distributionMode": "autonomous-binary",
+  "releaseStatus": "contract-only",
+  "artifacts": [
+    {
+      "arch": "x86_64",
+      "os": "linux",
+      "archiveUrl": "https://artifacts.example.invalid/apps/ffmpeg/1.0.0/ffmpeg-linux-x86_64.tar.xz",
+      "archiveFormat": "tar.xz",
+      "archiveSha256": "31ffa40004e632d1012cfc0fa1cdb3092ee1310bf50bf889d2758c5f433f13c5",
+      "binaryRelativePath": "bin/ffmpeg",
+      "binarySha256": "c19f17203eb8e40dcb3583f82f7cfe9b9820fa4f04019e0b391f3172b7cad91e",
+      "permissions": {
+        "unixMode": "0755",
+        "owner": "runtime-user",
+        "executableBit": true
+      }
+    },
+    {
+      "arch": "aarch64",
+      "os": "linux",
+      "archiveUrl": "https://artifacts.example.invalid/apps/ffmpeg/1.0.0/ffmpeg-linux-aarch64.tar.xz",
+      "archiveFormat": "tar.xz",
+      "archiveSha256": "2351bc2a87fd10931d2843ccc904c360294dd67104528d94dda595bb69060266",
+      "binaryRelativePath": "bin/ffmpeg",
+      "binarySha256": "6d4d49e12c5bc2134803916d5792f8f49ac8d55627962fbf6c872c6de16152df",
+      "permissions": {
+        "unixMode": "0755",
+        "owner": "runtime-user",
+        "executableBit": true
+      }
+    }
+  ],
+  "installPolicy": {
+    "verifySha256BeforeExec": true,
+    "refuseMismatchedDigest": true,
+    "cacheRootRelative": "tools-cache/ffmpeg/1.0.0",
+    "noShellUnpack": true,
+    "executableAllowlist": ["ffmpeg", "ffprobe"],
+    "networkAtInstall": "explicit-allowlist"
+  },
+  "notes": [
+    "Outil distribué Option B pour médias synthétiques de tests / analyse — pas un remuxer production validé.",
+    "L'activation MP4 production reste pending-decision (examples/pending/ffmpeg-mp4.pending/).",
+    "Empreintes et URL contract-only."
+  ]
+}

@@ -42,7 +42,7 @@ Aucune migration des ressources ni nouvelle API applicative n'est livrée ici.
 - `version` versionne le contenu d'un élément ; l'exemple vaut **0.0.0**, jamais
   une preuve de validation fonctionnelle. Une version publiée est immuable.
 - La version réelle du binaire apparaît dans `metadata.toolVersion`, indépendamment
-  de la version de fiche catalogue `tool.mkvtoolnix@1.0.0`.
+  de la version de fiche catalogue `app.mkvtoolnix@1.0.0`.
 
 Le graphe, ses blocs, opérations et dépendances installées utilisent des versions
 **exactes** ; les plages des anciennes fiches restent des indications historiques.

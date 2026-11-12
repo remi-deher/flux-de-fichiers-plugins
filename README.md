@@ -19,7 +19,7 @@ Aucun chargeur, installeur, moteur de flows ou binaire tiers n'est livré ici.
 | Dossier | Contenu |
 | --- | --- |
 | `catalogue/` | Index de fiches et index complémentaire de contrats |
-| `tools/` | Fiches + `distribution.v1.json` Option B (MKVToolNix, FFmpeg, télémétrie, PostgreSQL) |
+| `apps/` | Fiches + `distribution.v1.json` Option B (MKVToolNix, FFmpeg, télémétrie, PostgreSQL) |
 | `plugins/` | Opérations déclarées par les plugins |
 | `blocks/` | Blocs et macro-blocs composites, présentation pour Leptos |
 | `flows/` | Graphes de blocs et ancien exemple à étapes conservé |

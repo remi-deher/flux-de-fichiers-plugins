@@ -9,7 +9,7 @@ d'intégrité. Ce dépôt ne livre ni binaire ni installeur — uniquement le co
 | Fichier | Rôle |
 |---------|------|
 | `schema/tool-distribution.v1.schema.json` | Artefacts par arch + politique d'install |
-| `tools/*/distribution.v1.json` | Instances déclaratives |
+| `apps/*/distribution.v1.json` | Instances déclaratives |
 
 ## Champs obligatoires par architecture
 
@@ -35,9 +35,9 @@ Optionnel recommandé : `binarySha256` du fichier extrait.
 
 | Outil | Fiche | Distribution |
 |-------|-------|--------------|
-| MKVToolNix | `tools/mkvtoolnix/` | remux validé |
-| FFmpeg | `tools/ffmpeg/` | tests/analyse ; MP4 prod pending |
-| Télémétrie | `tools/internal-telemetry/` | CPU/RAM/GPU/stockage |
+| MKVToolNix | `apps/mkvtoolnix/` | remux validé |
+| FFmpeg | `apps/ffmpeg/` | tests/analyse ; MP4 prod pending |
+| Télémétrie | `apps/internal-telemetry/` | CPU/RAM/GPU/stockage |
 
 `releaseStatus: contract-only` tant que les empreintes/URL ne sont pas celles
 d'une release réelle.

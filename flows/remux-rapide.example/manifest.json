@@ -16,9 +16,9 @@
   ],
   "dependencies": [
     {
-      "id": "tool.mkvtoolnix",
+      "id": "app.mkvtoolnix",
       "versionRange": "^1.0.0",
-      "kind": "tool"
+      "kind": "app"
     },
     {
       "id": "preset.remux-defaut.example",

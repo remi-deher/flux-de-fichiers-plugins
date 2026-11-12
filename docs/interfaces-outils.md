@@ -15,7 +15,7 @@ Responsabilité : remuxage sans réencodage d’un conteneur média.
 |---------|-----------------|
 | Implémentation | MKVToolNix (`mkvmerge`) |
 | Invocation | Option B — binaire autonome hors image (`host-binary` + `distribution.v1.json`) |
-| Fiche catalogue | `tool.mkvtoolnix` |
+| Fiche catalogue | `app.mkvtoolnix` |
 
 Opérations minimales à prévoir côté application :
 
@@ -35,13 +35,13 @@ Responsabilité : persistance des métadonnées (jobs, baux, état).
 |---------|-----------------|
 | Implémentation | PostgreSQL via SQLx |
 | Invocation | service Compose `db` |
-| Fiche catalogue | `tool.postgresql` |
+| Fiche catalogue | `app.postgresql` |
 
 Frontière stricte :
 
 - **Migrations applicatives** (`flux-de-fichiers/migrations/`) : schéma métier.
 - **Déploiement instance** (image Postgres, `pg_hba`, TLS, secrets fichiers) :
-  modèles documentés sous `tools/postgresql/deploy/`.
+  modèles documentés sous `apps/postgresql/deploy/`.
 
 ## `MediaProbe` (FFmpeg distribué)
 
@@ -49,7 +49,7 @@ Frontière stricte :
 |---------|--------|
 | Implémentation | FFmpeg / ffprobe |
 | Invocation | Option B — binaire autonome |
-| Fiche | `tool.ffmpeg` |
+| Fiche | `app.ffmpeg` |
 | Rôle validé | Médias synthétiques de tests / analyse |
 | Non validé | Remux / MP4 production (`examples/pending/`) |
 
@@ -59,7 +59,7 @@ Frontière stricte :
 |---------|--------|
 | Implémentation | `flux-telemetry` (interne) |
 | Invocation | Option B — binaire autonome, préférer préchargement offline |
-| Fiche | `tool.internal.telemetry` |
+| Fiche | `app.internal.telemetry` |
 | Métriques | CPU, RAM, GPU, stockage |
 
 ## Capacités futures (non validées)

@@ -51,14 +51,14 @@
       ]
     },
     {
-      "id": "app.pilotage.example",
+      "id": "pack.pilotage.example",
       "version": "0.0.0",
-      "type": "app",
-      "manifestPath": "apps/pilotage.example/manifest.json",
+      "type": "pack",
+      "manifestPath": "packs/pilotage.example/manifest.json",
       "contracts": [
         {
           "kind": "app-installation",
-          "path": "apps/pilotage.example/installation.json"
+          "path": "packs/pilotage.example/installation.json"
         }
       ]
     }

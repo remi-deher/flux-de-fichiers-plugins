@@ -1,6 +1,6 @@
 # Plugin Vidéo (`plugin.video`)
 
-Plugin dédié à la manipulation, à l'encodage et au remuxage de flux vidéo au sein de l'application `app.media`.
+Plugin dédié à la manipulation, à l'encodage et au remuxage de flux vidéo au sein de l'application `pack.media`.
 
 ## Blocs fournis
 
@@ -9,5 +9,5 @@ Plugin dédié à la manipulation, à l'encodage et au remuxage de flux vidéo a
 
 ## Dépendances
 
-- `tool.ffmpeg` (`>= 1.0.0`)
-- `tool.mkvtoolnix` (`>= 1.0.0`)
+- `app.ffmpeg` (`>= 1.0.0`)
+- `app.mkvtoolnix` (`>= 1.0.0`)

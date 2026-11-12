@@ -5,7 +5,7 @@
 - `README.md`, `.gitignore`
 - `schema/manifest.v1.schema.json`, `schema/catalogue-index.v1.schema.json`
 - `catalogue/index.json`
-- `tools/mkvtoolnix/`, `tools/postgresql/` (+ `deploy/*.example`)
+- `apps/mkvtoolnix/`, `apps/postgresql/` (+ `deploy/*.example`)
 - `plugins/remux-mkv.example/`, `flows/remux-rapide.example/`, `presets/remux-defaut.example/`
 - `resources/{fonts,images,audio,color,languages,templates}/…`
 - `docs/*.md`, `deploy/README.md`

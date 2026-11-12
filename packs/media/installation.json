@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "1.0.0",
+  "packId": "pack.media",
+  "packVersion": "1.0.0",
+  "kind": "declarative-bundle",
+  "components": [
+    {
+      "id": "app.mkvtoolnix",
+      "version": "1.0.0",
+      "kind": "app"
+    },
+    {
+      "id": "app.ffmpeg",
+      "version": "1.0.0",
+      "kind": "app"
+    },
+    {
+      "id": "app.mp4box",
+      "version": "1.0.0",
+      "kind": "app"
+    },
+    {
+      "id": "app.mediainfo",
+      "version": "1.0.0",
+      "kind": "app"
+    },
+    {
+      "id": "plugin.video",
+      "version": "1.0.0",
+      "kind": "plugin"
+    },
+    {
+      "id": "plugin.audio",
+      "version": "1.0.0",
+      "kind": "plugin"
+    },
+    {
+      "id": "block.media.inspect",
+      "version": "1.0.0",
+      "kind": "block"
+    },
+    {
+      "id": "block.video.encode",
+      "version": "1.0.0",
+      "kind": "block"
+    },
+    {
+      "id": "block.video.remux-mkv",
+      "version": "1.0.0",
+      "kind": "block"
+    },
+    {
+      "id": "block.video.remux-mp4",
+      "version": "1.0.0",
+      "kind": "block"
+    },
+    {
+      "id": "block.audio.encode",
+      "version": "1.0.0",
+      "kind": "block"
+    }
+  ],
+  "entrypoint": {
+    "kind": "plugin",
+    "id": "plugin.video",
+    "version": "1.0.0"
+  },
+  "permissions": {
+    "readInputs": true,
+    "writeOutputs": true,
+    "network": "none"
+  },
+  "updates": "manual",
+  "uninstallData": "preserve",
+  "runtimeImplemented": true
+}

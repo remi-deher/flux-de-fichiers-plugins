@@ -4,12 +4,12 @@
   "version": "0.0.0",
   "name": "PENDING — conteneur MP4 via FFmpeg",
   "description": "Brouillon non validé. Ne pas traiter comme support production. FFmpeg reste réservé aux médias synthétiques de tests applicatifs.",
-  "providerId": "tool.ffmpeg.pending",
+  "providerId": "app.ffmpeg.pending",
   "providerKind": "plugin",
   "capability": "other",
   "status": "example",
   "tool": {
-    "id": "tool.ffmpeg.pending",
+    "id": "app.ffmpeg.pending",
     "version": "0.0.0"
   },
   "permissions": {
@@ -53,7 +53,7 @@
   ],
   "command": {
     "schemaVersion": "1.0.0",
-    "toolId": "tool.ffmpeg.pending",
+    "toolId": "app.ffmpeg.pending",
     "executable": "ffmpeg",
     "argv": [
       "-i",

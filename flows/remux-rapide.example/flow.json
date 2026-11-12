@@ -3,7 +3,7 @@
   "steps": [
     {
       "kind": "remux",
-      "toolId": "tool.mkvtoolnix",
+      "toolId": "app.mkvtoolnix",
       "presetId": "preset.remux-defaut.example"
     }
   ],

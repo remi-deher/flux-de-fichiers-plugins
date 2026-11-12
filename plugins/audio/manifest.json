@@ -21,9 +21,9 @@
   ],
   "dependencies": [
     {
-      "id": "tool.ffmpeg",
+      "id": "app.ffmpeg",
       "versionRange": "^1.0.0",
-      "kind": "tool"
+      "kind": "app"
     }
   ],
   "compatibility": {
