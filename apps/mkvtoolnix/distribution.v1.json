@@ -11,7 +11,7 @@
       "archiveUrl": "https://artifacts.example.invalid/apps/mkvtoolnix/1.0.0/mkvtoolnix-linux-x86_64.tar.gz",
       "archiveFormat": "tar.gz",
       "archiveSha256": "1dd2377127f9c41ad8bccd941c7b695dbb703036c2854ad27962e273b8d3a0ed",
-      "binaryRelativePath": "bin/mkvmerge",
+      "binaryRelativePath": "mkvmerge",
       "binarySha256": "c55e78f63d28695cc625565dd777e37ee776aace68b81ea720f8e0c38e48ddf3",
       "permissions": {
         "unixMode": "0755",
@@ -25,7 +25,7 @@
       "archiveUrl": "https://artifacts.example.invalid/apps/mkvtoolnix/1.0.0/mkvtoolnix-linux-aarch64.tar.gz",
       "archiveFormat": "tar.gz",
       "archiveSha256": "645600fcd1866e47f49015217b92370a9abe2fb333c2706bc3b05524175c4e13",
-      "binaryRelativePath": "bin/mkvmerge",
+      "binaryRelativePath": "mkvmerge",
       "binarySha256": "6a9e90f5c6b31085149ca306e476a6e591fcf82cfcdd8ee24479e49e446066a5",
       "permissions": {
         "unixMode": "0755",
@@ -39,11 +39,15 @@
     "refuseMismatchedDigest": true,
     "cacheRootRelative": "tools-cache/mkvtoolnix/1.0.0",
     "noShellUnpack": true,
-    "executableAllowlist": ["mkvmerge"],
+    "executableAllowlist": [
+      "mkvmerge",
+      "mkvpropedit"
+    ],
     "networkAtInstall": "explicit-allowlist"
   },
   "notes": [
-    "Option B : hors image applicative. Empreintes et URL contract-only — à remplacer avant release.",
+    "Option B : hors image applicative. Archives construites par .github/workflows/build-tools.yml depuis les paquets Debian bookworm, bibliothèques hors glibc embarquées (RUNPATH relatif).",
+    "binaryRelativePath est relatif au dossier d'extraction du cache du nœud (tools-cache/<outil>/<version>/<arch>/bin/).",
     "Remux Matroska uniquement ; pas de production MP4."
   ]
 }

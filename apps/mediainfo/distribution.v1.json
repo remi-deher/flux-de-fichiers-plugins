@@ -11,7 +11,7 @@
       "archiveUrl": "https://artifacts.example.invalid/apps/mediainfo/1.0.0/mediainfo-linux-x86_64.tar.gz",
       "archiveFormat": "tar.gz",
       "archiveSha256": "5c1f0d3a9b2184e7235a8f4c19d7b68e92384a5c102938475610293847561029",
-      "binaryRelativePath": "bin/mediainfo",
+      "binaryRelativePath": "mediainfo",
       "binarySha256": "7b8a9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b",
       "permissions": {
         "unixMode": "0755",
@@ -25,7 +25,7 @@
       "archiveUrl": "https://artifacts.example.invalid/apps/mediainfo/1.0.0/mediainfo-linux-aarch64.tar.gz",
       "archiveFormat": "tar.gz",
       "archiveSha256": "8d2e1f0c9b3a74e6152a9f5c28d6b79e83495a6c213049586721304958672130",
-      "binaryRelativePath": "bin/mediainfo",
+      "binaryRelativePath": "mediainfo",
       "binarySha256": "1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b",
       "permissions": {
         "unixMode": "0755",
@@ -39,12 +39,13 @@
     "refuseMismatchedDigest": true,
     "cacheRootRelative": "tools-cache/mediainfo/1.0.0",
     "noShellUnpack": true,
-    "executableAllowlist": ["mediainfo"],
+    "executableAllowlist": [
+      "mediainfo"
+    ],
     "networkAtInstall": "explicit-allowlist"
   },
   "notes": [
-    "Sonde d'inspection universelle de référence pour le profilage technique fin.",
-    "Sortie JSON structurée via mediainfo --Output=JSON.",
-    "Empreintes et URL contract-only."
+    "Option B : hors image applicative. Archives construites par .github/workflows/build-tools.yml depuis les paquets Debian bookworm, bibliothèques hors glibc embarquées (RUNPATH relatif).",
+    "binaryRelativePath est relatif au dossier d'extraction du cache du nœud (tools-cache/<outil>/<version>/<arch>/bin/)."
   ]
 }
