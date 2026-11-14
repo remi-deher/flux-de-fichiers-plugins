@@ -3,16 +3,16 @@
   "toolId": "app.mediainfo",
   "toolVersion": "1.0.0",
   "distributionMode": "autonomous-binary",
-  "releaseStatus": "contract-only",
+  "releaseStatus": "released",
   "artifacts": [
     {
       "arch": "x86_64",
       "os": "linux",
-      "archiveUrl": "https://artifacts.example.invalid/apps/mediainfo/1.0.0/mediainfo-linux-x86_64.tar.gz",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-1.0.0/mediainfo-linux-x86_64.tar.gz",
       "archiveFormat": "tar.gz",
-      "archiveSha256": "5c1f0d3a9b2184e7235a8f4c19d7b68e92384a5c102938475610293847561029",
-      "binaryRelativePath": "bin/mediainfo",
-      "binarySha256": "7b8a9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b",
+      "archiveSha256": "a1594d69dd12c7173760480293a00475212a83d3be1f5ad6d63424b00c7488f0",
+      "binaryRelativePath": "mediainfo",
+      "binarySha256": "b72a3d7208ac075880847a2c73ee9474b88eab089d65975c65f9c70dfd2d21a8",
       "permissions": {
         "unixMode": "0755",
         "owner": "runtime-user",
@@ -22,11 +22,11 @@
     {
       "arch": "aarch64",
       "os": "linux",
-      "archiveUrl": "https://artifacts.example.invalid/apps/mediainfo/1.0.0/mediainfo-linux-aarch64.tar.gz",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-1.0.0/mediainfo-linux-aarch64.tar.gz",
       "archiveFormat": "tar.gz",
-      "archiveSha256": "8d2e1f0c9b3a74e6152a9f5c28d6b79e83495a6c213049586721304958672130",
-      "binaryRelativePath": "bin/mediainfo",
-      "binarySha256": "1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b",
+      "archiveSha256": "fd6d6754e43330215b94b08878ead691d010cdd66601807b9485ad5714dba101",
+      "binaryRelativePath": "mediainfo",
+      "binarySha256": "5b43217daedbda572a444e7ef4729c7c646683c7c673ccedb91c74d875bb5fa8",
       "permissions": {
         "unixMode": "0755",
         "owner": "runtime-user",
@@ -39,12 +39,13 @@
     "refuseMismatchedDigest": true,
     "cacheRootRelative": "tools-cache/mediainfo/1.0.0",
     "noShellUnpack": true,
-    "executableAllowlist": ["mediainfo"],
+    "executableAllowlist": [
+      "mediainfo"
+    ],
     "networkAtInstall": "explicit-allowlist"
   },
   "notes": [
-    "Sonde d'inspection universelle de référence pour le profilage technique fin.",
-    "Sortie JSON structurée via mediainfo --Output=JSON.",
-    "Empreintes et URL contract-only."
+    "Option B : hors image applicative. Archives construites par .github/workflows/build-tools.yml depuis les paquets Debian bookworm, bibliothèques hors glibc embarquées (RUNPATH relatif).",
+    "binaryRelativePath est relatif au dossier d'extraction du cache du nœud (tools-cache/<outil>/<version>/<arch>/bin/)."
   ]
 }

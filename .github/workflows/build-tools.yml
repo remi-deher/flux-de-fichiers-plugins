@@ -1,0 +1,163 @@
+# Construit les artefacts réels des outils distribués (Option B) et met à jour leurs contrats.
+#
+# mkvmerge, mkvpropedit et mediainfo viennent des paquets Debian bookworm, la base de l'image de
+# Flux de Fichiers. Leurs bibliothèques hors glibc sont embarquées avec un RUNPATH relatif
+# ($ORIGIN) ; la glibc reste celle de l'hôte. Chaque archive est testée sans variable
+# d'environnement dans debian:bookworm-slim, puis publiée en Release avec son SHA-256.
+# Le job final écrit URL et empreintes dans apps/*/distribution.v1.json sur la branche dev.
+name: build-tools
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [dev]
+    paths: ['.github/workflows/build-tools.yml']
+
+concurrency:
+  group: build-tools
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  # Doit correspondre à `toolVersion` des contrats (apps/mediainfo, apps/mkvtoolnix).
+  RELEASE_TAG: tools-1.0.0
+
+jobs:
+  bundle:
+    name: archives-${{ matrix.arch }}
+    runs-on: ${{ matrix.runner }}
+    permissions:
+      contents: write
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - arch: x86_64
+            runner: ubuntu-latest
+          - arch: aarch64
+            runner: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+
+      - name: Écrire le script de construction
+        run: |
+          cat > bundle.sh <<'SCRIPT'
+          set -euo pipefail
+          export DEBIAN_FRONTEND=noninteractive
+          apt-get update -qq
+          apt-get install -y -qq --no-install-recommends mkvtoolnix mediainfo patchelf >/dev/null
+
+          # La glibc est fournie par l'image d'exécution : elle n'est jamais embarquée.
+          GLIBC='/(ld-linux[^/]*|libc|libm|libdl|libpthread|librt|libresolv|libutil|libnsl|libanl)\.so'
+
+          # bundle <outil> <paquet Debian> <sonde de version> <binaire>...
+          bundle() {
+            tool=$1; package=$2; probe=$3; shift 3
+            stage="/tmp/stage/$tool"
+            rm -rf "$stage"; mkdir -p "$stage/lib"
+            for binary in "$@"; do cp "$(command -v "$binary")" "$stage/$binary"; done
+            for binary in "$@"; do ldd "$stage/$binary" | awk '/=> \//{print $3}'; done \
+              | sort -u | grep -Ev "$GLIBC" | while read -r library; do cp -L "$library" "$stage/lib/"; done
+            for binary in "$@"; do patchelf --force-rpath --set-rpath '$ORIGIN/lib' "$stage/$binary"; done
+            for library in "$stage"/lib/*; do patchelf --set-rpath '$ORIGIN' "$library"; done
+            for binary in "$@"; do env -i "$stage/$binary" "$probe" | head -n 1; done
+            {
+              echo "Outil : $tool (paquet Debian bookworm $package $(dpkg-query -W -f='${Version}' "$package"))"
+              echo "Sources : https://sources.debian.org/src/$package/"
+              echo "Bibliothèques embarquées (paquet, version) :"
+              for library in "$stage"/lib/*; do
+                owner=$(dpkg -S "$(basename "$library")" 2>/dev/null | head -n 1 | cut -d: -f1 || true)
+                [ -n "$owner" ] && echo "  $(basename "$library") : $owner $(dpkg-query -W -f='${Version}' "$owner")"
+              done
+            } > "$stage/SOURCES.txt"
+            tar -C "$stage" -czf "/out/$tool-linux-$ARCH.tar.gz" --owner=0 --group=0 --numeric-owner .
+            main=$1
+            printf '{"tool":"%s","arch":"%s","file":"%s","archiveSha256":"%s","binarySha256":"%s","binaryRelativePath":"%s"}\n' \
+              "$tool" "$ARCH" "$tool-linux-$ARCH.tar.gz" \
+              "$(sha256sum "/out/$tool-linux-$ARCH.tar.gz" | cut -d' ' -f1)" \
+              "$(sha256sum "$stage/$main" | cut -d' ' -f1)" "$main" > "/out/$tool-$ARCH.json"
+          }
+
+          bundle mkvtoolnix mkvtoolnix --version mkvmerge mkvpropedit
+          bundle mediainfo mediainfo --Version mediainfo
+          SCRIPT
+
+      - name: Construire dans debian:bookworm
+        run: |
+          mkdir out
+          docker run --rm -e ARCH=${{ matrix.arch }} -v "$PWD:/work:ro" -v "$PWD/out:/out" \
+            debian:bookworm bash /work/bundle.sh
+
+      - name: Tester les archives dans debian:bookworm-slim, sans variable d'environnement
+        run: |
+          docker run --rm -e ARCH=${{ matrix.arch }} -v "$PWD/out:/out:ro" debian:bookworm-slim bash -euo pipefail -c '
+            for tool in mkvtoolnix mediainfo; do
+              mkdir -p "/t/$tool"
+              tar -C "/t/$tool" -xzf "/out/$tool-linux-${ARCH}.tar.gz"
+            done
+            env -i /t/mkvtoolnix/mkvmerge --version
+            env -i /t/mkvtoolnix/mkvpropedit --version
+            env -i /t/mediainfo/mediainfo --Version
+          '
+
+      - name: Publier les archives en Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view "$RELEASE_TAG" >/dev/null 2>&1 \
+            || gh release create "$RELEASE_TAG" --target "${{ github.sha }}" \
+                 --title "Outils distribués $RELEASE_TAG" \
+                 --notes "Archives des outils (Option B) construites depuis les paquets Debian bookworm. Contrats : apps/*/distribution.v1.json." \
+            || true
+          for attempt in 1 2 3 4 5; do
+            gh release view "$RELEASE_TAG" >/dev/null 2>&1 && break
+            sleep 3
+          done
+          gh release upload "$RELEASE_TAG" out/*.tar.gz out/*.json --clobber
+
+  contracts:
+    name: contrats-distribution
+    needs: bundle
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: dev
+          fetch-depth: 0
+
+      - name: Écrire URL et empreintes dans les contrats
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir meta
+          gh release download "$RELEASE_TAG" --pattern '*.json' --dir meta
+          for tool in mkvtoolnix mediainfo; do
+            file="apps/$tool/distribution.v1.json"
+            for arch in x86_64 aarch64; do
+              meta="meta/$tool-$arch.json"
+              url="https://github.com/${{ github.repository }}/releases/download/$RELEASE_TAG/$tool-linux-$arch.tar.gz"
+              jq --arg arch "$arch" --arg url "$url" \
+                 --arg sha "$(jq -r .archiveSha256 "$meta")" \
+                 --arg bsha "$(jq -r .binarySha256 "$meta")" \
+                 --arg rel "$(jq -r .binaryRelativePath "$meta")" \
+                 '(.artifacts[] | select(.arch == $arch)) |= (.archiveUrl = $url | .archiveSha256 = $sha | .binarySha256 = $bsha | .binaryRelativePath = $rel) | .releaseStatus = "released"' \
+                 "$file" > "$file.tmp"
+              mv "$file.tmp" "$file"
+            done
+          done
+
+      - name: Commiter les contrats sur dev
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apps/mkvtoolnix/distribution.v1.json apps/mediainfo/distribution.v1.json
+          if git diff --cached --quiet; then echo "Contrats déjà à jour."; exit 0; fi
+          git commit -m "chore(apps): artefacts réels mediainfo et mkvtoolnix ($RELEASE_TAG)"
+          git pull --rebase origin dev
+          git push origin HEAD:dev

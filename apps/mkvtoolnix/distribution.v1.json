@@ -3,16 +3,16 @@
   "toolId": "app.mkvtoolnix",
   "toolVersion": "1.0.0",
   "distributionMode": "autonomous-binary",
-  "releaseStatus": "contract-only",
+  "releaseStatus": "released",
   "artifacts": [
     {
       "arch": "x86_64",
       "os": "linux",
-      "archiveUrl": "https://artifacts.example.invalid/apps/mkvtoolnix/1.0.0/mkvtoolnix-linux-x86_64.tar.gz",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-1.0.0/mkvtoolnix-linux-x86_64.tar.gz",
       "archiveFormat": "tar.gz",
-      "archiveSha256": "1dd2377127f9c41ad8bccd941c7b695dbb703036c2854ad27962e273b8d3a0ed",
-      "binaryRelativePath": "bin/mkvmerge",
-      "binarySha256": "c55e78f63d28695cc625565dd777e37ee776aace68b81ea720f8e0c38e48ddf3",
+      "archiveSha256": "cd903aec539bf65181159990e7e8f82e3092551e025c3e4032f9019ab709abd1",
+      "binaryRelativePath": "mkvmerge",
+      "binarySha256": "d1df168c04251479668a396261555f474c98a9ce73f5be3bcf2042a9429f3d16",
       "permissions": {
         "unixMode": "0755",
         "owner": "runtime-user",
@@ -22,11 +22,11 @@
     {
       "arch": "aarch64",
       "os": "linux",
-      "archiveUrl": "https://artifacts.example.invalid/apps/mkvtoolnix/1.0.0/mkvtoolnix-linux-aarch64.tar.gz",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-1.0.0/mkvtoolnix-linux-aarch64.tar.gz",
       "archiveFormat": "tar.gz",
-      "archiveSha256": "645600fcd1866e47f49015217b92370a9abe2fb333c2706bc3b05524175c4e13",
-      "binaryRelativePath": "bin/mkvmerge",
-      "binarySha256": "6a9e90f5c6b31085149ca306e476a6e591fcf82cfcdd8ee24479e49e446066a5",
+      "archiveSha256": "dcdb9fb01e281e13209cb974cb1e0b7b2cd9dad649b12ff02b5d67c74f135b75",
+      "binaryRelativePath": "mkvmerge",
+      "binarySha256": "e53fffe23bf472b9780f469a56d9ac0286d7b105c1bcfacfd6daa4e44a5cad68",
       "permissions": {
         "unixMode": "0755",
         "owner": "runtime-user",
@@ -39,11 +39,15 @@
     "refuseMismatchedDigest": true,
     "cacheRootRelative": "tools-cache/mkvtoolnix/1.0.0",
     "noShellUnpack": true,
-    "executableAllowlist": ["mkvmerge"],
+    "executableAllowlist": [
+      "mkvmerge",
+      "mkvpropedit"
+    ],
     "networkAtInstall": "explicit-allowlist"
   },
   "notes": [
-    "Option B : hors image applicative. Empreintes et URL contract-only — à remplacer avant release.",
+    "Option B : hors image applicative. Archives construites par .github/workflows/build-tools.yml depuis les paquets Debian bookworm, bibliothèques hors glibc embarquées (RUNPATH relatif).",
+    "binaryRelativePath est relatif au dossier d'extraction du cache du nœud (tools-cache/<outil>/<version>/<arch>/bin/).",
     "Remux Matroska uniquement ; pas de production MP4."
   ]
 }
