@@ -40,7 +40,6 @@
           "type": "string",
           "enum": [
             "plugin",
-            "tool",
             "flow",
             "preset",
             "resource.font",
@@ -50,7 +49,8 @@
             "resource.language",
             "resource.template",
             "app",
-            "block"
+            "block",
+            "pack"
           ]
         },
         "version": {
@@ -168,15 +168,20 @@
               "kind": {
                 "type": "string",
                 "enum": [
-                  "tool",
                   "plugin",
                   "resource",
                   "runtime",
                   "app",
                   "flow",
                   "preset",
-                  "block"
+                  "block",
+                  "pack"
                 ]
+              },
+              "optional": {
+                "type": "boolean",
+                "default": false,
+                "description": "Dépendance proposée, jamais imposée : l'installation du plugin n'est pas bloquée si elle manque."
               }
             }
           }
@@ -200,7 +205,7 @@
         },
         "tool": {
           "type": "object",
-          "description": "Métadonnées spécifiques aux éléments de type tool.",
+          "description": "Métadonnées spécifiques aux applications (type app : MKVToolNix, FFmpeg…).",
           "additionalProperties": false,
           "properties": {
             "capability": {
@@ -245,13 +250,39 @@
         "blocks": {
           "type": "array",
           "items": {
-            "type": "string",
-            "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*\\\\)[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)*$",
-            "maxLength": 512
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*\\\\)[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)*$",
+                "maxLength": 512
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  }
+                }
+              }
+            ]
           },
-          "maxItems": 64
+          "maxItems": 64,
+          "description": "Blocs appartenant à ce plugin : chemin d'un fichier de bloc ou fiche intégrée. Un bloc n'existe pas hors d'un plugin."
         },
-        "app": {
+        "pack": {
           "type": "object",
           "additionalProperties": false,
           "required": [
@@ -272,7 +303,7 @@
               "maxLength": 512
             },
             "runtimeImplemented": {
-              "const": false
+              "type": "boolean"
             }
           }
         }
@@ -282,13 +313,13 @@
           "if": {
             "properties": {
               "type": {
-                "const": "app"
+                "const": "pack"
               }
             }
           },
           "then": {
             "required": [
-              "app"
+              "pack"
             ]
           }
         }

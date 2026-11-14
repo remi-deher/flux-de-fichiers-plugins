@@ -38,7 +38,7 @@ Tout nouveau document catalogue doit cibler `schemaVersion: "1.1.0"`.
 
 ## Exemple migré
 
-`plugins/remux-mkv.example/operations/remux.json` → **1.1.0**
+`examples/catalogue/plugins/remux-mkv.example/operations/remux.json` → **1.1.0**
 (codes mkvmerge documentés : https://mkvtoolnix.download/doc/mkvmerge.html#mkvmerge.exit_codes).
 
 ## Non-objectifs

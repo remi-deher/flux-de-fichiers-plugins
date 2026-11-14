@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flux-de-fichiers.local/schema/pack-installation.v1.schema.json",
+  "title": "Installation de pack v1",
+  "description": "Recette d’installation atomique d’un paquet déclaratif, sans scripts ni déploiement. Référence un flow et ses composants exacts ; installeur et résolution de distribution non implémentés.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "packId",
+    "packVersion",
+    "kind",
+    "components",
+    "entrypoint",
+    "permissions",
+    "updates",
+    "uninstallData",
+    "runtimeImplemented"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "packId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+      "maxLength": 128
+    },
+    "packVersion": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+    },
+    "kind": {
+      "const": "declarative-bundle"
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "version",
+          "kind"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+            "maxLength": 128
+          },
+          "version": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+          },
+          "kind": {
+            "enum": [
+              "app",
+              "plugin",
+              "preset",
+              "resource"
+            ]
+          }
+        }
+      },
+      "minItems": 1,
+      "maxItems": 64,
+      "uniqueItems": true
+    },
+    "entrypoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "id",
+        "version"
+      ],
+      "properties": {
+        "kind": {
+          "const": "flow"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+          "maxLength": 128
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+        }
+      }
+    },
+    "permissions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "readInputs",
+        "writeOutputs",
+        "network"
+      ],
+      "properties": {
+        "readInputs": {
+          "type": "boolean"
+        },
+        "writeOutputs": {
+          "type": "boolean"
+        },
+        "network": {
+          "const": "none"
+        }
+      }
+    },
+    "updates": {
+      "const": "manual"
+    },
+    "uninstallData": {
+      "const": "preserve"
+    },
+    "runtimeImplemented": {
+      "const": false
+    }
+  }
+}

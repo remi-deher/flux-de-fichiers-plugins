@@ -24,8 +24,10 @@
     ]
   },
   "dependencies": [
-    { "id": "tool.mkvtoolnix", "versionRange": "^1.0.0", "kind": "tool" },
-    { "id": "tool.mediainfo", "versionRange": "^1.0.0", "kind": "tool" },
-    { "id": "tool.ffmpeg", "versionRange": "^1.0.0", "kind": "tool" }
+    {
+      "id": "plugin.video",
+      "versionRange": "^1.0.0",
+      "kind": "plugin"
+    }
   ]
 }

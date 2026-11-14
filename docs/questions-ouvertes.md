@@ -40,7 +40,7 @@ sémantique. Aucun code Rust/Leptos, changement Docker, migration SQL, appel de
 processus média, build ou essai fonctionnel local. Pas de déploiement, commit,
 push, release ou autre ticket créé par ce travail.
 
-La [relecture documentaire](revue-contrats-v1.md) distingue les contrôles statiques
+La [relecture documentaire](limites-et-revue.md) distingue les contrôles statiques
 réalisés des scénarios nécessaires à la future implémentation. Les arbitrages
 restent sur le ticket #39 et dans cette note ; ils n'empêchent pas la livraison
 du contrat documentaire demandé.

@@ -36,24 +36,28 @@
   ],
   "dependencies": [
     {
-      "id": "tool.ffmpeg",
+      "id": "app.ffmpeg",
       "versionRange": "^1.0.0",
-      "kind": "tool"
+      "kind": "app",
+      "optional": true
     },
     {
-      "id": "tool.mkvtoolnix",
+      "id": "app.mkvtoolnix",
       "versionRange": "^1.0.0",
-      "kind": "tool"
+      "kind": "app",
+      "optional": true
     },
     {
-      "id": "tool.mp4box",
+      "id": "app.mp4box",
       "versionRange": "^1.0.0",
-      "kind": "tool"
+      "kind": "app",
+      "optional": true
     },
     {
-      "id": "tool.mediainfo",
+      "id": "app.mediainfo",
       "versionRange": "^1.0.0",
-      "kind": "tool"
+      "kind": "app",
+      "optional": true
     }
   ],
   "compatibility": {

@@ -4,10 +4,10 @@ Une app est un paquet avec un cycle d'installation, distinct de ses flows et
 plugins. Le contrat initial décrit un **bundle déclaratif** présenté et lancé
 par le futur frontend Leptos ; aucun nouvel exécutable ni service n'est embarqué.
 
-[Le manifeste](../apps/pilotage.example/manifest.json) utilise la version 1.1.0.
+[Le manifeste](../examples/catalogue/packs/pilotage.example/manifest.json) utilise la version 1.1.0.
 Son champ `app.installation` référence
-[installation.json](../apps/pilotage.example/installation.json), validé par
-[app-installation.v1](../schema/app-installation.v1.schema.json).
+[installation.json](../examples/catalogue/packs/pilotage.example/installation.json), validé par
+[app-installation.v1](../schema/pack-installation.v1.schema.json).
 Il déclare l'identité/version de l'app, les versions exactes de ses composants,
 son flow de démarrage et les permissions nécessaires. Le point d'entrée doit
 être l'un des composants, avec une version identique. Le résolveur vérifie la

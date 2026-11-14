@@ -47,7 +47,7 @@
               "block",
               "flow",
               "preset",
-              "app"
+              "pack"
             ]
           },
           "manifestPath": {
@@ -71,7 +71,7 @@
                     "block",
                     "flow",
                     "preset",
-                    "app-installation"
+                    "pack-installation"
                   ]
                 },
                 "path": {

@@ -3,11 +3,63 @@
   "generatedFor": "flux-de-fichiers-plugins@multimedia",
   "entries": [
     {
-      "id": "app.media",
+      "id": "app.mkvtoolnix",
       "type": "app",
       "version": "1.0.0",
-      "name": "Studio Multimédia",
-      "manifestPath": "apps/media/manifest.json"
+      "name": "MKVToolNix (mkvmerge)",
+      "manifestPath": "apps/mkvtoolnix/manifest.json",
+      "capability": "remux",
+      "currentChoice": true,
+      "distribution": "autonomous-binary"
+    },
+    {
+      "id": "app.mp4box",
+      "type": "app",
+      "version": "1.0.0",
+      "name": "MP4Box (GPAC)",
+      "manifestPath": "apps/mp4box/manifest.json",
+      "capability": "remux-mp4",
+      "currentChoice": true,
+      "distribution": "autonomous-binary"
+    },
+    {
+      "id": "app.mediainfo",
+      "type": "app",
+      "version": "1.0.0",
+      "name": "MediaInfo CLI",
+      "manifestPath": "apps/mediainfo/manifest.json",
+      "capability": "probe",
+      "currentChoice": true,
+      "distribution": "autonomous-binary"
+    },
+    {
+      "id": "app.ffmpeg",
+      "type": "app",
+      "version": "1.0.0",
+      "name": "FFmpeg (distribué)",
+      "manifestPath": "apps/ffmpeg/manifest.json",
+      "capability": "analyze",
+      "currentChoice": false,
+      "distribution": "autonomous-binary"
+    },
+    {
+      "id": "app.internal.telemetry",
+      "type": "app",
+      "version": "0.1.0",
+      "name": "Sonde interne de télémétrie",
+      "manifestPath": "apps/internal-telemetry/manifest.json",
+      "capability": "other",
+      "currentChoice": true,
+      "distribution": "autonomous-binary"
+    },
+    {
+      "id": "app.postgresql",
+      "type": "app",
+      "version": "1.0.0",
+      "name": "PostgreSQL",
+      "manifestPath": "apps/postgresql/manifest.json",
+      "capability": "database",
+      "currentChoice": true
     },
     {
       "id": "plugin.video",
@@ -44,6 +96,7 @@
     {
       "id": "block.media.inspect",
       "type": "block",
+      "owner": "plugin.video",
       "version": "1.0.0",
       "name": "Inspection Média Universelle (MediaInfo)",
       "manifestPath": "plugins/video/blocks/media-inspect.json"
@@ -51,6 +104,7 @@
     {
       "id": "block.video.encode",
       "type": "block",
+      "owner": "plugin.video",
       "version": "1.0.0",
       "name": "Encodage Vidéo (FFMPEG Builder)",
       "manifestPath": "plugins/video/blocks/video-encode.json"
@@ -58,6 +112,7 @@
     {
       "id": "block.video.remux-mkv",
       "type": "block",
+      "owner": "plugin.video",
       "version": "1.0.0",
       "name": "Remuxage MKV (MKVToolNix)",
       "manifestPath": "plugins/video/blocks/remux-mkv.json"
@@ -65,6 +120,7 @@
     {
       "id": "block.video.remux-mp4",
       "type": "block",
+      "owner": "plugin.video",
       "version": "1.0.0",
       "name": "Remuxage & Optimisation MP4 (MP4Box)",
       "manifestPath": "plugins/video/blocks/remux-mp4.json"
@@ -72,82 +128,10 @@
     {
       "id": "block.audio.encode",
       "type": "block",
+      "owner": "plugin.audio",
       "version": "1.0.0",
       "name": "Encodage & Conversion Audio",
       "manifestPath": "plugins/audio/blocks/audio-encode.json"
-    },
-    {
-      "id": "tool.mkvtoolnix",
-      "type": "tool",
-      "version": "1.0.0",
-      "name": "MKVToolNix (mkvmerge)",
-      "manifestPath": "tools/mkvtoolnix/manifest.json",
-      "capability": "remux",
-      "currentChoice": true,
-      "distribution": "autonomous-binary"
-    },
-    {
-      "id": "tool.mp4box",
-      "type": "tool",
-      "version": "1.0.0",
-      "name": "MP4Box (GPAC)",
-      "manifestPath": "tools/mp4box/manifest.json",
-      "capability": "remux-mp4",
-      "currentChoice": true,
-      "distribution": "autonomous-binary"
-    },
-    {
-      "id": "tool.mediainfo",
-      "type": "tool",
-      "version": "1.0.0",
-      "name": "MediaInfo CLI",
-      "manifestPath": "tools/mediainfo/manifest.json",
-      "capability": "probe",
-      "currentChoice": true,
-      "distribution": "autonomous-binary"
-    },
-    {
-      "id": "tool.ffmpeg",
-      "type": "tool",
-      "version": "1.0.0",
-      "name": "FFmpeg (distribué)",
-      "manifestPath": "tools/ffmpeg/manifest.json",
-      "capability": "analyze",
-      "currentChoice": false,
-      "distribution": "autonomous-binary"
-    },
-    {
-      "id": "tool.internal.telemetry",
-      "type": "tool",
-      "version": "0.1.0",
-      "name": "Sonde interne de télémétrie",
-      "manifestPath": "tools/internal-telemetry/manifest.json",
-      "capability": "other",
-      "currentChoice": true,
-      "distribution": "autonomous-binary"
-    },
-    {
-      "id": "tool.postgresql",
-      "type": "tool",
-      "version": "1.0.0",
-      "name": "PostgreSQL",
-      "manifestPath": "tools/postgresql/manifest.json",
-      "capability": "database",
-      "currentChoice": true
-    },
-    {
-      "id": "macro.remux-verify.example",
-      "type": "block",
-      "version": "0.1.0",
-      "name": "Macro remux + vérifier (exemple)",
-      "manifestPath": "blocks/macro-remux-verify.example/manifest.json"
-    },
-    {
-      "id": "plugin.remux-mkv.example",
-      "type": "plugin",
-      "version": "0.0.0",
-      "name": "Exemple plugin remux MKV",
-      "manifestPath": "plugins/remux-mkv.example/manifest.json"
     },
     {
       "id": "flow.default.mkv",
@@ -174,60 +158,11 @@
       "capability": "faststart"
     },
     {
-      "id": "flow.remux-rapide.example",
-      "type": "flow",
-      "version": "0.0.0",
-      "name": "Exemple flux remux rapide",
-      "manifestPath": "flows/remux-rapide.example/manifest.json"
-    },
-    {
-      "id": "preset.remux-defaut.example",
-      "type": "preset",
-      "version": "0.0.0",
-      "name": "Exemple preset remux",
-      "manifestPath": "presets/remux-defaut.example/manifest.json"
-    },
-    {
-      "id": "resource.font.placeholder.example",
-      "type": "resource.font",
-      "version": "0.0.0",
-      "name": "Exemple ressource police",
-      "manifestPath": "resources/fonts/placeholder.example/manifest.json"
-    },
-    {
-      "id": "resource.image.placeholder.example",
-      "type": "resource.image",
-      "version": "0.0.0",
-      "name": "Exemple ressource image",
-      "manifestPath": "resources/images/placeholder.example/manifest.json"
-    },
-    {
-      "id": "resource.audio.placeholder.example",
-      "type": "resource.audio",
-      "version": "0.0.0",
-      "name": "Exemple ressource audio",
-      "manifestPath": "resources/audio/placeholder.example/manifest.json"
-    },
-    {
-      "id": "resource.color.placeholder.example",
-      "type": "resource.color",
-      "version": "0.0.0",
-      "name": "Exemple ressource couleur",
-      "manifestPath": "resources/color/placeholder.example/manifest.json"
-    },
-    {
-      "id": "resource.language.fr.example",
-      "type": "resource.language",
-      "version": "0.0.0",
-      "name": "Exemple ressource langue FR",
-      "manifestPath": "resources/languages/fr.example/manifest.json"
-    },
-    {
-      "id": "resource.template.placeholder.example",
-      "type": "resource.template",
-      "version": "0.0.0",
-      "name": "Exemple ressource modèle",
-      "manifestPath": "resources/templates/placeholder.example/manifest.json"
+      "id": "pack.media",
+      "type": "pack",
+      "version": "1.0.0",
+      "name": "Studio Multimédia (Flux de Fichiers)",
+      "manifestPath": "packs/media/manifest.json"
     }
   ]
 }
