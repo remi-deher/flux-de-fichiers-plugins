@@ -8,7 +8,7 @@
 | `schema/command-argv.v1.schema.json` | argv v1 (conservé) |
 | `schema/operation.v1.1.schema.json` | Opération durcie (#40) |
 | `schema/command-argv.v1.1.schema.json` | argv durci (#40) |
-| `plugins/remux-mkv.example/operations/remux.json` | Exemple **1.1.0** |
+| `examples/catalogue/plugins/remux-mkv.example/operations/remux.json` | Exemple **1.1.0** |
 | `docs/migration-schemas-v1.1.md` | Migration |
 
 ## Frontière sans shell libre (normative v1.1)

@@ -1,4 +1,4 @@
-# Contrat distribution d'outils binaires (Option B)
+# Contrat distribution des applications binaires (Option B)
 
 Option B validée utilisateur : les outils s'exécutent comme **binaires
 autonomes hors conteneur applicatif**, avec cache nœud et vérification

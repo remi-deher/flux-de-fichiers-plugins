@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "flow.remux-rapide.example",
+  "type": "flow",
+  "version": "0.0.0",
+  "name": "Exemple flux remux rapide",
+  "description": "Flux prédéfini illustratif : remuxage sans réencodage via l'outil MKVToolNix actuel.",
+  "author": "flux-de-fichiers",
+  "license": "UNLICENSED",
+  "files": [
+    {
+      "path": "flow.json",
+      "role": "config",
+      "mediaType": "application/json"
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "plugin.remux-mkv.example",
+      "versionRange": "^0.0.0",
+      "kind": "plugin"
+    },
+    {
+      "id": "preset.remux-defaut.example",
+      "versionRange": "^0.0.0",
+      "kind": "preset"
+    }
+  ]
+}

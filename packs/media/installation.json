@@ -33,31 +33,6 @@
       "id": "plugin.audio",
       "version": "1.0.0",
       "kind": "plugin"
-    },
-    {
-      "id": "block.media.inspect",
-      "version": "1.0.0",
-      "kind": "block"
-    },
-    {
-      "id": "block.video.encode",
-      "version": "1.0.0",
-      "kind": "block"
-    },
-    {
-      "id": "block.video.remux-mkv",
-      "version": "1.0.0",
-      "kind": "block"
-    },
-    {
-      "id": "block.video.remux-mp4",
-      "version": "1.0.0",
-      "kind": "block"
-    },
-    {
-      "id": "block.audio.encode",
-      "version": "1.0.0",
-      "kind": "block"
     }
   ],
   "entrypoint": {

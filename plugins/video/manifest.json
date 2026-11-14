@@ -38,22 +38,26 @@
     {
       "id": "app.ffmpeg",
       "versionRange": "^1.0.0",
-      "kind": "app"
+      "kind": "app",
+      "optional": true
     },
     {
       "id": "app.mkvtoolnix",
       "versionRange": "^1.0.0",
-      "kind": "app"
+      "kind": "app",
+      "optional": true
     },
     {
       "id": "app.mp4box",
       "versionRange": "^1.0.0",
-      "kind": "app"
+      "kind": "app",
+      "optional": true
     },
     {
       "id": "app.mediainfo",
       "versionRange": "^1.0.0",
-      "kind": "app"
+      "kind": "app",
+      "optional": true
     }
   ],
   "compatibility": {

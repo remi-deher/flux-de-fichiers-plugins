@@ -38,9 +38,9 @@ Stratégie : **v1.1 additive** sur le modèle Backend v1 (pas de rupture silenci
 
 **Exemples alignés 1.1.0**
 
-- `plugins/remux-mkv.example/operations/remux.json`
-- `blocks/remux-mkv.example/block.json`
-- `flows/remux-rapide.example/flow.v1.json`
+- `examples/catalogue/plugins/remux-mkv.example/operations/remux.json`
+- `examples/catalogue/plugins/remux-mkv.example/blocks/remux-mkv.example/block.json`
+- `examples/catalogue/flows/remux-rapide.example/flow.v1.json`
 - `examples/invocation/remux-mkv.*.json`
 
 **Docs**

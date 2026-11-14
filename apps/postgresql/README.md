@@ -1,6 +1,9 @@
-# Outil : PostgreSQL
+# Application : PostgreSQL
 
-Choix **actuel** et **requis** pour les métadonnées.
+> Divergence à arbitrer : le moteur stocke ses métadonnées dans SQLite local
+> (`/config/flux.db`, ADR 0001 du dépôt applicatif). Cette fiche décrit un choix antérieur.
+
+Choix **historique** pour les métadonnées.
 
 ## Frontière
 

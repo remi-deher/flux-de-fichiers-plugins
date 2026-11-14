@@ -23,7 +23,8 @@
     {
       "id": "app.ffmpeg",
       "versionRange": "^1.0.0",
-      "kind": "app"
+      "kind": "app",
+      "optional": true
     }
   ],
   "compatibility": {

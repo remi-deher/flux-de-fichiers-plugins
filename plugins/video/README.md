@@ -1,6 +1,6 @@
 # Plugin Vidéo (`plugin.video`)
 
-Plugin dédié à la manipulation, à l'encodage et au remuxage de flux vidéo au sein de l'application `pack.media`.
+Plugin dédié à la manipulation, à l'encodage et au remuxage de flux vidéo au sein du pack `pack.media`.
 
 ## Blocs fournis
 
@@ -8,6 +8,8 @@ Plugin dédié à la manipulation, à l'encodage et au remuxage de flux vidéo a
 - **`block.video.remux-mkv`** : Remuxage sans perte vers le format Matroska (`.mkv`) à l'aide de MKVToolNix.
 
 ## Dépendances
+
+Applications **suggérées** (`optional`) : leur absence ne bloque pas le plugin.
 
 - `app.ffmpeg` (`>= 1.0.0`)
 - `app.mkvtoolnix` (`>= 1.0.0`)

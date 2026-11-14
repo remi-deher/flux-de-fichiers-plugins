@@ -3,80 +3,6 @@
   "generatedFor": "flux-de-fichiers-plugins@multimedia",
   "entries": [
     {
-      "id": "pack.media",
-      "type": "pack",
-      "version": "1.0.0",
-      "name": "Studio Multimédia",
-      "manifestPath": "packs/media/manifest.json"
-    },
-    {
-      "id": "plugin.video",
-      "type": "plugin",
-      "version": "1.0.0",
-      "name": "Plugin Traitement Vidéo",
-      "manifestPath": "plugins/video/manifest.json",
-      "capability": "video"
-    },
-    {
-      "id": "plugin.audio",
-      "type": "plugin",
-      "version": "1.0.0",
-      "name": "Plugin Traitement Audio",
-      "manifestPath": "plugins/audio/manifest.json",
-      "capability": "audio"
-    },
-    {
-      "id": "plugin.sonarr",
-      "type": "plugin",
-      "version": "1.0.0",
-      "name": "Sonarr Integration",
-      "manifestPath": "plugins/sonarr/manifest.json",
-      "capability": "integration"
-    },
-    {
-      "id": "plugin.radarr",
-      "type": "plugin",
-      "version": "1.0.0",
-      "name": "Radarr Integration",
-      "manifestPath": "plugins/radarr/manifest.json",
-      "capability": "integration"
-    },
-    {
-      "id": "block.media.inspect",
-      "type": "block",
-      "version": "1.0.0",
-      "name": "Inspection Média Universelle (MediaInfo)",
-      "manifestPath": "plugins/video/blocks/media-inspect.json"
-    },
-    {
-      "id": "block.video.encode",
-      "type": "block",
-      "version": "1.0.0",
-      "name": "Encodage Vidéo (FFMPEG Builder)",
-      "manifestPath": "plugins/video/blocks/video-encode.json"
-    },
-    {
-      "id": "block.video.remux-mkv",
-      "type": "block",
-      "version": "1.0.0",
-      "name": "Remuxage MKV (MKVToolNix)",
-      "manifestPath": "plugins/video/blocks/remux-mkv.json"
-    },
-    {
-      "id": "block.video.remux-mp4",
-      "type": "block",
-      "version": "1.0.0",
-      "name": "Remuxage & Optimisation MP4 (MP4Box)",
-      "manifestPath": "plugins/video/blocks/remux-mp4.json"
-    },
-    {
-      "id": "block.audio.encode",
-      "type": "block",
-      "version": "1.0.0",
-      "name": "Encodage & Conversion Audio",
-      "manifestPath": "plugins/audio/blocks/audio-encode.json"
-    },
-    {
       "id": "app.mkvtoolnix",
       "type": "app",
       "version": "1.0.0",
@@ -136,18 +62,76 @@
       "currentChoice": true
     },
     {
-      "id": "macro.remux-verify.example",
-      "type": "block",
-      "version": "0.1.0",
-      "name": "Macro remux + vérifier (exemple)",
-      "manifestPath": "blocks/macro-remux-verify.example/manifest.json"
+      "id": "plugin.video",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Plugin Traitement Vidéo",
+      "manifestPath": "plugins/video/manifest.json",
+      "capability": "video"
     },
     {
-      "id": "plugin.remux-mkv.example",
+      "id": "plugin.audio",
       "type": "plugin",
-      "version": "0.0.0",
-      "name": "Exemple plugin remux MKV",
-      "manifestPath": "plugins/remux-mkv.example/manifest.json"
+      "version": "1.0.0",
+      "name": "Plugin Traitement Audio",
+      "manifestPath": "plugins/audio/manifest.json",
+      "capability": "audio"
+    },
+    {
+      "id": "plugin.sonarr",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Sonarr Integration",
+      "manifestPath": "plugins/sonarr/manifest.json",
+      "capability": "integration"
+    },
+    {
+      "id": "plugin.radarr",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Radarr Integration",
+      "manifestPath": "plugins/radarr/manifest.json",
+      "capability": "integration"
+    },
+    {
+      "id": "block.media.inspect",
+      "type": "block",
+      "owner": "plugin.video",
+      "version": "1.0.0",
+      "name": "Inspection Média Universelle (MediaInfo)",
+      "manifestPath": "plugins/video/blocks/media-inspect.json"
+    },
+    {
+      "id": "block.video.encode",
+      "type": "block",
+      "owner": "plugin.video",
+      "version": "1.0.0",
+      "name": "Encodage Vidéo (FFMPEG Builder)",
+      "manifestPath": "plugins/video/blocks/video-encode.json"
+    },
+    {
+      "id": "block.video.remux-mkv",
+      "type": "block",
+      "owner": "plugin.video",
+      "version": "1.0.0",
+      "name": "Remuxage MKV (MKVToolNix)",
+      "manifestPath": "plugins/video/blocks/remux-mkv.json"
+    },
+    {
+      "id": "block.video.remux-mp4",
+      "type": "block",
+      "owner": "plugin.video",
+      "version": "1.0.0",
+      "name": "Remuxage & Optimisation MP4 (MP4Box)",
+      "manifestPath": "plugins/video/blocks/remux-mp4.json"
+    },
+    {
+      "id": "block.audio.encode",
+      "type": "block",
+      "owner": "plugin.audio",
+      "version": "1.0.0",
+      "name": "Encodage & Conversion Audio",
+      "manifestPath": "plugins/audio/blocks/audio-encode.json"
     },
     {
       "id": "flow.default.mkv",
@@ -174,60 +158,11 @@
       "capability": "faststart"
     },
     {
-      "id": "flow.remux-rapide.example",
-      "type": "flow",
-      "version": "0.0.0",
-      "name": "Exemple flux remux rapide",
-      "manifestPath": "flows/remux-rapide.example/manifest.json"
-    },
-    {
-      "id": "preset.remux-defaut.example",
-      "type": "preset",
-      "version": "0.0.0",
-      "name": "Exemple preset remux",
-      "manifestPath": "presets/remux-defaut.example/manifest.json"
-    },
-    {
-      "id": "resource.font.placeholder.example",
-      "type": "resource.font",
-      "version": "0.0.0",
-      "name": "Exemple ressource police",
-      "manifestPath": "resources/fonts/placeholder.example/manifest.json"
-    },
-    {
-      "id": "resource.image.placeholder.example",
-      "type": "resource.image",
-      "version": "0.0.0",
-      "name": "Exemple ressource image",
-      "manifestPath": "resources/images/placeholder.example/manifest.json"
-    },
-    {
-      "id": "resource.audio.placeholder.example",
-      "type": "resource.audio",
-      "version": "0.0.0",
-      "name": "Exemple ressource audio",
-      "manifestPath": "resources/audio/placeholder.example/manifest.json"
-    },
-    {
-      "id": "resource.color.placeholder.example",
-      "type": "resource.color",
-      "version": "0.0.0",
-      "name": "Exemple ressource couleur",
-      "manifestPath": "resources/color/placeholder.example/manifest.json"
-    },
-    {
-      "id": "resource.language.fr.example",
-      "type": "resource.language",
-      "version": "0.0.0",
-      "name": "Exemple ressource langue FR",
-      "manifestPath": "resources/languages/fr.example/manifest.json"
-    },
-    {
-      "id": "resource.template.placeholder.example",
-      "type": "resource.template",
-      "version": "0.0.0",
-      "name": "Exemple ressource modèle",
-      "manifestPath": "resources/templates/placeholder.example/manifest.json"
+      "id": "pack.media",
+      "type": "pack",
+      "version": "1.0.0",
+      "name": "Studio Multimédia (Flux de Fichiers)",
+      "manifestPath": "packs/media/manifest.json"
     }
   ]
 }

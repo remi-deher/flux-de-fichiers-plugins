@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "1.0.0",
+  "packId": "pack.pilotage.example",
+  "packVersion": "0.0.0",
+  "kind": "declarative-bundle",
+  "components": [
+    {
+      "id": "app.mkvtoolnix",
+      "version": "1.0.0",
+      "kind": "app"
+    },
+    {
+      "id": "plugin.remux-mkv.example",
+      "version": "0.0.0",
+      "kind": "plugin"
+    },
+    {
+      "id": "flow.remux-rapide.example",
+      "version": "0.0.0",
+      "kind": "flow"
+    },
+    {
+      "id": "preset.remux-defaut.example",
+      "version": "0.0.0",
+      "kind": "preset"
+    },
+    {
+      "id": "plugin.remux-mkv.example",
+      "version": "0.0.0",
+      "kind": "plugin"
+    }
+  ],
+  "entrypoint": {
+    "kind": "flow",
+    "id": "flow.remux-rapide.example",
+    "version": "0.0.0"
+  },
+  "permissions": {
+    "readInputs": true,
+    "writeOutputs": true,
+    "network": "none"
+  },
+  "updates": "manual",
+  "uninstallData": "preserve",
+  "runtimeImplemented": false
+}

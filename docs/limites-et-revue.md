@@ -6,8 +6,8 @@
 - `schema/manifest.v1.schema.json`, `schema/catalogue-index.v1.schema.json`
 - `catalogue/index.json`
 - `apps/mkvtoolnix/`, `apps/postgresql/` (+ `deploy/*.example`)
-- `plugins/remux-mkv.example/`, `flows/remux-rapide.example/`, `presets/remux-defaut.example/`
-- `resources/{fonts,images,audio,color,languages,templates}/…`
+- `examples/catalogue/plugins/remux-mkv.example/`, `examples/catalogue/flows/remux-rapide.example/`, `examples/catalogue/presets/remux-defaut.example/`
+- `examples/catalogue/resources/{fonts,images,audio,color,languages,templates}/…`
 - `docs/*.md`, `deploy/README.md`
 
 ## Non fait (volontaire)

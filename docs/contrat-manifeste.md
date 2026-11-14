@@ -5,26 +5,35 @@
 [schema/manifest.v1.schema.json](../schema/manifest.v1.schema.json) et
 [schema/catalogue-index.v1.schema.json](../schema/catalogue-index.v1.schema.json)
 restent inchangés. Tous les anciens manifestes, y compris les ressources,
-[le catalogue historique](../catalogue/index.json), le flow à étapes `flow.json`
+[le catalogue](../catalogue/index.json), le flow à étapes `flow.json`
 et le preset historique `preset.json` sont conservés à l'identique.
 
 Les nouveaux contrats sont référencés par
-[catalogue/contracts.v1.json](../catalogue/contracts.v1.json), validé avec
+[examples/catalogue/contracts.v1.json](../examples/catalogue/contracts.v1.json), validé avec
 [contracts-index.v1](../schema/contracts-index.v1.schema.json). Ses chemins sont
 **relatifs à la racine du dépôt**, y compris `legacyIndex` ; ceux d'un manifeste
-(`files`, `operations`, `blocks`, `app.installation`) sont relatifs au paquet.
+(`files`, `operations`, `blocks`, `pack.installation`) sont relatifs au paquet.
 Les chemins absolus, traversées et liens sortants sont interdits.
 
-Un lecteur de contrats charge l'ancien index, puis le complément. Pour chaque
+L'index du catalogue est unique ; `contracts.v1.json` ne décrit que des exemples. Un lecteur de contrats charge l'index. Pour chaque
 entrée, il vérifie que `id`, `type` et `version` correspondent au manifeste,
 résout ses contrats et refuse les identifiants dupliqués ou divergents. Il ne
 fusionne jamais deux définitions concurrentes selon leur ordre de lecture.
 
 [manifest.v1.1](../schema/manifest.v1.1.schema.json) accepte soit **exactement**
 l'ancien manifeste 1.0.0, soit un manifeste `schemaVersion: "1.1.0"` permettant
-`app`, `block`, `operations`, `blocks` et les métadonnées d'app. Les champs nouveaux
-ne deviennent pas autorisés dans un document étiqueté 1.0.0. Les deux nouvelles
-fiches app/bloc sont uniquement dans l'index complémentaire.
+les types `app` (application) et `pack`, `block`, `operations`, `blocks` et les
+métadonnées de pack. Les champs nouveaux ne deviennent pas autorisés dans un
+document étiqueté 1.0.0.
+
+## Types, propriété et dépendances
+
+L'index porte les types `app`, `plugin`, `block`, `flow`, `pack` et les éléments « Autre »
+(`preset`, `resource.*`). Un bloc porte `owner` (id du plugin) et son fichier est rangé
+sous `plugins/<nom>/blocks/`. Une dépendance de plugin vers une application porte
+`optional: true` : elle est proposée, jamais imposée. Règles par type :
+[distinctions-catalogue.md](distinctions-catalogue.md) ; contrôle :
+`python3 scripts/check_catalogue.py`.
 
 | Consommateur | Fiche 1.0.0 | Fiche 1.1.0 |
 | --- | --- | --- |
@@ -32,7 +41,8 @@ fiches app/bloc sont uniquement dans l'index complémentaire.
 | Lecteur v1.1 | Branche du schéma v1 inchangée | Branche étendue du schéma v1.1 |
 
 Compatibilité ascendante signifie donc qu'un nouveau lecteur lit l'ancien
-catalogue. Elle ne signifie pas qu'un ancien lecteur connaît les apps ou blocs.
+catalogue. Elle ne signifie pas qu'un ancien lecteur connaît les packs ou blocs. Le type
+historique `tool` est devenu `app` (ids `tool.*` → `app.*`, ancien `app.media` → `pack.media`).
 Aucune migration des ressources ni nouvelle API applicative n'est livrée ici.
 
 ## Trois versions différentes
