@@ -47,7 +47,7 @@
         "name": "encoder",
         "label": "Encodeur",
         "type": "select",
-        "default": "Intel QSV",
+        "default": "auto",
         "description": "L'encodeur à utiliser. Si vous spécifiez un encodeur matériel indisponible, l'encodage échouera.",
         "options": [
           { "label": "Automatique", "value": "auto" },
