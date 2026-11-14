@@ -20,7 +20,7 @@ ajouté au code actuel.
 | Stockage | Résoudre les fileRef, réserver les sorties, vérifier avant publication |
 | Worker/local | Adaptateur argv fixe, captures concurrentes bornées, masquage et arrêt supervisé |
 | Coordinateur | Corrélation, états/baux, résultat durable et idempotence du transport |
-| Frontend Leptos | Fiches, blocs et app déclarative ; console affichée comme texte non fiable |
+| Frontend Leptos | Fiches, plugins avec leurs blocs et pack déclaratif ; console affichée comme texte non fiable |
 
 La commande du [plugin MKV](../examples/catalogue/plugins/remux-mkv.example/operations/remux.json)
 reprend les options de `src/media.rs`. Ce module ignore encore la console de

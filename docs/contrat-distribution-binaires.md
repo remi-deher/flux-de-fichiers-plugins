@@ -1,4 +1,4 @@
-# Contrat distribution d'outils binaires (Option B)
+# Contrat distribution des applications binaires (Option B)
 
 Option B validée utilisateur : les outils s'exécutent comme **binaires
 autonomes hors conteneur applicatif**, avec cache nœud et vérification
@@ -9,7 +9,7 @@ d'intégrité. Ce dépôt ne livre ni binaire ni installeur — uniquement le co
 | Fichier | Rôle |
 |---------|------|
 | `schema/tool-distribution.v1.schema.json` | Artefacts par arch + politique d'install |
-| `tools/*/distribution.v1.json` | Instances déclaratives |
+| `apps/*/distribution.v1.json` | Instances déclaratives |
 
 ## Champs obligatoires par architecture
 

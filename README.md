@@ -2,7 +2,7 @@
 
 Catalogue déclaratif versionné pour
 [Flux de Fichiers](https://github.com/remi-deher/flux-de-fichiers) : fiches de
-ressources, contrats de plugins, blocs low-code, flows, presets et applications.
+applications, plugins (et leurs blocs low-code), flows, packs et éléments « Autre ».
 Aucun chargeur, installeur, moteur de flows ou binaire tiers n'est livré ici.
 
 ## Contrats et compatibilité
@@ -44,7 +44,7 @@ Contrôle local : `python3 scripts/check_catalogue.py`.
 4. [Opérations et adaptateur argv](docs/contrat-operations-argv.md).
 5. [Appels, états et console brute](docs/contrat-invocation-console.md).
 6. [Composition des blocs et des flows](docs/contrat-blocks-flows.md).
-7. [Installation d'une application](docs/contrat-applications.md).
+7. [Installation d'un pack](docs/contrat-packs.md).
 8. [Garanties exigées du futur runtime](docs/garanties-execution-v1.md).
 9. [Migration schémas v1 → v1.1 (#40)](docs/migration-schemas-v1.1.md).
 10. [Diff revue sécurité #40](docs/diff-revue-securite-40.md).

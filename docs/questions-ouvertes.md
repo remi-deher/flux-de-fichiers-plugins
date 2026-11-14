@@ -9,7 +9,7 @@ validés par l'utilisateur ; les recommandations ci-dessous ne les remplacent pa
 - Fiches et index historiques conservés à l'identique ; découverte des nouveaux
   contrats dans un index complémentaire et extension de manifeste identifiée 1.1.0.
 - Opération fournie par un plugin, outil installé distinct, bloc de présentation,
-  flow DAG, preset typé et app déclarative avec cycle d'installation distinct.
+  flow DAG, preset typé et pack déclaratif avec cycle d'installation distinct.
 - Versions de contenu exactes, références fichiers opaques, aucun shell libre,
   sortie MKV et options `mkvmerge` alignées sur le code actuel.
 - Capture stdout/stderr distincte en octets, après masquage obligatoire,
