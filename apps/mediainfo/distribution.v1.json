@@ -10,7 +10,7 @@
       "os": "linux",
       "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-1.0.0/mediainfo-linux-x86_64.tar.gz",
       "archiveFormat": "tar.gz",
-      "archiveSha256": "a1594d69dd12c7173760480293a00475212a83d3be1f5ad6d63424b00c7488f0",
+      "archiveSha256": "e2f157ad55adf167bdc658247c38e1e3de370fc675ec39a5e5cda7bcee529bdc",
       "binaryRelativePath": "mediainfo",
       "binarySha256": "b72a3d7208ac075880847a2c73ee9474b88eab089d65975c65f9c70dfd2d21a8",
       "permissions": {
@@ -24,7 +24,7 @@
       "os": "linux",
       "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-1.0.0/mediainfo-linux-aarch64.tar.gz",
       "archiveFormat": "tar.gz",
-      "archiveSha256": "fd6d6754e43330215b94b08878ead691d010cdd66601807b9485ad5714dba101",
+      "archiveSha256": "fcb9c74168d972341d2a413b4e1a43fb6f3484d316c0c9f29c1b23222aff642e",
       "binaryRelativePath": "mediainfo",
       "binarySha256": "5b43217daedbda572a444e7ef4729c7c646683c7c673ccedb91c74d875bb5fa8",
       "permissions": {

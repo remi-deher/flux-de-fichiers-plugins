@@ -10,7 +10,7 @@
       "os": "linux",
       "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-1.0.0/mkvtoolnix-linux-x86_64.tar.gz",
       "archiveFormat": "tar.gz",
-      "archiveSha256": "cd903aec539bf65181159990e7e8f82e3092551e025c3e4032f9019ab709abd1",
+      "archiveSha256": "12c62f80e2b1ecc310aa2811ce5b5a7a4513a29b006b6408127d6ebe3d9868d4",
       "binaryRelativePath": "mkvmerge",
       "binarySha256": "d1df168c04251479668a396261555f474c98a9ce73f5be3bcf2042a9429f3d16",
       "permissions": {
@@ -24,7 +24,7 @@
       "os": "linux",
       "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-1.0.0/mkvtoolnix-linux-aarch64.tar.gz",
       "archiveFormat": "tar.gz",
-      "archiveSha256": "dcdb9fb01e281e13209cb974cb1e0b7b2cd9dad649b12ff02b5d67c74f135b75",
+      "archiveSha256": "4c1e732cddfc09e03f25d91d6e0c5f852f48f88d89dba028a6bdb390bd311839",
       "binaryRelativePath": "mkvmerge",
       "binarySha256": "e53fffe23bf472b9780f469a56d9ac0286d7b105c1bcfacfd6daa4e44a5cad68",
       "permissions": {

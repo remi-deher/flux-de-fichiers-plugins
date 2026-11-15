@@ -3,16 +3,16 @@
   "toolId": "app.ffmpeg",
   "toolVersion": "1.0.0",
   "distributionMode": "autonomous-binary",
-  "releaseStatus": "contract-only",
+  "releaseStatus": "released",
   "artifacts": [
     {
       "arch": "x86_64",
       "os": "linux",
-      "archiveUrl": "https://artifacts.example.invalid/apps/ffmpeg/1.0.0/ffmpeg-linux-x86_64.tar.gz",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-1.0.0/ffmpeg-linux-x86_64.tar.gz",
       "archiveFormat": "tar.gz",
-      "archiveSha256": "31ffa40004e632d1012cfc0fa1cdb3092ee1310bf50bf889d2758c5f433f13c5",
+      "archiveSha256": "aa5b508790ef4067619632e844dc2463b99dfaa189f55226aeec57ced2be9a19",
       "binaryRelativePath": "ffmpeg",
-      "binarySha256": "c19f17203eb8e40dcb3583f82f7cfe9b9820fa4f04019e0b391f3172b7cad91e",
+      "binarySha256": "0174ff111b76d2fb9ca5c29bf20425bce33499e5b43abe1af845e806d1ba9fa8",
       "permissions": {
         "unixMode": "0755",
         "owner": "runtime-user",
@@ -22,11 +22,11 @@
     {
       "arch": "aarch64",
       "os": "linux",
-      "archiveUrl": "https://artifacts.example.invalid/apps/ffmpeg/1.0.0/ffmpeg-linux-aarch64.tar.gz",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-1.0.0/ffmpeg-linux-aarch64.tar.gz",
       "archiveFormat": "tar.gz",
-      "archiveSha256": "2351bc2a87fd10931d2843ccc904c360294dd67104528d94dda595bb69060266",
+      "archiveSha256": "7190036e39882c28cd84383c00c3fe7608327ff452fce7a3de9464e198f057fb",
       "binaryRelativePath": "ffmpeg",
-      "binarySha256": "6d4d49e12c5bc2134803916d5792f8f49ac8d55627962fbf6c872c6de16152df",
+      "binarySha256": "4478fa685a2310035506d38997453b8161a44dfc22652bf131af41a55276c172",
       "permissions": {
         "unixMode": "0755",
         "owner": "runtime-user",
@@ -39,7 +39,10 @@
     "refuseMismatchedDigest": true,
     "cacheRootRelative": "tools-cache/ffmpeg/1.0.0",
     "noShellUnpack": true,
-    "executableAllowlist": ["ffmpeg", "ffprobe"],
+    "executableAllowlist": [
+      "ffmpeg",
+      "ffprobe"
+    ],
     "networkAtInstall": "explicit-allowlist"
   },
   "notes": [

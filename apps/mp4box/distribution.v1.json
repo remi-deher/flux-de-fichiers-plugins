@@ -3,16 +3,16 @@
   "toolId": "app.mp4box",
   "toolVersion": "1.0.0",
   "distributionMode": "autonomous-binary",
-  "releaseStatus": "contract-only",
+  "releaseStatus": "released",
   "artifacts": [
     {
       "arch": "x86_64",
       "os": "linux",
-      "archiveUrl": "https://artifacts.example.invalid/apps/mp4box/1.0.0/mp4box-linux-x86_64.tar.gz",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-1.0.0/mp4box-linux-x86_64.tar.gz",
       "archiveFormat": "tar.gz",
-      "archiveSha256": "4b92b3a1a63c9db6d0e515d978a6ffea678a164b38d7c49bdf547a4bca81c10d",
+      "archiveSha256": "b8d8b2311f76744b35e0ab3e11f5972c4cb830dda74a234603e8a3e9665b84d6",
       "binaryRelativePath": "MP4Box",
-      "binarySha256": "8a7c29be46a3d135546d1bf1e285a73ef593a2072fb68686a7ff1993f4125b0f",
+      "binarySha256": "cf568a4e89ba2f8cb8540b425bc4be4a984958d82a4948285281908b6d19246d",
       "permissions": {
         "unixMode": "0755",
         "owner": "runtime-user",
@@ -22,11 +22,11 @@
     {
       "arch": "aarch64",
       "os": "linux",
-      "archiveUrl": "https://artifacts.example.invalid/apps/mp4box/1.0.0/mp4box-linux-aarch64.tar.gz",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-1.0.0/mp4box-linux-aarch64.tar.gz",
       "archiveFormat": "tar.gz",
-      "archiveSha256": "9f71c4c9e8312061262d49b2943714b80b7b120f269a7c36a0b9432e49c95d2c",
+      "archiveSha256": "ce6bcb449c01a443aaef964e8bdbdd2ef410460b01d9d3aedc12a010ccf73784",
       "binaryRelativePath": "MP4Box",
-      "binarySha256": "d4e2a9b3192080a7d519bce37b7b258e7bb674176d6542718e202513f56a3e14",
+      "binarySha256": "40de75bcb4246996e37960ac00b1d9535f2dbf44cfbcf628d1b5ecba9f181e0a",
       "permissions": {
         "unixMode": "0755",
         "owner": "runtime-user",
@@ -39,7 +39,9 @@
     "refuseMismatchedDigest": true,
     "cacheRootRelative": "tools-cache/mp4box/1.0.0",
     "noShellUnpack": true,
-    "executableAllowlist": ["MP4Box"],
+    "executableAllowlist": [
+      "MP4Box"
+    ],
     "networkAtInstall": "explicit-allowlist"
   },
   "notes": [
