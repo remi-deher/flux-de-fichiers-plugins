@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "block.sonarr.rescan",
+  "aliases": ["sonarr-rescan"],
+  "version": "1.0.0",
+  "name": "Sonarr : réanalyser",
+  "description": "Demande à Sonarr de réanalyser la série du fichier.",
+  "category": "io",
+  "operationId": "operation.sonarr.rescan",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier traité",
+        "dataType": "file",
+        "mediaType": "video/*"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "destination",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "video/*"
+      }
+    ]
+  },
+  "ui": {
+    "category": "Intégrations",
+    "domain": "integration",
+    "icon": "fas fa-tv",
+    "color": "#35C5F4",
+    "suggestedNext": [
+      "block.sonarr.rename",
+      "block.core.webhook",
+      "block.core.file-output"
+    ],
+    "fields": [
+      {
+        "name": "fail_on_error",
+        "label": "Échec bloquant",
+        "type": "boolean",
+        "default": false,
+        "description": "Coché, un échec fait échouer la tâche ; sinon il est seulement journalisé."
+      }
+    ]
+  }
+}

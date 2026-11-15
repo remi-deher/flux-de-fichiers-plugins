@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "plugin.core",
+  "type": "plugin",
+  "version": "1.0.0",
+  "name": "Plugin Noyau & Contrôle de Flux",
+  "description": "Blocs fondamentaux de structure et d'intégration réseau pour les flux : point d'entrée, branchement conditionnel, notification Webhook et sortie finale.",
+  "author": "flux-de-fichiers",
+  "license": "GPL-2.0-or-later",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "blocks/file-input.json",
+      "role": "config",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "blocks/condition.json",
+      "role": "config",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "blocks/webhook.json",
+      "role": "config",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "blocks/file-output.json",
+      "role": "config",
+      "mediaType": "application/json"
+    }
+  ],
+  "compatibility": {
+    "appMin": "1.0.0",
+    "platforms": ["linux/amd64", "linux/arm64"]
+  }
+}

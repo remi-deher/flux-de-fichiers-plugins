@@ -1,6 +1,7 @@
 {
   "schemaVersion": "1.1.0",
   "id": "block.audio.encode",
+  "aliases": ["audio-encode"],
   "version": "1.0.0",
   "name": "Encodage & Conversion Audio",
   "description": "Convertit une piste sonore vers un format standard (AAC, E-AC3, FLAC, MP3, Opus) avec réglage du débit et normalisation EBU R128.",
@@ -26,8 +27,17 @@
     ]
   },
   "ui": {
+    "category": "Média",
+    "domain": "audio",
     "icon": "fas fa-headphones",
     "color": "#4CAF50",
+    "suggestedNext": [
+      "block.video.remux-mkv",
+      "block.metadata.mkvpropedit",
+      "block.sonarr.rescan",
+      "block.radarr.rescan",
+      "block.core.file-output"
+    ],
     "fields": [
       {
         "name": "codec",
