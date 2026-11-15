@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.radarr.rename",
+  "version": "1.0.0",
+  "name": "Radarr : renommer le film",
+  "providerId": "plugin.radarr",
+  "providerKind": "plugin",
+  "capability": "integration",
+  "status": "validated",
+  "runtime": {
+    "kind": "http",
+    "settingsPluginId": "plugin.radarr",
+    "requiredSettings": ["url", "apiKey"],
+    "errorCode": "integration_failed",
+    "failOnErrorParam": "fail_on_error",
+    "timeoutSeconds": 15,
+    "pathMapping": {
+      "localKey": "pathMappingLocal",
+      "remoteKey": "pathMappingRemote",
+      "outputVar": "remotePath"
+    },
+    "steps": [
+      {
+        "url": "{$setting.url}/api/v3/movie",
+        "method": "GET",
+        "headers": {
+          "X-Api-Key": "{$setting.apiKey}"
+        },
+        "extract": {
+          "kind": "arrayPathPrefix",
+          "pathField": "path",
+          "idField": "id",
+          "targetVar": "remotePath",
+          "saveAs": "itemId",
+          "savePathAs": "itemPath",
+          "skipMessage": "média non suivi par Radarr"
+        }
+      },
+      {
+        "url": "{$setting.url}/api/v3/moviefile",
+        "method": "GET",
+        "query": {
+          "movieId": "{$var.itemId}"
+        },
+        "headers": {
+          "X-Api-Key": "{$setting.apiKey}"
+        },
+        "extract": {
+          "kind": "arrayRelativePath",
+          "pathField": "relativePath",
+          "absolutePathField": "path",
+          "basePathVar": "itemPath",
+          "targetVar": "remotePath",
+          "idField": "id",
+          "saveAs": "fileId",
+          "skipMessage": "aucun fichier à renommer dans Radarr"
+        }
+      },
+      {
+        "url": "{$setting.url}/api/v3/command",
+        "method": "POST",
+        "headers": {
+          "X-Api-Key": "{$setting.apiKey}"
+        },
+        "body": {
+          "name": "RenameFiles",
+          "movieId": { "$var": "itemId" },
+          "files": [{ "$var": "fileId" }]
+        },
+        "successMessage": "commande *arr transmise"
+      }
+    ]
+  }
+}

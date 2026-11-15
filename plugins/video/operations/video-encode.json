@@ -1,0 +1,192 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.ffmpeg.video.encode",
+  "version": "1.0.0",
+  "name": "Encodage vidéo FFmpeg",
+  "providerId": "plugin.video",
+  "providerKind": "plugin",
+  "capability": "encode",
+  "status": "validated",
+  "runtime": {
+    "kind": "binary",
+    "tool": { "id": "app.ffmpeg", "version": "1.0.0" },
+    "executable": "ffmpeg",
+    "envOverride": "FFMPEG",
+    "executionMode": "staged-output",
+    "outputExtension": "mkv",
+    "outputFilename": "encoded.mkv",
+    "outputProfile": "transcoded_mkv",
+    "postValidate": "valid-media",
+    "errorCode": "encode_failed",
+    "successMessage": "encodage terminé",
+    "defaults": {
+      "codec": "h265",
+      "encoder": "auto",
+      "quality": 6,
+      "speed": 3,
+      "custom_parameters": ""
+    },
+    "customArgsProfile": "ffmpeg",
+    "derived": [
+      {
+        "target": "crf",
+        "kind": "map",
+        "inputs": ["quality"],
+        "table": {
+          "1": "32",
+          "2": "30",
+          "3": "28",
+          "4": "26",
+          "5": "24",
+          "6": "22",
+          "7": "20",
+          "8": "18",
+          "9": "16"
+        },
+        "default": "22"
+      },
+      {
+        "target": "cpu_preset",
+        "kind": "map",
+        "inputs": ["speed"],
+        "table": {
+          "1": "veryslow",
+          "2": "slow",
+          "3": "medium",
+          "4": "fast",
+          "5": "veryfast"
+        },
+        "default": "medium"
+      },
+      {
+        "target": "nvenc_preset",
+        "kind": "map",
+        "inputs": ["speed"],
+        "table": {
+          "1": "p7",
+          "2": "p6",
+          "3": "p4",
+          "4": "p2",
+          "5": "p1"
+        },
+        "default": "p4"
+      },
+      {
+        "target": "svtav1_preset",
+        "kind": "map",
+        "inputs": ["speed"],
+        "table": {
+          "1": "4",
+          "2": "6",
+          "3": "8",
+          "4": "10",
+          "5": "12"
+        },
+        "default": "8"
+      },
+      {
+        "target": "video_encoder",
+        "kind": "map",
+        "inputs": ["codec", "encoder"],
+        "table": {
+          "h264|nvidia": "h264_nvenc",
+          "h264|intel_qsv": "h264_qsv",
+          "h264|vaapi": "h264_vaapi",
+          "h264|amd_amf": "h264_amf",
+          "h264|*": "libx264",
+          "h265|nvidia": "hevc_nvenc",
+          "h265|intel_qsv": "hevc_qsv",
+          "h265|vaapi": "hevc_vaapi",
+          "h265|amd_amf": "hevc_amf",
+          "h265|*": "libx265",
+          "h265_10bit|nvidia": "hevc_nvenc",
+          "h265_10bit|intel_qsv": "hevc_qsv",
+          "h265_10bit|vaapi": "hevc_vaapi",
+          "h265_10bit|amd_amf": "hevc_amf",
+          "h265_10bit|*": "libx265",
+          "av1|nvidia": "av1_nvenc",
+          "av1|intel_qsv": "av1_qsv",
+          "av1|*": "libsvtav1",
+          "av1_10bit|nvidia": "av1_nvenc",
+          "av1_10bit|intel_qsv": "av1_qsv",
+          "av1_10bit|*": "libsvtav1",
+          "vp9|*": "libvpx-vp9"
+        },
+        "default": "libx265"
+      }
+    ],
+    "argv": [
+      "-nostdin",
+      "-y",
+      "-hide_banner",
+      "-i",
+      { "param": "source", "as": "filePath" },
+      "-map",
+      "0",
+      "-c:v",
+      { "param": "video_encoder" },
+      {
+        "when": { "param": "encoder", "eq": "nvidia" },
+        "then": ["-cq", { "param": "crf" }, "-preset", { "param": "nvenc_preset" }],
+        "else": [
+          {
+            "when": { "param": "encoder", "eq": "intel_qsv" },
+            "then": ["-global_quality", { "param": "crf" }],
+            "else": [
+              {
+                "when": { "param": "encoder", "eq": "vaapi" },
+                "then": ["-qp", { "param": "crf" }],
+                "else": [
+                  "-crf",
+                  { "param": "crf" },
+                  "-preset",
+                  {
+                    "when": { "param": "video_encoder", "eq": "libsvtav1" },
+                    "then": [{ "param": "svtav1_preset" }],
+                    "else": [{ "param": "cpu_preset" }]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "when": {
+          "all": [
+            { "param": "codec", "endsWith": "_10bit" },
+            { "param": "encoder", "neq": "vaapi" }
+          ]
+        },
+        "then": [
+          "-pix_fmt",
+          {
+            "when": { "param": "encoder", "in": ["nvidia", "intel_qsv"] },
+            "then": ["p010le"],
+            "else": ["yuv420p10le"]
+          }
+        ]
+      },
+      "-c:a",
+      "copy",
+      "-c:s",
+      "copy",
+      { "param": "custom_parameters", "as": "safeCustomArgs" },
+      { "param": "destination", "as": "filePath" }
+    ],
+    "retryFallback": [
+      {
+        "when": { "param": "encoder", "in": ["nvidia", "intel_qsv", "vaapi", "amd_amf"] },
+        "overrides": { "encoder": "cpu" },
+        "message": "encodage terminé (repli matériel -> CPU)"
+      }
+    ],
+    "console": {
+      "progressFormat": "ffmpeg-time",
+      "progressStream": "stderr",
+      "successExitCodes": [0],
+      "warningExitCodes": [],
+      "timeoutSeconds": 3600
+    }
+  }
+}

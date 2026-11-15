@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.mkvtoolnix.mkvpropedit",
+  "version": "1.0.0",
+  "name": "Édition en place des en-têtes Matroska (mkvpropedit)",
+  "providerId": "plugin.video",
+  "providerKind": "plugin",
+  "capability": "remux",
+  "status": "validated",
+  "runtime": {
+    "kind": "binary",
+    "tool": { "id": "app.mkvtoolnix", "version": "1.0.0" },
+    "executable": "mkvpropedit",
+    "envOverride": "MKVPROPEDIT",
+    "executionMode": "in-place",
+    "outputProfile": "mkv_metadata_edit",
+    "skipWhenUnchanged": true,
+    "errorCode": "remux_failed",
+    "successMessage": "édition en place des en-têtes Matroska",
+    "defaults": {
+      "default_audio_lang": "",
+      "force_subtitles": false
+    },
+    "argv": [
+      { "param": "source", "as": "filePath" },
+      {
+        "when": { "param": "default_audio_lang", "nonEmpty": true },
+        "then": [
+          "--edit",
+          "track:a1",
+          "--set",
+          { "format": "language={default_audio_lang}" },
+          "--set",
+          "flag-default=1"
+        ]
+      },
+      {
+        "when": { "param": "force_subtitles", "truthy": true },
+        "then": [
+          "--edit",
+          "track:s1",
+          "--set",
+          "flag-forced=1"
+        ]
+      }
+    ],
+    "console": {
+      "progressFormat": "none",
+      "progressStream": "stdout",
+      "successExitCodes": [0, 1],
+      "warningExitCodes": [1],
+      "timeoutSeconds": 60
+    }
+  }
+}

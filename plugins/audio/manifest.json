@@ -17,6 +17,11 @@
       "path": "blocks/audio-encode.json",
       "role": "config",
       "mediaType": "application/json"
+    },
+    {
+      "path": "operations/audio-encode.json",
+      "role": "operation",
+      "mediaType": "application/json"
     }
   ],
   "dependencies": [

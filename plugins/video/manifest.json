@@ -37,6 +37,36 @@
       "path": "blocks/mkvpropedit.json",
       "role": "config",
       "mediaType": "application/json"
+    },
+    {
+      "path": "operations/mkvmerge-probe.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/media-inspect.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/remux-mkv.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/mkvpropedit.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/remux-mp4.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/video-encode.json",
+      "role": "operation",
+      "mediaType": "application/json"
     }
   ],
   "dependencies": [
