@@ -73,11 +73,16 @@ jobs:
             stage="/tmp/stage/$tool"
             rm -rf "$stage"; mkdir -p "$stage/lib"
             for binary in "$@"; do cp "$(command -v "$binary")" "$stage/$binary"; done
-            for binary in "$@"; do ldd "$stage/$binary" | awk '/=> \//{print $3}'; done \
-              | sort -u | grep -Ev "$GLIBC" | while read -r library; do
+            for binary in "$@"; do
+              (ldd "$stage/$binary" 2>/dev/null || true) | awk '/=> \//{print $3}'
+            done | sort -u | { grep -Ev "$GLIBC" || true; } | while read -r library; do
                 [ -e "$library" ] && cp -L "$library" "$stage/lib/"
               done
-            for binary in "$@"; do patchelf --force-rpath --set-rpath '$ORIGIN/lib' "$stage/$binary"; done
+            for binary in "$@"; do
+              if ldd "$stage/$binary" >/dev/null 2>&1; then
+                patchelf --force-rpath --set-rpath '$ORIGIN/lib' "$stage/$binary"
+              fi
+            done
             for library in "$stage"/lib/*; do
               [ -e "$library" ] || continue
               patchelf --set-rpath '$ORIGIN' "$library"
