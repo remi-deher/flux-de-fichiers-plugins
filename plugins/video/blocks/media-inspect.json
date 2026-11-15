@@ -1,6 +1,7 @@
 {
   "schemaVersion": "1.1.0",
   "id": "block.media.inspect",
+  "aliases": ["media-inspect"],
   "version": "1.0.0",
   "name": "Inspection Média Universelle (MediaInfo)",
   "description": "Bloc d'analyse initial non configurable : extrait automatiquement l'intégralité des métadonnées techniques (vidéo, audio, sous-titres, conteneur) au début de chaque traitement.",
@@ -32,9 +33,16 @@
     ]
   },
   "ui": {
+    "category": "Média",
+    "domain": "inspect",
     "icon": "fas fa-magnifying-glass-chart",
     "color": "#9C27B0",
     "implicitStart": true,
+    "suggestedNext": [
+      "block.core.condition",
+      "block.video.encode",
+      "block.video.remux-mkv"
+    ],
     "fields": []
   }
 }

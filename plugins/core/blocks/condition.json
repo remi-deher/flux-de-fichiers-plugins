@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "block.core.condition",
+  "aliases": ["condition"],
+  "version": "1.0.0",
+  "name": "Condition",
+  "description": "Aiguille vers « Vrai » ou « Faux » selon les métadonnées du média.",
+  "category": "data",
+  "operationId": "operation.core.condition",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "*/*"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "true",
+        "label": "✓ Vrai",
+        "dataType": "file",
+        "mediaType": "*/*"
+      },
+      {
+        "id": "false",
+        "label": "✗ Faux",
+        "dataType": "file",
+        "mediaType": "*/*"
+      }
+    ]
+  },
+  "ui": {
+    "category": "Logique",
+    "domain": "logic",
+    "ports": [
+      { "id": "true", "label": "✓ Vrai" },
+      { "id": "false", "label": "✗ Faux" }
+    ],
+    "icon": "fas fa-code-branch",
+    "color": "#22C55E",
+    "suggestedNext": [
+      "block.video.encode",
+      "block.audio.encode",
+      "block.video.remux-mkv",
+      "block.core.file-output"
+    ],
+    "fields": [
+      {
+        "name": "property",
+        "label": "Propriété",
+        "type": "select",
+        "default": "video.codec",
+        "required": true,
+        "description": "Une piste correspondante suffit.",
+        "options": [
+          { "label": "Codec vidéo", "value": "video.codec" },
+          { "label": "Langue audio", "value": "audio.language" },
+          { "label": "N'importe quelle métadonnée", "value": "any" }
+        ]
+      },
+      {
+        "name": "operator",
+        "label": "Opérateur",
+        "type": "select",
+        "default": "eq",
+        "required": true,
+        "description": "La comparaison ignore la casse.",
+        "options": [
+          { "label": "Contient la valeur", "value": "eq" },
+          { "label": "Ne contient pas la valeur", "value": "neq" }
+        ]
+      },
+      {
+        "name": "target",
+        "label": "Valeur",
+        "type": "string",
+        "default": "",
+        "required": true,
+        "description": "Exemple : hevc, fre."
+      }
+    ]
+  }
+}

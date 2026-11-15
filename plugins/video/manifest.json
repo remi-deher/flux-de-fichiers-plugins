@@ -32,6 +32,11 @@
       "path": "blocks/media-inspect.json",
       "role": "config",
       "mediaType": "application/json"
+    },
+    {
+      "path": "blocks/mkvpropedit.json",
+      "role": "config",
+      "mediaType": "application/json"
     }
   ],
   "dependencies": [

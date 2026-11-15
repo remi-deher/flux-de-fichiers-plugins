@@ -62,6 +62,14 @@
       "currentChoice": true
     },
     {
+      "id": "plugin.core",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Plugin Noyau & Contrôle de Flux",
+      "manifestPath": "plugins/core/manifest.json",
+      "capability": "other"
+    },
+    {
       "id": "plugin.video",
       "type": "plugin",
       "version": "1.0.0",
@@ -94,6 +102,22 @@
       "capability": "integration"
     },
     {
+      "id": "block.core.file-input",
+      "type": "block",
+      "owner": "plugin.core",
+      "version": "1.0.0",
+      "name": "Fichier source",
+      "manifestPath": "plugins/core/blocks/file-input.json"
+    },
+    {
+      "id": "block.core.condition",
+      "type": "block",
+      "owner": "plugin.core",
+      "version": "1.0.0",
+      "name": "Condition",
+      "manifestPath": "plugins/core/blocks/condition.json"
+    },
+    {
       "id": "block.media.inspect",
       "type": "block",
       "owner": "plugin.video",
@@ -102,12 +126,12 @@
       "manifestPath": "plugins/video/blocks/media-inspect.json"
     },
     {
-      "id": "block.video.encode",
+      "id": "block.metadata.mkvpropedit",
       "type": "block",
       "owner": "plugin.video",
       "version": "1.0.0",
-      "name": "Encodage Vidéo (FFMPEG Builder)",
-      "manifestPath": "plugins/video/blocks/video-encode.json"
+      "name": "Édition des en-têtes",
+      "manifestPath": "plugins/video/blocks/mkvpropedit.json"
     },
     {
       "id": "block.video.remux-mkv",
@@ -126,12 +150,68 @@
       "manifestPath": "plugins/video/blocks/remux-mp4.json"
     },
     {
+      "id": "block.video.encode",
+      "type": "block",
+      "owner": "plugin.video",
+      "version": "1.0.0",
+      "name": "Encodage Vidéo (FFMPEG Builder)",
+      "manifestPath": "plugins/video/blocks/video-encode.json"
+    },
+    {
       "id": "block.audio.encode",
       "type": "block",
       "owner": "plugin.audio",
       "version": "1.0.0",
       "name": "Encodage & Conversion Audio",
       "manifestPath": "plugins/audio/blocks/audio-encode.json"
+    },
+    {
+      "id": "block.core.webhook",
+      "type": "block",
+      "owner": "plugin.core",
+      "version": "1.0.0",
+      "name": "Webhook",
+      "manifestPath": "plugins/core/blocks/webhook.json"
+    },
+    {
+      "id": "block.sonarr.rescan",
+      "type": "block",
+      "owner": "plugin.sonarr",
+      "version": "1.0.0",
+      "name": "Sonarr : réanalyser",
+      "manifestPath": "plugins/sonarr/blocks/sonarr-rescan.json"
+    },
+    {
+      "id": "block.sonarr.rename",
+      "type": "block",
+      "owner": "plugin.sonarr",
+      "version": "1.0.0",
+      "name": "Sonarr : renommer",
+      "manifestPath": "plugins/sonarr/blocks/sonarr-rename.json"
+    },
+    {
+      "id": "block.radarr.rescan",
+      "type": "block",
+      "owner": "plugin.radarr",
+      "version": "1.0.0",
+      "name": "Radarr : réanalyser",
+      "manifestPath": "plugins/radarr/blocks/radarr-rescan.json"
+    },
+    {
+      "id": "block.radarr.rename",
+      "type": "block",
+      "owner": "plugin.radarr",
+      "version": "1.0.0",
+      "name": "Radarr : renommer",
+      "manifestPath": "plugins/radarr/blocks/radarr-rename.json"
+    },
+    {
+      "id": "block.core.file-output",
+      "type": "block",
+      "owner": "plugin.core",
+      "version": "1.0.0",
+      "name": "Fin du flux",
+      "manifestPath": "plugins/core/blocks/file-output.json"
     },
     {
       "id": "flow.default.mkv",

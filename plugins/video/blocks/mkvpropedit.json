@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "block.metadata.mkvpropedit",
+  "aliases": ["mkvpropedit"],
+  "version": "1.0.0",
+  "name": "Édition des en-têtes",
+  "description": "Modifie les en-têtes Matroska sur place, sans copie du fichier.",
+  "category": "media",
+  "operationId": "operation.mkvtoolnix.mkvpropedit",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier Matroska (.mkv)",
+        "dataType": "file",
+        "mediaType": "video/x-matroska"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "destination",
+        "label": "Fichier MKV mis à jour",
+        "dataType": "file",
+        "mediaType": "video/x-matroska"
+      }
+    ]
+  },
+  "ui": {
+    "category": "MKVToolNix",
+    "domain": "mkv",
+    "icon": "fas fa-tags",
+    "color": "#00BCD4",
+    "suggestedNext": [
+      "block.sonarr.rescan",
+      "block.radarr.rescan",
+      "block.core.webhook",
+      "block.core.file-output"
+    ],
+    "fields": [
+      {
+        "name": "default_audio_lang",
+        "label": "Langue audio par défaut",
+        "type": "string",
+        "default": "",
+        "description": "Code ISO 639-2, par exemple fre."
+      },
+      {
+        "name": "force_subtitles",
+        "label": "Marquer les sous-titres forcés",
+        "type": "boolean",
+        "default": false
+      }
+    ]
+  }
+}
