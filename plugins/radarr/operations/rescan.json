@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.radarr.rescan",
+  "version": "1.0.0",
+  "name": "Radarr : réanalyser le film",
+  "providerId": "plugin.radarr",
+  "providerKind": "plugin",
+  "capability": "integration",
+  "status": "validated",
+  "runtime": {
+    "kind": "http",
+    "settingsPluginId": "plugin.radarr",
+    "requiredSettings": ["url", "apiKey"],
+    "errorCode": "integration_failed",
+    "failOnErrorParam": "fail_on_error",
+    "timeoutSeconds": 15,
+    "pathMapping": {
+      "localKey": "pathMappingLocal",
+      "remoteKey": "pathMappingRemote",
+      "outputVar": "remotePath"
+    },
+    "steps": [
+      {
+        "url": "{$setting.url}/api/v3/movie",
+        "method": "GET",
+        "headers": {
+          "X-Api-Key": "{$setting.apiKey}"
+        },
+        "extract": {
+          "kind": "arrayPathPrefix",
+          "pathField": "path",
+          "idField": "id",
+          "targetVar": "remotePath",
+          "saveAs": "itemId",
+          "skipMessage": "média non suivi par Radarr"
+        }
+      },
+      {
+        "url": "{$setting.url}/api/v3/command",
+        "method": "POST",
+        "headers": {
+          "X-Api-Key": "{$setting.apiKey}"
+        },
+        "body": {
+          "name": "RescanMovie",
+          "movieId": { "$var": "itemId" }
+        },
+        "successMessage": "commande *arr transmise"
+      }
+    ]
+  }
+}

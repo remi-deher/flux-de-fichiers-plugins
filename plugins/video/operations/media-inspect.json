@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.mediainfo.probe",
+  "version": "1.0.0",
+  "name": "Inspection technique MediaInfo (JSON)",
+  "providerId": "plugin.video",
+  "providerKind": "plugin",
+  "capability": "analyze",
+  "status": "validated",
+  "runtime": {
+    "kind": "binary",
+    "tool": { "id": "app.mediainfo", "version": "1.0.0" },
+    "executable": "mediainfo",
+    "envOverride": "MEDIAINFO",
+    "executionMode": "probe-enrich",
+    "probeFormat": "mediainfo-json",
+    "errorCode": "remux_failed",
+    "argv": [
+      "--Output=JSON",
+      { "param": "source", "as": "filePath" }
+    ],
+    "console": {
+      "progressFormat": "none",
+      "progressStream": "stdout",
+      "successExitCodes": [0],
+      "warningExitCodes": [],
+      "timeoutSeconds": 60
+    }
+  }
+}

@@ -181,12 +181,74 @@ def check_pack_installation(entry: dict, manifest: dict, manifest_path: Path, ki
         fail(f"{rel} : entrypoint incomplet")
 
 
+def check_operation(
+    op_path: Path,
+    owner_plugin: str,
+    kinds: dict[str, str],
+    operations: dict[str, dict],
+) -> None:
+    rel = op_path.relative_to(ROOT).as_posix()
+    op = load(op_path)
+    if not isinstance(op, dict):
+        return
+    for key in ("schemaVersion", "id", "version", "name", "providerId", "providerKind", "capability", "status"):
+        if not op.get(key):
+            fail(f"{rel} : champ requis manquant ({key})")
+    op_id = op.get("id")
+    if not isinstance(op_id, str) or not OP_ID_RE.match(op_id):
+        fail(f"{rel} : identifiant d'opération invalide ({op_id!r})")
+        return
+    if op_id in operations:
+        fail(f"{rel} : operationId dupliqué {op_id}")
+    if op.get("providerId") != owner_plugin:
+        fail(f"{rel} : providerId ({op.get('providerId')!r}) != plugin propriétaire ({owner_plugin!r})")
+    if not SEMVER_RE.match(str(op.get("version", ""))):
+        fail(f"{rel} : version semver invalide ({op.get('version')!r})")
+
+    runtime = op.get("runtime")
+    if not isinstance(runtime, dict):
+        fail(f"{rel} : runtime manquant ou invalide")
+        return
+    rkind = runtime.get("kind")
+    if rkind not in {"primitive", "binary", "http"}:
+        fail(f"{rel} : runtime.kind invalide ({rkind!r})")
+        return
+
+    if rkind == "primitive":
+        if runtime.get("primitive") not in {"entry", "terminal", "condition"}:
+            fail(f"{rel} : runtime.primitive invalide ({runtime.get('primitive')!r})")
+    elif rkind == "binary":
+        tool = runtime.get("tool")
+        if not isinstance(tool, dict) or not isinstance(tool.get("id"), str):
+            fail(f"{rel} : runtime.tool.id requis pour runtime.kind='binary'")
+        elif kinds.get(tool["id"]) != "app":
+            fail(f"{rel} : runtime.tool.id inconnu ou non 'app' ({tool['id']!r})")
+        exe = runtime.get("executable")
+        if not isinstance(exe, str) or not BINARY_NAME_RE.match(exe):
+            fail(f"{rel} : runtime.executable invalide ({exe!r})")
+        mode = runtime.get("executionMode")
+        if mode not in {"staged-output", "in-place", "probe-primary", "probe-enrich"}:
+            fail(f"{rel} : runtime.executionMode invalide ({mode!r})")
+        if not isinstance(runtime.get("argv"), list) or not runtime["argv"]:
+            fail(f"{rel} : runtime.argv requis et non vide")
+    elif rkind == "http":
+        settings_plugin = runtime.get("settingsPluginId")
+        if settings_plugin is not None and kinds.get(settings_plugin) != "plugin":
+            fail(f"{rel} : settingsPluginId inconnu ({settings_plugin!r})")
+        steps = runtime.get("steps")
+        if not isinstance(steps, list) or not steps:
+            fail(f"{rel} : runtime.steps requis et non vide")
+
+    operations[op_id] = op
+
+
 def check_block(
     entry: dict,
     block_path: Path,
     kinds: dict[str, str],
     plugin_declared_files: dict[str, set[str]],
     plugin_declared_blocks: dict[str, set[str]],
+    operations: dict[str, dict],
 ) -> None:
     rel = block_path.relative_to(ROOT).as_posix()
     block = load(block_path)
@@ -200,6 +262,8 @@ def check_block(
     op_id = block.get("operationId")
     if op_id is not None and not (isinstance(op_id, str) and OP_ID_RE.match(op_id)):
         fail(f"{rel} : operationId invalide ({op_id!r})")
+    elif isinstance(op_id, str) and op_id not in operations:
+        fail(f"{rel} : operationId introuvable dans les contrats déclarés ({op_id!r})")
     owner = entry.get("owner")
     in_files = owner in plugin_declared_files and rel in plugin_declared_files[owner]
     in_blocks = owner in plugin_declared_blocks and entry["id"] in plugin_declared_blocks[owner]
@@ -250,6 +314,7 @@ def check_index(index_path: Path) -> None:
 
     plugin_declared_files: dict[str, set[str]] = {}
     plugin_declared_blocks: dict[str, set[str]] = {}
+    operations: dict[str, dict] = {}
     block_entries: list[dict] = []
 
     for entry in entries:
@@ -296,6 +361,8 @@ def check_index(index_path: Path) -> None:
                 fail(f"{raw_manifest} : fichier déclaré absent ({item['path']})")
             else:
                 declared_paths.add(target.relative_to(ROOT).as_posix())
+                if kind == "plugin" and item.get("role") == "operation":
+                    check_operation(target, ident, kinds, operations)
         if kind == "plugin":
             plugin_declared_files[ident] = declared_paths
             plugin_declared_blocks[ident] = {
@@ -333,6 +400,7 @@ def check_index(index_path: Path) -> None:
             kinds,
             plugin_declared_files,
             plugin_declared_blocks,
+            operations,
         )
 
     listed = {entry.get("manifestPath") for entry in entries}

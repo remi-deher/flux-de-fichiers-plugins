@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.sonarr.rescan",
+  "version": "1.0.0",
+  "name": "Sonarr : réanalyser la série",
+  "providerId": "plugin.sonarr",
+  "providerKind": "plugin",
+  "capability": "integration",
+  "status": "validated",
+  "runtime": {
+    "kind": "http",
+    "settingsPluginId": "plugin.sonarr",
+    "requiredSettings": ["url", "apiKey"],
+    "errorCode": "integration_failed",
+    "failOnErrorParam": "fail_on_error",
+    "timeoutSeconds": 15,
+    "pathMapping": {
+      "localKey": "pathMappingLocal",
+      "remoteKey": "pathMappingRemote",
+      "outputVar": "remotePath"
+    },
+    "steps": [
+      {
+        "url": "{$setting.url}/api/v3/series",
+        "method": "GET",
+        "headers": {
+          "X-Api-Key": "{$setting.apiKey}"
+        },
+        "extract": {
+          "kind": "arrayPathPrefix",
+          "pathField": "path",
+          "idField": "id",
+          "targetVar": "remotePath",
+          "saveAs": "itemId",
+          "skipMessage": "média non suivi par Sonarr"
+        }
+      },
+      {
+        "url": "{$setting.url}/api/v3/command",
+        "method": "POST",
+        "headers": {
+          "X-Api-Key": "{$setting.apiKey}"
+        },
+        "body": {
+          "name": "RescanSeries",
+          "seriesId": { "$var": "itemId" }
+        },
+        "successMessage": "commande *arr transmise"
+      }
+    ]
+  }
+}

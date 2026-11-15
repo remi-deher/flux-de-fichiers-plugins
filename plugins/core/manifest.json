@@ -32,6 +32,26 @@
       "path": "blocks/file-output.json",
       "role": "config",
       "mediaType": "application/json"
+    },
+    {
+      "path": "operations/file-input.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/condition.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/webhook.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/file-output.json",
+      "role": "operation",
+      "mediaType": "application/json"
     }
   ],
   "compatibility": {

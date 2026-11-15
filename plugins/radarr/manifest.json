@@ -7,6 +7,33 @@
   "description": "Intégration automatisée avec Radarr (*arr) pour l'actualisation de la collection de films, la mise à jour des codecs détectés et le renommage après encodage.",
   "author": "flux-de-fichiers",
   "license": "GPL-2.0-or-later",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "blocks/radarr-rescan.json",
+      "role": "config",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "blocks/radarr-rename.json",
+      "role": "config",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/rescan.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/rename.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    }
+  ],
   "settingsSchema": {
     "fields": [
       {
