@@ -58,11 +58,13 @@
               "app",
               "plugin",
               "flow",
+              "script",
               "preset",
               "resource",
               "resource.font",
               "resource.image",
               "resource.audio",
+              "resource.subtitle",
               "resource.color",
               "resource.language",
               "resource.template"

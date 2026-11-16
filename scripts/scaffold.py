@@ -449,6 +449,7 @@ def main(argv: list[str] | None = None) -> int:
             "resource.font",
             "resource.image",
             "resource.audio",
+            "resource.subtitle",
             "resource.color",
             "resource.language",
             "resource.template",

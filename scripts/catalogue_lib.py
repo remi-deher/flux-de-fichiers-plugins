@@ -11,15 +11,16 @@ OTHER_TYPES = {
     "resource.font",
     "resource.image",
     "resource.audio",
+    "resource.subtitle",
     "resource.color",
     "resource.language",
     "resource.template",
 }
-ALLOWED_TYPES = {"app", "plugin", "block", "flow", "pack"} | OTHER_TYPES
+ALLOWED_TYPES = {"app", "plugin", "block", "flow", "script", "pack"} | OTHER_TYPES
 ALLOWED_DEPENDENCIES = {
     "plugin": {"app"},
-    "flow": {"plugin"} | OTHER_TYPES,
-    "pack": {"app", "plugin", "flow"} | OTHER_TYPES,
+    "flow": {"plugin", "script"} | OTHER_TYPES,
+    "pack": {"app", "plugin", "flow", "script"} | OTHER_TYPES,
 }
 
 ID_RE = re.compile(r"^[a-z0-9]+([.-][a-z0-9]+)*$")
@@ -37,14 +38,16 @@ SECTION_ORDER = {
     "plugin": 1,
     "block": 2,
     "flow": 3,
-    "preset": 4,
-    "resource.font": 5,
-    "resource.image": 6,
-    "resource.audio": 7,
-    "resource.color": 8,
-    "resource.language": 9,
-    "resource.template": 10,
-    "pack": 11,
+    "script": 4,
+    "preset": 5,
+    "resource.font": 6,
+    "resource.image": 7,
+    "resource.audio": 8,
+    "resource.subtitle": 9,
+    "resource.color": 10,
+    "resource.language": 11,
+    "resource.template": 12,
+    "pack": 13,
 }
 
 

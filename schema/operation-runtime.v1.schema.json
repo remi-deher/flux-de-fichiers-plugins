@@ -42,7 +42,8 @@
     "providerKind": {
       "enum": [
         "plugin",
-        "app"
+        "app",
+        "script"
       ]
     },
     "capability": {
@@ -68,6 +69,9 @@
         },
         {
           "$ref": "#/$defs/httpRuntime"
+        },
+        {
+          "$ref": "#/$defs/scriptRuntime"
         }
       ]
     }
@@ -669,6 +673,69 @@
               }
             }
           }
+        }
+      }
+    },
+    "scriptRuntime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind"
+      ],
+      "properties": {
+        "kind": {
+          "const": "script"
+        },
+        "tool": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          }
+        },
+        "executable": {
+          "type": "string"
+        },
+        "interpreter": {
+          "enum": [
+            "bash",
+            "sh",
+            "python3",
+            "node",
+            "deno",
+            "bun",
+            "pwsh"
+          ]
+        },
+        "entrypoint": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "timeoutSeconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "defaults": {
+          "type": "object"
         }
       }
     }
