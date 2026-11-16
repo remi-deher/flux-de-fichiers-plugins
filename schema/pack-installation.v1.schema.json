@@ -11,7 +11,6 @@
     "packVersion",
     "kind",
     "components",
-    "entrypoint",
     "permissions",
     "updates",
     "uninstallData",
