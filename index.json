@@ -8,6 +8,7 @@
     "apps/mediainfo/distribution.v1.json": "e422d01c43709c2a635372c94fe8c92fcb7e04d7f8f0cb2e11b51a20229ef8d5",
     "apps/mkvtoolnix/distribution.v1.json": "2a583c692289f4d2ddd04bdc8a4d34d93d5c0996cda331d1c6137f9d7628bc79",
     "apps/mp4box/distribution.v1.json": "eac6cdc703dc16e2e4b4c9a08bc1a4351f1675fcbe4cc90bf624e016fe8ac754",
+    "apps/script-runners/distribution.v1.json": "7f1a8768a0f56f03cedb5169a7a32e8ca9e0238f84ba031db895a22f49a0517f",
     "packs/media/installation.json": "7c003d896ee911fd72695bd3d65694d5929e5535c1d6859c0ce81fd2b2e08469",
     "plugins/audio/operations/audio-encode.json": "894aa5921e84f375ecd9031e1d0a56e7f293922ee9834b5c4ec8293c45a7865f",
     "plugins/core/operations/condition.json": "52497af0dbdffd54166780028c4757d70c7f30a47c634a8125a2b72da7f13083",
@@ -16,6 +17,7 @@
     "plugins/core/operations/webhook.json": "f41e66c4c53db40c2692d1e0546b8bf9d18e4a0f87190946523aaf2c2fc47659",
     "plugins/radarr/operations/rename.json": "48c7cd1579a33e98d15661400935ecca85909cfa99e13a0453c6ad97a0d5743f",
     "plugins/radarr/operations/rescan.json": "44b77e15d299ea1af4374ee8bbac7c2dc933059c987d2f48dd8c6432c35c4bdf",
+    "plugins/scripts/operations/run.json": "6ed10063db42c14728f0968449513848087991a71131142af31ecb1a6813f8d1",
     "plugins/sonarr/operations/rename.json": "0cfe42506395cb33ab050d816f2bcdb81b9c29f763d559aa4d417856abe2aa85",
     "plugins/sonarr/operations/rescan.json": "6a3c289be88b0ca2792b1879f46a52997f28c089fb2ef93283ab1d06083d59e1",
     "plugins/video/operations/media-inspect.json": "fc34cce2966531f763a4939a989b95860e39aa51ca3446a6b523b1f236ed089c",
@@ -82,6 +84,17 @@
       "sha256": "e92e661e831b5cd921b40c20784e22842f6a6d7fcba8b332f0dc5730d6966306"
     },
     {
+      "id": "app.script-runners",
+      "type": "app",
+      "version": "1.0.0",
+      "name": "Exécuteurs de scripts",
+      "manifestPath": "apps/script-runners/manifest.json",
+      "capability": "script",
+      "currentChoice": false,
+      "distribution": "autonomous-binary",
+      "sha256": "e83ae48af01c792bed08339261a9bdb0ac1743b182398110b126ca232f118cea"
+    },
+    {
       "id": "plugin.core",
       "type": "plugin",
       "version": "1.0.0",
@@ -125,6 +138,16 @@
       "manifestPath": "plugins/radarr/manifest.json",
       "capability": "integration",
       "sha256": "ba4bc8f840708fb147d90de628b127be366288656879d30ef8bf621fafae37d8"
+    },
+    {
+      "id": "plugin.scripts",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Scripts",
+      "manifestPath": "plugins/scripts/manifest.json",
+      "capability": "script",
+      "category": "data",
+      "sha256": "4328b15d572490e5a72f525dde65613faca1649efa84f7020f9b0f1a088ecd33"
     },
     {
       "id": "block.core.file-input",
@@ -251,6 +274,15 @@
       "name": "Fin du flux",
       "manifestPath": "plugins/core/blocks/file-output.json",
       "sha256": "02f89b5f50f338c8857b06d39986f0331689dcfb8e230dd3eca4021fbececfbb"
+    },
+    {
+      "id": "block.scripts.run",
+      "type": "block",
+      "owner": "plugin.scripts",
+      "version": "1.0.0",
+      "name": "Script",
+      "manifestPath": "plugins/scripts/blocks/run.json",
+      "sha256": "b01fe2f79ef0f141545965620e65377d9fe2ca72f5d1febdc3ac147dfbda27c8"
     },
     {
       "id": "flow.default.mkv",
