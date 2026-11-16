@@ -370,8 +370,10 @@ class CatalogueChecker:
 
             if kind == "block":
                 owner = entry.get("owner")
-                if kinds.get(owner) != "plugin":
-                    self.fail(f"{ident} : un bloc doit avoir un plugin propriétaire dans le même dépôt (owner={owner!r})")
+                if kinds.get(owner) not in {"plugin", "script"}:
+                    self.fail(
+                        f"{ident} : un bloc doit avoir un plugin ou script propriétaire dans le même dépôt (owner={owner!r})"
+                    )
                 elif owner in manifest_dirs:
                     expected_blocks_dir = (manifest_dirs[owner] / "blocks").resolve()
                     if not manifest_path.resolve().is_relative_to(expected_blocks_dir):
@@ -415,11 +417,11 @@ class CatalogueChecker:
                     rel_target = target.relative_to(self.root).as_posix()
                     declared_paths.add(rel_target)
                     is_json = item["path"].endswith(".json") or item.get("mediaType") == "application/json"
-                    if is_json and item.get("role") != "block":
+                    if (is_json or item.get("role") == "script") and item.get("role") != "block":
                         required_secondary.add(rel_target)
-                    if kind == "plugin" and item.get("role") == "operation":
+                    if kind in {"plugin", "script"} and item.get("role") == "operation":
                         self._check_operation(target, ident, kinds, app_allowlists, operations)
-            if kind == "plugin":
+            if kind in {"plugin", "script"}:
                 plugin_declared_files[ident] = declared_paths
                 plugin_declared_blocks[ident] = {
                     b["id"]

@@ -142,7 +142,8 @@
                   "asset",
                   "deploy",
                   "operation",
-                  "block"
+                  "block",
+                  "script"
                 ]
               },
               "mediaType": {
@@ -198,7 +199,15 @@
                 "enum": [
                   "app",
                   "plugin",
+                  "script",
                   "resource",
+                  "resource.font",
+                  "resource.image",
+                  "resource.audio",
+                  "resource.subtitle",
+                  "resource.color",
+                  "resource.language",
+                  "resource.template",
                   "runtime",
                   "pack",
                   "flow",

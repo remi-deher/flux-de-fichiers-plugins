@@ -277,6 +277,110 @@ def cmd_app(args: argparse.Namespace) -> None:
     print(f"Application créée : {adir.relative_to(root)} ({app_id})")
 
 
+def _script_template(interpreter: str, name: str) -> tuple[str, str]:
+    if interpreter == "python3":
+        return (
+            "run.py",
+            f"import json, sys\n\npayload = json.load(sys.stdin)\nprint(json.dumps({{\"status\": \"ok\", \"message\": \"{name} exécuté\"}}))\n",
+        )
+    if interpreter in {"node", "bun"}:
+        return (
+            "run.js",
+            f"const fs = require('fs');\nconst input = JSON.parse(fs.readFileSync(0, 'utf8'));\nconsole.log(JSON.stringify({{ status: 'ok', message: '{name} exécuté' }}));\n",
+        )
+    if interpreter == "deno":
+        return (
+            "run.js",
+            f"const text = await new Response(Deno.stdin.readable).text();\nconst input = text.trim() ? JSON.parse(text) : {{}};\nconsole.log(JSON.stringify({{ status: 'ok', message: '{name} exécuté' }}));\n",
+        )
+    if interpreter == "pwsh":
+        return (
+            "run.ps1",
+            f"$payload = [Console]::In.ReadToEnd() | ConvertFrom-Json\n@{{ status = 'ok'; message = '{name} exécuté' }} | ConvertTo-Json -Compress\n",
+        )
+    return (
+        "run.sh",
+        f"cat >/dev/null\nprintf '{{\"status\":\"ok\",\"message\":\"{name} exécuté\"}}\\n'\n",
+    )
+
+
+def cmd_script(args: argparse.Namespace) -> None:
+    root = args.root.resolve()
+    slug = _validate_slug(args.slug)
+    ns = _validate_ns(args.namespace)
+    script_id = _slug_to_id(ns, "script", slug)
+    op_id = _slug_to_id(ns, "operation", f"script.{slug}")
+    block_id = _slug_to_id(ns, "block", f"script.{slug}")
+
+    sdir = root / "scripts" / slug
+    if sdir.exists():
+        raise SystemExit(f"Le dossier existe déjà : {sdir}")
+
+    entrypoint, starter = _script_template(args.interpreter, args.name)
+    manifest = {
+        "schemaVersion": "1.1.0",
+        "id": script_id,
+        "type": "script",
+        "version": "1.0.0",
+        "name": args.name,
+        "description": f"Script {args.name} (stdio JSON).",
+        "author": args.author,
+        "license": args.license,
+        "category": "data",
+        "capability": "script",
+        "files": [
+            {"path": "README.md", "role": "docs", "mediaType": "text/markdown"},
+            {"path": entrypoint, "role": "script", "mediaType": "text/plain"},
+            {"path": f"blocks/{slug}.json", "role": "block", "mediaType": "application/json"},
+            {"path": f"operations/{slug}.json", "role": "operation", "mediaType": "application/json"},
+        ],
+    }
+    block = {
+        "schemaVersion": "1.1.0",
+        "id": block_id,
+        "version": "1.0.0",
+        "name": args.name,
+        "description": f"Bloc script {args.name}.",
+        "category": "data",
+        "operationId": op_id,
+        "operationVersion": "1.0.0",
+        "sockets": {
+            "inputs": [{"id": "source", "label": "Fichier source", "dataType": "file", "mediaType": "*/*"}],
+            "outputs": [{"id": "destination", "label": "Fichier courant", "dataType": "file", "mediaType": "*/*"}],
+        },
+        "ui": {
+            "category": "Scripts tiers",
+            "domain": "data",
+            "icon": "fas fa-terminal",
+            "color": "#22C55E",
+            "fields": [],
+        },
+    }
+    operation = {
+        "schemaVersion": "1.1.0",
+        "id": op_id,
+        "version": "1.0.0",
+        "name": args.name,
+        "providerId": script_id,
+        "providerKind": "script",
+        "capability": "script",
+        "status": "validated",
+        "runtime": {
+            "kind": "script",
+            "interpreter": args.interpreter,
+            "entrypoint": entrypoint,
+            "timeoutSeconds": 300,
+        },
+    }
+    write_json(sdir / "manifest.json", manifest)
+    write_json(sdir / "blocks" / f"{slug}.json", block)
+    write_json(sdir / "operations" / f"{slug}.json", operation)
+    (sdir / entrypoint).write_text(starter, encoding="utf-8")
+    (sdir / "README.md").write_text(f"# {args.name}\n\nScript `{script_id}` (`{args.interpreter}`).\n", encoding="utf-8")
+    _update_index(root)
+    print(f"Script créé : {sdir.relative_to(root)} ({script_id})")
+
+
 def cmd_flow(args: argparse.Namespace) -> None:
     root = args.root.resolve()
     slug = _validate_slug(args.slug)
@@ -430,6 +534,17 @@ def main(argv: list[str] | None = None) -> int:
     p_flow.add_argument("--capability", default="other", help="Capacité associée.")
     p_flow.add_argument("--file-mask", default="*.mkv, *.mp4", help="Masque de fichiers.")
     p_flow.set_defaults(func=cmd_flow)
+
+    p_script = sub.add_parser("script", help="Crée un script stdio JSON avec opération et bloc.")
+    p_script.add_argument("slug", help="Nom court du dossier (ex. mon-script).")
+    p_script.add_argument("--name", required=True, help="Titre lisible.")
+    p_script.add_argument(
+        "--interpreter",
+        choices=["sh", "bash", "python3", "node", "deno", "bun", "pwsh"],
+        default="sh",
+        help="Interpréteur système.",
+    )
+    p_script.set_defaults(func=cmd_script)
 
     p_pack = sub.add_parser("pack", help="Crée un pack déclaratif.")
     p_pack.add_argument("slug", help="Nom court du dossier (ex. mon-pack).")

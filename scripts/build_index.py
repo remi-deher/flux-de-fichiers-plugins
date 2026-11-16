@@ -21,7 +21,7 @@ DEFAULT_ROOT = Path(__file__).resolve().parent.parent
 
 def _discover_manifests(root: Path) -> list[Path]:
     candidates: list[Path] = []
-    for folder in ("apps", "plugins", "flows", "presets", "packs"):
+    for folder in ("apps", "plugins", "flows", "scripts", "presets", "packs"):
         base = root / folder
         if base.is_dir():
             candidates.extend(sorted(base.glob("*/manifest.json")))
@@ -54,7 +54,7 @@ def _collect_secondary_json(root: Path, manifest_path: Path, manifest: dict[str,
         if not is_safe_relative(rel_item):
             continue
         is_json = rel_item.endswith(".json") or item.get("mediaType") == "application/json"
-        if is_json and item.get("role") != "block":
+        if (is_json or item.get("role") == "script") and item.get("role") != "block":
             add_file(manifest_path.parent / rel_item)
     return hashes
 
@@ -95,7 +95,7 @@ def _build_manifest_entry(
     secondary_hashes = _collect_secondary_json(root, manifest_path, manifest)
 
     block_entries: list[dict[str, Any]] = []
-    if kind == "plugin":
+    if kind in {"plugin", "script"}:
         blocks_dir = manifest_path.parent / "blocks"
         if blocks_dir.is_dir():
             for block_path in sorted(blocks_dir.glob("*.json")):

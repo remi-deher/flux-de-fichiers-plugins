@@ -132,6 +132,25 @@ class CatalogueToolsTests(unittest.TestCase):
                 ),
                 0,
             )
+            self.assertEqual(
+                scaffold.main(
+                    [
+                        "--root",
+                        str(third_party),
+                        "--namespace",
+                        "com.alice",
+                        "script",
+                        "tag-mkv",
+                        "--name",
+                        "Tag MKV",
+                        "--interpreter",
+                        "python3",
+                    ]
+                ),
+                0,
+            )
+            idx_after = json.loads((third_party / "index.json").read_text(encoding="utf-8"))
+            self.assertIn("scripts/tag-mkv/run.py", idx_after["filesSha256"])
 
             self.assertEqual(build_index.main(["--root", str(third_party), "--check"]), 0)
             self.assertEqual(
