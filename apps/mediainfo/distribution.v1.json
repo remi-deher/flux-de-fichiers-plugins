@@ -46,6 +46,6 @@
   },
   "notes": [
     "Option B : hors image applicative. Archives construites par .github/workflows/build-tools.yml depuis les paquets Debian bookworm, bibliothèques hors glibc embarquées (RUNPATH relatif).",
-    "binaryRelativePath est relatif au dossier d'extraction du cache du nœud (tools-cache/<outil>/<version>/<arch>/bin/)."
+    "binaryRelativePath est relatif à la racine de l'archive (extraite sous tools-cache/<outil>/<version>/<arch>/bin/)."
   ]
 }

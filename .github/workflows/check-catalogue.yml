@@ -17,5 +17,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Contrôler le catalogue et les contrats
-        run: python3 scripts/check_catalogue.py
+      - name: Installer jsonschema
+        run: python -m pip install --no-cache-dir jsonschema
+      - name: Vérifier que catalogue/index.json est synchronisé
+        run: python3 scripts/build_index.py --check
+      - name: Contrôler le catalogue, les schémas et le modèle tiers
+        run: python3 scripts/check_catalogue.py --require-jsonschema
+      - name: Exécuter les tests des outils du catalogue
+        run: python3 -m unittest discover -s scripts -p 'test_*.py' -v

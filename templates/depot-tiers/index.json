@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedFor": "org.exemple.depot-tiers",
+  "filesSha256": {
+    "plugins/mon-plugin/operations/mon-operation.json": "8490eed71f9635f5b0c476ee10e7b1273a5bf210aa65494a031586a4db74c5ac"
+  },
+  "entries": [
+    {
+      "id": "org.exemple.plugin.mon-plugin",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Mon Plugin Exemple",
+      "manifestPath": "plugins/mon-plugin/manifest.json",
+      "capability": "video",
+      "sha256": "dee27ac887f9f823aa1a89ac72de6e5fcf2f317f285a23394738ccd49fffea16"
+    },
+    {
+      "id": "org.exemple.block.mon-bloc",
+      "type": "block",
+      "owner": "org.exemple.plugin.mon-plugin",
+      "version": "1.0.0",
+      "name": "Mon Bloc Exemple",
+      "manifestPath": "plugins/mon-plugin/blocks/mon-bloc.json",
+      "sha256": "4e84a20d04d04e87eed1effd33012f8181c2a42a43966279ed05a8c8fc753eb7"
+    }
+  ]
+}

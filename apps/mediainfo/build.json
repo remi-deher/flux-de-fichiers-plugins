@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "slug": "mediainfo",
+  "toolId": "app.mediainfo",
+  "toolVersion": "1.0.0",
+  "releaseTagPrefix": "tools-mediainfo",
+  "source": {
+    "kind": "debian-bookworm",
+    "packages": ["mediainfo"]
+  },
+  "binaries": ["mediainfo"],
+  "probeArgs": ["--Version"]
+}

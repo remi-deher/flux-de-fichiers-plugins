@@ -18,7 +18,7 @@ remplacer PostgreSQL ou MKVToolNix. Le premier contrat de pack porte un paquet
 
 Le catalogue ne peut transformer un `resource.template` en script. Un type
 inconnu, une capacité non supportée ou un contrat de version inconnue est refusé
-sans exécution. L'index unique est `catalogue/index.json` ; les
+sans exécution. L'index unique est `index.json` à la racine ; les
 exemples de contrats : [contracts.v1.json](../examples/catalogue/contracts.v1.json).
 
 Les fichiers de ce dépôt ne constituent pas une autorisation de confiance.

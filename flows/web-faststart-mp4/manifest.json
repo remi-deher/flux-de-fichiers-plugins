@@ -1,10 +1,13 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "id": "flow.remux.mp4",
   "type": "flow",
   "version": "1.0.0",
   "name": "Optimisation Web MP4 (FastStart)",
   "description": "Convertit le conteneur en MP4 avec optimisation FastStart (moov atom en début de fichier) via MP4Box.",
+  "author": "flux-de-fichiers",
+  "license": "GPL-2.0-or-later",
+  "capability": "faststart",
   "fileMask": "*.mp4, *.m4v, *.mov",
   "isDefault": false,
   "definition": {

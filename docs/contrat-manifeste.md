@@ -5,7 +5,7 @@
 [schema/manifest.v1.schema.json](../schema/manifest.v1.schema.json) et
 [schema/catalogue-index.v1.schema.json](../schema/catalogue-index.v1.schema.json)
 restent inchangés. Tous les anciens manifestes, y compris les ressources,
-[le catalogue](../catalogue/index.json), le flow à étapes `flow.json`
+[le catalogue](../index.json), le flow à étapes `flow.json`
 et le preset historique `preset.json` sont conservés à l'identique.
 
 Les nouveaux contrats sont référencés par
@@ -15,16 +15,19 @@ Les nouveaux contrats sont référencés par
 (`files`, `operations`, `blocks`, `pack.installation`) sont relatifs au paquet.
 Les chemins absolus, traversées et liens sortants sont interdits.
 
-L'index du catalogue est unique ; `contracts.v1.json` ne décrit que des exemples. Un lecteur de contrats charge l'index. Pour chaque
-entrée, il vérifie que `id`, `type` et `version` correspondent au manifeste,
-résout ses contrats et refuse les identifiants dupliqués ou divergents. Il ne
-fusionne jamais deux définitions concurrentes selon leur ordre de lecture.
+L'index du catalogue est unique ; `contracts.v1.json` ne décrit que des exemples.
+L'index est généré de manière déterministe depuis les manifestes par
+`python3 scripts/build_index.py` (qui calcule aussi les empreintes `sha256` des
+manifestes). Pour chaque entrée, le lecteur vérifie `id`, `type`, `version`,
+l'empreinte éventuelle et refuse les identifiants dupliqués ou divergents.
 
-[manifest.v1.1](../schema/manifest.v1.1.schema.json) accepte soit **exactement**
-l'ancien manifeste 1.0.0, soit un manifeste `schemaVersion: "1.1.0"` permettant
-les types `app` (application) et `pack`, `block`, `operations`, `blocks` et les
-métadonnées de pack. Les champs nouveaux ne deviennent pas autorisés dans un
-document étiqueté 1.0.0.
+Les schémas actifs lus par le runtime sont :
+- [catalogue-index.v1.schema.json](../schema/catalogue-index.v1.schema.json) pour `index.json` à la racine
+- [manifest.v1.1](../schema/manifest.v1.1.schema.json) pour les manifestes `1.1.0` (et `1.0.0`)
+- [block-runtime.v1.schema.json](../schema/block-runtime.v1.schema.json) pour `plugins/*/blocks/*.json`
+- [operation-runtime.v1.schema.json](../schema/operation-runtime.v1.schema.json) pour `plugins/*/operations/*.json`
+- [tool-distribution.v1.schema.json](../schema/tool-distribution.v1.schema.json) pour `apps/*/distribution.v1.json`
+- [pack-installation.v1.schema.json](../schema/pack-installation.v1.schema.json) pour `packs/*/installation.json`
 
 ## Types, propriété et dépendances
 

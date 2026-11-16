@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://flux-de-fichiers.local/schema/catalogue-index.v1.schema.json",
   "title": "FluxDeFichiersCatalogueIndexV1",
-  "description": "Index du catalogue : références aux fiches sans recopier leur description complète.",
+  "description": "Index du catalogue : références aux fiches et empreintes SHA-256 complètes.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -17,7 +17,29 @@
     },
     "generatedFor": {
       "type": "string",
+      "minLength": 1,
       "description": "Identifiant logique du dépôt ou de la révision catalogue."
+    },
+    "releaseVersion": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$",
+      "description": "Version SemVer figée du snapshot catalogue (pour releases immuables)."
+    },
+    "generatedAt": {
+      "type": "string",
+      "description": "Horodatage ISO-8601 optionnel de génération de l'index."
+    },
+    "filesSha256": {
+      "type": "object",
+      "description": "Empreintes SHA-256 de tous les fichiers JSON annexes du catalogue (distribution.v1.json, operations/*.json, installation.json…).",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*\\\\)[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)*$"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      }
     },
     "entries": {
       "type": "array",
@@ -33,7 +55,10 @@
         ],
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+            "minLength": 2,
+            "maxLength": 128
           },
           "type": {
             "enum": [
@@ -52,26 +77,64 @@
             ]
           },
           "version": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
           },
           "name": {
             "type": "string",
+            "minLength": 1,
+            "maxLength": 120,
             "description": "Titre court pour l'UI ; la description longue reste dans le manifeste."
           },
           "manifestPath": {
             "type": "string",
-            "description": "Chemin relatif vers manifest.json depuis la racine du dépôt."
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*\\\\)[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)*$",
+            "description": "Chemin relatif vers le manifeste depuis la racine du dépôt."
           },
           "capability": {
             "type": "string",
-            "description": "Raccourci optionnel pour filtrer les outils (remux, database, …)."
+            "minLength": 1,
+            "description": "Raccourci optionnel pour filtrer les outils (probe, remux, …)."
           },
           "currentChoice": {
             "type": "boolean"
           },
+          "distribution": {
+            "type": "string",
+            "enum": [
+              "autonomous-binary",
+              "builtin",
+              "api",
+              "none"
+            ],
+            "description": "Mode de distribution déclaré pour les applications."
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "media",
+              "data",
+              "io",
+              "other"
+            ]
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            }
+          },
           "owner": {
             "type": "string",
+            "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
             "description": "Identifiant du plugin propriétaire. Obligatoire pour un bloc, qui ne vit jamais seul dans un dépôt."
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "Empreinte SHA-256 du fichier pointé par manifestPath, vérifiée à la synchronisation."
           }
         },
         "allOf": [
@@ -81,7 +144,10 @@
                 "type": {
                   "const": "block"
                 }
-              }
+              },
+              "required": [
+                "type"
+              ]
             },
             "then": {
               "required": [
