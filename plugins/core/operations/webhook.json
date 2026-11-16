@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.core.webhook",
+  "version": "1.0.0",
+  "name": "Notification HTTP Webhook",
+  "providerId": "plugin.core",
+  "providerKind": "plugin",
+  "capability": "notification",
+  "status": "validated",
+  "runtime": {
+    "kind": "http",
+    "errorCode": "webhook_failed",
+    "failOnErrorParam": "fail_on_error",
+    "timeoutSeconds": 10,
+    "steps": [
+      {
+        "url": "{$config.url}",
+        "method": "{$config.method|POST}",
+        "mergeCustomHeaders": true,
+        "body": {
+          "event": "flow_step_reached",
+          "job_id": "{$context.jobId}",
+          "source_name": "{$context.sourceName}",
+          "current_step": "{$context.currentStep}",
+          "status": "{$context.status}",
+          "timestamp": "{$context.timestamp}",
+          "media_info": "{$context.mediaInfo}"
+        },
+        "successMessage": "notification webhook délivrée"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+name: check-catalogue
+
+on:
+  pull_request:
+  push:
+    branches: [dev, test, main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: validation du catalogue
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Contrôler le catalogue et les contrats
+        run: python3 scripts/check_catalogue.py

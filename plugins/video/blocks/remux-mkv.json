@@ -1,6 +1,7 @@
 {
   "schemaVersion": "1.1.0",
   "id": "block.video.remux-mkv",
+  "aliases": ["remux-mkv"],
   "version": "1.0.0",
   "name": "Remuxage MKV (MKVToolNix)",
   "description": "Remuxe sans réencodage un conteneur multimédia vers le format Matroska (.mkv) avec intégrité garantie.",
@@ -26,8 +27,16 @@
     ]
   },
   "ui": {
+    "category": "MKVToolNix",
+    "domain": "mkv",
     "icon": "fas fa-box-archive",
     "color": "#00BCD4",
+    "suggestedNext": [
+      "block.sonarr.rescan",
+      "block.radarr.rescan",
+      "block.core.webhook",
+      "block.core.file-output"
+    ],
     "fields": [
       {
         "name": "disable_track_stats",

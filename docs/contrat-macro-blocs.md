@@ -9,7 +9,7 @@ composite ni de script.
 | Fichier | Rôle |
 |---------|------|
 | `schema/macro-block.v1.schema.json` | Contrat |
-| `blocks/macro-remux-verify.example/` | Exemple pédagogique |
+| `examples/catalogue/plugins/remux-mkv.example/blocks/macro-remux-verify.example/` | Exemple pédagogique |
 
 ## Modèle
 

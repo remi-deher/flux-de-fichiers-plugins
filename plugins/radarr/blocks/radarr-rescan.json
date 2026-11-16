@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "block.radarr.rescan",
+  "aliases": ["radarr-rescan"],
+  "version": "1.0.0",
+  "name": "Radarr : réanalyser",
+  "description": "Demande à Radarr de réanalyser le film du fichier.",
+  "category": "io",
+  "operationId": "operation.radarr.rescan",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier traité",
+        "dataType": "file",
+        "mediaType": "video/*"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "destination",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "video/*"
+      }
+    ]
+  },
+  "ui": {
+    "category": "Intégrations",
+    "domain": "integration",
+    "icon": "fas fa-film",
+    "color": "#FFC230",
+    "suggestedNext": [
+      "block.radarr.rename",
+      "block.core.webhook",
+      "block.core.file-output"
+    ],
+    "fields": [
+      {
+        "name": "fail_on_error",
+        "label": "Échec bloquant",
+        "type": "boolean",
+        "default": false,
+        "description": "Coché, un échec fait échouer la tâche ; sinon il est seulement journalisé."
+      }
+    ]
+  }
+}

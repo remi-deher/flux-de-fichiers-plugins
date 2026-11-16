@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0.0",
+  "toolId": "app.mediainfo",
+  "toolVersion": "1.0.0",
+  "distributionMode": "autonomous-binary",
+  "releaseStatus": "released",
+  "artifacts": [
+    {
+      "arch": "x86_64",
+      "os": "linux",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-1.0.0/mediainfo-linux-x86_64.tar.gz",
+      "archiveFormat": "tar.gz",
+      "archiveSha256": "e2f157ad55adf167bdc658247c38e1e3de370fc675ec39a5e5cda7bcee529bdc",
+      "binaryRelativePath": "mediainfo",
+      "binarySha256": "b72a3d7208ac075880847a2c73ee9474b88eab089d65975c65f9c70dfd2d21a8",
+      "permissions": {
+        "unixMode": "0755",
+        "owner": "runtime-user",
+        "executableBit": true
+      }
+    },
+    {
+      "arch": "aarch64",
+      "os": "linux",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-1.0.0/mediainfo-linux-aarch64.tar.gz",
+      "archiveFormat": "tar.gz",
+      "archiveSha256": "fcb9c74168d972341d2a413b4e1a43fb6f3484d316c0c9f29c1b23222aff642e",
+      "binaryRelativePath": "mediainfo",
+      "binarySha256": "5b43217daedbda572a444e7ef4729c7c646683c7c673ccedb91c74d875bb5fa8",
+      "permissions": {
+        "unixMode": "0755",
+        "owner": "runtime-user",
+        "executableBit": true
+      }
+    }
+  ],
+  "installPolicy": {
+    "verifySha256BeforeExec": true,
+    "refuseMismatchedDigest": true,
+    "cacheRootRelative": "tools-cache/mediainfo/1.0.0",
+    "noShellUnpack": true,
+    "executableAllowlist": [
+      "mediainfo"
+    ],
+    "networkAtInstall": "explicit-allowlist"
+  },
+  "notes": [
+    "Option B : hors image applicative. Archives construites par .github/workflows/build-tools.yml depuis les paquets Debian bookworm, bibliothèques hors glibc embarquées (RUNPATH relatif).",
+    "binaryRelativePath est relatif au dossier d'extraction du cache du nœud (tools-cache/<outil>/<version>/<arch>/bin/)."
+  ]
+}

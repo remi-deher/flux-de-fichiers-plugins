@@ -1,6 +1,7 @@
 {
   "schemaVersion": "1.1.0",
   "id": "block.video.encode",
+  "aliases": ["video-encode"],
   "version": "1.0.0",
   "name": "Encodage Vidéo (FFMPEG Builder)",
   "description": "Configure l'encodage vidéo avec des préréglages simples : équilibre direct entre qualité, vitesse d'encodage et taille de fichier.",
@@ -26,8 +27,17 @@
     ]
   },
   "ui": {
+    "category": "Média",
+    "domain": "video",
     "icon": "fas fa-film",
     "color": "#E91E63",
+    "suggestedNext": [
+      "block.video.remux-mkv",
+      "block.metadata.mkvpropedit",
+      "block.sonarr.rescan",
+      "block.radarr.rescan",
+      "block.core.file-output"
+    ],
     "fields": [
       {
         "name": "codec",

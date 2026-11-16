@@ -1,6 +1,6 @@
 # Plugin Audio (`plugin.audio`)
 
-Plugin dédié à la manipulation, à l'encodage et à la normalisation de pistes sonores au sein de l'application `app.media`.
+Plugin dédié à la manipulation, à l'encodage et à la normalisation de pistes sonores au sein de l'application `pack.media`.
 
 ## Blocs fournis
 
@@ -8,4 +8,4 @@ Plugin dédié à la manipulation, à l'encodage et à la normalisation de piste
 
 ## Dépendances
 
-- `tool.ffmpeg` (`>= 1.0.0`)
+- `app.ffmpeg` (`>= 1.0.0`)

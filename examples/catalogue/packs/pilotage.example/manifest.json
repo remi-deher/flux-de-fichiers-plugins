@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "pack.pilotage.example",
+  "type": "pack",
+  "version": "0.0.0",
+  "name": "Exemple d’application déclarative MKV",
+  "description": "Paquet déclaratif avec dépendances exactes et lanceur de flow pour le futur frontend Leptos. Aucun installeur ni bundle exécutable fourni.",
+  "author": "flux-de-fichiers",
+  "license": "UNLICENSED",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "installation.json",
+      "role": "config",
+      "mediaType": "application/json"
+    }
+  ],
+  "pack": {
+    "kind": "declarative-bundle",
+    "installation": "installation.json",
+    "runtimeImplemented": false
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "flow.remux-rapide.example",
+  "steps": [
+    {
+      "kind": "remux",
+      "toolId": "app.mkvtoolnix",
+      "presetId": "preset.remux-defaut.example"
+    }
+  ],
+  "note": "Illustratif uniquement — non exécuté par un moteur de flux."
+}

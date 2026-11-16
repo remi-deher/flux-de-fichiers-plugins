@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "pack.media",
+  "type": "pack",
+  "version": "1.0.0",
+  "name": "Studio Multimédia (Flux de Fichiers)",
+  "description": "Application de traitement multimédia unifiée : remuxage MKVToolNix, encodage vidéo matériel et traitement audio FFmpeg (modèle modulaire inspiré de FileFlows).",
+  "author": "flux-de-fichiers",
+  "license": "GPL-2.0-or-later",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "installation.json",
+      "role": "config",
+      "mediaType": "application/json"
+    }
+  ],
+  "pack": {
+    "kind": "declarative-bundle",
+    "installation": "installation.json",
+    "runtimeImplemented": true
+  }
+}

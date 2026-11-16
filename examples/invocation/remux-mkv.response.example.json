@@ -102,7 +102,7 @@
   "metadata": {
     "nodeId": "node.example",
     "providerId": "plugin.remux-mkv.example",
-    "toolId": "tool.mkvtoolnix",
+    "toolId": "app.mkvtoolnix",
     "toolVersion": "non-mesurée-exemple",
     "startedAt": "2026-11-09T13:00:00Z",
     "finishedAt": "2026-11-09T13:00:02Z",

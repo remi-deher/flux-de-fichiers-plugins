@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.mkvtoolnix.mkvmerge.remux",
+  "version": "1.0.0",
+  "name": "Remuxage Matroska sans perte (mkvmerge)",
+  "providerId": "plugin.video",
+  "providerKind": "plugin",
+  "capability": "remux",
+  "status": "validated",
+  "runtime": {
+    "kind": "binary",
+    "defaultFallback": true,
+    "tool": { "id": "app.mkvtoolnix", "version": "1.0.0" },
+    "executable": "mkvmerge",
+    "envOverride": "MKVMERGE",
+    "executionMode": "staged-output",
+    "outputExtension": "mkv",
+    "outputContentType": "video/x-matroska",
+    "outputFilename": "output.mkv",
+    "postValidate": "probe-preserve",
+    "postValidatePreservePaths": [
+      "container.properties.title",
+      "attachments[*].file_name",
+      "attachments[*].content_type",
+      "attachments[*].size",
+      "chapters",
+      "global_tags",
+      "track_tags",
+      "tracks[*].type",
+      "tracks[*].codec",
+      "tracks[*].properties.language",
+      "tracks[*].properties.enabled_track",
+      "tracks[*].properties.track_name",
+      "tracks[*].properties.default_track",
+      "tracks[*].properties.forced_track",
+      "tracks[*].properties.audio_channels",
+      "tracks[*].properties.audio_sampling_frequency",
+      "tracks[*].properties.pixel_dimensions"
+    ],
+    "errorCode": "operation_failed",
+    "successMessage": "remux MKV sans perte",
+    "warningMessage": "remux MKV terminé avec avertissements",
+    "defaults": {
+      "charset": "UTF-8",
+      "disable_track_stats": true,
+      "audio_languages": "all",
+      "subtitle_languages": "all",
+      "custom_parameters": ""
+    },
+    "customArgsForbidden": [
+      "-o",
+      "--output",
+      "--output-charset",
+      "--command-line-charset",
+      "-J",
+      "--identify",
+      "-i",
+      "--disable-track-statistics-tags",
+      "@"
+    ],
+    "argv": [
+      "--output-charset",
+      { "param": "charset" },
+      {
+        "when": { "param": "disable_track_stats", "truthy": true },
+        "then": ["--disable-track-statistics-tags"]
+      },
+      {
+        "when": {
+          "all": [
+            { "param": "audio_languages", "nonEmpty": true },
+            { "param": "audio_languages", "neq": "all" }
+          ]
+        },
+        "then": [
+          {
+            "when": { "param": "audio_languages", "eq": "none" },
+            "then": ["--no-audio"],
+            "else": ["--audio-tracks", { "param": "audio_languages" }]
+          }
+        ]
+      },
+      {
+        "when": {
+          "all": [
+            { "param": "subtitle_languages", "nonEmpty": true },
+            { "param": "subtitle_languages", "neq": "all" }
+          ]
+        },
+        "then": [
+          {
+            "when": { "param": "subtitle_languages", "eq": "none" },
+            "then": ["--no-subtitles"],
+            "else": ["--subtitle-tracks", { "param": "subtitle_languages" }]
+          }
+        ]
+      },
+      { "param": "custom_parameters", "as": "safeCustomArgs" },
+      "--output",
+      { "param": "destination", "as": "filePath" },
+      { "param": "source", "as": "filePath" }
+    ],
+    "console": {
+      "progressFormat": "percent-line",
+      "progressStream": "stdout",
+      "successExitCodes": [0, 1],
+      "warningExitCodes": [1],
+      "timeoutSeconds": 3600
+    }
+  }
+}

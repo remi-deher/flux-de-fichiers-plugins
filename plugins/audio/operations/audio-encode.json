@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.ffmpeg.audio.encode",
+  "version": "1.0.0",
+  "name": "Encodage audio FFmpeg",
+  "providerId": "plugin.audio",
+  "providerKind": "plugin",
+  "capability": "encode",
+  "status": "validated",
+  "runtime": {
+    "kind": "binary",
+    "tool": { "id": "app.ffmpeg", "version": "1.0.0" },
+    "executable": "ffmpeg",
+    "envOverride": "FFMPEG",
+    "executionMode": "staged-output",
+    "outputExtension": "mkv",
+    "outputContentType": "video/x-matroska",
+    "outputFilename": "encoded-audio.mkv",
+    "postValidate": "valid-probe",
+    "errorCode": "operation_failed",
+    "successMessage": "encodage terminé",
+    "defaults": {
+      "codec": "aac",
+      "bitrate": "192",
+      "channels": "preserve",
+      "normalize": false,
+      "custom_parameters": ""
+    },
+    "customArgsForbidden": [
+      "-i",
+      "-y",
+      "-n",
+      "-filter_script",
+      "-filter_complex_script",
+      "-progress",
+      "-report",
+      "-sdp_file",
+      "-passlogfile",
+      "-vstats_file",
+      "-attach",
+      "-dump_attachment"
+    ],
+    "derived": [
+      {
+        "target": "audio_encoder",
+        "kind": "map",
+        "inputs": ["codec"],
+        "table": {
+          "aac": "aac",
+          "eac3": "eac3",
+          "ac3": "ac3",
+          "flac": "flac",
+          "mp3": "libmp3lame",
+          "opus": "libopus"
+        },
+        "default": "aac"
+      }
+    ],
+    "argv": [
+      "-nostdin",
+      "-y",
+      "-hide_banner",
+      "-i",
+      { "param": "source", "as": "filePath" },
+      "-map",
+      "0",
+      "-c:v",
+      "copy",
+      "-c:s",
+      "copy",
+      "-c:a",
+      { "param": "audio_encoder" },
+      {
+        "when": { "param": "codec", "neq": "flac" },
+        "then": ["-b:a", { "format": "{bitrate}k" }]
+      },
+      {
+        "when": { "param": "channels", "eq": "stereo" },
+        "then": ["-ac", "2"]
+      },
+      {
+        "when": { "param": "channels", "eq": "5.1" },
+        "then": ["-ac", "6"]
+      },
+      {
+        "when": { "param": "normalize", "truthy": true },
+        "then": ["-af", "loudnorm"]
+      },
+      { "param": "custom_parameters", "as": "safeCustomArgs" },
+      { "param": "destination", "as": "filePath" }
+    ],
+    "console": {
+      "progressFormat": "elapsed-time",
+      "progressStream": "stderr",
+      "successExitCodes": [0],
+      "warningExitCodes": [],
+      "timeoutSeconds": 3600
+    }
+  }
+}

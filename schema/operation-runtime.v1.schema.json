@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flux-de-fichiers.local/schema/operation-runtime.v1.schema.json",
+  "title": "Contrat d'exécution déclaratif d'opération",
+  "description": "Décrit de manière 100% déclarative comment le moteur exécute une opération (primitive, binary ou http).",
+  "type": "object",
+  "required": ["schemaVersion", "id", "version", "name", "providerId", "providerKind", "capability", "status", "runtime"],
+  "properties": {
+    "schemaVersion": { "const": "1.1.0" },
+    "id": { "type": "string", "pattern": "^[a-z0-9]+([._-][a-z0-9]+)*$" },
+    "version": { "type": "string" },
+    "name": { "type": "string", "minLength": 1 },
+    "providerId": { "type": "string" },
+    "providerKind": { "enum": ["plugin", "app"] },
+    "capability": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["validated", "example", "pending-decision", "rejected"] },
+    "runtime": {
+      "type": "object",
+      "required": ["kind"],
+      "properties": {
+        "kind": { "enum": ["primitive", "binary", "http"] },
+        "primitive": { "enum": ["entry", "terminal", "condition"] },
+        "defaultFallback": { "type": "boolean" },
+        "tool": {
+          "type": "object",
+          "required": ["id"],
+          "properties": {
+            "id": { "type": "string" },
+            "version": { "type": "string" }
+          }
+        },
+        "executable": { "type": "string" },
+        "envOverride": { "type": "string" },
+        "executionMode": {
+          "enum": ["staged-output", "in-place", "probe-primary", "probe-enrich"]
+        },
+        "settingsPluginId": { "type": "string" },
+        "requiredSettings": { "type": "array", "items": { "type": "string" } },
+        "steps": { "type": "array" },
+        "argv": { "type": "array" }
+      }
+    }
+  }
+}

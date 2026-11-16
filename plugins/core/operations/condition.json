@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.core.condition",
+  "version": "1.0.0",
+  "name": "Aiguillage conditionnel sur métadonnées",
+  "providerId": "plugin.core",
+  "providerKind": "plugin",
+  "capability": "control",
+  "status": "validated",
+  "runtime": {
+    "kind": "primitive",
+    "primitive": "condition",
+    "defaults": {
+      "property": "any",
+      "operator": "eq",
+      "target": ""
+    }
+  }
+}

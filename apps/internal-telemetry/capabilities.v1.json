@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "1.0.0",
+  "toolId": "app.internal.telemetry",
+  "metrics": [
+    {
+      "id": "cpu",
+      "unit": "percent",
+      "description": "Utilisation CPU agrégée du nœud."
+    },
+    {
+      "id": "ram",
+      "unit": "bytes",
+      "description": "Mémoire utilisée / totale."
+    },
+    {
+      "id": "gpu",
+      "unit": "percent",
+      "description": "Utilisation GPU si présent ; sinon absente (null sémantique runtime)."
+    },
+    {
+      "id": "storage",
+      "unit": "bytes",
+      "description": "Espace utilisé / disponible sur volumes sandbox autorisés."
+    }
+  ],
+  "security": {
+    "network": "none",
+    "shell": false,
+    "argvOnly": true,
+    "opaquePathsOnly": true,
+    "noPrivilegeEscalation": true
+  },
+  "notes": [
+    "Contrat déclaratif ; l'implémentation et le cache relèvent de #42."
+  ]
+}

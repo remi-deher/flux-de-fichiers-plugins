@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "1.0.0",
+  "toolId": "app.mp4box",
+  "toolVersion": "1.0.0",
+  "distributionMode": "autonomous-binary",
+  "releaseStatus": "released",
+  "artifacts": [
+    {
+      "arch": "x86_64",
+      "os": "linux",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-1.0.0/mp4box-linux-x86_64.tar.gz",
+      "archiveFormat": "tar.gz",
+      "archiveSha256": "b8d8b2311f76744b35e0ab3e11f5972c4cb830dda74a234603e8a3e9665b84d6",
+      "binaryRelativePath": "MP4Box",
+      "binarySha256": "cf568a4e89ba2f8cb8540b425bc4be4a984958d82a4948285281908b6d19246d",
+      "permissions": {
+        "unixMode": "0755",
+        "owner": "runtime-user",
+        "executableBit": true
+      }
+    },
+    {
+      "arch": "aarch64",
+      "os": "linux",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-1.0.0/mp4box-linux-aarch64.tar.gz",
+      "archiveFormat": "tar.gz",
+      "archiveSha256": "ce6bcb449c01a443aaef964e8bdbdd2ef410460b01d9d3aedc12a010ccf73784",
+      "binaryRelativePath": "MP4Box",
+      "binarySha256": "40de75bcb4246996e37960ac00b1d9535f2dbf44cfbcf628d1b5ecba9f181e0a",
+      "permissions": {
+        "unixMode": "0755",
+        "owner": "runtime-user",
+        "executableBit": true
+      }
+    }
+  ],
+  "installPolicy": {
+    "verifySha256BeforeExec": true,
+    "refuseMismatchedDigest": true,
+    "cacheRootRelative": "tools-cache/mp4box/1.0.0",
+    "noShellUnpack": true,
+    "executableAllowlist": [
+      "MP4Box"
+    ],
+    "networkAtInstall": "explicit-allowlist"
+  },
+  "notes": [
+    "Outil de manipulation et d'optimisation MP4 de référence (GPAC).",
+    "Prise en charge native du faststart/web-optimized (déplacement de l'atome moov en tête).",
+    "Empreintes et URL contract-only."
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.mp4box.remux",
+  "version": "1.0.0",
+  "name": "Remuxage et optimisation MP4 (MP4Box)",
+  "providerId": "plugin.video",
+  "providerKind": "plugin",
+  "capability": "remux",
+  "status": "validated",
+  "runtime": {
+    "kind": "binary",
+    "tool": { "id": "app.mp4box", "version": "1.0.0" },
+    "executable": "MP4Box",
+    "envOverride": "MP4BOX",
+    "executionMode": "staged-output",
+    "outputExtension": "mp4",
+    "outputContentType": "video/mp4",
+    "outputFilename": "remuxed.mp4",
+    "postValidate": "magic-bytes",
+    "postValidateMagic": { "offset": 4, "ascii": "ftyp" },
+    "errorCode": "operation_failed",
+    "successMessage": "remuxage MP4 terminé",
+    "defaults": {
+      "faststart": true,
+      "custom_parameters": ""
+    },
+    "customArgsForbidden": [
+      "-add",
+      "-cat",
+      "-new",
+      "-out",
+      "-tmp",
+      "-logs",
+      "-dxml",
+      "-dash-ctx"
+    ],
+    "argv": [
+      "-add",
+      { "param": "source", "as": "filePath" },
+      {
+        "when": { "param": "faststart", "truthy": true },
+        "then": ["-inter", "500"],
+        "else": ["-flat"]
+      },
+      { "param": "custom_parameters", "as": "safeCustomArgs" },
+      "-new",
+      { "param": "destination", "as": "filePath" }
+    ],
+    "console": {
+      "progressFormat": "fraction-100",
+      "progressStream": "stderr",
+      "successExitCodes": [0],
+      "warningExitCodes": [],
+      "timeoutSeconds": 3600
+    }
+  }
+}

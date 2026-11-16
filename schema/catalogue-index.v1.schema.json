@@ -5,7 +5,11 @@
   "description": "Index du catalogue : références aux fiches sans recopier leur description complète.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "generatedFor", "entries"],
+  "required": [
+    "schemaVersion",
+    "generatedFor",
+    "entries"
+  ],
   "properties": {
     "schemaVersion": {
       "type": "string",
@@ -20,11 +24,36 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "type", "version", "manifestPath", "name"],
+        "required": [
+          "id",
+          "type",
+          "version",
+          "manifestPath",
+          "name"
+        ],
         "properties": {
-          "id": { "type": "string" },
-          "type": { "type": "string" },
-          "version": { "type": "string" },
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "app",
+              "plugin",
+              "block",
+              "flow",
+              "preset",
+              "resource.font",
+              "resource.image",
+              "resource.audio",
+              "resource.color",
+              "resource.language",
+              "resource.template",
+              "pack"
+            ]
+          },
+          "version": {
+            "type": "string"
+          },
           "name": {
             "type": "string",
             "description": "Titre court pour l'UI ; la description longue reste dans le manifeste."
@@ -39,8 +68,28 @@
           },
           "currentChoice": {
             "type": "boolean"
+          },
+          "owner": {
+            "type": "string",
+            "description": "Identifiant du plugin propriétaire. Obligatoire pour un bloc, qui ne vit jamais seul dans un dépôt."
           }
-        }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "block"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "owner"
+              ]
+            }
+          }
+        ]
       }
     }
   }

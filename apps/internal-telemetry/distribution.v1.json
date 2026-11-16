@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0.0",
+  "toolId": "app.internal.telemetry",
+  "toolVersion": "0.1.0",
+  "distributionMode": "autonomous-binary",
+  "releaseStatus": "contract-only",
+  "artifacts": [
+    {
+      "arch": "x86_64",
+      "os": "linux",
+      "archiveUrl": "https://artifacts.example.invalid/apps/internal-telemetry/0.1.0/flux-telemetry-linux-x86_64.tar.gz",
+      "archiveFormat": "tar.gz",
+      "archiveSha256": "8525e058fac76aa6a9d589c8aee04eb6eb88cba8751f08ee721bda3facb810f3",
+      "binaryRelativePath": "bin/flux-telemetry",
+      "binarySha256": "b0125406ca5e2fd735512b4cb591d18a284fad9f71637fb882a745909fe025e2",
+      "permissions": {
+        "unixMode": "0755",
+        "owner": "runtime-user",
+        "executableBit": true
+      }
+    },
+    {
+      "arch": "aarch64",
+      "os": "linux",
+      "archiveUrl": "https://artifacts.example.invalid/apps/internal-telemetry/0.1.0/flux-telemetry-linux-aarch64.tar.gz",
+      "archiveFormat": "tar.gz",
+      "archiveSha256": "68802fba876a410c69c92a231dc5cf68d10ed8921da921f60beec507150c2844",
+      "binaryRelativePath": "bin/flux-telemetry",
+      "binarySha256": "4630821f0b995b9c1abe4fca7a9efaa473535d0c9f8bc629eee5e843ff768cfd",
+      "permissions": {
+        "unixMode": "0755",
+        "owner": "runtime-user",
+        "executableBit": true
+      }
+    }
+  ],
+  "installPolicy": {
+    "verifySha256BeforeExec": true,
+    "refuseMismatchedDigest": true,
+    "cacheRootRelative": "tools-cache/internal-telemetry/0.1.0",
+    "noShellUnpack": true,
+    "executableAllowlist": ["flux-telemetry"],
+    "networkAtInstall": "offline-preseeded"
+  },
+  "notes": [
+    "Sonde système interne : CPU, RAM, GPU, stockage. Pas d'accès réseau au runtime prévu.",
+    "Conception détaillée du cache / sonde : ticket #42 (ADR). Ici : contrat de distribution uniquement.",
+    "Empreintes contract-only."
+  ]
+}
