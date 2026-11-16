@@ -14,10 +14,10 @@
     "envOverride": "FFMPEG",
     "executionMode": "staged-output",
     "outputExtension": "mkv",
+    "outputContentType": "video/x-matroska",
     "outputFilename": "encoded-audio.mkv",
-    "outputProfile": "transcoded_mkv",
-    "postValidate": "valid-media",
-    "errorCode": "encode_failed",
+    "postValidate": "valid-probe",
+    "errorCode": "operation_failed",
     "successMessage": "encodage terminé",
     "defaults": {
       "codec": "aac",
@@ -26,7 +26,20 @@
       "normalize": false,
       "custom_parameters": ""
     },
-    "customArgsProfile": "ffmpeg",
+    "customArgsForbidden": [
+      "-i",
+      "-y",
+      "-n",
+      "-filter_script",
+      "-filter_complex_script",
+      "-progress",
+      "-report",
+      "-sdp_file",
+      "-passlogfile",
+      "-vstats_file",
+      "-attach",
+      "-dump_attachment"
+    ],
     "derived": [
       {
         "target": "audio_encoder",
@@ -77,7 +90,7 @@
       { "param": "destination", "as": "filePath" }
     ],
     "console": {
-      "progressFormat": "ffmpeg-time",
+      "progressFormat": "elapsed-time",
       "progressStream": "stderr",
       "successExitCodes": [0],
       "warningExitCodes": [],

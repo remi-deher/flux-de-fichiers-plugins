@@ -14,10 +14,10 @@
     "envOverride": "FFMPEG",
     "executionMode": "staged-output",
     "outputExtension": "mkv",
+    "outputContentType": "video/x-matroska",
     "outputFilename": "encoded.mkv",
-    "outputProfile": "transcoded_mkv",
-    "postValidate": "valid-media",
-    "errorCode": "encode_failed",
+    "postValidate": "valid-probe",
+    "errorCode": "operation_failed",
     "successMessage": "encodage terminé",
     "defaults": {
       "codec": "h265",
@@ -26,7 +26,20 @@
       "speed": 3,
       "custom_parameters": ""
     },
-    "customArgsProfile": "ffmpeg",
+    "customArgsForbidden": [
+      "-i",
+      "-y",
+      "-n",
+      "-filter_script",
+      "-filter_complex_script",
+      "-progress",
+      "-report",
+      "-sdp_file",
+      "-passlogfile",
+      "-vstats_file",
+      "-attach",
+      "-dump_attachment"
+    ],
     "derived": [
       {
         "target": "crf",
@@ -182,7 +195,7 @@
       }
     ],
     "console": {
-      "progressFormat": "ffmpeg-time",
+      "progressFormat": "elapsed-time",
       "progressStream": "stderr",
       "successExitCodes": [0],
       "warningExitCodes": [],

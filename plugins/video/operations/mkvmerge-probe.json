@@ -13,8 +13,13 @@
     "executable": "mkvmerge",
     "envOverride": "MKVMERGE",
     "executionMode": "probe-primary",
-    "probeFormat": "mkvmerge-json",
-    "errorCode": "remux_failed",
+    "probeFormat": "json",
+    "probeMatch": {
+      "extensions": ["mkv", "mka", "mks", "mk3d", "webm", "mp4", "m4v", "m4a", "mov", "avi", "ts", "m2ts", "mts", "flv", "mpg", "mpeg", "wmv", "ogv", "ogg"]
+    },
+    "probeRequirePaths": ["container.recognized", "container.supported", "tracks"],
+    "durationRules": [{ "path": "container.properties.duration", "scale": 1e-9 }],
+    "errorCode": "operation_failed",
     "argv": [
       "--output-charset",
       "UTF-8",

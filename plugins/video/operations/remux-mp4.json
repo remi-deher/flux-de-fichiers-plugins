@@ -14,16 +14,26 @@
     "envOverride": "MP4BOX",
     "executionMode": "staged-output",
     "outputExtension": "mp4",
+    "outputContentType": "video/mp4",
     "outputFilename": "remuxed.mp4",
-    "outputProfile": "mp4_container",
-    "postValidate": "mp4-header",
-    "errorCode": "remux_failed",
+    "postValidate": "magic-bytes",
+    "postValidateMagic": { "offset": 4, "ascii": "ftyp" },
+    "errorCode": "operation_failed",
     "successMessage": "remuxage MP4 terminé",
     "defaults": {
       "faststart": true,
       "custom_parameters": ""
     },
-    "customArgsProfile": "mp4box",
+    "customArgsForbidden": [
+      "-add",
+      "-cat",
+      "-new",
+      "-out",
+      "-tmp",
+      "-logs",
+      "-dxml",
+      "-dash-ctx"
+    ],
     "argv": [
       "-add",
       { "param": "source", "as": "filePath" },
