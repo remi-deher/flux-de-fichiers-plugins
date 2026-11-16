@@ -7,7 +7,7 @@ Aucun chargeur, installeur, moteur de flows ou binaire tiers n'est livré ici.
 
 ## Contrats et compatibilité
 
-- [Catalogue historique](catalogue/index.json) et manifestes v1 conservés à
+- [Catalogue](index.json) et manifestes v1 conservés à
   l'identique ; les anciennes ressources restent lisibles sans migration.
 - [Index complémentaire](examples/catalogue/contracts.v1.json) pour découvrir les nouveaux
   contrats sans modifier les fiches historiques.
@@ -18,14 +18,15 @@ Aucun chargeur, installeur, moteur de flows ou binaire tiers n'est livré ici.
 
 | Dossier | Contenu |
 | --- | --- |
-| `catalogue/` | Index unique des pièces (`index.json`) |
-| `apps/` | **Applications** : MKVToolNix, FFmpeg, MP4Box, MediaInfo, télémétrie, PostgreSQL ; fiche + `distribution.v1.json` Option B |
+| `index.json` | Index unique des pièces à la racine (généré par `build_index.py`) |
+| `apps/` | **Applications** : MKVToolNix, FFmpeg, MP4Box, MediaInfo, télémétrie ; fiche + `distribution.v1.json` Option B |
 | `plugins/` | **Plugins**, chacun avec ses opérations et ses blocs (`plugins/<nom>/blocks/`) |
 | `flows/` | **Flows** : graphes de blocs, dépendant de plugins |
 | `packs/` | **Packs** : ensembles d'applications, de plugins, de flows et d'éléments « Autre » |
+| `templates/` | [Modèle de dépôt tiers autonome](templates/depot-tiers/README.md) prêt à copier |
 | `schema/` | JSON Schema Draft 2020-12, références résolues hors réseau |
-| `scripts/` | `check_catalogue.py` : contrôle de l'index, des propriétaires et des dépendances |
-| `examples/` | Exemples fictifs (`catalogue/` : un exemple par type, dont les éléments « Autre ») et messages d'invocation |
+| `scripts/` | `check_catalogue.py`, `build_index.py` et `scaffold.py` (utilisables sur tout dépôt tiers) |
+| `examples/` | Exemples fictifs (`catalogue/`), archives historiques (`legacy/postgresql/`) et messages d'invocation |
 | `deploy/` | Modèles documentaires, sans action sur les déploiements actuels |
 
 Les éléments **Autre** (préréglages, polices, images, musiques, couleurs, langues, modèles)
@@ -34,7 +35,10 @@ exemples. Un **bloc** n'existe jamais seul : son fichier est rangé sous son plu
 son entrée d'index porte `owner`. Une dépendance de plugin vers une application est
 une suggestion (`optional`), jamais une obligation.
 
-Contrôle local : `python3 scripts/check_catalogue.py`.
+Contrôle local & génération d'index :
+- `python3 scripts/build_index.py --check`
+- `python3 scripts/check_catalogue.py`
+- Développer dans votre propre dépôt : [docs/creer-un-depot-tiers.md](docs/creer-un-depot-tiers.md) et [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Parcours de lecture
 

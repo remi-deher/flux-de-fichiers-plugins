@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "org.exemple.plugin.mon-plugin",
+  "type": "plugin",
+  "version": "1.0.0",
+  "name": "Mon Plugin Exemple",
+  "description": "Exemple de plugin tiers autonome utilisant une application du catalogue officiel (FFmpeg) sans collision d'identifiants.",
+  "author": "votre-nom",
+  "license": "MIT",
+  "capability": "video",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "blocks/mon-bloc.json",
+      "role": "block",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/mon-operation.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "app.ffmpeg",
+      "versionRange": "^1.0.0",
+      "kind": "app",
+      "optional": true
+    }
+  ],
+  "compatibility": {
+    "appMin": "1.0.0",
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
+  }
+}

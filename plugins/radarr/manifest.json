@@ -7,6 +7,7 @@
   "description": "Intégration automatisée avec Radarr (*arr) pour l'actualisation de la collection de films, la mise à jour des codecs détectés et le renommage après encodage.",
   "author": "flux-de-fichiers",
   "license": "GPL-2.0-or-later",
+  "capability": "integration",
   "files": [
     {
       "path": "README.md",
@@ -15,12 +16,12 @@
     },
     {
       "path": "blocks/radarr-rescan.json",
-      "role": "config",
+      "role": "block",
       "mediaType": "application/json"
     },
     {
       "path": "blocks/radarr-rename.json",
-      "role": "config",
+      "role": "block",
       "mediaType": "application/json"
     },
     {
@@ -69,20 +70,6 @@
       }
     ]
   },
-  "blocks": [
-    {
-      "id": "block.radarr.rescan",
-      "name": "Radarr : Actualiser le film",
-      "description": "Déclenche un rescan du film dans Radarr pour enregistrer les nouveaux codecs et caractéristiques techniques du fichier.",
-      "type": "integration"
-    },
-    {
-      "id": "block.radarr.rename",
-      "name": "Radarr : Renommer le film",
-      "description": "Demande à Radarr de renommer le fichier selon le modèle de nommage officiel de votre médiathèque.",
-      "type": "integration"
-    }
-  ],
   "compatibility": {
     "platforms": ["linux/amd64", "linux/arm64"]
   }

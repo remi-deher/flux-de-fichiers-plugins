@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "slug": "mp4box",
+  "toolId": "app.mp4box",
+  "toolVersion": "1.0.0",
+  "releaseTagPrefix": "tools-mp4box",
+  "source": {
+    "kind": "gpac-git",
+    "gitRef": "v2.4.0"
+  },
+  "binaries": ["MP4Box"],
+  "probeArgs": ["-version"]
+}

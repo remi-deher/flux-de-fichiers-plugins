@@ -6,7 +6,7 @@ et frontend Leptos. Aucun fichier applicatif n'est modifié par ces contrats.
 Le coordinateur reste seul à accéder à PostgreSQL ; les workers passent par HTTPS.
 Aucun changement de HA ou de stratégie de bascule n'est impliqué.
 
-Le futur lecteur charge [l'index historique](../catalogue/index.json), puis
+Le futur lecteur charge [l'index du catalogue](../index.json), puis
 [l'index complémentaire](../examples/catalogue/contracts.v1.json). Il sélectionne le bon
 schéma par famille et `schemaVersion`, avec registre local de `$ref`, puis valide
 les références et règles sémantiques. Le choix de distribution et de confiance
@@ -28,6 +28,6 @@ remux ; les nouveaux contrats ne sont donc pas un adaptateur déjà implémenté
 La vérification actuelle des médias reste la référence de publication.
 
 Les fichiers Compose, images, migrations et déploiements du dépôt applicatif
-restent la source de vérité. Les modèles sous `apps/postgresql/deploy/` ne
-remplacent aucune configuration. Installation, exécution générique et scénarios
+restent la source de vérité. Les modèles historiques sous
+`examples/legacy/postgresql/deploy/` ne remplacent aucune configuration.
 de validation du futur runtime restent à réaliser après les arbitrages.

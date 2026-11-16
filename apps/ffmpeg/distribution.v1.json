@@ -48,6 +48,6 @@
   "notes": [
     "Outil distribué Option B pour médias synthétiques de tests / analyse — pas un remuxer production validé.",
     "L'activation MP4 production reste pending-decision (examples/pending/ffmpeg-mp4.pending/).",
-    "Empreintes et URL contract-only."
+    "Archives construites par .github/workflows/build-tools.yml depuis Debian bookworm ; binaryRelativePath est relatif à la racine de l'archive."
   ]
 }

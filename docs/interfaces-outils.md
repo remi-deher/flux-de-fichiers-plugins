@@ -1,8 +1,7 @@
 # Interfaces d’outils (contrat applicatif)
 
 Objectif : permettre plus tard de **choisir** un outil de traitement ou de stockage
-sans coupler le cœur applicatif à une CLI précise. Les choix **actuels** restent
-PostgreSQL et MKVToolNix.
+sans coupler le cœur applicatif à une CLI précise. Le remuxer validé est MKVToolNix ; les métadonnées applicatives reposent sur SQLite local (`/config/flux.db`).
 
 Ces interfaces sont décrites pour l’intégration future dans le dépôt applicatif.
 Elles ne sont **pas** implémentées ici.
@@ -27,21 +26,19 @@ Adaptation actuelle : le module applicatif qui invoque `mkvmerge` devient
 l’unique adaptateur `Remuxer` ; le reste du worker dépend de l’interface, pas de
 la CLI. Aucune autre implémentation n’est validée.
 
-## `MetadataStore`
+## `MetadataStore` (archive historique)
 
-Responsabilité : persistance des métadonnées (jobs, baux, état).
+Responsabilité : persistance des métadonnées (jobs, baux, état) — le socle applicatif utilise SQLite local (`/config/flux.db`, ADR 0001).
 
-| Élément | Valeur actuelle |
-|---------|-----------------|
-| Implémentation | PostgreSQL via SQLx |
-| Invocation | service Compose `db` |
-| Fiche catalogue | `app.postgresql` |
+| Élément | Valeur |
+|---------|--------|
+| Implémentation historique | PostgreSQL via SQLx |
+| Archive | `examples/legacy/postgresql/` (hors catalogue actif) |
 
 Frontière stricte :
 
 - **Migrations applicatives** (`flux-de-fichiers/migrations/`) : schéma métier.
-- **Déploiement instance** (image Postgres, `pg_hba`, TLS, secrets fichiers) :
-  modèles documentés sous `apps/postgresql/deploy/`.
+- **Modèles historiques** (`pg_hba`, TLS) : archivés sous `examples/legacy/postgresql/deploy/`.
 
 ## `MediaProbe` (FFmpeg distribué)
 

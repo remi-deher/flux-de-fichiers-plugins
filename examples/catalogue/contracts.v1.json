@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "legacyIndex": "catalogue/index.json",
+  "legacyIndex": "index.json",
   "entries": [
     {
       "id": "plugin.remux-mkv.example",

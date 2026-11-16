@@ -1,0 +1,291 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedFor": "flux-de-fichiers-plugins@multimedia",
+  "filesSha256": {
+    "apps/ffmpeg/distribution.v1.json": "cb4d577e6acc45a705ea5630aeecdcf8d682a64c66f256528d0a71a565c5ed37",
+    "apps/internal-telemetry/capabilities.v1.json": "699b99282a3d9bb1c3c19184050aee1bfeabf0b65edc4e61606324781fdd7114",
+    "apps/internal-telemetry/distribution.v1.json": "f24e2d8aee6d5dc4150c47c165c20b2912765d828e8999ae22a6bcc48924f5ea",
+    "apps/mediainfo/distribution.v1.json": "e422d01c43709c2a635372c94fe8c92fcb7e04d7f8f0cb2e11b51a20229ef8d5",
+    "apps/mkvtoolnix/distribution.v1.json": "2a583c692289f4d2ddd04bdc8a4d34d93d5c0996cda331d1c6137f9d7628bc79",
+    "apps/mp4box/distribution.v1.json": "eac6cdc703dc16e2e4b4c9a08bc1a4351f1675fcbe4cc90bf624e016fe8ac754",
+    "packs/media/installation.json": "7c003d896ee911fd72695bd3d65694d5929e5535c1d6859c0ce81fd2b2e08469",
+    "plugins/audio/operations/audio-encode.json": "894aa5921e84f375ecd9031e1d0a56e7f293922ee9834b5c4ec8293c45a7865f",
+    "plugins/core/operations/condition.json": "52497af0dbdffd54166780028c4757d70c7f30a47c634a8125a2b72da7f13083",
+    "plugins/core/operations/file-input.json": "2db314c0a0cc86470ddfb5589b5b337ecd0a2f7e37511b35eb2259245d1c16d4",
+    "plugins/core/operations/file-output.json": "eacf34d36203e49c27462e14afeea65c29ff06bce82788da59689745ae0b5cbe",
+    "plugins/core/operations/webhook.json": "f41e66c4c53db40c2692d1e0546b8bf9d18e4a0f87190946523aaf2c2fc47659",
+    "plugins/radarr/operations/rename.json": "48c7cd1579a33e98d15661400935ecca85909cfa99e13a0453c6ad97a0d5743f",
+    "plugins/radarr/operations/rescan.json": "44b77e15d299ea1af4374ee8bbac7c2dc933059c987d2f48dd8c6432c35c4bdf",
+    "plugins/sonarr/operations/rename.json": "0cfe42506395cb33ab050d816f2bcdb81b9c29f763d559aa4d417856abe2aa85",
+    "plugins/sonarr/operations/rescan.json": "6a3c289be88b0ca2792b1879f46a52997f28c089fb2ef93283ab1d06083d59e1",
+    "plugins/video/operations/media-inspect.json": "fc34cce2966531f763a4939a989b95860e39aa51ca3446a6b523b1f236ed089c",
+    "plugins/video/operations/mkvmerge-probe.json": "19bd9a780ff43b7f0270f7dc87c19ee7e5e3a6ffdc3e006fa9c025a9ebe223ce",
+    "plugins/video/operations/mkvpropedit.json": "33791cbcf3bb613dd66f1033920147a309df16ef04972390d3b57688bd5dec16",
+    "plugins/video/operations/remux-mkv.json": "8e53f75c5b082c608356b70bcd17531a91d0127b8741b488d2435f1dbcc6117f",
+    "plugins/video/operations/remux-mp4.json": "0fe3bfda375ca38bc8be508d750e8c2606a483267ab3aa4b3d6804e1ff33b7cd",
+    "plugins/video/operations/video-encode.json": "e268f58556b018e8ac5176ee93b2ed533902e6d00f54310c8364ca1f5ac8f5a2"
+  },
+  "entries": [
+    {
+      "id": "app.mkvtoolnix",
+      "type": "app",
+      "version": "1.0.0",
+      "name": "MKVToolNix (mkvmerge)",
+      "manifestPath": "apps/mkvtoolnix/manifest.json",
+      "capability": "remux",
+      "currentChoice": true,
+      "distribution": "autonomous-binary",
+      "sha256": "365c2bd3fc35a5e1c2a19dc013395c021b4d63d950b06f2ce209cb9cb756765b"
+    },
+    {
+      "id": "app.mp4box",
+      "type": "app",
+      "version": "1.0.0",
+      "name": "MP4Box (GPAC)",
+      "manifestPath": "apps/mp4box/manifest.json",
+      "capability": "remux-mp4",
+      "currentChoice": true,
+      "distribution": "autonomous-binary",
+      "sha256": "861923f218b44dc1aad053eb594b9bb8ec98da75ad052a245c1cc7b083096013"
+    },
+    {
+      "id": "app.mediainfo",
+      "type": "app",
+      "version": "1.0.0",
+      "name": "MediaInfo CLI",
+      "manifestPath": "apps/mediainfo/manifest.json",
+      "capability": "probe",
+      "currentChoice": true,
+      "distribution": "autonomous-binary",
+      "sha256": "539f8f49ad139dabaa52c5fccd7ab6edcf8bbbe27f0c5207a0c62ad703d03c72"
+    },
+    {
+      "id": "app.ffmpeg",
+      "type": "app",
+      "version": "1.0.0",
+      "name": "FFmpeg (distribué)",
+      "manifestPath": "apps/ffmpeg/manifest.json",
+      "capability": "analyze",
+      "currentChoice": false,
+      "distribution": "autonomous-binary",
+      "sha256": "bde2eda551541b12b25d4aa2fe4af09cf1aa3b3fc6ee56b2d307d7ca77b1d407"
+    },
+    {
+      "id": "app.internal.telemetry",
+      "type": "app",
+      "version": "0.1.0",
+      "name": "Sonde interne de télémétrie",
+      "manifestPath": "apps/internal-telemetry/manifest.json",
+      "capability": "other",
+      "currentChoice": true,
+      "distribution": "autonomous-binary",
+      "sha256": "e92e661e831b5cd921b40c20784e22842f6a6d7fcba8b332f0dc5730d6966306"
+    },
+    {
+      "id": "plugin.core",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Plugin Noyau & Contrôle de Flux",
+      "manifestPath": "plugins/core/manifest.json",
+      "capability": "other",
+      "sha256": "04fc60463e417f1d6037b82c413f17c157dcd8c595a355b2904378045c0017fc"
+    },
+    {
+      "id": "plugin.video",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Plugin Traitement Vidéo",
+      "manifestPath": "plugins/video/manifest.json",
+      "capability": "video",
+      "sha256": "4a4dc9e2efa5b5a4406bbd21cf7910814de9719d27f231ccd205b6c86ffe4a4b"
+    },
+    {
+      "id": "plugin.audio",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Plugin Traitement Audio",
+      "manifestPath": "plugins/audio/manifest.json",
+      "capability": "audio",
+      "sha256": "694a63ddb14c3f2785d883da64d906d37469e8ba47cfc452a3f2b584ded47516"
+    },
+    {
+      "id": "plugin.sonarr",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Sonarr Integration",
+      "manifestPath": "plugins/sonarr/manifest.json",
+      "capability": "integration",
+      "sha256": "8e7fc0ac6653d41e5d09da1d3f2814f0a6ce3965605d3d5b8a5de1da51c9561a"
+    },
+    {
+      "id": "plugin.radarr",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Radarr Integration",
+      "manifestPath": "plugins/radarr/manifest.json",
+      "capability": "integration",
+      "sha256": "ba4bc8f840708fb147d90de628b127be366288656879d30ef8bf621fafae37d8"
+    },
+    {
+      "id": "block.core.file-input",
+      "type": "block",
+      "owner": "plugin.core",
+      "version": "1.0.0",
+      "name": "Fichier source",
+      "manifestPath": "plugins/core/blocks/file-input.json",
+      "sha256": "3f37735eff4d05bc9d440f4689449fcdf5a844eef23b65e525e4f82479e5413b"
+    },
+    {
+      "id": "block.core.condition",
+      "type": "block",
+      "owner": "plugin.core",
+      "version": "1.0.0",
+      "name": "Condition",
+      "manifestPath": "plugins/core/blocks/condition.json",
+      "sha256": "385f1db92430319f10943fd8b6f48705dcf0809ae22bae0e40b48daadae680be"
+    },
+    {
+      "id": "block.media.inspect",
+      "type": "block",
+      "owner": "plugin.video",
+      "version": "1.0.0",
+      "name": "Inspection Média Universelle (MediaInfo)",
+      "manifestPath": "plugins/video/blocks/media-inspect.json",
+      "sha256": "36fb192272c7075166fde4702a0494a082986dad4fc3575bf42e6e2d4d68597f"
+    },
+    {
+      "id": "block.metadata.mkvpropedit",
+      "type": "block",
+      "owner": "plugin.video",
+      "version": "1.0.0",
+      "name": "Édition des en-têtes",
+      "manifestPath": "plugins/video/blocks/mkvpropedit.json",
+      "sha256": "d46d4d5d35a8df37d2f99535bd7026563b832aad7aeecac8d49914fe6eced096"
+    },
+    {
+      "id": "block.video.remux-mkv",
+      "type": "block",
+      "owner": "plugin.video",
+      "version": "1.0.0",
+      "name": "Remuxage MKV (MKVToolNix)",
+      "manifestPath": "plugins/video/blocks/remux-mkv.json",
+      "sha256": "f1362b15b41d3c92b555a3367c9d9dbf4c250abda3a70b0a848127af0bec760a"
+    },
+    {
+      "id": "block.video.remux-mp4",
+      "type": "block",
+      "owner": "plugin.video",
+      "version": "1.0.0",
+      "name": "Remuxage & Optimisation MP4 (MP4Box)",
+      "manifestPath": "plugins/video/blocks/remux-mp4.json",
+      "sha256": "c4f78f23211a3d72bcbb202efea757be4bba8d239ce5dc06f5fb5f60fcbdf501"
+    },
+    {
+      "id": "block.video.encode",
+      "type": "block",
+      "owner": "plugin.video",
+      "version": "1.0.0",
+      "name": "Encodage Vidéo (FFMPEG Builder)",
+      "manifestPath": "plugins/video/blocks/video-encode.json",
+      "sha256": "ac3a0f3181033f44220469683bbcf4fec22a9c754851e7518e61314ddc9e9fa4"
+    },
+    {
+      "id": "block.audio.encode",
+      "type": "block",
+      "owner": "plugin.audio",
+      "version": "1.0.0",
+      "name": "Encodage & Conversion Audio",
+      "manifestPath": "plugins/audio/blocks/audio-encode.json",
+      "sha256": "c52d9dab3a0026af11b30c4ac70e1e2d5a9166f330435dcef19d683f6fcac7ed"
+    },
+    {
+      "id": "block.core.webhook",
+      "type": "block",
+      "owner": "plugin.core",
+      "version": "1.0.0",
+      "name": "Webhook",
+      "manifestPath": "plugins/core/blocks/webhook.json",
+      "sha256": "7c7edb6423faf37ed0713fb8cdf9b857be891ebde20ad2b4839334257dbb263e"
+    },
+    {
+      "id": "block.sonarr.rescan",
+      "type": "block",
+      "owner": "plugin.sonarr",
+      "version": "1.0.0",
+      "name": "Sonarr : réanalyser",
+      "manifestPath": "plugins/sonarr/blocks/sonarr-rescan.json",
+      "sha256": "2d57b7bd519dbd44736a78e7caa2e3a66879602f28a418ead37fbca409303a67"
+    },
+    {
+      "id": "block.sonarr.rename",
+      "type": "block",
+      "owner": "plugin.sonarr",
+      "version": "1.0.0",
+      "name": "Sonarr : renommer",
+      "manifestPath": "plugins/sonarr/blocks/sonarr-rename.json",
+      "sha256": "4464148c39da7620f72c23aafc3905dd0f223a45cee7644b9bd4dbdbf61fc49b"
+    },
+    {
+      "id": "block.radarr.rescan",
+      "type": "block",
+      "owner": "plugin.radarr",
+      "version": "1.0.0",
+      "name": "Radarr : réanalyser",
+      "manifestPath": "plugins/radarr/blocks/radarr-rescan.json",
+      "sha256": "a01de94bf7992e3e0f3e94730e6ec582e72dfa28354e47ced4d1ff5f95ddebdb"
+    },
+    {
+      "id": "block.radarr.rename",
+      "type": "block",
+      "owner": "plugin.radarr",
+      "version": "1.0.0",
+      "name": "Radarr : renommer",
+      "manifestPath": "plugins/radarr/blocks/radarr-rename.json",
+      "sha256": "5f6d4ae85a427ef76369c17b7762fbdd878f0825630a69e2011caef7557e2006"
+    },
+    {
+      "id": "block.core.file-output",
+      "type": "block",
+      "owner": "plugin.core",
+      "version": "1.0.0",
+      "name": "Fin du flux",
+      "manifestPath": "plugins/core/blocks/file-output.json",
+      "sha256": "02f89b5f50f338c8857b06d39986f0331689dcfb8e230dd3eca4021fbececfbb"
+    },
+    {
+      "id": "flow.default.mkv",
+      "type": "flow",
+      "version": "1.0.0",
+      "name": "Remuxage Matroska propre",
+      "manifestPath": "flows/remux-matroska/manifest.json",
+      "capability": "remux",
+      "sha256": "a062c0febb8e328bed5535a0c52dd376a5b61d052dca2bb2e67d81c1d4c1f507"
+    },
+    {
+      "id": "flow.smart.adr0008",
+      "type": "flow",
+      "version": "1.0.0",
+      "name": "Aiguillage conditionnel & In-Place (ADR-0008)",
+      "manifestPath": "flows/smart-inplace-hevc/manifest.json",
+      "capability": "in-place",
+      "sha256": "2326ca848a135cefe011473835a4420e38b0218edd9837310bbaeb6f257bc907"
+    },
+    {
+      "id": "flow.remux.mp4",
+      "type": "flow",
+      "version": "1.0.0",
+      "name": "Optimisation Web MP4 (FastStart)",
+      "manifestPath": "flows/web-faststart-mp4/manifest.json",
+      "capability": "faststart",
+      "sha256": "e80970a9eb8f65814b0c69eebeb2ecc7450431768365463c53ae4abd52d79ac5"
+    },
+    {
+      "id": "pack.media",
+      "type": "pack",
+      "version": "1.0.0",
+      "name": "Studio Multimédia (Flux de Fichiers)",
+      "manifestPath": "packs/media/manifest.json",
+      "sha256": "8339f8835389facbf23f03981ef3c6c7d657ed3ea4e130cb1d3922b842066035"
+    }
+  ]
+}

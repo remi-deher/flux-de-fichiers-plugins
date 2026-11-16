@@ -7,6 +7,7 @@
   "description": "Traitement, conversion de pistes audio (AAC, AC3, E-AC3, FLAC, MP3, Opus), extraction et normalisation sonore intelligente (EBU R128) via FFmpeg.",
   "author": "flux-de-fichiers",
   "license": "GPL-2.0-or-later",
+  "capability": "audio",
   "files": [
     {
       "path": "README.md",
@@ -15,7 +16,7 @@
     },
     {
       "path": "blocks/audio-encode.json",
-      "role": "config",
+      "role": "block",
       "mediaType": "application/json"
     },
     {

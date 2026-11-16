@@ -1,0 +1,42 @@
+name: check-catalogue
+
+on:
+  pull_request:
+  push:
+    branches: [main, dev]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: validation du catalogue tiers
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer ce dépôt tiers
+        uses: actions/checkout@v4
+
+      - name: Récupérer les schémas et outils officiels Flux de Fichiers
+        uses: actions/checkout@v4
+        with:
+          repository: remi-deher/flux-de-fichiers-plugins
+          ref: dev
+          path: .flux-official
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Installer jsonschema
+        run: python -m pip install --no-cache-dir jsonschema
+
+      - name: Vérifier que index.json est à jour
+        run: python3 .flux-official/scripts/build_index.py --root . --check
+
+      - name: Valider le catalogue tiers (schémas + références officielles)
+        run: >
+          python3 .flux-official/scripts/check_catalogue.py
+          --root .
+          --schema-dir .flux-official/schema
+          --external-index .flux-official/index.json
+          --require-jsonschema

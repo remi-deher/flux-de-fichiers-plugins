@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://flux-de-fichiers.local/schema/tool-distribution.v1.schema.json",
   "title": "Distribution d'outil binaire Option B v1",
-  "description": "Contrat déclaratif pour outils livrés hors conteneur applicatif : archives par architecture, chemin relatif du binaire, SHA-256 obligatoire, permissions. Aucun téléchargement ni installation dans ce dépôt catalogue.",
+  "description": "Contrat déclaratif pour outils livrés hors conteneur applicatif : archives par architecture, chemin relatif du binaire, SHA-256 obligatoire, permissions.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -23,6 +23,12 @@
     "toolVersion": {
       "type": "string",
       "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+    },
+    "upstreamVersion": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "description": "Version amont exacte du binaire empaqueté (ex. paquet Debian ou tag source)."
     },
     "distributionMode": {
       "const": "autonomous-binary",
@@ -66,7 +72,7 @@
           "uniqueItems": true,
           "items": {
             "type": "string",
-            "pattern": "^[a-z0-9][a-z0-9._+-]*$",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$",
             "maxLength": 80
           }
         },
@@ -117,12 +123,31 @@
           "type": "string",
           "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*\\\\)[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)*$",
           "maxLength": 512,
-          "description": "Chemin relatif du binaire dans l'archive extraite (pas de ..)."
+          "description": "Chemin relatif du binaire principal dans l'archive extraite (pas de ..)."
         },
         "binarySha256": {
           "type": "string",
           "pattern": "^[a-f0-9]{64}$",
-          "description": "Empreinte optionnelle du binaire extrait (recommandée)."
+          "description": "Empreinte SHA-256 du binaire principal extrait."
+        },
+        "binaries": {
+          "type": "object",
+          "description": "Empreintes par exécutable pour les archives multi-binaires (ex. ffmpeg + ffprobe).",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["relativePath", "sha256"],
+            "properties": {
+              "relativePath": {
+                "type": "string",
+                "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*\\\\)[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)*$"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
+          }
         },
         "permissions": {
           "type": "object",
