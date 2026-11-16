@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "1.0.0",
+  "toolId": "app.script-runners",
+  "toolVersion": "1.0.0",
+  "distributionMode": "autonomous-binary",
+  "releaseStatus": "contract-only",
+  "artifacts": [
+    {
+      "arch": "x86_64",
+      "os": "linux",
+      "archiveUrl": "https://artifacts.example.invalid/script-runners-1.0.0-linux-amd64.tar.gz",
+      "archiveFormat": "tar.gz",
+      "archiveSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "binaryRelativePath": "bin/deno",
+      "binarySha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "permissions": {
+        "unixMode": "0755",
+        "owner": "runtime-user",
+        "executableBit": true
+      }
+    },
+    {
+      "arch": "aarch64",
+      "os": "linux",
+      "archiveUrl": "https://artifacts.example.invalid/script-runners-1.0.0-linux-aarch64.tar.gz",
+      "archiveFormat": "tar.gz",
+      "archiveSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "binaryRelativePath": "bin/deno",
+      "binarySha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "permissions": {
+        "unixMode": "0755",
+        "owner": "runtime-user",
+        "executableBit": true
+      }
+    }
+  ],
+  "installPolicy": {
+    "verifySha256BeforeExec": true,
+    "refuseMismatchedDigest": true,
+    "cacheRootRelative": "tools-cache/script-runners/1.0.0",
+    "noShellUnpack": true,
+    "executableAllowlist": [
+      "sh",
+      "bash",
+      "python3",
+      "node",
+      "deno",
+      "bun",
+      "pwsh"
+    ],
+    "networkAtInstall": "explicit-allowlist"
+  },
+  "notes": [
+    "Contrat Option B regroupant les interpréteurs autorisés pour les scripts stdio JSON.",
+    "Si un binaire n'est pas installé dans le cache, le moteur se replie sur le binaire présent dans le PATH de l'hôte (sh, bash...)."
+  ]
+}

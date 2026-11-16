@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "plugin.scripts",
+  "type": "plugin",
+  "version": "1.0.0",
+  "name": "Scripts",
+  "description": "Fournit le bloc unique Script permettant d'appeler un script de la librairie, d'en créer un ou de coller du code direct avec routage simple ou conditionnel.",
+  "author": "flux-de-fichiers",
+  "license": "GPL-3.0-or-later",
+  "category": "data",
+  "capability": "script",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "blocks/run.json",
+      "role": "block",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/run.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    }
+  ],
+  "compatibility": {
+    "appMin": "1.0.0",
+    "platforms": ["linux/amd64", "linux/arm64"]
+  },
+  "dependencies": [
+    {
+      "id": "app.script-runners",
+      "versionRange": "^1.0.0",
+      "kind": "app",
+      "optional": true
+    }
+  ]
+}
