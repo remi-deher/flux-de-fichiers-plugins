@@ -57,17 +57,18 @@ Aucun code applicatif n'est ajouté par ce contrat (#41).
 
 ## Construction des artefacts
 
-`.github/workflows/build-tools.yml` (déclenché à la main ou par un push de ce fichier sur `dev`) :
+`.github/workflows/build-tools.yml` (déclenché à la main par outil ou par un push
+d'une recette `apps/*/build.json` sur `dev`, voir aussi [releases-immuables.md](releases-immuables.md)) :
 
-1. installe `mkvtoolnix` et `mediainfo` dans `debian:bookworm` (la base de l'image de Flux de Fichiers),
-   sur un runner x86_64 et sur un runner aarch64 ;
-2. copie les binaires (`mkvmerge`, `mkvpropedit`, `mediainfo`) et leurs bibliothèques hors glibc,
-   fixe le `RUNPATH` à `$ORIGIN/lib` (exécutables) et `$ORIGIN` (bibliothèques), et joint un
-   `SOURCES.txt` (paquets Debian et liens vers les sources, licences GPL et BSD) ;
+1. lit chaque recette `apps/<outil>/build.json`, installe les paquets dans `debian:bookworm`
+   (ou compile GPAC pour `mp4box`) sur `x86_64` et `aarch64` ;
+2. copie les binaires et leurs bibliothèques hors glibc, fixe le `RUNPATH` à `$ORIGIN/lib`
+   (exécutables) et `$ORIGIN` (bibliothèques), et joint un `SOURCES.txt` ;
 3. teste les archives sans variable d'environnement dans `debian:bookworm-slim` ;
-4. publie `<outil>-linux-<arch>.tar.gz` et ses empreintes dans la Release `tools-<version>` ;
-5. écrit `archiveUrl`, `archiveSha256`, `binarySha256` et `releaseStatus: released` dans
-   `apps/*/distribution.v1.json` sur `dev`.
+4. publie `<outil>-linux-<arch>.tar.gz` et `SHA256SUMS.txt` dans une Release **immuable**
+   `<releaseTagPrefix>-<toolVersion>` (brouillon puis publication, sans `--clobber`) ;
+5. met à jour `apps/*/distribution.v1.json` (y compris `binaries` et `upstreamVersion`),
+   régénère `index.json` à la racine et ouvre une Pull Request vers `dev`.
 
 La glibc n'est jamais embarquée : le nœud doit être basé sur Debian bookworm ou plus récent.
 

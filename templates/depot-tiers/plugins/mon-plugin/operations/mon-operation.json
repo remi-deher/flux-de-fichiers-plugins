@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "org.exemple.operation.mon-operation",
+  "version": "1.0.0",
+  "name": "Remux copie rapide (exemple tiers)",
+  "providerId": "org.exemple.plugin.mon-plugin",
+  "providerKind": "plugin",
+  "capability": "remux",
+  "status": "example",
+  "runtime": {
+    "kind": "binary",
+    "tool": {
+      "id": "app.ffmpeg",
+      "version": "1.0.0"
+    },
+    "executable": "ffmpeg",
+    "executionMode": "staged-output",
+    "outputExtension": "mkv",
+    "outputContentType": "video/x-matroska",
+    "outputFilename": "output.mkv",
+    "postValidate": "valid-probe",
+    "errorCode": "operation_failed",
+    "successMessage": "copie MKV terminée",
+    "defaults": {
+      "strip_metadata": false
+    },
+    "argv": [
+      "-nostdin",
+      "-y",
+      "-hide_banner",
+      "-i",
+      {
+        "param": "source",
+        "as": "filePath"
+      },
+      "-map",
+      "0",
+      "-c",
+      "copy",
+      {
+        "when": {
+          "param": "strip_metadata",
+          "truthy": true
+        },
+        "then": [
+          "-map_metadata",
+          "-1"
+        ]
+      },
+      {
+        "param": "destination",
+        "as": "filePath"
+      }
+    ],
+    "console": {
+      "progressFormat": "elapsed-time",
+      "progressStream": "stderr",
+      "successExitCodes": [
+        0
+      ],
+      "warningExitCodes": [],
+      "timeoutSeconds": 1800
+    }
+  }
+}

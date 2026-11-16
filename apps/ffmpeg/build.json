@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "slug": "ffmpeg",
+  "toolId": "app.ffmpeg",
+  "toolVersion": "1.0.0",
+  "releaseTagPrefix": "tools-ffmpeg",
+  "source": {
+    "kind": "debian-bookworm",
+    "packages": ["ffmpeg"]
+  },
+  "binaries": ["ffmpeg", "ffprobe"],
+  "probeArgs": ["-version"]
+}

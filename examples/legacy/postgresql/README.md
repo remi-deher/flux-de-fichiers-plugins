@@ -11,7 +11,7 @@ Choix **historique** pour les métadonnées.
 |---------|--------------------|------|
 | Migrations SQL applicatives | dépôt `flux-de-fichiers` / `migrations/` | schéma métier, SQLx |
 | Service Compose `db` | dépôt applicatif `compose.yaml` | runtime local / labo |
-| Modèles partageables | `apps/postgresql/deploy/` (ce dépôt) | documentation et futurs artefacts de déploiement |
+| Modèles partageables | `examples/legacy/postgresql/deploy/` (ce dépôt) | archive documentaire uniquement |
 
 Aucune migration de données n’est effectuée par ce squelette. Aucune alternative
 de base n’est proposée ni installée.

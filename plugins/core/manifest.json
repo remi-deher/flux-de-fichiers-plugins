@@ -7,6 +7,7 @@
   "description": "Blocs fondamentaux de structure et d'intégration réseau pour les flux : point d'entrée, branchement conditionnel, notification Webhook et sortie finale.",
   "author": "flux-de-fichiers",
   "license": "GPL-2.0-or-later",
+  "capability": "other",
   "files": [
     {
       "path": "README.md",
@@ -15,22 +16,22 @@
     },
     {
       "path": "blocks/file-input.json",
-      "role": "config",
+      "role": "block",
       "mediaType": "application/json"
     },
     {
       "path": "blocks/condition.json",
-      "role": "config",
+      "role": "block",
       "mediaType": "application/json"
     },
     {
       "path": "blocks/webhook.json",
-      "role": "config",
+      "role": "block",
       "mediaType": "application/json"
     },
     {
       "path": "blocks/file-output.json",
-      "role": "config",
+      "role": "block",
       "mediaType": "application/json"
     },
     {

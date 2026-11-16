@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://flux-de-fichiers.local/schema/manifest.v1.1.schema.json",
   "title": "Manifestes v1 et extension v1.1",
-  "description": "Lecture ascendante stricte : branche 1.0.0 inchangée, nouveaux champs uniquement avec schemaVersion 1.1.0. Un ancien lecteur doit refuser 1.1.0 proprement.",
+  "description": "Lecture ascendante stricte : branche 1.0.0 inchangée, nouveaux champs uniquement avec schemaVersion 1.1.0.",
   "oneOf": [
     {
       "$ref": "manifest.v1.schema.json"
@@ -41,10 +41,12 @@
           "enum": [
             "plugin",
             "flow",
+            "script",
             "preset",
             "resource.font",
             "resource.image",
             "resource.audio",
+            "resource.subtitle",
             "resource.color",
             "resource.language",
             "resource.template",
@@ -55,7 +57,7 @@
         },
         "version": {
           "type": "string",
-          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+([+-][0-9A-Za-z.-]+)?$",
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$",
           "description": "Version semver de l'élément."
         },
         "name": {
@@ -78,6 +80,30 @@
           "minLength": 1,
           "maxLength": 120,
           "description": "Identifiant SPDX ou mention explicite (ex. UNLICENSED pour un exemple local)."
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "media",
+            "data",
+            "io",
+            "other"
+          ]
+        },
+        "capability": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "description": "Capacité principale exposée par la fiche dans l'index (ex. integration, video, remux)."
+        },
+        "tags": {
+          "type": "array",
+          "maxItems": 16,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          }
         },
         "icon": {
           "type": "string",
@@ -103,7 +129,8 @@
             ],
             "properties": {
               "path": {
-                "type": "string"
+                "type": "string",
+                "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*\\\\)[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)*$"
               },
               "role": {
                 "type": "string",
@@ -159,6 +186,7 @@
             "properties": {
               "id": {
                 "type": "string",
+                "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
                 "description": "Identifiant catalogue d'une dépendance."
               },
               "versionRange": {
@@ -168,14 +196,14 @@
               "kind": {
                 "type": "string",
                 "enum": [
+                  "app",
                   "plugin",
                   "resource",
                   "runtime",
                   "pack",
                   "flow",
                   "preset",
-                  "block",
-                  "pack"
+                  "block"
                 ]
               },
               "optional": {
@@ -210,13 +238,9 @@
           "properties": {
             "capability": {
               "type": "string",
-              "enum": [
-                "remux",
-                "database",
-                "transcode",
-                "analyze",
-                "other"
-              ]
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Capacité principale de l'application (ex. remux, remux-mp4, probe, analyze, transcode, other)."
             },
             "interface": {
               "type": "string",
@@ -227,7 +251,9 @@
               "enum": [
                 "docker-image",
                 "host-binary",
+                "binary",
                 "compose-service",
+                "api",
                 "none"
               ],
               "description": "Mode d'invocation prévu ; none = fiche descriptive seule."
@@ -235,6 +261,63 @@
             "currentChoice": {
               "type": "boolean",
               "description": "true si c'est le choix opérationnel actuel de l'application."
+            }
+          }
+        },
+        "settingsSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "fields"
+          ],
+          "properties": {
+            "fields": {
+              "type": "array",
+              "maxItems": 64,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "name",
+                  "label",
+                  "type"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-zA-Z0-9_]*$",
+                    "maxLength": 64
+                  },
+                  "label": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "url",
+                      "secret",
+                      "string"
+                    ]
+                  },
+                  "default": {
+                    "type": [
+                      "string",
+                      "number",
+                      "boolean"
+                    ]
+                  },
+                  "required": {
+                    "type": "boolean",
+                    "default": false
+                  },
+                  "description": {
+                    "type": "string",
+                    "maxLength": 1000
+                  }
+                }
+              }
             }
           }
         },
@@ -306,6 +389,80 @@
               "type": "boolean"
             }
           }
+        },
+        "fileMask": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "Masque de fichiers pour un manifeste de type flow."
+        },
+        "isDefault": {
+          "type": "boolean",
+          "description": "Indique si le flow est proposé par défaut."
+        },
+        "definition": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "nodes",
+            "connections"
+          ],
+          "properties": {
+            "nodes": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "type",
+                  "name"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "type": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "config": {
+                    "type": "object"
+                  }
+                }
+              }
+            },
+            "connections": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "from",
+                  "to"
+                ],
+                "properties": {
+                  "from": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "to": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "port": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "allOf": [
@@ -315,11 +472,31 @@
               "type": {
                 "const": "pack"
               }
-            }
+            },
+            "required": [
+              "type"
+            ]
           },
           "then": {
             "required": [
               "pack"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "flow"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "required": [
+              "definition"
             ]
           }
         }

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "org.exemple.block.mon-bloc",
+  "version": "1.0.0",
+  "name": "Mon Bloc Exemple",
+  "description": "Bloc low-code tiers qui réutilise FFmpeg du catalogue officiel pour copier les flux vers MKV.",
+  "category": "media",
+  "operationId": "org.exemple.operation.mon-operation",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier source",
+        "dataType": "file",
+        "mediaType": "video/*"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "destination",
+        "label": "Fichier MKV",
+        "dataType": "file",
+        "mediaType": "video/x-matroska"
+      }
+    ]
+  },
+  "ui": {
+    "category": "Plugins tiers",
+    "domain": "video",
+    "icon": "fas fa-puzzle-piece",
+    "color": "#0EA5E9",
+    "suggestedNext": [
+      "block.core.file-output"
+    ],
+    "fields": [
+      {
+        "name": "strip_metadata",
+        "label": "Supprimer les métadonnées globales",
+        "type": "boolean",
+        "default": false,
+        "description": "Passe -map_metadata -1 à FFmpeg."
+      }
+    ]
+  }
+}

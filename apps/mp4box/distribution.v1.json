@@ -47,6 +47,6 @@
   "notes": [
     "Outil de manipulation et d'optimisation MP4 de référence (GPAC).",
     "Prise en charge native du faststart/web-optimized (déplacement de l'atome moov en tête).",
-    "Empreintes et URL contract-only."
+    "Archives construites par .github/workflows/build-tools.yml depuis GPAC v2.4.0 dans Debian bookworm."
   ]
 }

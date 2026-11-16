@@ -4,7 +4,7 @@
 
 | Artefact | Emplacement | Statut |
 |----------|-------------|--------|
-| Modèles Postgres (`pg_hba`, init TLS) | `apps/postgresql/deploy/*.example` | Illustratif |
+| Modèles Postgres historiques (`pg_hba`, init TLS) | `examples/legacy/postgresql/deploy/*.example` | Archive illustrative (SQLite local retenu côté socle) |
 | Notes racine | `deploy/README.md` | Point d’entrée |
 | Compose applicatif | `flux-de-fichiers/compose.yaml` | Source de vérité (inchangée) |
 | Secrets | hors git (`var/secrets/`, fichiers orchestrateur) | Préservés |

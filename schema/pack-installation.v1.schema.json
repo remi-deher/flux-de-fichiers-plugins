@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://flux-de-fichiers.local/schema/pack-installation.v1.schema.json",
   "title": "Installation de pack v1",
-  "description": "Recette d’installation atomique d’un paquet déclaratif, sans scripts ni déploiement. Référence un flow et ses composants exacts ; installeur et résolution de distribution non implémentés.",
+  "description": "Recette d'installation atomique d'un paquet déclaratif, sans scripts ni déploiement.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -57,8 +57,17 @@
             "enum": [
               "app",
               "plugin",
+              "flow",
+              "script",
               "preset",
-              "resource"
+              "resource",
+              "resource.font",
+              "resource.image",
+              "resource.audio",
+              "resource.subtitle",
+              "resource.color",
+              "resource.language",
+              "resource.template"
             ]
           }
         }
@@ -77,7 +86,10 @@
       ],
       "properties": {
         "kind": {
-          "const": "flow"
+          "enum": [
+            "flow",
+            "plugin"
+          ]
         },
         "id": {
           "type": "string",
@@ -106,7 +118,10 @@
           "type": "boolean"
         },
         "network": {
-          "const": "none"
+          "enum": [
+            "none",
+            "explicit-allowlist"
+          ]
         }
       }
     },
@@ -117,7 +132,7 @@
       "const": "preserve"
     },
     "runtimeImplemented": {
-      "const": false
+      "type": "boolean"
     }
   }
 }
