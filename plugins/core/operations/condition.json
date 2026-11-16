@@ -11,9 +11,9 @@
     "kind": "primitive",
     "primitive": "condition",
     "defaults": {
-      "property": "video.codec",
+      "property": "any",
       "operator": "eq",
-      "target": "hevc"
+      "target": ""
     }
   }
 }

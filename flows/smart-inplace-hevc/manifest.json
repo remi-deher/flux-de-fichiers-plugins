@@ -10,7 +10,7 @@
   "definition": {
     "nodes": [
       { "id": "node-1", "type": "file-input", "name": "Fichier source" },
-      { "id": "node-2", "type": "condition", "name": "Condition : Codec == HEVC ?", "config": { "property": "video.codec", "operator": "eq", "target": "hevc" } },
+      { "id": "node-2", "type": "condition", "name": "Condition : Codec == HEVC ?", "config": { "property": "tracks[type=video].codec", "operator": "eq", "target": "hevc" } },
       { "id": "node-3", "type": "mkvpropedit", "name": "Édition En-têtes (In-Place)", "config": { "default_audio_lang": "fre", "force_subtitles": true } },
       { "id": "node-4", "type": "video-encode", "name": "Transcodage Vidéo HEVC", "config": { "codec": "hevc", "encoder": "qsv", "quality": 6 } },
       { "id": "node-5", "type": "file-output", "name": "Destination & Notification", "config": { "mode": "replace", "notify_arr": true } }

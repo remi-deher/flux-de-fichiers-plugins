@@ -4,7 +4,7 @@
   "aliases": ["condition"],
   "version": "1.0.0",
   "name": "Condition",
-  "description": "Aiguille vers « Vrai » ou « Faux » selon les métadonnées du média.",
+  "description": "Aiguille vers « Vrai » ou « Faux » selon les métadonnées de sonde.",
   "category": "data",
   "operationId": "operation.core.condition",
   "operationVersion": "1.0.0",
@@ -50,16 +50,12 @@
     "fields": [
       {
         "name": "property",
-        "label": "Propriété",
-        "type": "select",
-        "default": "video.codec",
+        "label": "Propriété (chemin JSON)",
+        "type": "string",
+        "default": "any",
         "required": true,
-        "description": "Une piste correspondante suffit.",
-        "options": [
-          { "label": "Codec vidéo", "value": "video.codec" },
-          { "label": "Langue audio", "value": "audio.language" },
-          { "label": "N'importe quelle métadonnée", "value": "any" }
-        ]
+        "description": "Chemin dans les métadonnées de sonde (ex. format, tracks[type=video].codec) ou any.",
+        "placeholder": "any"
       },
       {
         "name": "operator",
@@ -67,10 +63,17 @@
         "type": "select",
         "default": "eq",
         "required": true,
-        "description": "La comparaison ignore la casse.",
+        "description": "Comparaison textuelle insensible à la casse ou numérique.",
         "options": [
           { "label": "Contient la valeur", "value": "eq" },
-          { "label": "Ne contient pas la valeur", "value": "neq" }
+          { "label": "Ne contient pas la valeur", "value": "neq" },
+          { "label": "Correspond exactement", "value": "exact" },
+          { "label": "Est défini (non vide)", "value": "exists" },
+          { "label": "Est absent (ou vide)", "value": "not_exists" },
+          { "label": "Supérieur à (>)", "value": "gt" },
+          { "label": "Supérieur ou égal (>=)", "value": "gte" },
+          { "label": "Inférieur à (<)", "value": "lt" },
+          { "label": "Inférieur ou égal (<=)", "value": "lte" }
         ]
       },
       {
@@ -78,8 +81,8 @@
         "label": "Valeur",
         "type": "string",
         "default": "",
-        "required": true,
-        "description": "Exemple : hevc, fre."
+        "required": false,
+        "description": "Valeur attendue (inutile pour « Est défini » / « Est absent »)."
       }
     ]
   }

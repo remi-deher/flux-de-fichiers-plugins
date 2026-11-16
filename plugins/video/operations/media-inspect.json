@@ -13,8 +13,14 @@
     "executable": "mediainfo",
     "envOverride": "MEDIAINFO",
     "executionMode": "probe-enrich",
-    "probeFormat": "mediainfo-json",
-    "errorCode": "remux_failed",
+    "probeFormat": "json",
+    "probeMatch": {
+      "extensions": ["mkv", "mka", "mks", "mk3d", "webm", "mp4", "m4v", "m4a", "mov", "avi", "ts", "m2ts", "mts", "flv", "mpg", "mpeg", "wmv", "ogv", "ogg"]
+    },
+    "probeRequirePaths": ["media"],
+    "probeEnrichmentKey": "mediainfo",
+    "durationRules": [{ "path": "media.track[*].Duration", "scale": 1.0 }],
+    "errorCode": "operation_failed",
     "argv": [
       "--Output=JSON",
       { "param": "source", "as": "filePath" }
