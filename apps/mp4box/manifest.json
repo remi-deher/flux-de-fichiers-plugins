@@ -3,7 +3,7 @@
   "id": "app.mp4box",
   "type": "app",
   "version": "1.0.0",
-  "name": "MP4Box (GPAC)",
+  "name": "MP4Box",
   "description": "Outil spécialisé de remuxage, optimisation streaming (moov au début/faststart), chapitrage et manipulation de conteneurs MP4/ISO sans réencodage (pendant MKVToolNix pour le format MP4).",
   "author": "flux-de-fichiers",
   "license": "LGPL-2.1-or-later",
@@ -20,7 +20,10 @@
     }
   ],
   "compatibility": {
-    "platforms": ["linux/amd64", "linux/arm64"]
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
   },
   "dependencies": [],
   "tool": {

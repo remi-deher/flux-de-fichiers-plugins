@@ -3,7 +3,7 @@
   "id": "pack.media",
   "type": "pack",
   "version": "1.0.0",
-  "name": "Studio Multimédia (Flux de Fichiers)",
+  "name": "Mediarr",
   "description": "Application de traitement multimédia unifiée : remuxage MKVToolNix, encodage vidéo matériel et traitement audio FFmpeg (modèle modulaire inspiré de FileFlows).",
   "author": "flux-de-fichiers",
   "license": "GPL-2.0-or-later",

@@ -3,7 +3,7 @@
   "id": "plugin.audio",
   "type": "plugin",
   "version": "1.0.0",
-  "name": "Plugin Traitement Audio",
+  "name": "Audarr",
   "description": "Traitement, conversion de pistes audio (AAC, AC3, E-AC3, FLAC, MP3, Opus), extraction et normalisation sonore intelligente (EBU R128) via FFmpeg.",
   "author": "flux-de-fichiers",
   "license": "GPL-2.0-or-later",
@@ -35,6 +35,9 @@
   ],
   "compatibility": {
     "appMin": "1.0.0",
-    "platforms": ["linux/amd64", "linux/arm64"]
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
   }
 }

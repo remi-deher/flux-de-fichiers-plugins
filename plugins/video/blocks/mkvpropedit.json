@@ -1,9 +1,11 @@
 {
   "schemaVersion": "1.1.0",
   "id": "block.metadata.mkvpropedit",
-  "aliases": ["mkvpropedit"],
+  "aliases": [
+    "mkvpropedit"
+  ],
   "version": "1.0.0",
-  "name": "Édition des en-têtes",
+  "name": "MKVPropEdit",
   "description": "Modifie les en-têtes Matroska sur place, sans copie du fichier.",
   "category": "media",
   "operationId": "operation.mkvtoolnix.mkvpropedit",

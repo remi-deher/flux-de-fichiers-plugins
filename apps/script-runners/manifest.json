@@ -3,7 +3,7 @@
   "id": "app.script-runners",
   "type": "app",
   "version": "1.0.0",
-  "name": "Exécuteurs de scripts",
+  "name": "Script Runners",
   "description": "Application regroupant les binaires d'exécution de scripts (sh, bash, python3, node, deno, bun, pwsh) pour les workers.",
   "author": "flux-de-fichiers",
   "license": "MIT",
@@ -20,7 +20,10 @@
     }
   ],
   "compatibility": {
-    "platforms": ["linux/amd64", "linux/arm64"]
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
   },
   "dependencies": [],
   "tool": {

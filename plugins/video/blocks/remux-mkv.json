@@ -1,9 +1,11 @@
 {
   "schemaVersion": "1.1.0",
   "id": "block.video.remux-mkv",
-  "aliases": ["remux-mkv"],
+  "aliases": [
+    "remux-mkv"
+  ],
   "version": "1.0.0",
-  "name": "Remuxage MKV (MKVToolNix)",
+  "name": "Remux MKV",
   "description": "Remuxe sans réencodage un conteneur multimédia vers le format Matroska (.mkv) avec intégrité garantie.",
   "category": "media",
   "operationId": "operation.mkvtoolnix.mkvmerge.remux",
@@ -50,7 +52,10 @@
         "type": "select",
         "default": "UTF-8",
         "options": [
-          { "label": "UTF-8", "value": "UTF-8" }
+          {
+            "label": "UTF-8",
+            "value": "UTF-8"
+          }
         ]
       },
       {

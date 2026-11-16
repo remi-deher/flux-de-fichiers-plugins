@@ -3,7 +3,7 @@
   "id": "plugin.video",
   "type": "plugin",
   "version": "1.0.0",
-  "name": "Plugin Traitement Vidéo",
+  "name": "Vidarr",
   "description": "Encodage vidéo paramétrable (H.264, HEVC, AV1, VP9) avec préréglages faciles, sélection d'encodeur matériel (Intel QSV, NVIDIA, VAAPI, CPU) et remuxage MKVToolNix sans perte.",
   "author": "flux-de-fichiers",
   "license": "GPL-2.0-or-later",
@@ -98,6 +98,9 @@
   ],
   "compatibility": {
     "appMin": "1.0.0",
-    "platforms": ["linux/amd64", "linux/arm64"]
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
   }
 }

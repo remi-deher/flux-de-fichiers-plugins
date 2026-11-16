@@ -3,7 +3,7 @@
   "id": "plugin.sonarr",
   "type": "plugin",
   "version": "1.0.0",
-  "name": "Sonarr Integration",
+  "name": "Sonarr",
   "description": "Intégration automatisée avec Sonarr (*arr) pour la notification d'achèvement de traitement, l'actualisation des métadonnées de série et le renommage d'épisode.",
   "author": "flux-de-fichiers",
   "license": "GPL-2.0-or-later",
@@ -71,6 +71,9 @@
     ]
   },
   "compatibility": {
-    "platforms": ["linux/amd64", "linux/arm64"]
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
   }
 }

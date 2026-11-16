@@ -1,9 +1,11 @@
 {
   "schemaVersion": "1.1.0",
   "id": "block.sonarr.rescan",
-  "aliases": ["sonarr-rescan"],
+  "aliases": [
+    "sonarr-rescan"
+  ],
   "version": "1.0.0",
-  "name": "Sonarr : réanalyser",
+  "name": "Sonarr : Rescan",
   "description": "Demande à Sonarr de réanalyser la série du fichier.",
   "category": "io",
   "operationId": "operation.sonarr.rescan",

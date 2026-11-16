@@ -3,7 +3,7 @@
   "id": "plugin.radarr",
   "type": "plugin",
   "version": "1.0.0",
-  "name": "Radarr Integration",
+  "name": "Radarr",
   "description": "Intégration automatisée avec Radarr (*arr) pour l'actualisation de la collection de films, la mise à jour des codecs détectés et le renommage après encodage.",
   "author": "flux-de-fichiers",
   "license": "GPL-2.0-or-later",
@@ -71,6 +71,9 @@
     ]
   },
   "compatibility": {
-    "platforms": ["linux/amd64", "linux/arm64"]
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
   }
 }
