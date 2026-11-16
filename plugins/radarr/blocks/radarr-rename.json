@@ -1,9 +1,11 @@
 {
   "schemaVersion": "1.1.0",
   "id": "block.radarr.rename",
-  "aliases": ["radarr-rename"],
+  "aliases": [
+    "radarr-rename"
+  ],
   "version": "1.0.0",
-  "name": "Radarr : renommer",
+  "name": "Radarr : Rename",
   "description": "Demande à Radarr de renommer les fichiers du film.",
   "category": "io",
   "operationId": "operation.radarr.rename",

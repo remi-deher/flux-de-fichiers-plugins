@@ -1,9 +1,11 @@
 {
   "schemaVersion": "1.1.0",
   "id": "block.radarr.rescan",
-  "aliases": ["radarr-rescan"],
+  "aliases": [
+    "radarr-rescan"
+  ],
   "version": "1.0.0",
-  "name": "Radarr : réanalyser",
+  "name": "Radarr : Rescan",
   "description": "Demande à Radarr de réanalyser le film du fichier.",
   "category": "io",
   "operationId": "operation.radarr.rescan",

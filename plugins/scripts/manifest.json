@@ -3,7 +3,7 @@
   "id": "plugin.scripts",
   "type": "plugin",
   "version": "1.0.0",
-  "name": "Scripts",
+  "name": "Scriptarr",
   "description": "Fournit le bloc unique Script permettant d'appeler un script de la librairie, d'en créer un ou de coller du code direct avec routage simple ou conditionnel.",
   "author": "flux-de-fichiers",
   "license": "GPL-3.0-or-later",
@@ -28,7 +28,10 @@
   ],
   "compatibility": {
     "appMin": "1.0.0",
-    "platforms": ["linux/amd64", "linux/arm64"]
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
   },
   "dependencies": [
     {

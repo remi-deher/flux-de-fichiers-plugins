@@ -3,7 +3,7 @@
   "id": "app.mkvtoolnix",
   "type": "app",
   "version": "1.0.0",
-  "name": "MKVToolNix (mkvmerge)",
+  "name": "MKVToolNix",
   "description": "Outil de remuxage sans réencodage validé. Distribution Option B (binaire autonome hors conteneur applicatif). Matroska uniquement.",
   "author": "flux-de-fichiers",
   "license": "GPL-2.0-or-later",
@@ -20,7 +20,10 @@
     }
   ],
   "compatibility": {
-    "platforms": ["linux/amd64", "linux/arm64"]
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
   },
   "dependencies": [],
   "tool": {

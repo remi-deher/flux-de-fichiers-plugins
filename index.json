@@ -32,122 +32,122 @@
       "id": "app.mkvtoolnix",
       "type": "app",
       "version": "1.0.0",
-      "name": "MKVToolNix (mkvmerge)",
+      "name": "MKVToolNix",
       "manifestPath": "apps/mkvtoolnix/manifest.json",
       "capability": "remux",
       "currentChoice": true,
       "distribution": "autonomous-binary",
-      "sha256": "365c2bd3fc35a5e1c2a19dc013395c021b4d63d950b06f2ce209cb9cb756765b"
+      "sha256": "201908abc89fe29e1a8d5434f2394e4fed572964cceb6df189b573627b9024a0"
     },
     {
       "id": "app.mp4box",
       "type": "app",
       "version": "1.0.0",
-      "name": "MP4Box (GPAC)",
+      "name": "MP4Box",
       "manifestPath": "apps/mp4box/manifest.json",
       "capability": "remux-mp4",
       "currentChoice": true,
       "distribution": "autonomous-binary",
-      "sha256": "861923f218b44dc1aad053eb594b9bb8ec98da75ad052a245c1cc7b083096013"
+      "sha256": "a53fb69048d3150fac6d9f6f152ec888222427d924776e9c228fb17216db84b1"
     },
     {
       "id": "app.mediainfo",
       "type": "app",
       "version": "1.0.0",
-      "name": "MediaInfo CLI",
+      "name": "MediaInfo",
       "manifestPath": "apps/mediainfo/manifest.json",
       "capability": "probe",
       "currentChoice": true,
       "distribution": "autonomous-binary",
-      "sha256": "539f8f49ad139dabaa52c5fccd7ab6edcf8bbbe27f0c5207a0c62ad703d03c72"
+      "sha256": "c93a265ff874af1527c1a545832ce869ad0ccdfa49c52285cca57d80bff37d83"
     },
     {
       "id": "app.ffmpeg",
       "type": "app",
       "version": "1.0.0",
-      "name": "FFmpeg (distribué)",
+      "name": "FFmpeg",
       "manifestPath": "apps/ffmpeg/manifest.json",
       "capability": "analyze",
       "currentChoice": false,
       "distribution": "autonomous-binary",
-      "sha256": "bde2eda551541b12b25d4aa2fe4af09cf1aa3b3fc6ee56b2d307d7ca77b1d407"
+      "sha256": "4335577c1ae5d6952a298bed72678e7559c2afe441de967d3b8c57d8d219bc73"
     },
     {
       "id": "app.internal.telemetry",
       "type": "app",
       "version": "0.1.0",
-      "name": "Sonde interne de télémétrie",
+      "name": "Telemetry",
       "manifestPath": "apps/internal-telemetry/manifest.json",
       "capability": "other",
       "currentChoice": true,
       "distribution": "autonomous-binary",
-      "sha256": "e92e661e831b5cd921b40c20784e22842f6a6d7fcba8b332f0dc5730d6966306"
+      "sha256": "d4dd3c3eeee5359daa7d44872451fae54938c1b011a151c98cdddeb1b59bfed2"
     },
     {
       "id": "app.script-runners",
       "type": "app",
       "version": "1.0.0",
-      "name": "Exécuteurs de scripts",
+      "name": "Script Runners",
       "manifestPath": "apps/script-runners/manifest.json",
       "capability": "script",
       "currentChoice": false,
       "distribution": "autonomous-binary",
-      "sha256": "e83ae48af01c792bed08339261a9bdb0ac1743b182398110b126ca232f118cea"
+      "sha256": "1eb95c3a7e09039709f0949786ce879ebf4b012ade1077e39d15882129a78a78"
     },
     {
       "id": "plugin.core",
       "type": "plugin",
       "version": "1.0.0",
-      "name": "Plugin Noyau & Contrôle de Flux",
+      "name": "Corearr",
       "manifestPath": "plugins/core/manifest.json",
       "capability": "other",
-      "sha256": "04fc60463e417f1d6037b82c413f17c157dcd8c595a355b2904378045c0017fc"
+      "sha256": "c12e038204093bdcc70c6cd3ca1682f7fe99809e5f9aab78f9b833daca6a1293"
     },
     {
       "id": "plugin.video",
       "type": "plugin",
       "version": "1.0.0",
-      "name": "Plugin Traitement Vidéo",
+      "name": "Vidarr",
       "manifestPath": "plugins/video/manifest.json",
       "capability": "video",
-      "sha256": "4a4dc9e2efa5b5a4406bbd21cf7910814de9719d27f231ccd205b6c86ffe4a4b"
+      "sha256": "ff886d4791d603284f3e4429560aeccb5d24f70c043873a0e9e8a6bc18b23697"
     },
     {
       "id": "plugin.audio",
       "type": "plugin",
       "version": "1.0.0",
-      "name": "Plugin Traitement Audio",
+      "name": "Audarr",
       "manifestPath": "plugins/audio/manifest.json",
       "capability": "audio",
-      "sha256": "694a63ddb14c3f2785d883da64d906d37469e8ba47cfc452a3f2b584ded47516"
+      "sha256": "7e20341bba44b3fb1b384a2632fc05344cd09bec7a6ed7b6010fd8101182dab4"
     },
     {
       "id": "plugin.sonarr",
       "type": "plugin",
       "version": "1.0.0",
-      "name": "Sonarr Integration",
+      "name": "Sonarr",
       "manifestPath": "plugins/sonarr/manifest.json",
       "capability": "integration",
-      "sha256": "8e7fc0ac6653d41e5d09da1d3f2814f0a6ce3965605d3d5b8a5de1da51c9561a"
+      "sha256": "2637c09ae50ede997ee6f2e1c6263321cb9f2f8f25578d2a2c847f061513f15b"
     },
     {
       "id": "plugin.radarr",
       "type": "plugin",
       "version": "1.0.0",
-      "name": "Radarr Integration",
+      "name": "Radarr",
       "manifestPath": "plugins/radarr/manifest.json",
       "capability": "integration",
-      "sha256": "ba4bc8f840708fb147d90de628b127be366288656879d30ef8bf621fafae37d8"
+      "sha256": "22e9493d67c23742f7e450f9444de3e9e93aea8d33ac06ef8257e17c34f6452c"
     },
     {
       "id": "plugin.scripts",
       "type": "plugin",
       "version": "1.0.0",
-      "name": "Scripts",
+      "name": "Scriptarr",
       "manifestPath": "plugins/scripts/manifest.json",
       "capability": "script",
       "category": "data",
-      "sha256": "4328b15d572490e5a72f525dde65613faca1649efa84f7020f9b0f1a088ecd33"
+      "sha256": "3bad2724044799ceec74da1cbd552f851f3ff00dad9796c885e7c1af7223ea08"
     },
     {
       "id": "block.core.file-input",
@@ -172,54 +172,54 @@
       "type": "block",
       "owner": "plugin.video",
       "version": "1.0.0",
-      "name": "Inspection Média Universelle (MediaInfo)",
+      "name": "MediaInfo",
       "manifestPath": "plugins/video/blocks/media-inspect.json",
-      "sha256": "36fb192272c7075166fde4702a0494a082986dad4fc3575bf42e6e2d4d68597f"
+      "sha256": "ba789e62600a40d49b3b67e7b527f9b8fa4d6c4c50ab12116c467f9d16aaaf5b"
     },
     {
       "id": "block.metadata.mkvpropedit",
       "type": "block",
       "owner": "plugin.video",
       "version": "1.0.0",
-      "name": "Édition des en-têtes",
+      "name": "MKVPropEdit",
       "manifestPath": "plugins/video/blocks/mkvpropedit.json",
-      "sha256": "d46d4d5d35a8df37d2f99535bd7026563b832aad7aeecac8d49914fe6eced096"
+      "sha256": "463efecf0451e49fc3ac3fdf7b7dcd66f48dd459f740b7c32ea6b5e63a79e9c7"
     },
     {
       "id": "block.video.remux-mkv",
       "type": "block",
       "owner": "plugin.video",
       "version": "1.0.0",
-      "name": "Remuxage MKV (MKVToolNix)",
+      "name": "Remux MKV",
       "manifestPath": "plugins/video/blocks/remux-mkv.json",
-      "sha256": "f1362b15b41d3c92b555a3367c9d9dbf4c250abda3a70b0a848127af0bec760a"
+      "sha256": "f1a010004e6e2276d332f47b5becfbc516c1d695a228bc7b1534c59147f2427d"
     },
     {
       "id": "block.video.remux-mp4",
       "type": "block",
       "owner": "plugin.video",
       "version": "1.0.0",
-      "name": "Remuxage & Optimisation MP4 (MP4Box)",
+      "name": "Remux MP4",
       "manifestPath": "plugins/video/blocks/remux-mp4.json",
-      "sha256": "c4f78f23211a3d72bcbb202efea757be4bba8d239ce5dc06f5fb5f60fcbdf501"
+      "sha256": "e6aa198ec6292d5dec8a7b64ebd2a64168ca980d34cc6cb9f58724333c8d5ae1"
     },
     {
       "id": "block.video.encode",
       "type": "block",
       "owner": "plugin.video",
       "version": "1.0.0",
-      "name": "Encodage Vidéo (FFMPEG Builder)",
+      "name": "Encodage Vidéo",
       "manifestPath": "plugins/video/blocks/video-encode.json",
-      "sha256": "ac3a0f3181033f44220469683bbcf4fec22a9c754851e7518e61314ddc9e9fa4"
+      "sha256": "f302c54e5016528ea7cffaf1c21478a0e24ac86923265b6f2337c7c7f79954eb"
     },
     {
       "id": "block.audio.encode",
       "type": "block",
       "owner": "plugin.audio",
       "version": "1.0.0",
-      "name": "Encodage & Conversion Audio",
+      "name": "Encodage Audio",
       "manifestPath": "plugins/audio/blocks/audio-encode.json",
-      "sha256": "c52d9dab3a0026af11b30c4ac70e1e2d5a9166f330435dcef19d683f6fcac7ed"
+      "sha256": "d6bf3ca5f60d12b06130795be818ee1db1d0d0e112c3d144d98b977085d693d6"
     },
     {
       "id": "block.core.webhook",
@@ -235,45 +235,45 @@
       "type": "block",
       "owner": "plugin.sonarr",
       "version": "1.0.0",
-      "name": "Sonarr : réanalyser",
+      "name": "Sonarr : Rescan",
       "manifestPath": "plugins/sonarr/blocks/sonarr-rescan.json",
-      "sha256": "2d57b7bd519dbd44736a78e7caa2e3a66879602f28a418ead37fbca409303a67"
+      "sha256": "b6627deb25197aba81c01e8a390d59e1722984b833ba13f753bc0b7e7052ca55"
     },
     {
       "id": "block.sonarr.rename",
       "type": "block",
       "owner": "plugin.sonarr",
       "version": "1.0.0",
-      "name": "Sonarr : renommer",
+      "name": "Sonarr : Rename",
       "manifestPath": "plugins/sonarr/blocks/sonarr-rename.json",
-      "sha256": "4464148c39da7620f72c23aafc3905dd0f223a45cee7644b9bd4dbdbf61fc49b"
+      "sha256": "3a7831ce3ae93bfd8e45918e913701c5c22ac524765b5d0a395fe7c401ce7471"
     },
     {
       "id": "block.radarr.rescan",
       "type": "block",
       "owner": "plugin.radarr",
       "version": "1.0.0",
-      "name": "Radarr : réanalyser",
+      "name": "Radarr : Rescan",
       "manifestPath": "plugins/radarr/blocks/radarr-rescan.json",
-      "sha256": "a01de94bf7992e3e0f3e94730e6ec582e72dfa28354e47ced4d1ff5f95ddebdb"
+      "sha256": "8d454a3bbe09842a06ed2b32dc83e952f90deaa767efbf71244e28b41d199949"
     },
     {
       "id": "block.radarr.rename",
       "type": "block",
       "owner": "plugin.radarr",
       "version": "1.0.0",
-      "name": "Radarr : renommer",
+      "name": "Radarr : Rename",
       "manifestPath": "plugins/radarr/blocks/radarr-rename.json",
-      "sha256": "5f6d4ae85a427ef76369c17b7762fbdd878f0825630a69e2011caef7557e2006"
+      "sha256": "a683ffb7c7996f65e327e9831ba2f9142951f3ec9340b8cafdaad58e41d671f0"
     },
     {
       "id": "block.core.file-output",
       "type": "block",
       "owner": "plugin.core",
       "version": "1.0.0",
-      "name": "Fin du flux",
+      "name": "Sortie fichier",
       "manifestPath": "plugins/core/blocks/file-output.json",
-      "sha256": "02f89b5f50f338c8857b06d39986f0331689dcfb8e230dd3eca4021fbececfbb"
+      "sha256": "3534ba420514623b86bea3e8849bdf4b45809b38452fb8fe4f80a440618e45ba"
     },
     {
       "id": "block.scripts.run",
@@ -288,36 +288,36 @@
       "id": "flow.default.mkv",
       "type": "flow",
       "version": "1.0.0",
-      "name": "Remuxage Matroska propre",
+      "name": "Remuxarr MKV",
       "manifestPath": "flows/remux-matroska/manifest.json",
       "capability": "remux",
-      "sha256": "a062c0febb8e328bed5535a0c52dd376a5b61d052dca2bb2e67d81c1d4c1f507"
+      "sha256": "166246a43cb7d4fbdece9b25504998eae1e930062e5d79adc7fcf29ea3f662ba"
     },
     {
       "id": "flow.smart.adr0008",
       "type": "flow",
       "version": "1.0.0",
-      "name": "Aiguillage conditionnel & In-Place (ADR-0008)",
+      "name": "Smartarr HEVC (In-Place)",
       "manifestPath": "flows/smart-inplace-hevc/manifest.json",
       "capability": "in-place",
-      "sha256": "2326ca848a135cefe011473835a4420e38b0218edd9837310bbaeb6f257bc907"
+      "sha256": "d93331958fe2f9f24ce072e93e3e0b5570a8472a9648e51ebc5947227c0e603e"
     },
     {
       "id": "flow.remux.mp4",
       "type": "flow",
       "version": "1.0.0",
-      "name": "Optimisation Web MP4 (FastStart)",
+      "name": "Fastarr MP4",
       "manifestPath": "flows/web-faststart-mp4/manifest.json",
       "capability": "faststart",
-      "sha256": "e80970a9eb8f65814b0c69eebeb2ecc7450431768365463c53ae4abd52d79ac5"
+      "sha256": "48b268a37055d79d9940fd81533f66814d6b335f7395f65509ea0db0fa4b02fe"
     },
     {
       "id": "pack.media",
       "type": "pack",
       "version": "1.0.0",
-      "name": "Studio Multimédia (Flux de Fichiers)",
+      "name": "Mediarr",
       "manifestPath": "packs/media/manifest.json",
-      "sha256": "8339f8835389facbf23f03981ef3c6c7d657ed3ea4e130cb1d3922b842066035"
+      "sha256": "d7e2589efa3ab7f5816b44d2b1a3ee61dbff5183d79b87b18b4002ae5c688b03"
     }
   ]
 }
