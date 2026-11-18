@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.notifications.gotify",
+  "version": "1.0.0",
+  "name": "Notification Gotify",
+  "providerId": "plugin.notifications",
+  "providerKind": "plugin",
+  "capability": "notification",
+  "status": "validated",
+  "runtime": {
+    "kind": "http",
+    "errorCode": "webhook_failed",
+    "failOnErrorParam": "fail_on_error",
+    "timeoutSeconds": 10,
+    "steps": [
+      {
+        "url": "{$config.url}/message",
+        "method": "POST",
+        "mergeCustomHeaders": true,
+        "body": {
+          "title": "{$config.title|Flux de Fichiers}",
+          "message": "{$config.message|Traitement terminé : {$context.sourceName}}",
+          "priority": 5
+        },
+        "successMessage": "notification Gotify envoyée"
+      }
+    ]
+  }
+}

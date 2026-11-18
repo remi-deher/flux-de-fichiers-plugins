@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "flow.smart.av1",
+  "type": "flow",
+  "version": "1.0.0",
+  "name": "Encodage AV1 intelligent",
+  "description": "Si la vidéo est déjà encodée en AV1, met à jour les en-têtes ; sinon réencode en AV1 (accélération matérielle ou SVT-AV1).",
+  "author": "flux-de-fichiers",
+  "license": "GPL-2.0-or-later",
+  "capability": "encode",
+  "fileMask": "*.mkv, *.mp4, *.m2ts, *.ts",
+  "isDefault": false,
+  "definition": {
+    "nodes": [
+      {
+        "id": "node-1",
+        "type": "file-input",
+        "name": "Fichier source"
+      },
+      {
+        "id": "node-2",
+        "type": "condition",
+        "name": "Vidéo déjà en AV1 ?",
+        "config": {
+          "property": "tracks[type=video].codec",
+          "operator": "eq",
+          "target": "av1"
+        }
+      },
+      {
+        "id": "node-3",
+        "type": "mkvpropedit",
+        "name": "Édition En-têtes (In-Place)",
+        "config": {
+          "default_audio_lang": "fre",
+          "force_subtitles": false
+        }
+      },
+      {
+        "id": "node-4",
+        "type": "video-encode",
+        "name": "Encodage Vidéo AV1",
+        "config": {
+          "codec": "av1",
+          "encoder": "auto",
+          "quality": 6,
+          "speed": 3
+        }
+      },
+      {
+        "id": "node-5",
+        "type": "file-output",
+        "name": "Sortie fichier",
+        "config": {
+          "mode": "replace"
+        }
+      }
+    ],
+    "connections": [
+      { "from": "node-1", "to": "node-2" },
+      { "from": "node-2", "to": "node-3", "port": "true" },
+      { "from": "node-2", "to": "node-4", "port": "false" },
+      { "from": "node-3", "to": "node-5" },
+      { "from": "node-4", "to": "node-5" }
+    ]
+  },
+  "dependencies": [
+    { "id": "plugin.video", "versionRange": "^1.0.0", "kind": "plugin" },
+    { "id": "plugin.core", "versionRange": "^1.0.0", "kind": "plugin" }
+  ]
+}

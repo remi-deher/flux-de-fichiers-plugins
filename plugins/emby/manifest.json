@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "plugin.emby",
+  "type": "plugin",
+  "version": "1.0.0",
+  "name": "Emby",
+  "description": "Déclenche l'actualisation de la médiathèque Emby après le traitement d'un média.",
+  "author": "flux-de-fichiers",
+  "license": "GPL-2.0-or-later",
+  "capability": "integration",
+  "files": [
+    { "path": "README.md", "role": "docs", "mediaType": "text/markdown" },
+    { "path": "blocks/emby-refresh.json", "role": "block", "mediaType": "application/json" },
+    { "path": "operations/refresh.json", "role": "operation", "mediaType": "application/json" }
+  ],
+  "settingsSchema": {
+    "fields": [
+      {
+        "name": "url",
+        "label": "URL du serveur Emby",
+        "type": "url",
+        "default": "http://192.168.1.50:8096",
+        "required": true,
+        "description": "Adresse HTTP/HTTPS complète de votre serveur Emby."
+      },
+      {
+        "name": "apiKey",
+        "label": "Clé d'API Emby",
+        "type": "secret",
+        "required": true,
+        "description": "Clé générée depuis les paramètres Emby."
+      }
+    ]
+  },
+  "compatibility": { "platforms": ["linux/amd64", "linux/arm64"] }
+}
