@@ -4,7 +4,7 @@
   "type": "app",
   "version": "1.0.0",
   "name": "MediaInfo",
-  "description": "Outil universel d'analyse et d'extraction de métadonnées techniques multimédias (codecs, résolutions, profils HDR10/Dolby Vision, canaux audio et sous-titres).",
+  "description": "Analyse les pistes vidéo, audio et sous-titres d'un fichier média.",
   "author": "flux-de-fichiers",
   "license": "BSD-2-Clause",
   "files": [

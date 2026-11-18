@@ -4,7 +4,7 @@
   "type": "app",
   "version": "1.0.0",
   "name": "Script Runners",
-  "description": "Application regroupant les binaires d'exécution de scripts (sh, bash, python3, node, deno, bun, pwsh) pour les workers.",
+  "description": "Interpréteurs disponibles pour exécuter des scripts personnalisés.",
   "author": "flux-de-fichiers",
   "license": "MIT",
   "files": [

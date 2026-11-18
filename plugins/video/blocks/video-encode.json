@@ -6,7 +6,7 @@
   ],
   "version": "1.0.0",
   "name": "Encodage Vidéo",
-  "description": "Configure l'encodage vidéo avec des préréglages simples : équilibre direct entre qualité, vitesse d'encodage et taille de fichier.",
+  "description": "Réencode la piste vidéo (HEVC, H.264, AV1) avec accélération matérielle.",
   "category": "media",
   "operationId": "operation.ffmpeg.video.encode",
   "operationVersion": "1.0.0",

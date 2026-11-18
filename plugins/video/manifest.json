@@ -4,7 +4,7 @@
   "type": "plugin",
   "version": "1.0.0",
   "name": "Vidarr",
-  "description": "Encodage vidéo paramétrable (H.264, HEVC, AV1, VP9) avec préréglages faciles, sélection d'encodeur matériel (Intel QSV, NVIDIA, VAAPI, CPU) et remuxage MKVToolNix sans perte.",
+  "description": "Analyse, conversion et réencodage vidéo (MKV, MP4, HEVC, AV1).",
   "author": "flux-de-fichiers",
   "license": "GPL-2.0-or-later",
   "capability": "video",

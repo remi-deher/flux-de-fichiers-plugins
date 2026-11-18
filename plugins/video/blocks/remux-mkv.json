@@ -6,7 +6,7 @@
   ],
   "version": "1.0.0",
   "name": "Remux MKV",
-  "description": "Remuxe sans réencodage un conteneur multimédia vers le format Matroska (.mkv) avec intégrité garantie.",
+  "description": "Convertit le fichier en MKV sans réencoder la vidéo ni l'audio.",
   "category": "media",
   "operationId": "operation.mkvtoolnix.mkvmerge.remux",
   "operationVersion": "1.0.0",

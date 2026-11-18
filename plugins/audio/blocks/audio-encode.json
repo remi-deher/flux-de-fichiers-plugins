@@ -6,7 +6,7 @@
   ],
   "version": "1.0.0",
   "name": "Encodage Audio",
-  "description": "Convertit une piste sonore vers un format standard (AAC, E-AC3, FLAC, MP3, Opus) avec réglage du débit et normalisation EBU R128.",
+  "description": "Convertit ou normalise les pistes audio.",
   "category": "media",
   "operationId": "operation.ffmpeg.audio.encode",
   "operationVersion": "1.0.0",

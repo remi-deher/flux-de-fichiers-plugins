@@ -6,7 +6,7 @@
   ],
   "version": "1.0.0",
   "name": "MediaInfo",
-  "description": "Bloc d'analyse initial non configurable : extrait automatiquement l'intégralité des métadonnées techniques (vidéo, audio, sous-titres, conteneur) au début de chaque traitement.",
+  "description": "Analyse automatiquement les pistes vidéo, audio et sous-titres au début du flux.",
   "category": "media",
   "operationId": "operation.mediainfo.probe",
   "operationVersion": "1.0.0",

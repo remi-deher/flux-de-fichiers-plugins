@@ -4,7 +4,7 @@
   "type": "app",
   "version": "1.0.0",
   "name": "FFmpeg",
-  "description": "Outil FFmpeg déclaré pour distribution Option B (binaire autonome). Usage validé actuel : médias synthétiques de tests / analyse. Remux MP4 production = pending-decision.",
+  "description": "Encodeur et convertisseur vidéo/audio universel.",
   "author": "flux-de-fichiers",
   "license": "GPL-3.0-or-later",
   "files": [

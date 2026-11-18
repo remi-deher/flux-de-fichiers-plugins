@@ -3,7 +3,7 @@
   "id": "block.scripts.run",
   "version": "1.0.0",
   "name": "Script",
-  "description": "Exécute un script existant, créé à la volée ou collé directement (stdin/stdout JSON), avec sortie simple ou conditionnelle (Vrai / Faux).",
+  "description": "Exécute un script personnalisé (existant ou saisi ici), avec branche Vrai / Faux.",
   "category": "data",
   "operationId": "operation.scripts.run",
   "operationVersion": "1.0.0",

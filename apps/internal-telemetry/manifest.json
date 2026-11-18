@@ -4,7 +4,7 @@
   "type": "app",
   "version": "0.1.0",
   "name": "Telemetry",
-  "description": "Outil interne distribué (Option B) pour mesurer CPU, RAM, GPU et stockage sur le nœud. Aucune autorisation d'élévation ; lecture de métriques système uniquement.",
+  "description": "Mesure intégrée de l'activité du serveur (processeur, mémoire, disques).",
   "author": "flux-de-fichiers",
   "license": "UNLICENSED",
   "files": [

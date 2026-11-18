@@ -4,7 +4,7 @@
   "type": "flow",
   "version": "1.0.0",
   "name": "Remuxarr MKV",
-  "description": "Inspection préalable des métadonnées, filtrage des langues audio/sous-titres voulues et remuxage sans perte.",
+  "description": "Convertit proprement le fichier au format MKV sans perte de qualité.",
   "author": "flux-de-fichiers",
   "license": "GPL-2.0-or-later",
   "capability": "remux",
