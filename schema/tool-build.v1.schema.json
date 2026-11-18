@@ -48,7 +48,8 @@
         "kind": {
           "enum": [
             "debian-bookworm",
-            "gpac-git"
+            "gpac-git",
+            "upstream-archives"
           ]
         },
         "packages": {
@@ -62,8 +63,147 @@
         "gitRef": {
           "type": "string",
           "minLength": 1
+        },
+        "archives": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Archives amont officielles, épinglées par SHA-256, extraites dans <extractTo>/ puis exposées par des lanceurs sh à la racine.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "extractTo",
+              "upstreamVersion",
+              "urls",
+              "sha256",
+              "stripComponents",
+              "entrypoints"
+            ],
+            "properties": {
+              "extractTo": {
+                "type": "string",
+                "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+                "maxLength": 64
+              },
+              "upstreamVersion": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64
+              },
+              "urls": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "x86_64",
+                  "aarch64"
+                ],
+                "properties": {
+                  "x86_64": {
+                    "type": "string",
+                    "pattern": "^https://[^\\s]+\\.tar\\.gz$"
+                  },
+                  "aarch64": {
+                    "type": "string",
+                    "pattern": "^https://[^\\s]+\\.tar\\.gz$"
+                  }
+                }
+              },
+              "sha256": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "x86_64",
+                  "aarch64"
+                ],
+                "properties": {
+                  "x86_64": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "aarch64": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  }
+                }
+              },
+              "stripComponents": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4
+              },
+              "entrypoints": {
+                "type": "object",
+                "minProperties": 1,
+                "description": "Nom du binaire exposé → chemin relatif dans extractTo/.",
+                "propertyNames": {
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$"
+                },
+                "additionalProperties": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9._+-]+(/[A-Za-z0-9._+-]+)*$"
+                }
+              },
+              "prune": {
+                "type": "array",
+                "uniqueItems": true,
+                "description": "Motifs glob relatifs à extractTo/ supprimés après extraction.",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9*?._+-]+(/[A-Za-z0-9*?._+-]+)*$"
+                }
+              },
+              "strip": {
+                "type": "boolean",
+                "description": "Retire les symboles de débogage des fichiers ELF extraits."
+              }
+            }
+          }
         }
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "debian-bookworm"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "packages"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "gpac-git"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "gitRef"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "upstream-archives"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "archives"
+            ]
+          }
+        }
+      ]
     },
     "binaries": {
       "type": "array",
