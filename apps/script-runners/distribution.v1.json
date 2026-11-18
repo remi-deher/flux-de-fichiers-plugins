@@ -8,10 +8,10 @@
     {
       "arch": "x86_64",
       "os": "linux",
-      "archiveUrl": "https://artifacts.example.invalid/script-runners-1.0.0-linux-amd64.tar.gz",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-script-runners-1.0.0/script-runners-linux-x86_64.tar.gz",
       "archiveFormat": "tar.gz",
       "archiveSha256": "0000000000000000000000000000000000000000000000000000000000000000",
-      "binaryRelativePath": "bin/deno",
+      "binaryRelativePath": "python3",
       "binarySha256": "0000000000000000000000000000000000000000000000000000000000000000",
       "permissions": {
         "unixMode": "0755",
@@ -22,10 +22,10 @@
     {
       "arch": "aarch64",
       "os": "linux",
-      "archiveUrl": "https://artifacts.example.invalid/script-runners-1.0.0-linux-aarch64.tar.gz",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-script-runners-1.0.0/script-runners-linux-aarch64.tar.gz",
       "archiveFormat": "tar.gz",
       "archiveSha256": "0000000000000000000000000000000000000000000000000000000000000000",
-      "binaryRelativePath": "bin/deno",
+      "binaryRelativePath": "python3",
       "binarySha256": "0000000000000000000000000000000000000000000000000000000000000000",
       "permissions": {
         "unixMode": "0755",
@@ -40,18 +40,14 @@
     "cacheRootRelative": "tools-cache/script-runners/1.0.0",
     "noShellUnpack": true,
     "executableAllowlist": [
-      "sh",
-      "bash",
       "python3",
-      "node",
-      "deno",
-      "bun",
-      "pwsh"
+      "node"
     ],
     "networkAtInstall": "explicit-allowlist"
   },
   "notes": [
-    "Contrat Option B regroupant les interpréteurs autorisés pour les scripts stdio JSON.",
-    "Si un binaire n'est pas installé dans le cache, le moteur se replie sur le binaire présent dans le PATH de l'hôte (sh, bash...)."
+    "Archive autonome Option B : CPython 3.14 (python-build-standalone) et Node.js 26 LTS, épinglés par SHA-256 dans build.json.",
+    "Chaque interpréteur est exposé par un lanceur sh à la racine (python3, node) ; sh et bash proviennent de l'image de base.",
+    "Empreintes et releaseStatus renseignés par build-tools.yml ; tant que le contrat est contract-only, le moteur se replie sur le PATH de l'hôte."
   ]
 }
