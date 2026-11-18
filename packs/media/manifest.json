@@ -3,7 +3,7 @@
   "id": "pack.media",
   "type": "pack",
   "version": "1.0.0",
-  "name": "Mediarr",
+  "name": "Pack Média",
   "description": "Pack complet pour analyser, convertir et organiser vos médias.",
   "author": "flux-de-fichiers",
   "license": "GPL-2.0-or-later",

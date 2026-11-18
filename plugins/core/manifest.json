@@ -3,7 +3,7 @@
   "id": "plugin.core",
   "type": "plugin",
   "version": "1.0.0",
-  "name": "Corearr",
+  "name": "Essentiel",
   "description": "Blocs essentiels : entrée, sortie, conditions et notifications.",
   "author": "flux-de-fichiers",
   "license": "GPL-2.0-or-later",

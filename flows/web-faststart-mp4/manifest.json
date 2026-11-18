@@ -3,7 +3,7 @@
   "id": "flow.remux.mp4",
   "type": "flow",
   "version": "1.0.0",
-  "name": "Fastarr MP4",
+  "name": "MP4 Streaming",
   "description": "Convertit en MP4 optimisé pour le streaming web.",
   "author": "flux-de-fichiers",
   "license": "GPL-2.0-or-later",

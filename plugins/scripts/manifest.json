@@ -3,7 +3,7 @@
   "id": "plugin.scripts",
   "type": "plugin",
   "version": "1.0.0",
-  "name": "Scriptarr",
+  "name": "Scripts",
   "description": "Exécution de scripts personnalisés avec aiguillage conditionnel.",
   "author": "flux-de-fichiers",
   "license": "GPL-3.0-or-later",

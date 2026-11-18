@@ -3,7 +3,7 @@
   "id": "plugin.audio",
   "type": "plugin",
   "version": "1.0.0",
-  "name": "Audarr",
+  "name": "Audio",
   "description": "Conversion et normalisation des pistes audio.",
   "author": "flux-de-fichiers",
   "license": "GPL-2.0-or-later",

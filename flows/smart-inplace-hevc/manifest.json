@@ -3,7 +3,7 @@
   "id": "flow.smart.adr0008",
   "type": "flow",
   "version": "1.0.0",
-  "name": "Smartarr HEVC",
+  "name": "Encodage HEVC intelligent",
   "description": "Si la vidéo est déjà en HEVC, ajuste les pistes par défaut ; sinon, réencode en HEVC.",
   "author": "flux-de-fichiers",
   "license": "GPL-2.0-or-later",
