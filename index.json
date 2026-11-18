@@ -37,7 +37,7 @@
       "capability": "remux",
       "currentChoice": true,
       "distribution": "autonomous-binary",
-      "sha256": "201908abc89fe29e1a8d5434f2394e4fed572964cceb6df189b573627b9024a0"
+      "sha256": "92dc3b2aaba1db6e4c00d2f1f97e934674811c6461a665c7bd7f2dfa8a223f08"
     },
     {
       "id": "app.mp4box",
@@ -48,7 +48,7 @@
       "capability": "remux-mp4",
       "currentChoice": true,
       "distribution": "autonomous-binary",
-      "sha256": "a53fb69048d3150fac6d9f6f152ec888222427d924776e9c228fb17216db84b1"
+      "sha256": "661a573c2873bd15791a31ac1d2631900f1c04ffc4533c91573412655366fd0d"
     },
     {
       "id": "app.mediainfo",
@@ -59,7 +59,7 @@
       "capability": "probe",
       "currentChoice": true,
       "distribution": "autonomous-binary",
-      "sha256": "c93a265ff874af1527c1a545832ce869ad0ccdfa49c52285cca57d80bff37d83"
+      "sha256": "938354de284303775c29b735a1eb37e42a0850ddd945885a5096a03e90247c95"
     },
     {
       "id": "app.ffmpeg",
@@ -70,7 +70,7 @@
       "capability": "analyze",
       "currentChoice": false,
       "distribution": "autonomous-binary",
-      "sha256": "4335577c1ae5d6952a298bed72678e7559c2afe441de967d3b8c57d8d219bc73"
+      "sha256": "1f369ba93836cf270d7498a6c7e16784a60b851b81a130b16c76fb7de9bc9410"
     },
     {
       "id": "app.internal.telemetry",
@@ -81,7 +81,7 @@
       "capability": "other",
       "currentChoice": true,
       "distribution": "autonomous-binary",
-      "sha256": "d4dd3c3eeee5359daa7d44872451fae54938c1b011a151c98cdddeb1b59bfed2"
+      "sha256": "3c0d2fe37057008442d90ec9c34b6657dca3c001865720552f225205c2d2b9b6"
     },
     {
       "id": "app.script-runners",
@@ -92,7 +92,7 @@
       "capability": "script",
       "currentChoice": false,
       "distribution": "autonomous-binary",
-      "sha256": "1eb95c3a7e09039709f0949786ce879ebf4b012ade1077e39d15882129a78a78"
+      "sha256": "c509c8d3d9d17d8003f6e3c7bfbccc9b29dda591997dce055079963b269efef7"
     },
     {
       "id": "plugin.core",
@@ -101,7 +101,7 @@
       "name": "Corearr",
       "manifestPath": "plugins/core/manifest.json",
       "capability": "other",
-      "sha256": "c12e038204093bdcc70c6cd3ca1682f7fe99809e5f9aab78f9b833daca6a1293"
+      "sha256": "fb0362d68bf2b1737c09eac22a2bfa6766fce77b9111ffb0a9563c24b2e12dd5"
     },
     {
       "id": "plugin.video",
@@ -110,7 +110,7 @@
       "name": "Vidarr",
       "manifestPath": "plugins/video/manifest.json",
       "capability": "video",
-      "sha256": "ff886d4791d603284f3e4429560aeccb5d24f70c043873a0e9e8a6bc18b23697"
+      "sha256": "2ffa7aeeca55a7b2f7a1a816317d41e373a8ba94cfc2b6d21fc5a6402fdc59a2"
     },
     {
       "id": "plugin.audio",
@@ -119,7 +119,7 @@
       "name": "Audarr",
       "manifestPath": "plugins/audio/manifest.json",
       "capability": "audio",
-      "sha256": "7e20341bba44b3fb1b384a2632fc05344cd09bec7a6ed7b6010fd8101182dab4"
+      "sha256": "d98463f84d6314cefe2ba277629fb578aeb3e654fc7f4ad595ced80c65899234"
     },
     {
       "id": "plugin.sonarr",
@@ -147,7 +147,7 @@
       "manifestPath": "plugins/scripts/manifest.json",
       "capability": "script",
       "category": "data",
-      "sha256": "3bad2724044799ceec74da1cbd552f851f3ff00dad9796c885e7c1af7223ea08"
+      "sha256": "8d93893b9ff50d363f4a659406e09ace39201e781362bc0ce586baeee5f0bb1e"
     },
     {
       "id": "block.core.file-input",
@@ -174,7 +174,7 @@
       "version": "1.0.0",
       "name": "MediaInfo",
       "manifestPath": "plugins/video/blocks/media-inspect.json",
-      "sha256": "ba789e62600a40d49b3b67e7b527f9b8fa4d6c4c50ab12116c467f9d16aaaf5b"
+      "sha256": "84d29cf840e057c67e3419f9444f94876e3fe26ee5c06428e7e6df355b09c8a7"
     },
     {
       "id": "block.metadata.mkvpropedit",
@@ -183,7 +183,7 @@
       "version": "1.0.0",
       "name": "MKVPropEdit",
       "manifestPath": "plugins/video/blocks/mkvpropedit.json",
-      "sha256": "463efecf0451e49fc3ac3fdf7b7dcd66f48dd459f740b7c32ea6b5e63a79e9c7"
+      "sha256": "999309aa46c16a09e53ad7c6bd0724f40b30623d264ac8b60ce5161acf676547"
     },
     {
       "id": "block.video.remux-mkv",
@@ -192,7 +192,7 @@
       "version": "1.0.0",
       "name": "Remux MKV",
       "manifestPath": "plugins/video/blocks/remux-mkv.json",
-      "sha256": "f1a010004e6e2276d332f47b5becfbc516c1d695a228bc7b1534c59147f2427d"
+      "sha256": "273a3f07e29d80ffb1d196e66d1a484f17ca98e89a6f98340737891eadc1952e"
     },
     {
       "id": "block.video.remux-mp4",
@@ -201,7 +201,7 @@
       "version": "1.0.0",
       "name": "Remux MP4",
       "manifestPath": "plugins/video/blocks/remux-mp4.json",
-      "sha256": "e6aa198ec6292d5dec8a7b64ebd2a64168ca980d34cc6cb9f58724333c8d5ae1"
+      "sha256": "ddc3a3aa5ebf61a8d8587b330f5cbb3658a0522a5e8e6af97ff54db8e8b839a1"
     },
     {
       "id": "block.video.encode",
@@ -210,7 +210,7 @@
       "version": "1.0.0",
       "name": "Encodage Vidéo",
       "manifestPath": "plugins/video/blocks/video-encode.json",
-      "sha256": "f302c54e5016528ea7cffaf1c21478a0e24ac86923265b6f2337c7c7f79954eb"
+      "sha256": "95da34d8b38ef66df03775bd97ba336e1af14067a56f6ff9ff4a89196b4d82b7"
     },
     {
       "id": "block.audio.encode",
@@ -219,7 +219,7 @@
       "version": "1.0.0",
       "name": "Encodage Audio",
       "manifestPath": "plugins/audio/blocks/audio-encode.json",
-      "sha256": "d6bf3ca5f60d12b06130795be818ee1db1d0d0e112c3d144d98b977085d693d6"
+      "sha256": "fad72273a465c05ccfa2dc130db5a25a8c07d2f05a1025e94ad78b858a219c43"
     },
     {
       "id": "block.core.webhook",
@@ -282,7 +282,7 @@
       "version": "1.0.0",
       "name": "Script",
       "manifestPath": "plugins/scripts/blocks/run.json",
-      "sha256": "b01fe2f79ef0f141545965620e65377d9fe2ca72f5d1febdc3ac147dfbda27c8"
+      "sha256": "7eca293e617be9526489962b50240b83170cfbeebe5d15c59347e482cef555f1"
     },
     {
       "id": "flow.default.mkv",
@@ -291,16 +291,16 @@
       "name": "Remuxarr MKV",
       "manifestPath": "flows/remux-matroska/manifest.json",
       "capability": "remux",
-      "sha256": "166246a43cb7d4fbdece9b25504998eae1e930062e5d79adc7fcf29ea3f662ba"
+      "sha256": "88179c70a3475dcd6cea934976cedc62256e609357df187a8e239873a0d606c2"
     },
     {
       "id": "flow.smart.adr0008",
       "type": "flow",
       "version": "1.0.0",
-      "name": "Smartarr HEVC (In-Place)",
+      "name": "Smartarr HEVC",
       "manifestPath": "flows/smart-inplace-hevc/manifest.json",
       "capability": "in-place",
-      "sha256": "d93331958fe2f9f24ce072e93e3e0b5570a8472a9648e51ebc5947227c0e603e"
+      "sha256": "92e4a811621bdab83abc2948ca3d4c25c55a8e85f96404671ce657cbe3c07772"
     },
     {
       "id": "flow.remux.mp4",
@@ -309,7 +309,7 @@
       "name": "Fastarr MP4",
       "manifestPath": "flows/web-faststart-mp4/manifest.json",
       "capability": "faststart",
-      "sha256": "48b268a37055d79d9940fd81533f66814d6b335f7395f65509ea0db0fa4b02fe"
+      "sha256": "65519fd8b3ba98b99caa97559f8cfab3861ada8cb1ea344e8cfd38a7230a9aac"
     },
     {
       "id": "pack.media",
@@ -317,7 +317,7 @@
       "version": "1.0.0",
       "name": "Mediarr",
       "manifestPath": "packs/media/manifest.json",
-      "sha256": "d7e2589efa3ab7f5816b44d2b1a3ee61dbff5183d79b87b18b4002ae5c688b03"
+      "sha256": "f290ddd2b63bd1615f7c6bae5eb1da85fe84d963b5527014c11ba81b220e15d1"
     }
   ]
 }

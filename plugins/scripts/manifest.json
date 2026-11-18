@@ -4,7 +4,7 @@
   "type": "plugin",
   "version": "1.0.0",
   "name": "Scriptarr",
-  "description": "Fournit le bloc unique Script permettant d'appeler un script de la librairie, d'en créer un ou de coller du code direct avec routage simple ou conditionnel.",
+  "description": "Exécution de scripts personnalisés avec aiguillage conditionnel.",
   "author": "flux-de-fichiers",
   "license": "GPL-3.0-or-later",
   "category": "data",

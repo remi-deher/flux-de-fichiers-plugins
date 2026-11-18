@@ -6,7 +6,7 @@
   ],
   "version": "1.0.0",
   "name": "MKVPropEdit",
-  "description": "Modifie les en-têtes Matroska sur place, sans copie du fichier.",
+  "description": "Modifie les langues et pistes par défaut d'un MKV sans le réécrire.",
   "category": "media",
   "operationId": "operation.mkvtoolnix.mkvpropedit",
   "operationVersion": "1.0.0",

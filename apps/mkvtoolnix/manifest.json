@@ -4,7 +4,7 @@
   "type": "app",
   "version": "1.0.0",
   "name": "MKVToolNix",
-  "description": "Outil de remuxage sans réencodage validé. Distribution Option B (binaire autonome hors conteneur applicatif). Matroska uniquement.",
+  "description": "Outil de création et d'édition de fichiers Matroska (.mkv) sans perte de qualité.",
   "author": "flux-de-fichiers",
   "license": "GPL-2.0-or-later",
   "files": [
