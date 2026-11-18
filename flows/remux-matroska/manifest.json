@@ -3,7 +3,7 @@
   "id": "flow.default.mkv",
   "type": "flow",
   "version": "1.0.0",
-  "name": "Remuxarr MKV",
+  "name": "Conversion MKV",
   "description": "Convertit proprement le fichier au format MKV sans perte de qualité.",
   "author": "flux-de-fichiers",
   "license": "GPL-2.0-or-later",

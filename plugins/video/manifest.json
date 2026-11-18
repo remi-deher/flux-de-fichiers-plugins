@@ -3,7 +3,7 @@
   "id": "plugin.video",
   "type": "plugin",
   "version": "1.0.0",
-  "name": "Vidarr",
+  "name": "Vidéo",
   "description": "Analyse, conversion et réencodage vidéo (MKV, MP4, HEVC, AV1).",
   "author": "flux-de-fichiers",
   "license": "GPL-2.0-or-later",

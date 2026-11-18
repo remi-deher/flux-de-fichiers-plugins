@@ -98,28 +98,28 @@
       "id": "plugin.core",
       "type": "plugin",
       "version": "1.0.0",
-      "name": "Corearr",
+      "name": "Essentiel",
       "manifestPath": "plugins/core/manifest.json",
       "capability": "other",
-      "sha256": "fb0362d68bf2b1737c09eac22a2bfa6766fce77b9111ffb0a9563c24b2e12dd5"
+      "sha256": "8a95f1ed2d36cefed4f410058f475d2c3945a98247a3d310c4018cf27b16b5fe"
     },
     {
       "id": "plugin.video",
       "type": "plugin",
       "version": "1.0.0",
-      "name": "Vidarr",
+      "name": "Vidéo",
       "manifestPath": "plugins/video/manifest.json",
       "capability": "video",
-      "sha256": "2ffa7aeeca55a7b2f7a1a816317d41e373a8ba94cfc2b6d21fc5a6402fdc59a2"
+      "sha256": "4ae1b8bea4ce0579ec30d7568c24fc51b19899c9e11c8b5b2711b148d75f049f"
     },
     {
       "id": "plugin.audio",
       "type": "plugin",
       "version": "1.0.0",
-      "name": "Audarr",
+      "name": "Audio",
       "manifestPath": "plugins/audio/manifest.json",
       "capability": "audio",
-      "sha256": "d98463f84d6314cefe2ba277629fb578aeb3e654fc7f4ad595ced80c65899234"
+      "sha256": "8283c7489d4484dce2312a7415efb1075a923fb84cb5450f83517b26b2acfa0a"
     },
     {
       "id": "plugin.sonarr",
@@ -143,11 +143,11 @@
       "id": "plugin.scripts",
       "type": "plugin",
       "version": "1.0.0",
-      "name": "Scriptarr",
+      "name": "Scripts",
       "manifestPath": "plugins/scripts/manifest.json",
       "capability": "script",
       "category": "data",
-      "sha256": "8d93893b9ff50d363f4a659406e09ace39201e781362bc0ce586baeee5f0bb1e"
+      "sha256": "ee53872116aa316e17629162ac97f532d4af4f689da53559db7d8c5711b4f852"
     },
     {
       "id": "block.core.file-input",
@@ -288,36 +288,36 @@
       "id": "flow.default.mkv",
       "type": "flow",
       "version": "1.0.0",
-      "name": "Remuxarr MKV",
+      "name": "Conversion MKV",
       "manifestPath": "flows/remux-matroska/manifest.json",
       "capability": "remux",
-      "sha256": "88179c70a3475dcd6cea934976cedc62256e609357df187a8e239873a0d606c2"
+      "sha256": "e24b5518d2146319e190a79cf456a4761606168697bd0962654b856f2d22368e"
     },
     {
       "id": "flow.smart.adr0008",
       "type": "flow",
       "version": "1.0.0",
-      "name": "Smartarr HEVC",
+      "name": "Encodage HEVC intelligent",
       "manifestPath": "flows/smart-inplace-hevc/manifest.json",
       "capability": "in-place",
-      "sha256": "92e4a811621bdab83abc2948ca3d4c25c55a8e85f96404671ce657cbe3c07772"
+      "sha256": "e0b7f6e388903cb44748c18f81556c8290dd34df7a33e0d67d0c1097fb395037"
     },
     {
       "id": "flow.remux.mp4",
       "type": "flow",
       "version": "1.0.0",
-      "name": "Fastarr MP4",
+      "name": "MP4 Streaming",
       "manifestPath": "flows/web-faststart-mp4/manifest.json",
       "capability": "faststart",
-      "sha256": "65519fd8b3ba98b99caa97559f8cfab3861ada8cb1ea344e8cfd38a7230a9aac"
+      "sha256": "fb8f5aea8969f67e87c2c8bf06a4ab0ecb55881acce468c492dd8a114fa4e7ca"
     },
     {
       "id": "pack.media",
       "type": "pack",
       "version": "1.0.0",
-      "name": "Mediarr",
+      "name": "Pack Média",
       "manifestPath": "packs/media/manifest.json",
-      "sha256": "f290ddd2b63bd1615f7c6bae5eb1da85fe84d963b5527014c11ba81b220e15d1"
+      "sha256": "9f242642b5598f391d9b6dde2e4e4d2b8e3ef54070a16c2ff0d7fec84c64e4d4"
     }
   ]
 }
