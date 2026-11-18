@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "block.emby.refresh",
+  "aliases": ["emby-refresh"],
+  "version": "1.0.0",
+  "name": "Emby : Actualiser",
+  "description": "Demande à Emby de réanalyser ses bibliothèques.",
+  "category": "io",
+  "operationId": "operation.emby.refresh",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      { "id": "source", "label": "Fichier traité", "dataType": "file", "mediaType": "*/*" }
+    ],
+    "outputs": [
+      { "id": "destination", "label": "Fichier transmis", "dataType": "file", "mediaType": "*/*" }
+    ]
+  },
+  "ui": {
+    "category": "Intégrations",
+    "domain": "integration",
+    "icon": "fas fa-tv",
+    "color": "#10B981",
+    "suggestedNext": ["block.core.file-output"],
+    "fields": [
+      {
+        "name": "fail_on_error",
+        "label": "Échec bloquant",
+        "type": "boolean",
+        "default": false
+      }
+    ]
+  }
+}

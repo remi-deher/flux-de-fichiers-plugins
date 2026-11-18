@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "block.notifications.gotify",
+  "aliases": ["notify-gotify"],
+  "version": "1.0.0",
+  "name": "Notification : Gotify",
+  "description": "Envoie une alerte vers votre instance Gotify (jeton dans X-Gotify-Key).",
+  "category": "io",
+  "operationId": "operation.notifications.gotify",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [{ "id": "source", "label": "Fichier courant", "dataType": "file", "mediaType": "*/*" }],
+    "outputs": [{ "id": "destination", "label": "Fichier courant", "dataType": "file", "mediaType": "*/*" }]
+  },
+  "ui": {
+    "category": "Notification",
+    "domain": "integration",
+    "icon": "fas fa-bullhorn",
+    "color": "#0EA5E9",
+    "suggestedNext": ["block.core.file-output"],
+    "fields": [
+      { "name": "url", "label": "URL Gotify", "type": "string", "required": true },
+      { "name": "custom_headers", "label": "En-têtes (X-Gotify-Key)", "type": "headers" },
+      { "name": "title", "label": "Titre", "type": "string", "default": "Flux de Fichiers" },
+      { "name": "message", "label": "Message", "type": "string", "default": "Traitement terminé : {$context.sourceName}" },
+      { "name": "fail_on_error", "label": "Échec bloquant", "type": "boolean", "default": false }
+    ]
+  }
+}

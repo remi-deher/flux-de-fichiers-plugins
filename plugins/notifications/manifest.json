@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "plugin.notifications",
+  "type": "plugin",
+  "version": "1.0.0",
+  "name": "Notifications",
+  "description": "Envoi de notifications vers Discord, Ntfy, Gotify et Apprise en cours ou fin de flux.",
+  "author": "flux-de-fichiers",
+  "license": "GPL-2.0-or-later",
+  "capability": "notification",
+  "files": [
+    { "path": "README.md", "role": "docs", "mediaType": "text/markdown" },
+    { "path": "blocks/discord.json", "role": "block", "mediaType": "application/json" },
+    { "path": "blocks/ntfy.json", "role": "block", "mediaType": "application/json" },
+    { "path": "blocks/gotify.json", "role": "block", "mediaType": "application/json" },
+    { "path": "blocks/apprise.json", "role": "block", "mediaType": "application/json" },
+    { "path": "operations/discord.json", "role": "operation", "mediaType": "application/json" },
+    { "path": "operations/ntfy.json", "role": "operation", "mediaType": "application/json" },
+    { "path": "operations/gotify.json", "role": "operation", "mediaType": "application/json" },
+    { "path": "operations/apprise.json", "role": "operation", "mediaType": "application/json" }
+  ],
+  "compatibility": { "platforms": ["linux/amd64", "linux/arm64"] }
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "block.subtitles.clean",
+  "aliases": ["subtitles-clean"],
+  "version": "1.0.0",
+  "name": "Sous-titres : Filtrer",
+  "description": "Ne conserve que les langues de sous-titres et audio souhaitées (MKV).",
+  "category": "media",
+  "operationId": "operation.mkvtoolnix.subtitles.clean",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      { "id": "source", "label": "Fichier vidéo", "dataType": "file", "mediaType": "video/*" }
+    ],
+    "outputs": [
+      { "id": "destination", "label": "MKV filtré", "dataType": "file", "mediaType": "video/x-matroska" }
+    ]
+  },
+  "ui": {
+    "category": "Sous-titres",
+    "domain": "subtitles",
+    "icon": "fas fa-closed-captioning",
+    "color": "#0EA5E9",
+    "suggestedNext": ["block.subtitles.flags", "block.core.file-output"],
+    "fields": [
+      {
+        "name": "subtitle_languages",
+        "label": "Sous-titres à conserver",
+        "type": "string",
+        "default": "fre,eng",
+        "description": "Codes ISO séparés par virgules (fre,eng), 'all' ou 'none'."
+      },
+      {
+        "name": "audio_languages",
+        "label": "Pistes audio à conserver",
+        "type": "string",
+        "default": "all",
+        "description": "Codes ISO séparés par virgules, 'all' ou 'none'."
+      },
+      {
+        "name": "disable_track_stats",
+        "label": "Ignorer les statistiques de pistes",
+        "type": "boolean",
+        "default": true
+      }
+    ]
+  }
+}

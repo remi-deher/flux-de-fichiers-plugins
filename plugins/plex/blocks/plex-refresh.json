@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "block.plex.refresh",
+  "aliases": ["plex-refresh"],
+  "version": "1.0.0",
+  "name": "Plex : Actualiser",
+  "description": "Déclenche l'actualisation de toutes les sections ou d'une section Plex.",
+  "category": "io",
+  "operationId": "operation.plex.refresh",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      { "id": "source", "label": "Fichier traité", "dataType": "file", "mediaType": "*/*" }
+    ],
+    "outputs": [
+      { "id": "destination", "label": "Fichier transmis", "dataType": "file", "mediaType": "*/*" }
+    ]
+  },
+  "ui": {
+    "category": "Intégrations",
+    "domain": "integration",
+    "icon": "fas fa-play-circle",
+    "color": "#EAB308",
+    "suggestedNext": ["block.core.file-output"],
+    "fields": [
+      {
+        "name": "section_id",
+        "label": "Identifiant de section",
+        "type": "string",
+        "default": "all",
+        "description": "Numéro de section Plex ou 'all' pour tout analyser."
+      },
+      {
+        "name": "fail_on_error",
+        "label": "Échec bloquant",
+        "type": "boolean",
+        "default": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.plex.refresh",
+  "version": "1.0.0",
+  "name": "Plex : actualiser les bibliothèques",
+  "providerId": "plugin.plex",
+  "providerKind": "plugin",
+  "capability": "integration",
+  "status": "validated",
+  "runtime": {
+    "kind": "http",
+    "settingsPluginId": "plugin.plex",
+    "requiredSettings": ["url", "apiKey"],
+    "errorCode": "integration_failed",
+    "failOnErrorParam": "fail_on_error",
+    "timeoutSeconds": 15,
+    "steps": [
+      {
+        "url": "{$setting.url}/library/sections/{$config.section_id|all}/refresh",
+        "method": "GET",
+        "headers": {
+          "X-Plex-Token": "{$setting.apiKey}"
+        },
+        "successMessage": "actualisation Plex déclenchée"
+      }
+    ]
+  }
+}

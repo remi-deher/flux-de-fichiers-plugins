@@ -15,11 +15,20 @@
     "plugins/core/operations/file-input.json": "2db314c0a0cc86470ddfb5589b5b337ecd0a2f7e37511b35eb2259245d1c16d4",
     "plugins/core/operations/file-output.json": "eacf34d36203e49c27462e14afeea65c29ff06bce82788da59689745ae0b5cbe",
     "plugins/core/operations/webhook.json": "f41e66c4c53db40c2692d1e0546b8bf9d18e4a0f87190946523aaf2c2fc47659",
+    "plugins/emby/operations/refresh.json": "ddd6ad813687118bee78fb04a3493a4556911e642ed464be66f13e38978b26b3",
+    "plugins/jellyfin/operations/refresh.json": "497276108dfe5d1e4ef3743c8918bdc7972975dbaf7d03963c7c70dc3b089ab0",
+    "plugins/notifications/operations/apprise.json": "a06d51212e3f30d21a33911bf2622021e15dd736f4e708bfac9a06e62b87dc3e",
+    "plugins/notifications/operations/discord.json": "b8e6e15ded6c3ce12a54bca850eb33cdd397dd21af351381f75b87be5389af4b",
+    "plugins/notifications/operations/gotify.json": "dd2f7f082f10706ab6065ca30cd15e0849006cf25a8ffdfbe396ea99dc8ae826",
+    "plugins/notifications/operations/ntfy.json": "c1ee83cf4ab5e28b096ce6f6db2beef11965281ef409f3ab8def18786d3d6aaa",
+    "plugins/plex/operations/refresh.json": "ddea7d7a7a3a15a7688960cd7ce394377fb8a1c37f184f6281ed479c7bef64e5",
     "plugins/radarr/operations/rename.json": "48c7cd1579a33e98d15661400935ecca85909cfa99e13a0453c6ad97a0d5743f",
     "plugins/radarr/operations/rescan.json": "44b77e15d299ea1af4374ee8bbac7c2dc933059c987d2f48dd8c6432c35c4bdf",
     "plugins/scripts/operations/run.json": "6ed10063db42c14728f0968449513848087991a71131142af31ecb1a6813f8d1",
     "plugins/sonarr/operations/rename.json": "0cfe42506395cb33ab050d816f2bcdb81b9c29f763d559aa4d417856abe2aa85",
     "plugins/sonarr/operations/rescan.json": "6a3c289be88b0ca2792b1879f46a52997f28c089fb2ef93283ab1d06083d59e1",
+    "plugins/subtitles/operations/subtitles-clean.json": "fc47ece8f58339d2de46072b83358425a3a85dbb738917e95993b8869ef4de77",
+    "plugins/subtitles/operations/subtitles-flags.json": "f722fdd26074f59aef176f7f34fcb015422ae7c1b1be489f595d487b99b0dfda",
     "plugins/video/operations/media-inspect.json": "fc34cce2966531f763a4939a989b95860e39aa51ca3446a6b523b1f236ed089c",
     "plugins/video/operations/mkvmerge-probe.json": "19bd9a780ff43b7f0270f7dc87c19ee7e5e3a6ffdc3e006fa9c025a9ebe223ce",
     "plugins/video/operations/mkvpropedit.json": "33791cbcf3bb613dd66f1033920147a309df16ef04972390d3b57688bd5dec16",
@@ -148,6 +157,51 @@
       "capability": "script",
       "category": "data",
       "sha256": "ee53872116aa316e17629162ac97f532d4af4f689da53559db7d8c5711b4f852"
+    },
+    {
+      "id": "plugin.emby",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Emby",
+      "manifestPath": "plugins/emby/manifest.json",
+      "capability": "integration",
+      "sha256": "f6631665418f13947a44f894440ffe453a998cb4a027a98bb56d3825546155aa"
+    },
+    {
+      "id": "plugin.jellyfin",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Jellyfin",
+      "manifestPath": "plugins/jellyfin/manifest.json",
+      "capability": "integration",
+      "sha256": "fd0c746575c2982de979c4eea8b05188eeb50dbb0b1cd3de9a1dcf44195b2b08"
+    },
+    {
+      "id": "plugin.notifications",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Notifications",
+      "manifestPath": "plugins/notifications/manifest.json",
+      "capability": "notification",
+      "sha256": "af7f8f7dea8ecea0e909f9ea19bbf0acb0e4c1f4f5de7801ac0f7a8c02db9879"
+    },
+    {
+      "id": "plugin.plex",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Plex",
+      "manifestPath": "plugins/plex/manifest.json",
+      "capability": "integration",
+      "sha256": "dfe189e08b1ef4ce4945fe161839ba569e12324942860ed4fe5b6f8559d8f873"
+    },
+    {
+      "id": "plugin.subtitles",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Sous-titres",
+      "manifestPath": "plugins/subtitles/manifest.json",
+      "capability": "other",
+      "sha256": "0cc6204649a970e4e659df0838d623807e4dcdfa697dc40fea26fc4ed7194ecb"
     },
     {
       "id": "block.core.file-input",
@@ -285,6 +339,87 @@
       "sha256": "7eca293e617be9526489962b50240b83170cfbeebe5d15c59347e482cef555f1"
     },
     {
+      "id": "block.emby.refresh",
+      "type": "block",
+      "owner": "plugin.emby",
+      "version": "1.0.0",
+      "name": "Emby : Actualiser",
+      "manifestPath": "plugins/emby/blocks/emby-refresh.json",
+      "sha256": "47424a4327bc4b3752262adb8565bb8a4bc3419e112b721431e92f88c0f989c1"
+    },
+    {
+      "id": "block.jellyfin.refresh",
+      "type": "block",
+      "owner": "plugin.jellyfin",
+      "version": "1.0.0",
+      "name": "Jellyfin : Actualiser",
+      "manifestPath": "plugins/jellyfin/blocks/jellyfin-refresh.json",
+      "sha256": "e013f6a62e77670ac618cd0af1d7203f04b56dee75fba3170bf33a1be1bac649"
+    },
+    {
+      "id": "block.notifications.apprise",
+      "type": "block",
+      "owner": "plugin.notifications",
+      "version": "1.0.0",
+      "name": "Notification : Apprise",
+      "manifestPath": "plugins/notifications/blocks/apprise.json",
+      "sha256": "5a9e7bd24270a68ce97d83bef27f5293eb5ed647a924a7c6d651446a4214030a"
+    },
+    {
+      "id": "block.notifications.discord",
+      "type": "block",
+      "owner": "plugin.notifications",
+      "version": "1.0.0",
+      "name": "Notification : Discord",
+      "manifestPath": "plugins/notifications/blocks/discord.json",
+      "sha256": "c2540822d079f50a40e796a30227a1a23b892c5549f67bd09f76fe067b263f9a"
+    },
+    {
+      "id": "block.notifications.gotify",
+      "type": "block",
+      "owner": "plugin.notifications",
+      "version": "1.0.0",
+      "name": "Notification : Gotify",
+      "manifestPath": "plugins/notifications/blocks/gotify.json",
+      "sha256": "71300543fb9c2c14c3facaa1f6a3858c06a1ae3a29bd58d7122e04ceec177d03"
+    },
+    {
+      "id": "block.notifications.ntfy",
+      "type": "block",
+      "owner": "plugin.notifications",
+      "version": "1.0.0",
+      "name": "Notification : Ntfy",
+      "manifestPath": "plugins/notifications/blocks/ntfy.json",
+      "sha256": "72af9d9d926c5e8d3b1d958119d6a6d25a940f6870cfc9150dbefd878a01df0d"
+    },
+    {
+      "id": "block.plex.refresh",
+      "type": "block",
+      "owner": "plugin.plex",
+      "version": "1.0.0",
+      "name": "Plex : Actualiser",
+      "manifestPath": "plugins/plex/blocks/plex-refresh.json",
+      "sha256": "1da5c1fc8cbc8da298a0160f7e47d80e17a24c3e567f61c2fcd4ec79751266ef"
+    },
+    {
+      "id": "block.subtitles.clean",
+      "type": "block",
+      "owner": "plugin.subtitles",
+      "version": "1.0.0",
+      "name": "Sous-titres : Filtrer",
+      "manifestPath": "plugins/subtitles/blocks/subtitles-clean.json",
+      "sha256": "ecaa55ed13dc31cb052c67a89428d03f5711badb0dc2cf55cbe3cc897dddebdc"
+    },
+    {
+      "id": "block.subtitles.flags",
+      "type": "block",
+      "owner": "plugin.subtitles",
+      "version": "1.0.0",
+      "name": "Sous-titres : Drapeaux",
+      "manifestPath": "plugins/subtitles/blocks/subtitles-flags.json",
+      "sha256": "af0fffe01ce3c4933fa1dcfa442e957e2ba139122fa6315df64a0db82db90f55"
+    },
+    {
       "id": "flow.default.mkv",
       "type": "flow",
       "version": "1.0.0",
@@ -310,6 +445,33 @@
       "manifestPath": "flows/web-faststart-mp4/manifest.json",
       "capability": "faststart",
       "sha256": "fb8f5aea8969f67e87c2c8bf06a4ab0ecb55881acce468c492dd8a114fa4e7ca"
+    },
+    {
+      "id": "flow.audio.loudnorm",
+      "type": "flow",
+      "version": "1.0.0",
+      "name": "Normalisation audio EBU R128",
+      "manifestPath": "flows/audio-loudnorm-mkv/manifest.json",
+      "capability": "encode",
+      "sha256": "454ded8460aa6ed9e9ddb83015561a711590aa820474128b965e3b355f3d7b91"
+    },
+    {
+      "id": "flow.clean.subtitles",
+      "type": "flow",
+      "version": "1.0.0",
+      "name": "Nettoyage sous-titres & langues",
+      "manifestPath": "flows/clean-subtitles-mkv/manifest.json",
+      "capability": "remux",
+      "sha256": "7027d2f052fbea5093066ddf4d176990c8492db1a84123d1e5f2022fb344e11f"
+    },
+    {
+      "id": "flow.smart.av1",
+      "type": "flow",
+      "version": "1.0.0",
+      "name": "Encodage AV1 intelligent",
+      "manifestPath": "flows/smart-av1-encode/manifest.json",
+      "capability": "encode",
+      "sha256": "b93b6859efaeb777644e4d2ab9ca3bac9f35714490c0a0c5fd51006286a44535"
     },
     {
       "id": "pack.media",
