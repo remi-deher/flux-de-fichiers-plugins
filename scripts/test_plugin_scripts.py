@@ -16,6 +16,9 @@ SCRIPTS = {
     "archives": REPO_ROOT / "plugins/archives/scripts/archives.py",
     "sous_titres": REPO_ROOT / "plugins/sous-titres/scripts/sous_titres.py",
     "vmaf": REPO_ROOT / "plugins/vmaf/scripts/vmaf.py",
+    "guard_size": REPO_ROOT / "scripts/guard-min-size-saving/run.py",
+    "integrity": REPO_ROOT / "scripts/integrity-check-media/run.py",
+    "route_hdr": REPO_ROOT / "scripts/route-by-hdr-format/run.py",
 }
 
 
@@ -218,6 +221,77 @@ esac""")
             self.assertEqual(run_script("hdr", self.bin, self.payload(movie, {"action": "dv-profile-8"}))[1]["status"], "skip")
         finally:
             os.environ.pop("FAKE_PROFILE")
+
+    def test_guard_min_size_saving_routes_and_restores_source(self) -> None:
+        source = self.work / "original.mkv"
+        smaller = self.work / "encoded_small.mkv"
+        larger = self.work / "encoded_large.mkv"
+        source.write_bytes(b"a" * 1000)
+        smaller.write_bytes(b"b" * 700)
+        larger.write_bytes(b"c" * 950)
+
+        code, ok_reply = run_script(
+            "guard_size",
+            self.bin,
+            self.payload(smaller, {"min_saving_percent": 15, "restore_source_on_reject": True}, source=source),
+        )
+        self.assertEqual((code, ok_reply["status"], ok_reply["nextPort"]), (0, "ok", "true"), ok_reply)
+        self.assertNotIn("workingFile", ok_reply)
+
+        code, rej_reply = run_script(
+            "guard_size",
+            self.bin,
+            self.payload(larger, {"min_saving_percent": 15, "restore_source_on_reject": True}, source=source),
+        )
+        self.assertEqual((code, rej_reply["status"], rej_reply["nextPort"]), (0, "ok", "false"), rej_reply)
+        self.assertEqual(rej_reply["workingFile"], str(source))
+
+    def test_integrity_check_media_with_ffprobe_and_empty_file(self) -> None:
+        fake_tool(
+            self.bin,
+            "ffprobe",
+            """cat <<'EOF'
+{"format":{"duration":"120.5"},"streams":[{"codec_type":"video"},{"codec_type":"audio"}]}
+EOF""",
+        )
+        movie = self.work / "film.mkv"
+        movie.write_bytes(b"mkv-data")
+        code, reply = run_script(
+            "integrity",
+            self.bin,
+            self.payload(movie, {"require_video": True, "require_audio": True, "min_duration_seconds": 1}),
+        )
+        self.assertEqual((code, reply["status"], reply["nextPort"]), (0, "ok", "true"), reply)
+
+        empty = self.work / "empty.mkv"
+        empty.write_bytes(b"")
+        code, bad_reply = run_script("integrity", self.bin, self.payload(empty, {}))
+        self.assertEqual((code, bad_reply["status"], bad_reply["nextPort"]), (0, "ok", "false"), bad_reply)
+
+    def test_route_by_hdr_format_from_mediainfo_and_cli_fallback(self) -> None:
+        movie = self.work / "hdr.mkv"
+        movie.write_bytes(b"mkv")
+        dv_payload = self.payload(movie, {"target_format": "dv-profile-7"})
+        dv_payload["mediaInfo"] = {
+            "tracks": [
+                {"type": "video", "HDR_Format": "Dolby Vision, Version 1.0, dvhe.07.06, BL+EL+RPU"}
+            ]
+        }
+        code, reply = run_script("route_hdr", self.bin, dv_payload)
+        self.assertEqual((code, reply["status"], reply["nextPort"]), (0, "ok", "true"), reply)
+
+        fake_tool(
+            self.bin,
+            "mediainfo",
+            """cat <<'EOF'
+{"media":{"track":[{"@type":"Video","HDR_Format":"SMPTE ST 2094 App 4, Version 1, HDR10+ Profile B compatible"}]}}
+EOF""",
+        )
+        code, hdr10p = run_script("route_hdr", self.bin, self.payload(movie, {"target_format": "hdr10plus"}))
+        self.assertEqual((code, hdr10p["status"], hdr10p["nextPort"]), (0, "ok", "true"), hdr10p)
+
+        code, miss = run_script("route_hdr", self.bin, self.payload(movie, {"target_format": "dolby-vision"}))
+        self.assertEqual((code, miss["status"], miss["nextPort"]), (0, "ok", "false"), miss)
 
 
 if __name__ == "__main__":

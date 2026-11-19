@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "guard-min-size-saving.run",
+  "version": "1.0.0",
+  "name": "Garde-fou : gain de taille",
+  "description": "Vérifie que le fichier traité est suffisamment plus léger que la source ; oriente vers « Gain suffisant » ou « Gain insuffisant ».",
+  "category": "data",
+  "operationId": "operation.script.guard-min-size-saving",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "*/*"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "destination",
+        "label": "Fichier retenu",
+        "dataType": "file",
+        "mediaType": "*/*"
+      }
+    ]
+  },
+  "ui": {
+    "category": "Scripts",
+    "domain": "data",
+    "icon": "fas fa-scale-balanced",
+    "color": "#22C55E",
+    "ports": [
+      {
+        "id": "true",
+        "label": "✓ Gain suffisant"
+      },
+      {
+        "id": "false",
+        "label": "✗ Gain insuffisant"
+      }
+    ],
+    "suggestedNext": [
+      "integrity-check-media.run",
+      "essentiel.file-output"
+    ],
+    "fields": [
+      {
+        "name": "min_saving_percent",
+        "label": "Gain minimal (%)",
+        "type": "range",
+        "min": 0,
+        "max": 90,
+        "default": 10,
+        "description": "Pourcentage minimal de réduction par rapport au fichier source (0 = accepter tant que la taille n'augmente pas)."
+      },
+      {
+        "name": "restore_source_on_reject",
+        "label": "Restaurer l'original si rejeté",
+        "type": "boolean",
+        "default": true,
+        "description": "Sur la branche « Gain insuffisant », remet workingFile sur le fichier source."
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.script.integrity-check-media",
+  "version": "1.0.0",
+  "name": "Contrôle d'intégrité média",
+  "providerId": "integrity-check-media",
+  "providerKind": "script",
+  "capability": "script",
+  "status": "validated",
+  "runtime": {
+    "kind": "script",
+    "tool": {
+      "id": "interpreteurs",
+      "version": "1.1.0"
+    },
+    "pathTools": [
+      {
+        "id": "ffmpeg",
+        "version": "1.0.0"
+      },
+      {
+        "id": "mkvtoolnix",
+        "version": "1.0.0"
+      }
+    ],
+    "interpreter": "python3",
+    "entrypoint": "run.py",
+    "timeoutSeconds": 120,
+    "defaults": {
+      "require_video": true,
+      "require_audio": false,
+      "min_duration_seconds": 1
+    }
+  }
+}

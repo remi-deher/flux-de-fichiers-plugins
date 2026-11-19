@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "route-by-hdr-format",
+  "type": "script",
+  "version": "1.0.0",
+  "name": "Routage : format HDR / Dolby Vision",
+  "description": "Détecte le format HDR (Dolby Vision, profil 7, HDR10+, HDR10/HLG) depuis mediaInfo ou MediaInfo CLI et oriente le flux vers la branche correspondante.",
+  "author": "Forgearr",
+  "license": "GPL-2.0-or-later",
+  "category": "media",
+  "capability": "script",
+  "tags": [
+    "script",
+    "hdr",
+    "dolby-vision",
+    "hdr10plus",
+    "routage"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "run.py",
+      "role": "script",
+      "mediaType": "text/plain"
+    },
+    {
+      "path": "operations/run.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "blocks/run.json",
+      "role": "block",
+      "mediaType": "application/json"
+    }
+  ]
+}

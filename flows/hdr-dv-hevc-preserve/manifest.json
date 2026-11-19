@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "hdr-dv-hevc-preserve",
+  "type": "flow",
+  "version": "1.0.0",
+  "name": "Encodage HEVC avec préservation Dolby Vision",
+  "description": "Détecte les sources Dolby Vision, réencode en HEVC, réinjecte les métadonnées dynamiques RPU (profil 8.1) et vérifie le gain de taille avant publication.",
+  "author": "Forgearr",
+  "license": "GPL-2.0-or-later",
+  "capability": "hdr",
+  "fileMask": "*.mkv, *.m2ts, *.ts",
+  "isDefault": false,
+  "definition": {
+    "nodes": [
+      {
+        "id": "input",
+        "type": "essentiel.file-input",
+        "name": "Fichier source"
+      },
+      {
+        "id": "inspect",
+        "type": "video.inspect",
+        "name": "Inspecter les métadonnées"
+      },
+      {
+        "id": "route-dv",
+        "type": "route-by-hdr-format.run",
+        "name": "Dolby Vision détecté ?",
+        "config": {
+          "target_format": "dolby-vision"
+        }
+      },
+      {
+        "id": "encode-dv",
+        "type": "video.encode",
+        "name": "Encodage HEVC (source DV)",
+        "config": {
+          "video_mode": "encode",
+          "codec": "h265",
+          "encoder": "auto",
+          "audio_codec": "copy",
+          "keep_subtitles": true
+        }
+      },
+      {
+        "id": "reinject-dv",
+        "type": "hdr.dv-reinject",
+        "name": "Réinjecter Dolby Vision (8.1)"
+      },
+      {
+        "id": "encode-std",
+        "type": "video.encode",
+        "name": "Encodage HEVC standard",
+        "config": {
+          "video_mode": "encode",
+          "codec": "h265",
+          "encoder": "auto",
+          "audio_codec": "copy",
+          "keep_subtitles": true
+        }
+      },
+      {
+        "id": "guard-size",
+        "type": "guard-min-size-saving.run",
+        "name": "Vérifier le gain de taille",
+        "config": {
+          "min_saving_percent": 10,
+          "restore_source_on_reject": true
+        }
+      },
+      {
+        "id": "output",
+        "type": "essentiel.file-output",
+        "name": "Publier le résultat",
+        "config": {
+          "mode": "replace"
+        }
+      }
+    ],
+    "connections": [
+      { "from": "input", "to": "inspect" },
+      { "from": "inspect", "to": "route-dv" },
+      { "from": "route-dv", "to": "encode-dv", "port": "true" },
+      { "from": "encode-dv", "to": "reinject-dv" },
+      { "from": "reinject-dv", "to": "guard-size" },
+      { "from": "route-dv", "to": "encode-std", "port": "false" },
+      { "from": "encode-std", "to": "guard-size" },
+      { "from": "guard-size", "to": "output", "port": "true" }
+    ]
+  },
+  "dependencies": [
+    { "id": "essentiel", "versionRange": "^1.0.0", "kind": "plugin" },
+    { "id": "video", "versionRange": "^1.1.0", "kind": "plugin" },
+    { "id": "hdr", "versionRange": "^1.0.0", "kind": "plugin" },
+    { "id": "route-by-hdr-format", "versionRange": "^1.0.0", "kind": "script" },
+    { "id": "guard-min-size-saving", "versionRange": "^1.0.0", "kind": "script" }
+  ]
+}

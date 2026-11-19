@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "integrity-check-media.run",
+  "version": "1.0.0",
+  "name": "Contrôle d'intégrité média",
+  "description": "Vérifie que le média produit est lisible, non vide et contient les pistes attendues avant de le publier.",
+  "category": "media",
+  "operationId": "operation.script.integrity-check-media",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "video/*"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "destination",
+        "label": "Fichier vérifié",
+        "dataType": "file",
+        "mediaType": "video/*"
+      }
+    ]
+  },
+  "ui": {
+    "category": "Scripts",
+    "domain": "data",
+    "icon": "fas fa-shield-halved",
+    "color": "#22C55E",
+    "ports": [
+      {
+        "id": "true",
+        "label": "✓ Valide"
+      },
+      {
+        "id": "false",
+        "label": "✗ Corrompu"
+      }
+    ],
+    "suggestedNext": [
+      "essentiel.file-output",
+      "notifications.discord",
+      "notifications.ntfy"
+    ],
+    "fields": [
+      {
+        "name": "require_video",
+        "label": "Exiger au moins une piste vidéo",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "require_audio",
+        "label": "Exiger au moins une piste audio",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "min_duration_seconds",
+        "label": "Durée minimale (secondes)",
+        "type": "range",
+        "min": 0,
+        "max": 60,
+        "default": 1
+      }
+    ]
+  }
+}

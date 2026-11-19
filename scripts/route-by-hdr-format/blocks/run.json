@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "route-by-hdr-format.run",
+  "version": "1.0.0",
+  "name": "Routage : format HDR",
+  "description": "Oriente le flux selon le format HDR de la piste vidéo (Dolby Vision, profil 7, HDR10+ ou HDR générique).",
+  "category": "media",
+  "operationId": "operation.script.route-by-hdr-format",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "video/*"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "destination",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "video/*"
+      }
+    ]
+  },
+  "ui": {
+    "category": "Scripts",
+    "domain": "hdr",
+    "icon": "fas fa-code-branch",
+    "color": "#A855F7",
+    "ports": [
+      {
+        "id": "true",
+        "label": "✓ Format détecté"
+      },
+      {
+        "id": "false",
+        "label": "✗ Autre"
+      }
+    ],
+    "suggestedNext": [
+      "hdr.dv-profile-8",
+      "hdr.dv-reinject",
+      "hdr.hdr10plus-reinject",
+      "video.encode"
+    ],
+    "fields": [
+      {
+        "name": "target_format",
+        "label": "Format HDR recherché",
+        "type": "select",
+        "default": "any-dynamic",
+        "options": [
+          {
+            "label": "HDR dynamique (Dolby Vision ou HDR10+)",
+            "value": "any-dynamic"
+          },
+          {
+            "label": "Dolby Vision (tous profils)",
+            "value": "dolby-vision"
+          },
+          {
+            "label": "Dolby Vision profil 7",
+            "value": "dv-profile-7"
+          },
+          {
+            "label": "HDR10+",
+            "value": "hdr10plus"
+          },
+          {
+            "label": "Tout HDR (DV, HDR10+, HDR10, HLG)",
+            "value": "any-hdr"
+          }
+        ]
+      }
+    ]
+  }
+}
