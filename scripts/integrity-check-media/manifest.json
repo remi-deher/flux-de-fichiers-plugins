@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "integrity-check-media",
+  "type": "script",
+  "version": "1.0.0",
+  "name": "Contrôle d'intégrité média",
+  "description": "Vérifie qu'un média produit est non vide, lisible par ffprobe ou mkvmerge, doté d'une durée positive et des pistes attendues avant publication.",
+  "author": "Forgearr",
+  "license": "GPL-2.0-or-later",
+  "category": "media",
+  "capability": "script",
+  "tags": [
+    "script",
+    "integrite",
+    "validation",
+    "media"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "run.py",
+      "role": "script",
+      "mediaType": "text/plain"
+    },
+    {
+      "path": "operations/run.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "blocks/run.json",
+      "role": "block",
+      "mediaType": "application/json"
+    }
+  ]
+}

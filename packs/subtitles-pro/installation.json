@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0.0",
+  "packId": "subtitles-pro",
+  "packVersion": "1.0.0",
+  "kind": "declarative-bundle",
+  "components": [
+    { "id": "mkvtoolnix", "version": "1.0.0", "kind": "app" },
+    { "id": "ffmpeg", "version": "1.0.0", "kind": "app" },
+    { "id": "tesseract", "version": "1.0.0", "kind": "app" },
+    { "id": "alass", "version": "1.0.0", "kind": "app" },
+    { "id": "interpreteurs", "version": "1.1.0", "kind": "app" },
+    { "id": "essentiel", "version": "1.0.0", "kind": "plugin" },
+    { "id": "video", "version": "1.1.0", "kind": "plugin" },
+    { "id": "sous-titres", "version": "1.0.0", "kind": "plugin" },
+    { "id": "integrity-check-media", "version": "1.0.0", "kind": "script" },
+    { "id": "clean-subtitles-mkv", "version": "1.0.0", "kind": "flow" },
+    { "id": "subtitles-pgs-to-srt-mkv", "version": "1.0.0", "kind": "flow" }
+  ],
+  "entrypoint": {
+    "kind": "flow",
+    "id": "subtitles-pgs-to-srt-mkv",
+    "version": "1.0.0"
+  },
+  "permissions": {
+    "readInputs": true,
+    "writeOutputs": true,
+    "network": "none"
+  },
+  "updates": "manual",
+  "uninstallData": "preserve",
+  "runtimeImplemented": true
+}

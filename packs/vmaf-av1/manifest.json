@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "vmaf-av1",
+  "type": "pack",
+  "version": "1.0.0",
+  "name": "Pack Compression AV1 & VMAF",
+  "description": "Encode en AV1 à qualité perceptuelle cible (ab-av1 + FFmpeg VMAF) avec garde-fous automatiques de taille et d'intégrité.",
+  "author": "Forgearr",
+  "license": "GPL-2.0-or-later",
+  "category": "media",
+  "tags": [
+    "pack",
+    "vmaf",
+    "av1",
+    "qualite",
+    "encodage"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "installation.json",
+      "role": "config",
+      "mediaType": "application/json"
+    }
+  ],
+  "pack": {
+    "kind": "declarative-bundle",
+    "installation": "installation.json",
+    "runtimeImplemented": true
+  }
+}

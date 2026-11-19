@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "guard-min-size-saving",
+  "type": "script",
+  "version": "1.0.0",
+  "name": "Garde-fou : gain de taille minimal",
+  "description": "Compare la taille du fichier traité à celle de l'original et oriente vers « Gain suffisant » ou « Gain insuffisant » (avec restauration optionnelle de la source).",
+  "author": "Forgearr",
+  "license": "GPL-2.0-or-later",
+  "category": "data",
+  "capability": "script",
+  "tags": [
+    "script",
+    "garde-fou",
+    "taille",
+    "encodage"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "run.py",
+      "role": "script",
+      "mediaType": "text/plain"
+    },
+    {
+      "path": "operations/run.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "blocks/run.json",
+      "role": "block",
+      "mediaType": "application/json"
+    }
+  ]
+}

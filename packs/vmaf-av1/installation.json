@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.0.0",
+  "packId": "vmaf-av1",
+  "packVersion": "1.0.0",
+  "kind": "declarative-bundle",
+  "components": [
+    { "id": "ffmpeg", "version": "1.0.0", "kind": "app" },
+    { "id": "ffmpeg-vmaf", "version": "1.0.0", "kind": "app" },
+    { "id": "ab-av1", "version": "1.0.0", "kind": "app" },
+    { "id": "mkvtoolnix", "version": "1.0.0", "kind": "app" },
+    { "id": "mediainfo", "version": "1.0.0", "kind": "app" },
+    { "id": "interpreteurs", "version": "1.1.0", "kind": "app" },
+    { "id": "essentiel", "version": "1.0.0", "kind": "plugin" },
+    { "id": "video", "version": "1.1.0", "kind": "plugin" },
+    { "id": "vmaf", "version": "1.0.0", "kind": "plugin" },
+    { "id": "guard-min-size-saving", "version": "1.0.0", "kind": "script" },
+    { "id": "integrity-check-media", "version": "1.0.0", "kind": "script" },
+    { "id": "smart-av1-encode", "version": "1.0.0", "kind": "flow" },
+    { "id": "vmaf-quality-encode", "version": "1.0.0", "kind": "flow" }
+  ],
+  "entrypoint": {
+    "kind": "flow",
+    "id": "vmaf-quality-encode",
+    "version": "1.0.0"
+  },
+  "permissions": {
+    "readInputs": true,
+    "writeOutputs": true,
+    "network": "none"
+  },
+  "updates": "manual",
+  "uninstallData": "preserve",
+  "runtimeImplemented": true
+}
