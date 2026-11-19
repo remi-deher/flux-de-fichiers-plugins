@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "alass (synchronisation de sous-titres)",
   "description": "Resynchronisation automatique d'un sous-titre texte sur la piste audio.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "GPL-3.0-only",
   "files": [
     {

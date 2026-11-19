@@ -18,7 +18,7 @@
         "method": "POST",
         "mergeCustomHeaders": true,
         "body": {
-          "title": "{$config.title|Flux de Fichiers}",
+          "title": "{$config.title|Forgearr}",
           "message": "{$config.message|Traitement terminé : {$context.sourceName}}",
           "priority": 5
         },

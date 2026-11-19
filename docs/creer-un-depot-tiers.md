@@ -1,7 +1,7 @@
 # Créer et publier un dépôt de plugins tiers
 
 Toute personne peut héberger son propre dépôt de plugins, d'applications, de flows,
-de packs ou de ressources « Autre » pour **Flux de Fichiers**, sans avoir à soumettre
+de packs ou de ressources « Autre » pour **Forgearr**, sans avoir à soumettre
 ses fichiers dans le dépôt officiel.
 
 ## 1. Prérequis imposés par le moteur
@@ -15,7 +15,7 @@ Lors de la synchronisation (`src/plugins/sync.rs` dans `flux-de-fichiers`), le s
 - **Propriété des blocs** : un bloc (`type: "block"`) doit avoir `owner` pointant vers
   un `plugin` déclaré dans **le même `index.json`** et être rangé sous `<dossier-du-plugin>/blocks/`.
 - **Empreintes SHA-256** : lorsque `sha256` est présent sur une entrée de `index.json`,
-  Flux de Fichiers refuse tout manifeste dont l'empreinte ne correspond pas.
+  Forgearr refuse tout manifeste dont l'empreinte ne correspond pas.
 
 ## 2. Démarrer depuis le modèle ou le CLI
 
@@ -39,7 +39,7 @@ python3 scripts/scaffold.py --root ../mon-depot-plugins --namespace com.monpseud
 
 ## 3. Règle d'or anti-collision : utiliser un namespace
 
-Quand plusieurs dépôts sont synchronisés sur une même instance Flux de Fichiers, **le premier
+Quand plusieurs dépôts sont synchronisés sur une même instance Forgearr, **le premier
 dépôt qui déclare un `id` l'emporte**. Pour ne jamais masquer une pièce officielle ni entrer en
 conflit avec un autre auteur :
 
@@ -74,9 +74,9 @@ python3 scripts/check_catalogue.py \
 Le workflow prêt à l'emploi [templates/depot-tiers/.github/workflows/check-catalogue.yml](../templates/depot-tiers/.github/workflows/check-catalogue.yml)
 automatise cette validation sur chaque PR dans votre propre dépôt.
 
-## 6. Tester en local avec Flux de Fichiers
+## 6. Tester en local avec Forgearr
 
-1. Démarrez Flux de Fichiers avec `PLUGINS_DIR=/chemin/vers/mon-depot-plugins` (prioritaire sur les dépôts distants), **ou**
+1. Démarrez Forgearr avec `PLUGINS_DIR=/chemin/vers/mon-depot-plugins` (prioritaire sur les dépôts distants), **ou**
 2. Servez votre dépôt en HTTP local, activez `PLUGIN_ALLOW_PRIVATE_HOSTS=1` sur le central,
    et ajoutez `http://127.0.0.1:<port>/index.json` dans **Plugins → Dépôts**.
 

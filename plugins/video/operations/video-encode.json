@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.1.0",
   "id": "operation.ffmpeg.video.encode",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "name": "Encodage vidéo FFmpeg",
   "providerId": "video",
   "providerKind": "plugin",
@@ -9,7 +9,10 @@
   "status": "validated",
   "runtime": {
     "kind": "binary",
-    "tool": { "id": "ffmpeg", "version": "1.0.0" },
+    "tool": {
+      "id": "ffmpeg",
+      "version": "1.0.0"
+    },
     "executable": "ffmpeg",
     "envOverride": "FFMPEG",
     "executionMode": "staged-output",
@@ -24,7 +27,12 @@
       "encoder": "auto",
       "quality": 6,
       "speed": 3,
-      "custom_parameters": ""
+      "custom_parameters": "",
+      "video_mode": "encode",
+      "audio_codec": "copy",
+      "audio_language": "",
+      "subtitle_language": "",
+      "keep_subtitles": true
     },
     "customArgsForbidden": [
       "-i",
@@ -44,7 +52,9 @@
       {
         "target": "crf",
         "kind": "map",
-        "inputs": ["quality"],
+        "inputs": [
+          "quality"
+        ],
         "table": {
           "1": "32",
           "2": "30",
@@ -61,7 +71,9 @@
       {
         "target": "cpu_preset",
         "kind": "map",
-        "inputs": ["speed"],
+        "inputs": [
+          "speed"
+        ],
         "table": {
           "1": "veryslow",
           "2": "slow",
@@ -74,7 +86,9 @@
       {
         "target": "nvenc_preset",
         "kind": "map",
-        "inputs": ["speed"],
+        "inputs": [
+          "speed"
+        ],
         "table": {
           "1": "p7",
           "2": "p6",
@@ -87,7 +101,9 @@
       {
         "target": "svtav1_preset",
         "kind": "map",
-        "inputs": ["speed"],
+        "inputs": [
+          "speed"
+        ],
         "table": {
           "1": "4",
           "2": "6",
@@ -100,7 +116,10 @@
       {
         "target": "video_encoder",
         "kind": "map",
-        "inputs": ["codec", "encoder"],
+        "inputs": [
+          "codec",
+          "encoder"
+        ],
         "table": {
           "h264|nvidia": "h264_nvenc",
           "h264|intel_qsv": "h264_qsv",
@@ -133,71 +152,257 @@
       "-y",
       "-hide_banner",
       "-i",
-      { "param": "source", "as": "filePath" },
-      "-map",
-      "0",
-      "-c:v",
-      { "param": "video_encoder" },
       {
-        "when": { "param": "encoder", "eq": "nvidia" },
-        "then": ["-cq", { "param": "crf" }, "-preset", { "param": "nvenc_preset" }],
+        "param": "source",
+        "as": "filePath"
+      },
+      {
+        "when": {
+          "all": [
+            {
+              "param": "audio_language",
+              "nonEmpty": false
+            },
+            {
+              "param": "subtitle_language",
+              "nonEmpty": false
+            },
+            {
+              "param": "keep_subtitles",
+              "truthy": true
+            }
+          ]
+        },
+        "then": [
+          "-map",
+          "0"
+        ],
         "else": [
+          "-map",
+          "0:v?",
+          "-map",
           {
-            "when": { "param": "encoder", "eq": "intel_qsv" },
-            "then": ["-global_quality", { "param": "crf" }],
+            "when": {
+              "param": "audio_language",
+              "nonEmpty": true
+            },
+            "then": [
+              {
+                "format": "0:a:m:language:{audio_language}"
+              }
+            ],
+            "else": [
+              "0:a?"
+            ]
+          },
+          {
+            "when": {
+              "param": "keep_subtitles",
+              "truthy": true
+            },
+            "then": [
+              "-map",
+              {
+                "when": {
+                  "param": "subtitle_language",
+                  "nonEmpty": true
+                },
+                "then": [
+                  {
+                    "format": "0:s:m:language:{subtitle_language}"
+                  }
+                ],
+                "else": [
+                  "0:s?"
+                ]
+              }
+            ]
+          },
+          "-map",
+          "0:t?"
+        ]
+      },
+      {
+        "when": {
+          "param": "video_mode",
+          "eq": "copy"
+        },
+        "then": [
+          "-c:v",
+          "copy"
+        ],
+        "else": [
+          "-c:v",
+          {
+            "param": "video_encoder"
+          },
+          {
+            "when": {
+              "param": "encoder",
+              "eq": "nvidia"
+            },
+            "then": [
+              "-cq",
+              {
+                "param": "crf"
+              },
+              "-preset",
+              {
+                "param": "nvenc_preset"
+              }
+            ],
             "else": [
               {
-                "when": { "param": "encoder", "eq": "vaapi" },
-                "then": ["-qp", { "param": "crf" }],
-                "else": [
-                  "-crf",
-                  { "param": "crf" },
-                  "-preset",
+                "when": {
+                  "param": "encoder",
+                  "eq": "intel_qsv"
+                },
+                "then": [
+                  "-global_quality",
                   {
-                    "when": { "param": "video_encoder", "eq": "libsvtav1" },
-                    "then": [{ "param": "svtav1_preset" }],
-                    "else": [{ "param": "cpu_preset" }]
+                    "param": "crf"
                   }
+                ],
+                "else": [
+                  {
+                    "when": {
+                      "param": "encoder",
+                      "eq": "vaapi"
+                    },
+                    "then": [
+                      "-qp",
+                      {
+                        "param": "crf"
+                      }
+                    ],
+                    "else": [
+                      "-crf",
+                      {
+                        "param": "crf"
+                      },
+                      "-preset",
+                      {
+                        "when": {
+                          "param": "video_encoder",
+                          "eq": "libsvtav1"
+                        },
+                        "then": [
+                          {
+                            "param": "svtav1_preset"
+                          }
+                        ],
+                        "else": [
+                          {
+                            "param": "cpu_preset"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "all": [
+                {
+                  "param": "codec",
+                  "endsWith": "_10bit"
+                },
+                {
+                  "param": "encoder",
+                  "neq": "vaapi"
+                }
+              ]
+            },
+            "then": [
+              "-pix_fmt",
+              {
+                "when": {
+                  "param": "encoder",
+                  "in": [
+                    "nvidia",
+                    "intel_qsv"
+                  ]
+                },
+                "then": [
+                  "p010le"
+                ],
+                "else": [
+                  "yuv420p10le"
                 ]
               }
             ]
           }
         ]
       },
+      "-c:a",
       {
         "when": {
-          "all": [
-            { "param": "codec", "endsWith": "_10bit" },
-            { "param": "encoder", "neq": "vaapi" }
-          ]
+          "param": "audio_codec",
+          "eq": "aac"
         },
         "then": [
-          "-pix_fmt",
+          "aac"
+        ],
+        "else": [
           {
-            "when": { "param": "encoder", "in": ["nvidia", "intel_qsv"] },
-            "then": ["p010le"],
-            "else": ["yuv420p10le"]
+            "when": {
+              "param": "audio_codec",
+              "eq": "opus"
+            },
+            "then": [
+              "libopus"
+            ],
+            "else": [
+              "copy"
+            ]
           }
         ]
       },
-      "-c:a",
-      "copy",
       "-c:s",
       "copy",
-      { "param": "custom_parameters", "as": "safeCustomArgs" },
-      { "param": "destination", "as": "filePath" }
+      {
+        "param": "custom_parameters",
+        "as": "safeCustomArgs"
+      },
+      {
+        "param": "destination",
+        "as": "filePath"
+      }
     ],
     "retryFallback": [
       {
-        "when": { "param": "encoder", "in": ["nvidia", "intel_qsv", "vaapi", "amd_amf"] },
-        "overrides": { "encoder": "cpu" },
+        "when": {
+          "all": [
+            {
+              "param": "video_mode",
+              "neq": "copy"
+            },
+            {
+              "param": "encoder",
+              "in": [
+                "nvidia",
+                "intel_qsv",
+                "vaapi",
+                "amd_amf"
+              ]
+            }
+          ]
+        },
+        "overrides": {
+          "encoder": "cpu"
+        },
         "message": "encodage terminé (repli matériel -> CPU)"
       }
     ],
     "console": {
       "progressFormat": "elapsed-time",
       "progressStream": "stderr",
-      "successExitCodes": [0],
+      "successExitCodes": [
+        0
+      ],
       "warningExitCodes": [],
       "timeoutSeconds": 3600
     }

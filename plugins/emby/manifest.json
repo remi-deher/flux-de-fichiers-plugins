@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "Emby",
   "description": "Déclenche l'actualisation de la médiathèque Emby après le traitement d'un média.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "GPL-2.0-or-later",
   "capability": "integration",
   "files": [

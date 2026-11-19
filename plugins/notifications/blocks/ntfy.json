@@ -21,7 +21,7 @@
     "fields": [
       { "name": "server_url", "label": "URL du serveur Ntfy", "type": "string", "default": "https://ntfy.sh", "required": true },
       { "name": "topic", "label": "Sujet (topic)", "type": "string", "required": true },
-      { "name": "title", "label": "Titre", "type": "string", "default": "Flux de Fichiers" },
+      { "name": "title", "label": "Titre", "type": "string", "default": "Forgearr" },
       { "name": "message", "label": "Message", "type": "string", "default": "Traitement terminé : {$context.sourceName}" },
       { "name": "fail_on_error", "label": "Échec bloquant", "type": "boolean", "default": false }
     ]

@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "FFmpeg (VMAF)",
   "description": "FFmpeg statique avec libvmaf et SVT-AV1, pour mesurer la qualité perçue et encoder à qualité cible.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "GPL-3.0-or-later",
   "files": [
     {

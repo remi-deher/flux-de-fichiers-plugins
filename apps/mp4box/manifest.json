@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "MP4Box (GPAC)",
   "description": "Outil de conversion et d'optimisation MP4 pour la lecture en streaming.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "LGPL-2.1-or-later",
   "files": [
     {

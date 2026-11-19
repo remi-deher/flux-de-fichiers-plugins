@@ -56,8 +56,8 @@ def cmd_init_repo(args: argparse.Namespace) -> None:
     if not readme.exists():
         readme.write_text(
             f"# {args.name}\n\n"
-            "Dépôt de plugins pour Flux de Fichiers.\n\n"
-            "URL d'index à ajouter dans Flux de Fichiers :\n"
+            "Dépôt de plugins pour Forgearr.\n\n"
+            "URL d'index à ajouter dans Forgearr :\n"
             "`https://<hote>/<depot>/main/index.json` (ou un tag/release immuable).\n",
             encoding="utf-8",
         )
@@ -504,7 +504,7 @@ def cmd_resource(args: argparse.Namespace) -> None:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Assistant de création de pièces ou de dépôt Flux de Fichiers.")
+    parser = argparse.ArgumentParser(description="Assistant de création de pièces ou de dépôt Forgearr.")
     parser.add_argument("--root", type=Path, default=DEFAULT_ROOT, help="Racine du dépôt cible.")
     parser.add_argument("--namespace", type=str, default=None, help="Préfixe éditeur (recommandé pour tiers, ex. com.auteur).")
     parser.add_argument("--author", type=str, default="third-party", help="Auteur dans les manifestes.")

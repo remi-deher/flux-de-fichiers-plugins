@@ -2,7 +2,7 @@
 """Qualité VMAF : mesure la qualité perçue du fichier courant par rapport à l'original de la
 tâche (libvmaf) et oriente le flux vers « true » (seuil atteint) ou « false ».
 
-Protocole Flux de Fichiers : JSON sur stdin (workingFile, sourceFile, workDir, config), réponse
+Protocole Forgearr : JSON sur stdin (workingFile, sourceFile, workDir, config), réponse
 JSON sur stdout (status, message, nextPort, mediaInfo). Outils attendus dans le PATH : ffmpeg et
 ffprobe compilés avec libvmaf.
 """

@@ -480,7 +480,7 @@ class CatalogueChecker:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Valide un catalogue Flux de Fichiers (officiel ou tiers).")
+    parser = argparse.ArgumentParser(description="Valide un catalogue Forgearr (officiel ou tiers).")
     parser.add_argument("--root", type=Path, default=DEFAULT_ROOT, help="Racine du dépôt à valider.")
     parser.add_argument("--schema-dir", type=Path, default=None, help="Dossier contenant les schémas JSON.")
     parser.add_argument(

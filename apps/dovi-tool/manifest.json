@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "dovi_tool (Dolby Vision)",
   "description": "Conversion et réinjection des métadonnées Dolby Vision (RPU) d'un flux HEVC.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "MIT",
   "files": [
     {

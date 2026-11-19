@@ -67,7 +67,7 @@ jobs:
 
           if ! gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
             gh release create "$RELEASE_TAG" --draft --target "${{ github.sha }}" \
-              --title "Catalogue Flux de Fichiers v${RELEASE_VERSION}" \
+              --title "Catalogue Forgearr v${RELEASE_VERSION}" \
               --notes "Release immuable du catalogue v${RELEASE_VERSION} (empreintes SHA-256 complètes vérifiées par --strict-immutable)."
           fi
           gh release upload "$RELEASE_TAG" dist/*

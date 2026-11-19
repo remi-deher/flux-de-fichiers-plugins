@@ -1,6 +1,6 @@
 # Releases immuables et chaîne d'intégrité
 
-Ce document décrit comment **Flux de Fichiers** et les dépôts de plugins (officiel
+Ce document décrit comment **Forgearr** et les dépôts de plugins (officiel
 et tiers) garantissent qu'une version publiée ne peut jamais être altérée silencieusement.
 
 ## 1. Principe en deux couches

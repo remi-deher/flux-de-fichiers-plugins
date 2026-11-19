@@ -1,6 +1,6 @@
 # Contribuer à `flux-de-fichiers-plugins`
 
-Ce dépôt porte le **catalogue officiel** de Flux de Fichiers et sert de référence
+Ce dépôt porte le **catalogue officiel** de Forgearr et sert de référence
 technique pour la communauté.
 
 > Vous souhaitez publier vos propres plugins dans **votre propre dépôt** ?

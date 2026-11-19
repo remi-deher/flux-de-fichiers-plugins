@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "name": "Macro remux + vérifier (exemple)",
   "description": "Exemple de macro-bloc composite déclaratif pour flows. Pas de moteur d'exécution.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "UNLICENSED",
   "files": [
     {

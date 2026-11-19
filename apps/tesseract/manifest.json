@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "Tesseract OCR",
   "description": "Reconnaissance de caractères, pour convertir les sous-titres image (PGS) en texte.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "Apache-2.0",
   "files": [
     {

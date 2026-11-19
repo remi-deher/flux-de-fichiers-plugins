@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "Encodage AV1 intelligent",
   "description": "Si la vidéo est déjà encodée en AV1, met à jour les en-têtes ; sinon réencode en AV1 (accélération matérielle ou SVT-AV1).",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "GPL-2.0-or-later",
   "capability": "encode",
   "fileMask": "*.mkv, *.mp4, *.m2ts, *.ts",

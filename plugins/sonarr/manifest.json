@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "Sonarr",
   "description": "Intégration automatisée avec Sonarr (*arr) pour la notification d'achèvement de traitement, l'actualisation des métadonnées de série et le renommage d'épisode.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "GPL-2.0-or-later",
   "capability": "integration",
   "files": [
@@ -54,7 +54,7 @@
       },
       {
         "name": "pathMappingLocal",
-        "label": "Chemin local (Flux de Fichiers)",
+        "label": "Chemin local (Forgearr)",
         "type": "string",
         "default": "/data",
         "required": false,

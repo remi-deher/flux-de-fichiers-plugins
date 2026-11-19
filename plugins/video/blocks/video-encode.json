@@ -4,12 +4,12 @@
   "aliases": [
     "video-encode"
   ],
-  "version": "1.0.0",
-  "name": "Encodage Vidéo",
-  "description": "Réencode la piste vidéo (HEVC, H.264, AV1) avec accélération matérielle.",
+  "version": "1.1.0",
+  "name": "Traitement vidéo, audio et sous-titres",
+  "description": "Remuxe ou encode la vidéo et configure les pistes audio et sous-titres en un passage FFmpeg.",
   "category": "media",
   "operationId": "operation.ffmpeg.video.encode",
-  "operationVersion": "1.0.0",
+  "operationVersion": "1.1.0",
   "sockets": {
     "inputs": [
       {
@@ -41,6 +41,22 @@
       "essentiel.file-output"
     ],
     "fields": [
+      {
+        "name": "video_mode",
+        "label": "Traitement vidéo",
+        "type": "select",
+        "default": "encode",
+        "options": [
+          {
+            "label": "Encoder",
+            "value": "encode"
+          },
+          {
+            "label": "Copier (remux)",
+            "value": "copy"
+          }
+        ]
+      },
       {
         "name": "codec",
         "label": "Codec",
@@ -123,6 +139,46 @@
         "max": 5,
         "default": 3,
         "description": "Un encodage plus rapide réduit l'efficacité de la compression, ce qui entraîne une qualité inférieure ou des fichiers plus volumineux."
+      },
+      {
+        "name": "audio_codec",
+        "label": "Codec audio",
+        "type": "select",
+        "default": "copy",
+        "options": [
+          {
+            "label": "Copier",
+            "value": "copy"
+          },
+          {
+            "label": "AAC",
+            "value": "aac"
+          },
+          {
+            "label": "Opus",
+            "value": "opus"
+          }
+        ]
+      },
+      {
+        "name": "audio_language",
+        "label": "Langue audio",
+        "type": "string",
+        "default": "",
+        "description": "Code de langue de la piste, par exemple fra ou eng. Vide pour conserver toutes les langues."
+      },
+      {
+        "name": "keep_subtitles",
+        "label": "Conserver les sous-titres",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "subtitle_language",
+        "label": "Langue des sous-titres",
+        "type": "string",
+        "default": "",
+        "description": "Code de langue de la piste, par exemple fra ou eng. Vide pour conserver toutes les langues."
       },
       {
         "name": "custom_parameters",
