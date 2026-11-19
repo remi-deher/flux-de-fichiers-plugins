@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "archives",
+  "type": "plugin",
+  "version": "1.0.0",
+  "name": "Archives",
+  "description": "Extraction des archives téléchargées (7z, RAR, ZIP, TAR…) avant leur traitement.",
+  "author": "flux-de-fichiers",
+  "license": "GPL-3.0-or-later",
+  "capability": "archive",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "blocks/extract.json",
+      "role": "block",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/extract.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "scripts/archives.py",
+      "role": "script",
+      "mediaType": "text/x-python"
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "7zip",
+      "versionRange": "^1.0.0",
+      "kind": "app",
+      "optional": true
+    },
+    {
+      "id": "interpreteurs",
+      "versionRange": "^1.0.0",
+      "kind": "app",
+      "optional": true
+    }
+  ],
+  "compatibility": {
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
+  }
+}

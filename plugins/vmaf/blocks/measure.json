@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "vmaf.measure",
+  "version": "1.0.0",
+  "name": "VMAF : mesurer la qualité",
+  "description": "Compare le fichier courant à l'original de la tâche (VMAF, modèle 1080p ou 4K selon la définition) et oriente vers « Conforme » ou « Insuffisant ».",
+  "category": "media",
+  "operationId": "operation.vmaf.measure",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "video/*"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "destination",
+        "label": "Fichier mesuré",
+        "dataType": "file",
+        "mediaType": "video/*"
+      }
+    ]
+  },
+  "ui": {
+    "category": "Qualité",
+    "domain": "quality",
+    "icon": "fas fa-eye",
+    "color": "#10B981",
+    "ports": [
+      {
+        "id": "true",
+        "label": "✓ Conforme"
+      },
+      {
+        "id": "false",
+        "label": "✗ Insuffisant"
+      }
+    ],
+    "suggestedNext": [
+      "essentiel.file-output",
+      "essentiel.webhook"
+    ],
+    "fields": [
+      {
+        "name": "threshold",
+        "label": "Score VMAF minimal",
+        "type": "range",
+        "min": 50,
+        "max": 100,
+        "default": 93,
+        "description": "Moyenne VMAF à atteindre (93 ≈ indiscernable en visionnage normal)."
+      },
+      {
+        "name": "subsample",
+        "label": "Une image analysée sur",
+        "type": "range",
+        "min": 1,
+        "max": 30,
+        "default": 5,
+        "description": "Plus la valeur est grande, plus la mesure est rapide et approximative."
+      }
+    ]
+  }
+}

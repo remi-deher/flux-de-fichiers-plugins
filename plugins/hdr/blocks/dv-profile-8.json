@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "hdr.dv-profile-8",
+  "version": "1.0.0",
+  "name": "Dolby Vision : profil 8.1",
+  "description": "Convertit un Dolby Vision profil 7 (double couche) en profil 8.1, lisible par les lecteurs courants. Sans objet pour les autres fichiers.",
+  "category": "media",
+  "operationId": "operation.hdr.dv-profile-8",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "video/x-matroska"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "destination",
+        "label": "Fichier mis à jour",
+        "dataType": "file",
+        "mediaType": "video/x-matroska"
+      }
+    ]
+  },
+  "ui": {
+    "category": "HDR",
+    "domain": "hdr",
+    "icon": "fas fa-sun",
+    "color": "#A855F7",
+    "suggestedNext": [
+      "vmaf.measure",
+      "essentiel.file-output"
+    ],
+    "fields": []
+  }
+}

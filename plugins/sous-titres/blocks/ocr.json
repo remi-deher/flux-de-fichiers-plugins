@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "sous-titres.ocr",
+  "version": "1.0.0",
+  "name": "Sous-titres : PGS → SRT (OCR)",
+  "description": "Reconnaît le texte des sous-titres image (PGS, Blu-ray) avec Tesseract et ajoute une piste SRT par langue reconnue (anglais, français, allemand, espagnol, italien, portugais, néerlandais).",
+  "category": "media",
+  "operationId": "operation.sous-titres.ocr",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "video/x-matroska"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "destination",
+        "label": "Fichier mis à jour",
+        "dataType": "file",
+        "mediaType": "video/x-matroska"
+      }
+    ]
+  },
+  "ui": {
+    "category": "Sous-titres",
+    "domain": "subtitles",
+    "icon": "fas fa-font",
+    "color": "#0EA5E9",
+    "suggestedNext": [
+      "sous-titres.sync",
+      "sous-titres.flags",
+      "essentiel.file-output"
+    ],
+    "fields": [
+      {
+        "name": "languages",
+        "label": "Langues",
+        "type": "string",
+        "default": "all",
+        "description": "Codes ISO séparés par des virgules (fre,eng) ou « all »."
+      },
+      {
+        "name": "replace",
+        "label": "Retirer les pistes PGS converties",
+        "type": "boolean",
+        "default": false
+      }
+    ]
+  }
+}

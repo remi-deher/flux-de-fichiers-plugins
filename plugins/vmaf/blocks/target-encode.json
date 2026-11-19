@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "vmaf.target-encode",
+  "version": "1.0.0",
+  "name": "VMAF : encoder à qualité cible",
+  "description": "Cherche le CRF le plus économe qui atteint le score VMAF demandé (échantillons), puis encode. Audio et sous-titres copiés.",
+  "category": "media",
+  "operationId": "operation.vmaf.target-encode",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "video/*"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "destination",
+        "label": "Vidéo réencodée",
+        "dataType": "file",
+        "mediaType": "video/x-matroska"
+      }
+    ]
+  },
+  "ui": {
+    "category": "Qualité",
+    "domain": "quality",
+    "icon": "fas fa-bullseye",
+    "color": "#10B981",
+    "suggestedNext": [
+      "hdr.dv-reinject",
+      "hdr.hdr10plus-reinject",
+      "essentiel.file-output"
+    ],
+    "fields": [
+      {
+        "name": "encoder",
+        "label": "Encodeur",
+        "type": "select",
+        "default": "libsvtav1",
+        "options": [
+          {
+            "label": "AV1 (SVT-AV1)",
+            "value": "libsvtav1"
+          },
+          {
+            "label": "HEVC (x265)",
+            "value": "libx265"
+          },
+          {
+            "label": "H.264 (x264)",
+            "value": "libx264"
+          }
+        ]
+      },
+      {
+        "name": "min_vmaf",
+        "label": "Score VMAF minimal",
+        "type": "range",
+        "min": 80,
+        "max": 99,
+        "default": 95
+      },
+      {
+        "name": "preset",
+        "label": "Preset",
+        "type": "string",
+        "default": "8",
+        "description": "SVT-AV1 : 0 (lent, compact) à 13 (rapide) ; x265/x264 : ultrafast … veryslow."
+      },
+      {
+        "name": "max_encoded_percent",
+        "label": "Taille maximale (% de l'original)",
+        "type": "range",
+        "min": 10,
+        "max": 100,
+        "default": 80,
+        "description": "Abandonne si l'encodage ne fait pas gagner de place."
+      }
+    ]
+  }
+}

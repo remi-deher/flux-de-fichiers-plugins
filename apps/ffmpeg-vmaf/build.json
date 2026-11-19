@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "1.0.0",
+  "slug": "ffmpeg-vmaf",
+  "toolId": "ffmpeg-vmaf",
+  "toolVersion": "1.0.0",
+  "releaseTagPrefix": "tools-ffmpeg-vmaf",
+  "source": {
+    "kind": "upstream-archives",
+    "archives": [
+      {
+        "extractTo": "ffmpeg-runtime",
+        "upstreamVersion": "FFmpeg n8.1.3 (BtbN autobuild-2026-11-18-12-39)",
+        "urls": {
+          "x86_64": "https://github.com/BtbN/FFmpeg-Builds/releases/download/autobuild-2026-11-18-12-39/ffmpeg-n8.1.3-36-ge22a4510c9-linux64-gpl-8.1.tar.xz",
+          "aarch64": "https://github.com/BtbN/FFmpeg-Builds/releases/download/autobuild-2026-11-18-12-39/ffmpeg-n8.1.3-36-ge22a4510c9-linuxarm64-gpl-8.1.tar.xz"
+        },
+        "sha256": {
+          "x86_64": "fce424851b0a982bdd4ac4e96f0e7b32cf29de999e54500676d41ad175ed0c79",
+          "aarch64": "c99da5b6996d28203180bcb0497f6ad58902e9a6eab96a4f563a3819c0545dde"
+        },
+        "stripComponents": 1,
+        "format": "tar.xz",
+        "prune": [
+          "bin/ffplay",
+          "doc",
+          "man",
+          "include",
+          "lib"
+        ],
+        "entrypoints": {
+          "ffmpeg": "bin/ffmpeg",
+          "ffprobe": "bin/ffprobe"
+        }
+      }
+    ]
+  },
+  "binaries": [
+    "ffmpeg",
+    "ffprobe"
+  ],
+  "probeArgs": [
+    "-version"
+  ]
+}

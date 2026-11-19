@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0.0",
+  "slug": "ab-av1",
+  "toolId": "ab-av1",
+  "toolVersion": "1.0.0",
+  "releaseTagPrefix": "tools-ab-av1",
+  "source": {
+    "kind": "cargo-crate",
+    "crate": "ab-av1",
+    "crateVersion": "0.11.7",
+    "rustToolchain": "1.99.0"
+  },
+  "binaries": [
+    "ab-av1"
+  ],
+  "probeArgs": [
+    "--version"
+  ]
+}
