@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "block.notifications.apprise",
+  "id": "notifications.apprise",
   "aliases": ["notify-apprise"],
   "version": "1.0.0",
   "name": "Notification : Apprise",
@@ -17,7 +17,7 @@
     "domain": "integration",
     "icon": "fas fa-paper-plane",
     "color": "#6366F1",
-    "suggestedNext": ["block.core.file-output"],
+    "suggestedNext": ["essentiel.file-output"],
     "fields": [
       { "name": "url", "label": "URL Apprise API", "type": "string", "required": true },
       { "name": "targets", "label": "URL(s) cibles Apprise", "type": "string", "required": true },

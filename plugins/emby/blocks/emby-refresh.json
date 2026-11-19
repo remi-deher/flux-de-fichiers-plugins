@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "block.emby.refresh",
+  "id": "emby.refresh",
   "aliases": ["emby-refresh"],
   "version": "1.0.0",
   "name": "Emby : Actualiser",
@@ -21,7 +21,7 @@
     "domain": "integration",
     "icon": "fas fa-tv",
     "color": "#10B981",
-    "suggestedNext": ["block.core.file-output"],
+    "suggestedNext": ["essentiel.file-output"],
     "fields": [
       {
         "name": "fail_on_error",

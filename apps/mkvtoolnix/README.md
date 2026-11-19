@@ -1,4 +1,4 @@
-# app.mkvtoolnix
+# mkvtoolnix
 
 Remuxage Matroska via `mkvmerge` — choix applicatif actuel.
 

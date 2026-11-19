@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "block.scripts.run",
+  "id": "scripts.run",
   "version": "1.0.0",
   "name": "Script",
   "description": "Exécute un script personnalisé (existant ou saisi ici), avec branche Vrai / Faux.",

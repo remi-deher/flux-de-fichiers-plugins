@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "block.media.inspect",
+  "id": "video.inspect",
   "aliases": [
     "media-inspect"
   ],
@@ -41,9 +41,9 @@
     "color": "#9C27B0",
     "implicitStart": true,
     "suggestedNext": [
-      "block.core.condition",
-      "block.video.encode",
-      "block.video.remux-mkv"
+      "essentiel.condition",
+      "video.encode",
+      "video.remux-mkv"
     ],
     "fields": []
   }

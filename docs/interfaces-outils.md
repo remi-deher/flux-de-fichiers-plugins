@@ -14,7 +14,7 @@ Responsabilité : remuxage sans réencodage d’un conteneur média.
 |---------|-----------------|
 | Implémentation | MKVToolNix (`mkvmerge`) |
 | Invocation | Option B — binaire autonome hors image (`host-binary` + `distribution.v1.json`) |
-| Fiche catalogue | `app.mkvtoolnix` |
+| Fiche catalogue | `mkvtoolnix` |
 
 Opérations minimales à prévoir côté application :
 
@@ -46,7 +46,7 @@ Frontière stricte :
 |---------|--------|
 | Implémentation | FFmpeg / ffprobe |
 | Invocation | Option B — binaire autonome |
-| Fiche | `app.ffmpeg` |
+| Fiche | `ffmpeg` |
 | Rôle validé | Médias synthétiques de tests / analyse |
 | Non validé | Remux / MP4 production (`examples/pending/`) |
 
@@ -56,7 +56,7 @@ Frontière stricte :
 |---------|--------|
 | Implémentation | `flux-telemetry` (interne) |
 | Invocation | Option B — binaire autonome, préférer préchargement offline |
-| Fiche | `app.internal.telemetry` |
+| Fiche | `telemetrie` |
 | Métriques | CPU, RAM, GPU, stockage |
 
 ## Capacités futures (non validées)

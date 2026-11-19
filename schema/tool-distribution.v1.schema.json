@@ -14,7 +14,9 @@
     "installPolicy"
   ],
   "properties": {
-    "schemaVersion": { "const": "1.0.0" },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
     "toolId": {
       "type": "string",
       "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
@@ -35,14 +37,25 @@
       "description": "Option B : binaires autonomes hors image applicative."
     },
     "releaseStatus": {
-      "enum": ["contract-only", "candidate", "released"],
+      "enum": [
+        "contract-only",
+        "candidate",
+        "released"
+      ],
       "description": "contract-only = empreintes/URL illustratives, non installables en prod."
+    },
+    "releasedAt": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+      "description": "Date UTC (AAAA-MM-JJ) de publication de la Release immuable des artefacts."
     },
     "artifacts": {
       "type": "array",
       "minItems": 1,
       "maxItems": 8,
-      "items": { "$ref": "#/$defs/artifact" }
+      "items": {
+        "$ref": "#/$defs/artifact"
+      }
     },
     "installPolicy": {
       "type": "object",
@@ -55,8 +68,12 @@
         "executableAllowlist"
       ],
       "properties": {
-        "verifySha256BeforeExec": { "const": true },
-        "refuseMismatchedDigest": { "const": true },
+        "verifySha256BeforeExec": {
+          "const": true
+        },
+        "refuseMismatchedDigest": {
+          "const": true
+        },
         "cacheRootRelative": {
           "type": "string",
           "pattern": "^tools-cache/[a-z0-9][a-z0-9._-]*/[0-9]+\\.[0-9]+\\.[0-9]+$",
@@ -77,7 +94,10 @@
           }
         },
         "networkAtInstall": {
-          "enum": ["explicit-allowlist", "offline-preseeded"],
+          "enum": [
+            "explicit-allowlist",
+            "offline-preseeded"
+          ],
           "description": "Téléchargement uniquement si allowlist ; sinon artefacts préchargés."
         }
       }
@@ -85,7 +105,10 @@
     "notes": {
       "type": "array",
       "maxItems": 16,
-      "items": { "type": "string", "maxLength": 1000 }
+      "items": {
+        "type": "string",
+        "maxLength": 1000
+      }
     }
   },
   "$defs": {
@@ -102,7 +125,10 @@
       ],
       "properties": {
         "arch": {
-          "enum": ["x86_64", "aarch64"],
+          "enum": [
+            "x86_64",
+            "aarch64"
+          ],
           "description": "Architecture cible Linux."
         },
         "archiveUrl": {
@@ -112,7 +138,11 @@
           "description": "URL HTTPS de l'archive (ou URI illustrative contract-only)."
         },
         "archiveFormat": {
-          "enum": ["tar.gz", "tar.xz", "zip"]
+          "enum": [
+            "tar.gz",
+            "tar.xz",
+            "zip"
+          ]
         },
         "archiveSha256": {
           "type": "string",
@@ -136,7 +166,10 @@
           "additionalProperties": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["relativePath", "sha256"],
+            "required": [
+              "relativePath",
+              "sha256"
+            ],
             "properties": {
               "relativePath": {
                 "type": "string",
@@ -152,7 +185,11 @@
         "permissions": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["unixMode", "owner", "executableBit"],
+          "required": [
+            "unixMode",
+            "owner",
+            "executableBit"
+          ],
           "properties": {
             "unixMode": {
               "type": "string",
@@ -160,9 +197,14 @@
               "description": "Mode octal attendu après installation (ex. 0755)."
             },
             "owner": {
-              "enum": ["runtime-user", "root-forbidden"]
+              "enum": [
+                "runtime-user",
+                "root-forbidden"
+              ]
             },
-            "executableBit": { "const": true }
+            "executableBit": {
+              "const": true
+            }
           }
         },
         "os": {

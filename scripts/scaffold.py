@@ -14,9 +14,15 @@ SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 
 
 def _slug_to_id(namespace: str | None, kind_prefix: str, slug: str) -> str:
+    """Identifiant préfixé par son type : réservé aux opérations, scripts et ressources."""
     if namespace:
         return f"{namespace}.{kind_prefix}.{slug}"
     return f"{kind_prefix}.{slug}"
+
+
+def _entry_id(namespace: str | None, slug: str) -> str:
+    """Identifiant sans préfixe de type (plugin, application, flow, pack) : le type vit dans `type`."""
+    return f"{namespace}.{slug}" if namespace else slug
 
 
 def _validate_slug(slug: str) -> str:
@@ -64,7 +70,7 @@ def cmd_init_repo(args: argparse.Namespace) -> None:
             author=args.author,
             license=args.license,
             kind="http",
-            tool_id="app.ffmpeg",
+            tool_id="ffmpeg",
             executable="ffmpeg",
         )
         cmd_plugin(example_args)
@@ -77,8 +83,8 @@ def cmd_plugin(args: argparse.Namespace) -> None:
     root = args.root.resolve()
     slug = _validate_slug(args.slug)
     ns = _validate_ns(args.namespace)
-    plugin_id = _slug_to_id(ns, "plugin", slug)
-    block_id = _slug_to_id(ns, "block", slug)
+    plugin_id = _entry_id(ns, slug)
+    block_id = f"{plugin_id}.{slug}"
     op_id = _slug_to_id(ns, "operation", slug)
     pdir = root / "plugins" / slug
     if pdir.exists():
@@ -182,7 +188,7 @@ def cmd_plugin(args: argparse.Namespace) -> None:
             "domain": "integration" if args.kind == "http" else "media",
             "icon": "fas fa-puzzle-piece",
             "color": "#38BDF8",
-            "suggestedNext": ["block.core.file-output"],
+            "suggestedNext": ["essentiel.file-output"],
             "fields": (
                 [{"name": "fail_on_error", "label": "Échec bloquant", "type": "boolean", "default": False}]
                 if args.kind == "http"
@@ -215,7 +221,7 @@ def cmd_app(args: argparse.Namespace) -> None:
     root = args.root.resolve()
     slug = _validate_slug(args.slug)
     ns = _validate_ns(args.namespace)
-    app_id = _slug_to_id(ns, "app", slug)
+    app_id = _entry_id(ns, slug)
     adir = root / "apps" / slug
     if adir.exists():
         raise SystemExit(f"Le dossier existe déjà : {adir}")
@@ -385,7 +391,7 @@ def cmd_flow(args: argparse.Namespace) -> None:
     root = args.root.resolve()
     slug = _validate_slug(args.slug)
     ns = _validate_ns(args.namespace)
-    flow_id = _slug_to_id(ns, "flow", slug)
+    flow_id = _entry_id(ns, slug)
     fdir = root / "flows" / slug
     if fdir.exists():
         raise SystemExit(f"Le dossier existe déjà : {fdir}")
@@ -421,7 +427,7 @@ def cmd_pack(args: argparse.Namespace) -> None:
     root = args.root.resolve()
     slug = _validate_slug(args.slug)
     ns = _validate_ns(args.namespace)
-    pack_id = _slug_to_id(ns, "pack", slug)
+    pack_id = _entry_id(ns, slug)
     pdir = root / "packs" / slug
     if pdir.exists():
         raise SystemExit(f"Le dossier existe déjà : {pdir}")
@@ -515,7 +521,7 @@ def main(argv: list[str] | None = None) -> int:
     p_plugin.add_argument("slug", help="Nom court du dossier (ex. mon-plugin).")
     p_plugin.add_argument("--name", required=True, help="Titre lisible.")
     p_plugin.add_argument("--kind", choices=["binary", "http"], default="http")
-    p_plugin.add_argument("--tool-id", default="app.ffmpeg", help="ID de l'app requise si kind=binary.")
+    p_plugin.add_argument("--tool-id", default="ffmpeg", help="ID de l'app requise si kind=binary.")
     p_plugin.add_argument("--executable", default="ffmpeg", help="Binaire exécuté si kind=binary.")
     p_plugin.set_defaults(func=cmd_plugin)
 
@@ -530,7 +536,7 @@ def main(argv: list[str] | None = None) -> int:
     p_flow = sub.add_parser("flow", help="Crée un flow déclaratif.")
     p_flow.add_argument("slug", help="Nom court du dossier (ex. mon-flow).")
     p_flow.add_argument("--name", required=True, help="Titre lisible.")
-    p_flow.add_argument("--plugin-id", default="plugin.core", help="Plugin requis par ce flow.")
+    p_flow.add_argument("--plugin-id", default="essentiel", help="Plugin requis par ce flow.")
     p_flow.add_argument("--capability", default="other", help="Capacité associée.")
     p_flow.add_argument("--file-mask", default="*.mkv, *.mp4", help="Masque de fichiers.")
     p_flow.set_defaults(func=cmd_flow)
@@ -549,7 +555,7 @@ def main(argv: list[str] | None = None) -> int:
     p_pack = sub.add_parser("pack", help="Crée un pack déclaratif.")
     p_pack.add_argument("slug", help="Nom court du dossier (ex. mon-pack).")
     p_pack.add_argument("--name", required=True, help="Titre lisible.")
-    p_pack.add_argument("--plugin-id", default="plugin.core", help="Plugin principal du pack.")
+    p_pack.add_argument("--plugin-id", default="essentiel", help="Plugin principal du pack.")
     p_pack.set_defaults(func=cmd_pack)
 
     p_res = sub.add_parser("resource", help="Crée un élément « Autre » (preset ou resource.*).")

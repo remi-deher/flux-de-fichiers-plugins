@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "telemetrie",
+  "type": "app",
+  "version": "0.1.0",
+  "name": "Télémétrie interne",
+  "description": "Mesure intégrée de l'activité du serveur (processeur, mémoire, disques).",
+  "author": "flux-de-fichiers",
+  "license": "UNLICENSED",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "distribution.v1.json",
+      "role": "config",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "capabilities.v1.json",
+      "role": "config",
+      "mediaType": "application/json"
+    }
+  ],
+  "compatibility": {
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
+  },
+  "dependencies": [],
+  "tool": {
+    "capability": "other",
+    "interface": "NodeTelemetryProbe",
+    "invocation": "host-binary",
+    "currentChoice": true
+  }
+}

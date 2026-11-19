@@ -397,12 +397,13 @@ jobs:
             (cd "meta/$slug" && sha256sum *.tar.gz > SHA256SUMS.txt)
             gh release upload "$tag" "meta/$slug/SHA256SUMS.txt"
             gh release edit "$tag" --draft=false
+            released_at=$(gh release view "$tag" --json publishedAt -q '.publishedAt[:10]')
 
             file="apps/$slug/distribution.v1.json"
             for arch in x86_64 aarch64; do
               meta="meta/$slug/$slug-$arch.json"
               url="https://github.com/${{ github.repository }}/releases/download/$tag/$slug-linux-$arch.tar.gz"
-              jq --arg arch "$arch" --arg url "$url" \
+              jq --arg arch "$arch" --arg url "$url" --arg released "$released_at" \
                  --slurpfile m "$meta" \
                  '(.artifacts[] | select(.arch == $arch)) |= (
                     .archiveUrl = $url
@@ -412,7 +413,8 @@ jobs:
                     | .binaries = $m[0].binaries
                   )
                   | .upstreamVersion = $m[0].upstreamVersion
-                  | .releaseStatus = "released"' \
+                  | .releaseStatus = "released"
+                  | .releasedAt = $released' \
                  "$file" > "$file.tmp"
               mv "$file.tmp" "$file"
             done

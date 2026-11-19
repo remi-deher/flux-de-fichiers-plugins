@@ -137,6 +137,16 @@
             "type": "string",
             "pattern": "^[a-f0-9]{64}$",
             "description": "Empreinte SHA-256 du fichier pointé par manifestPath, vérifiée à la synchronisation."
+          },
+          "contentSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "Empreinte SHA-256 de l'ensemble des fichiers de l'entrée ; pilote updatedAt."
+          },
+          "updatedAt": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+            "description": "Date UTC (AAAA-MM-JJ) de la dernière modification du contenu de l'entrée."
           }
         },
         "allOf": [

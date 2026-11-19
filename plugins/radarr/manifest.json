@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "plugin.radarr",
+  "id": "radarr",
   "type": "plugin",
   "version": "1.0.0",
   "name": "Radarr",

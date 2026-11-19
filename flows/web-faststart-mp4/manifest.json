@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "flow.remux.mp4",
+  "id": "web-faststart-mp4",
   "type": "flow",
   "version": "1.0.0",
   "name": "MP4 Streaming",
@@ -47,7 +47,7 @@
   },
   "dependencies": [
     {
-      "id": "plugin.video",
+      "id": "video",
       "versionRange": "^1.0.0",
       "kind": "plugin"
     }

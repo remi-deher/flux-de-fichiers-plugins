@@ -3,7 +3,7 @@
   "id": "operation.notifications.ntfy",
   "version": "1.0.0",
   "name": "Notification Ntfy",
-  "providerId": "plugin.notifications",
+  "providerId": "notifications",
   "providerKind": "plugin",
   "capability": "notification",
   "status": "validated",
