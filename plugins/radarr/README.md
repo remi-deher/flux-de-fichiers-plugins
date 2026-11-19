@@ -1,6 +1,6 @@
-# Plugin Radarr pour Flux de Fichiers
+# Plugin Radarr pour Forgearr
 
-Ce plugin permet à Flux de Fichiers d'interagir directement avec une instance [Radarr](https://radarr.video/) via son API REST v3.
+Ce plugin permet à Forgearr d'interagir directement avec une instance [Radarr](https://radarr.video/) via son API REST v3.
 
 ## Fonctionnalités
 - **Valeurs par défaut configurables** : L'URL du serveur et la clé d'API sont saisies une seule fois dans le panneau *Plugins & Outils* et héritées automatiquement par tous les flux de films.

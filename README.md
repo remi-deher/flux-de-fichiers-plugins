@@ -1,7 +1,7 @@
-# flux-de-fichiers-plugins
+# Forgearr Plugins
 
 Catalogue déclaratif versionné pour
-[Flux de Fichiers](https://github.com/remi-deher/flux-de-fichiers) : fiches de
+[Forgearr](https://github.com/remi-deher/flux-de-fichiers) : fiches de
 applications, plugins (et leurs blocs low-code), flows, packs et éléments « Autre ».
 Aucun chargeur, installeur, moteur de flows ou binaire tiers n'est livré ici.
 

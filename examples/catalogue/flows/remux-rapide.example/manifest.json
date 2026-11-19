@@ -5,7 +5,7 @@
   "version": "0.0.0",
   "name": "Exemple flux remux rapide",
   "description": "Flux prédéfini illustratif : remuxage sans réencodage via l'outil MKVToolNix actuel.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "UNLICENSED",
   "files": [
     {

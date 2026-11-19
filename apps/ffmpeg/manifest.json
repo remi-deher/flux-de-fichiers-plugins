@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "FFmpeg",
   "description": "Encodeur et convertisseur vidéo/audio universel.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "GPL-3.0-or-later",
   "files": [
     {

@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "Plex",
   "description": "Déclenche l'actualisation d'une section de bibliothèque Plex après traitement.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "GPL-2.0-or-later",
   "capability": "integration",
   "files": [

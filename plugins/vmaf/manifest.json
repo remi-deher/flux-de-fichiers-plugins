@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "Qualité VMAF",
   "description": "Mesure de la qualité perçue (VMAF) et encodage à qualité cible avec ab-av1.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "GPL-3.0-or-later",
   "capability": "quality",
   "files": [

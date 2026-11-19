@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "Scripts",
   "description": "Exécution de scripts personnalisés avec aiguillage conditionnel.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "GPL-3.0-or-later",
   "category": "data",
   "capability": "script",

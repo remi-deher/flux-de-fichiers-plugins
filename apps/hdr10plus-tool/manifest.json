@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "hdr10plus_tool (HDR10+)",
   "description": "Extraction et réinjection des métadonnées dynamiques HDR10+ d'un flux HEVC.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "MIT",
   "files": [
     {

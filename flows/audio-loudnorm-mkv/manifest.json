@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "Normalisation audio EBU R128",
   "description": "Normalise le volume audio selon EBU R128 (loudnorm) en conservant la piste vidéo et les sous-titres.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "GPL-2.0-or-later",
   "capability": "encode",
   "fileMask": "*.mkv, *.mp4, *.flac, *.m4a",

@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "Nettoyage sous-titres & langues",
   "description": "Ne conserve que les pistes de sous-titres françaises et anglaises et définit le français par défaut.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "GPL-2.0-or-later",
   "capability": "remux",
   "fileMask": "*.mkv",

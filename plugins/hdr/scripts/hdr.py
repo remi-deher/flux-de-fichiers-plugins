@@ -2,7 +2,7 @@
 """HDR et Dolby Vision : conversion du profil 7 en 8.1 et réinjection des métadonnées dynamiques
 (RPU Dolby Vision, HDR10+) de l'original dans un réencodage HEVC.
 
-Protocole Flux de Fichiers : JSON sur stdin (workingFile, sourceFile, workDir, config), réponse
+Protocole Forgearr : JSON sur stdin (workingFile, sourceFile, workDir, config), réponse
 JSON sur stdout (status, message, workingFile). Outils attendus dans le PATH : mkvmerge,
 mkvextract, dovi_tool, hdr10plus_tool.
 """

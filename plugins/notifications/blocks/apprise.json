@@ -21,7 +21,7 @@
     "fields": [
       { "name": "url", "label": "URL Apprise API", "type": "string", "required": true },
       { "name": "targets", "label": "URL(s) cibles Apprise", "type": "string", "required": true },
-      { "name": "title", "label": "Titre", "type": "string", "default": "Flux de Fichiers" },
+      { "name": "title", "label": "Titre", "type": "string", "default": "Forgearr" },
       { "name": "message", "label": "Message", "type": "string", "default": "Traitement terminé : {$context.sourceName}" },
       { "name": "fail_on_error", "label": "Échec bloquant", "type": "boolean", "default": false }
     ]

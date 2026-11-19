@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "ab-av1",
   "description": "Encodage à qualité cible : cherche le CRF qui atteint un score VMAF minimal, puis encode.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "MIT",
   "files": [
     {

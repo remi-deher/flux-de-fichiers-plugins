@@ -11,7 +11,7 @@ Ce dossier est un dépôt modèle prêt à être copié dans votre propre dépô
 4. Régénérez `index.json` à la racine (et ses empreintes `sha256`) avec `build_index.py`.
 5. Vérifiez avec `check_catalogue.py` puis publiez un tag ou une release immuable.
 
-## URL à déclarer dans Flux de Fichiers
+## URL à déclarer dans Forgearr
 
 Dans l'interface **Plugins → Dépôts**, ajoutez l'URL complète se terminant par `/index.json` :
 

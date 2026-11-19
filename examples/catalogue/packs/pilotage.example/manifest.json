@@ -5,7 +5,7 @@
   "version": "0.0.0",
   "name": "Exemple d’application déclarative MKV",
   "description": "Paquet déclaratif avec dépendances exactes et lanceur de flow pour le futur frontend Leptos. Aucun installeur ni bundle exécutable fourni.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "UNLICENSED",
   "files": [
     {

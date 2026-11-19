@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "Conversion MKV",
   "description": "Convertit proprement le fichier au format MKV sans perte de qualité.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "GPL-2.0-or-later",
   "capability": "remux",
   "fileMask": "*.mkv, *.avi, *.mp4",

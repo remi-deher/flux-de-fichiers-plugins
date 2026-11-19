@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "name": "Télémétrie interne",
   "description": "Mesure intégrée de l'activité du serveur (processeur, mémoire, disques).",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "UNLICENSED",
   "files": [
     {

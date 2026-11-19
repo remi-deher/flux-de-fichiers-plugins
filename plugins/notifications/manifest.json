@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "Notifications",
   "description": "Envoi de notifications vers Discord, Ntfy, Gotify et Apprise en cours ou fin de flux.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "GPL-2.0-or-later",
   "capability": "notification",
   "files": [

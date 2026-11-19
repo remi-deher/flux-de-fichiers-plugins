@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "Radarr",
   "description": "Intégration automatisée avec Radarr (*arr) pour l'actualisation de la collection de films, la mise à jour des codecs détectés et le renommage après encodage.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "GPL-2.0-or-later",
   "capability": "integration",
   "files": [
@@ -54,7 +54,7 @@
       },
       {
         "name": "pathMappingLocal",
-        "label": "Chemin local (Flux de Fichiers)",
+        "label": "Chemin local (Forgearr)",
         "type": "string",
         "default": "/data",
         "required": false,

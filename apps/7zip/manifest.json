@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "7-Zip",
   "description": "Extraction des archives (7z, RAR, ZIP, TAR…) reçues avant traitement.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "LGPL-2.1-or-later",
   "files": [
     {

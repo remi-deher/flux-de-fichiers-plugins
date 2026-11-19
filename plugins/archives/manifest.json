@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "Archives",
   "description": "Extraction des archives téléchargées (7z, RAR, ZIP, TAR…) avant leur traitement.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "GPL-3.0-or-later",
   "capability": "archive",
   "files": [

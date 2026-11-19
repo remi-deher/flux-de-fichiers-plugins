@@ -5,7 +5,7 @@
   "version": "0.0.0",
   "name": "Bloc de remuxage MKV",
   "description": "Façade low-code de l’opération du plugin MKV, réservée au futur runtime.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "UNLICENSED",
   "files": [
     {

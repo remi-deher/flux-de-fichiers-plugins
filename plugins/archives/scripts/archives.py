@@ -2,7 +2,7 @@
 """Archives : extrait une archive (7z, RAR, ZIP, TAR…) avec 7-Zip et poursuit le flux sur le plus
 gros fichier vidéo qu'elle contient. Un fichier qui n'est pas une archive est laissé tel quel.
 
-Protocole Flux de Fichiers : JSON sur stdin, réponse JSON sur stdout. Outil attendu dans le
+Protocole Forgearr : JSON sur stdin, réponse JSON sur stdout. Outil attendu dans le
 PATH : 7zz.
 """
 import json
