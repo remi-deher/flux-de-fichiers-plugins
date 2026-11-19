@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "hdr.dv-reinject",
+  "version": "1.0.0",
+  "name": "Dolby Vision : réinjecter l'original",
+  "description": "Après un réencodage HEVC, réinjecte le RPU Dolby Vision de l'original (converti en 8.1). Le nombre d'images doit être identique.",
+  "category": "media",
+  "operationId": "operation.hdr.dv-reinject",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "video/x-matroska"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "destination",
+        "label": "Fichier mis à jour",
+        "dataType": "file",
+        "mediaType": "video/x-matroska"
+      }
+    ]
+  },
+  "ui": {
+    "category": "HDR",
+    "domain": "hdr",
+    "icon": "fas fa-sun",
+    "color": "#A855F7",
+    "suggestedNext": [
+      "vmaf.measure",
+      "essentiel.file-output"
+    ],
+    "fields": []
+  }
+}

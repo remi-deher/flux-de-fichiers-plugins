@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0.0",
+  "slug": "atomicparsley",
+  "toolId": "atomicparsley",
+  "toolVersion": "1.0.0",
+  "releaseTagPrefix": "tools-atomicparsley",
+  "source": {
+    "kind": "debian-bookworm",
+    "packages": [
+      "atomicparsley"
+    ]
+  },
+  "binaries": [
+    "AtomicParsley"
+  ],
+  "probeArgs": [
+    "--version"
+  ]
+}

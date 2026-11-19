@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0.0",
+  "slug": "7zip",
+  "toolId": "7zip",
+  "toolVersion": "1.0.0",
+  "releaseTagPrefix": "tools-7zip",
+  "source": {
+    "kind": "debian-bookworm",
+    "packages": [
+      "7zip"
+    ]
+  },
+  "binaries": [
+    "7zz"
+  ],
+  "probeArgs": [
+    "i"
+  ]
+}

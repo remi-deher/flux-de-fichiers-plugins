@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0.0",
+  "slug": "tesseract",
+  "toolId": "tesseract",
+  "toolVersion": "1.0.0",
+  "releaseTagPrefix": "tools-tesseract",
+  "source": {
+    "kind": "debian-bookworm",
+    "packages": [
+      "tesseract-ocr",
+      "tesseract-ocr-eng",
+      "tesseract-ocr-fra",
+      "tesseract-ocr-deu",
+      "tesseract-ocr-spa",
+      "tesseract-ocr-ita",
+      "tesseract-ocr-por",
+      "tesseract-ocr-nld"
+    ]
+  },
+  "binaries": [
+    "tesseract"
+  ],
+  "probeArgs": [
+    "--version"
+  ],
+  "dataPaths": [
+    {
+      "from": "/usr/share/tesseract-ocr/5/tessdata",
+      "to": "share/tessdata"
+    }
+  ],
+  "launcherEnv": {
+    "TESSDATA_PREFIX": "share/tessdata"
+  }
+}

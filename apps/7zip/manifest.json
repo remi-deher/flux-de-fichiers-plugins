@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "7zip",
+  "type": "app",
+  "version": "1.0.0",
+  "name": "7-Zip",
+  "description": "Extraction des archives (7z, RAR, ZIP, TAR…) reçues avant traitement.",
+  "author": "flux-de-fichiers",
+  "license": "LGPL-2.1-or-later",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "build.json",
+      "role": "config",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "distribution.v1.json",
+      "role": "config",
+      "mediaType": "application/json"
+    }
+  ],
+  "compatibility": {
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
+  },
+  "dependencies": [],
+  "tool": {
+    "capability": "archive",
+    "interface": "ArchiveExtractor",
+    "invocation": "host-binary",
+    "currentChoice": false
+  }
+}

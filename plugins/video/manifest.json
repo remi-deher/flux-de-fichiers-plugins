@@ -68,6 +68,16 @@
       "path": "operations/video-encode.json",
       "role": "operation",
       "mediaType": "application/json"
+    },
+    {
+      "path": "blocks/tags-mp4.json",
+      "role": "block",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/tags-mp4.json",
+      "role": "operation",
+      "mediaType": "application/json"
     }
   ],
   "dependencies": [
@@ -91,6 +101,12 @@
     },
     {
       "id": "mediainfo",
+      "versionRange": "^1.0.0",
+      "kind": "app",
+      "optional": true
+    },
+    {
+      "id": "atomicparsley",
       "versionRange": "^1.0.0",
       "kind": "app",
       "optional": true

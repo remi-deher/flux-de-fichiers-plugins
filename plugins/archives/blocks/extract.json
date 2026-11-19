@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "archives.extract",
+  "version": "1.0.0",
+  "name": "Archives : extraire",
+  "description": "Extrait une archive (7z, RAR, ZIP, TAR…) et poursuit sur le plus gros fichier vidéo qu'elle contient. Un fichier qui n'est pas une archive passe tel quel. Placez ce bloc en premier.",
+  "category": "media",
+  "operationId": "operation.archives.extract",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "*/*"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "destination",
+        "label": "Vidéo extraite",
+        "dataType": "file",
+        "mediaType": "video/*"
+      }
+    ]
+  },
+  "ui": {
+    "category": "Archives",
+    "domain": "io",
+    "icon": "fas fa-file-archive",
+    "color": "#F59E0B",
+    "suggestedNext": [
+      "video.inspect",
+      "video.remux-mkv"
+    ],
+    "fields": []
+  }
+}

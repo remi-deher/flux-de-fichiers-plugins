@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "vmaf",
+  "type": "plugin",
+  "version": "1.0.0",
+  "name": "Qualité VMAF",
+  "description": "Mesure de la qualité perçue (VMAF) et encodage à qualité cible avec ab-av1.",
+  "author": "flux-de-fichiers",
+  "license": "GPL-3.0-or-later",
+  "capability": "quality",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "blocks/measure.json",
+      "role": "block",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "blocks/target-encode.json",
+      "role": "block",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/measure.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/target-encode.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "scripts/vmaf.py",
+      "role": "script",
+      "mediaType": "text/x-python"
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "ffmpeg-vmaf",
+      "versionRange": "^1.0.0",
+      "kind": "app",
+      "optional": true
+    },
+    {
+      "id": "ab-av1",
+      "versionRange": "^1.0.0",
+      "kind": "app",
+      "optional": true
+    },
+    {
+      "id": "interpreteurs",
+      "versionRange": "^1.0.0",
+      "kind": "app",
+      "optional": true
+    }
+  ],
+  "compatibility": {
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
+  }
+}

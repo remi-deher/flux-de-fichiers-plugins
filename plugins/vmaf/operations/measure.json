@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.vmaf.measure",
+  "version": "1.0.0",
+  "name": "Mesurer la qualité VMAF",
+  "providerId": "vmaf",
+  "providerKind": "plugin",
+  "capability": "quality",
+  "status": "validated",
+  "runtime": {
+    "kind": "script",
+    "tool": {
+      "id": "interpreteurs",
+      "version": "1.1.0"
+    },
+    "pathTools": [
+      {
+        "id": "ffmpeg-vmaf",
+        "version": "1.0.0"
+      }
+    ],
+    "interpreter": "python3",
+    "entrypoint": "scripts/vmaf.py",
+    "timeoutSeconds": 43200,
+    "defaults": {
+      "threshold": 93,
+      "subsample": 5
+    }
+  }
+}

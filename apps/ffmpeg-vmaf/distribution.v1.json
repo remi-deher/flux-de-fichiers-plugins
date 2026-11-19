@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0.0",
+  "toolId": "ffmpeg-vmaf",
+  "toolVersion": "1.0.0",
+  "distributionMode": "autonomous-binary",
+  "releaseStatus": "contract-only",
+  "artifacts": [
+    {
+      "arch": "x86_64",
+      "os": "linux",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-ffmpeg-vmaf-1.0.0/ffmpeg-vmaf-linux-x86_64.tar.gz",
+      "archiveFormat": "tar.gz",
+      "archiveSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "binaryRelativePath": "ffmpeg",
+      "binarySha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "permissions": {
+        "unixMode": "0755",
+        "owner": "runtime-user",
+        "executableBit": true
+      }
+    },
+    {
+      "arch": "aarch64",
+      "os": "linux",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-ffmpeg-vmaf-1.0.0/ffmpeg-vmaf-linux-aarch64.tar.gz",
+      "archiveFormat": "tar.gz",
+      "archiveSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "binaryRelativePath": "ffmpeg",
+      "binarySha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "permissions": {
+        "unixMode": "0755",
+        "owner": "runtime-user",
+        "executableBit": true
+      }
+    }
+  ],
+  "installPolicy": {
+    "verifySha256BeforeExec": true,
+    "refuseMismatchedDigest": true,
+    "cacheRootRelative": "tools-cache/ffmpeg-vmaf/1.0.0",
+    "noShellUnpack": true,
+    "executableAllowlist": [
+      "ffmpeg",
+      "ffprobe"
+    ],
+    "networkAtInstall": "explicit-allowlist"
+  },
+  "notes": [
+    "Empreintes et releaseStatus renseignés par build-tools.yml à la première construction (recette build.json)."
+  ]
+}

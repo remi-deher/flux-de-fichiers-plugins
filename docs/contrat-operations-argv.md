@@ -30,3 +30,13 @@ Source : https://mkvtoolnix.download/doc/mkvmerge.html#mkvmerge.exit_codes
 ## FFmpeg / MP4
 
 `examples/pending/ffmpeg-mp4.pending/` — **pending-decision**, pas production.
+
+## Outils auxiliaires, original et entrées non média
+
+Trois champs, lus par le cœur depuis la version qui les introduit, étendent les runtimes `binary` et `script` :
+
+- **`pathTools`** (`binary`, `script`) : outils du catalogue placés en tête du `PATH` de la commande, pour un outil qui en appelle d'autres (ab-av1 et alass appellent `ffmpeg`, l'OCR enchaîne `mkvextract` et `tesseract`). Ils comptent parmi les outils requis du flux et sont donc installés sur les workers.
+- **Chemin `reference`** (`binary`, `{ "param": "reference", "as": "filePath" }`) et **`sourceFile`** (entrée JSON d'un `script`) : fichier d'origine de la tâche, pour comparer un encodage à sa source (VMAF) ou y relire des métadonnées (Dolby Vision, HDR10+).
+- **`acceptsNonMedia`** (`script`) : le script accepte une entrée non média (archive). Un flux qui le contient tolère l'échec de la sonde initiale ; lorsqu'un script remplace le fichier de travail sans fournir `mediaInfo`, le nouveau fichier est inspecté.
+
+Les scripts de plugins (`entrypoint` relatif au dossier du plugin) sont testés par `scripts/test_plugin_scripts.py`, avec de faux outils dans le `PATH`.
