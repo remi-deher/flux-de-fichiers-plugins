@@ -3,20 +3,26 @@
   "toolId": "hdr10plus-tool",
   "toolVersion": "1.0.0",
   "distributionMode": "autonomous-binary",
-  "releaseStatus": "contract-only",
+  "releaseStatus": "released",
   "artifacts": [
     {
       "arch": "x86_64",
       "os": "linux",
       "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-hdr10plus-tool-1.0.0/hdr10plus-tool-linux-x86_64.tar.gz",
       "archiveFormat": "tar.gz",
-      "archiveSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "archiveSha256": "56883296456ba540758ad697b32a52b25f0bf5e80765587b2df58351db93ad0f",
       "binaryRelativePath": "hdr10plus_tool",
-      "binarySha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "binarySha256": "c27f3e6448413d358044bfd6fc5cc96e7a7f1ee143e8565cd6b0dbf7342c26b8",
       "permissions": {
         "unixMode": "0755",
         "owner": "runtime-user",
         "executableBit": true
+      },
+      "binaries": {
+        "hdr10plus_tool": {
+          "relativePath": "hdr10plus_tool",
+          "sha256": "c27f3e6448413d358044bfd6fc5cc96e7a7f1ee143e8565cd6b0dbf7342c26b8"
+        }
       }
     },
     {
@@ -24,13 +30,19 @@
       "os": "linux",
       "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-hdr10plus-tool-1.0.0/hdr10plus-tool-linux-aarch64.tar.gz",
       "archiveFormat": "tar.gz",
-      "archiveSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "archiveSha256": "fb0a7b91c2945257b531a5af6810bdd51b1997a28b56f36bc348a880f240a1e9",
       "binaryRelativePath": "hdr10plus_tool",
-      "binarySha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "binarySha256": "c27f3e6448413d358044bfd6fc5cc96e7a7f1ee143e8565cd6b0dbf7342c26b8",
       "permissions": {
         "unixMode": "0755",
         "owner": "runtime-user",
         "executableBit": true
+      },
+      "binaries": {
+        "hdr10plus_tool": {
+          "relativePath": "hdr10plus_tool",
+          "sha256": "c27f3e6448413d358044bfd6fc5cc96e7a7f1ee143e8565cd6b0dbf7342c26b8"
+        }
       }
     }
   ],
@@ -46,5 +58,7 @@
   },
   "notes": [
     "Empreintes et releaseStatus renseignés par build-tools.yml à la première construction (recette build.json)."
-  ]
+  ],
+  "upstreamVersion": "hdr10plus_tool 1.7.2",
+  "releasedAt": "2026-11-19"
 }

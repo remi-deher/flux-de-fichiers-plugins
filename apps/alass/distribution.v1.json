@@ -3,20 +3,26 @@
   "toolId": "alass",
   "toolVersion": "1.0.0",
   "distributionMode": "autonomous-binary",
-  "releaseStatus": "contract-only",
+  "releaseStatus": "released",
   "artifacts": [
     {
       "arch": "x86_64",
       "os": "linux",
       "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-alass-1.0.0/alass-linux-x86_64.tar.gz",
       "archiveFormat": "tar.gz",
-      "archiveSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "archiveSha256": "1f7d1dcc1401f0aa615266ec7c7f68d2613fc9076fe727926833d2984f8cc2eb",
       "binaryRelativePath": "alass-cli",
-      "binarySha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "binarySha256": "40b9d340d40b47a1b94fac5762400f9220296191d741dc090ae875ae2956a971",
       "permissions": {
         "unixMode": "0755",
         "owner": "runtime-user",
         "executableBit": true
+      },
+      "binaries": {
+        "alass-cli": {
+          "relativePath": "alass-cli",
+          "sha256": "40b9d340d40b47a1b94fac5762400f9220296191d741dc090ae875ae2956a971"
+        }
       }
     },
     {
@@ -24,13 +30,19 @@
       "os": "linux",
       "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-alass-1.0.0/alass-linux-aarch64.tar.gz",
       "archiveFormat": "tar.gz",
-      "archiveSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "archiveSha256": "dcdbc84af5661d8c9f8ad3392087dafca60a7e09a9618fc4c61ebcd661cb1749",
       "binaryRelativePath": "alass-cli",
-      "binarySha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "binarySha256": "bc4d5bfe93f443491332ec015ddf7f2c319344f0310b5dfea29165a62319761c",
       "permissions": {
         "unixMode": "0755",
         "owner": "runtime-user",
         "executableBit": true
+      },
+      "binaries": {
+        "alass-cli": {
+          "relativePath": "alass-cli",
+          "sha256": "bc4d5bfe93f443491332ec015ddf7f2c319344f0310b5dfea29165a62319761c"
+        }
       }
     }
   ],
@@ -46,5 +58,7 @@
   },
   "notes": [
     "Empreintes et releaseStatus renseignés par build-tools.yml à la première construction (recette build.json)."
-  ]
+  ],
+  "upstreamVersion": "alass-cli 2.0.0 (rustc 1.99.0 (b940084d7 2026-09-28))",
+  "releasedAt": "2026-11-19"
 }
