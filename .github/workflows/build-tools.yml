@@ -1,5 +1,5 @@
 # Construit les artefacts réels des outils distribués (Option B) à partir des recettes
-# `apps/<outil>/build.json`, sans jamais écraser une Release publiée (`--clobber` interdit).
+# `apps/<outil>/build.json`, sans jamais écraser une Release publiée (`--clobber` réservé aux brouillons).
 #
 # Chaque outil est publié dans sa propre Release immuable (`<releaseTagPrefix>-<toolVersion>`),
 # créée en brouillon (--draft) puis publiée après téléversement des archives, des métadonnées
@@ -106,7 +106,8 @@ jobs:
     permissions:
       contents: write
     strategy:
-      fail-fast: true
+      # Chaque outil est indépendant : un échec n'annule pas les autres constructions.
+      fail-fast: false
       matrix:
         tool: ${{ fromJson(needs.discover.outputs.tools) }}
         arch:
@@ -316,8 +317,10 @@ jobs:
               fi
             done
           fi
+          # Sortie capturée puis tronquée : `| head` couperait le tuyau (SIGPIPE, code 141 sous pipefail).
           for binary in "${BINS[@]}"; do
-            env -i "$stage/$binary" "${PROBE[@]}" | head -n 1
+            env -i "$stage/$binary" "${PROBE[@]}" > /tmp/probe.out 2>&1
+            head -n 1 /tmp/probe.out
           done
 
           {
@@ -409,7 +412,8 @@ jobs:
             echo "::error::Refus d'écrire sur une release déjà publiée ($TAG)"
             exit 1
           fi
-          gh release upload "$TAG" out/*.tar.gz out/*.json
+          # Release encore en brouillon (vérifié ci-dessus) : une relance remplace ses fichiers.
+          gh release upload "$TAG" out/*.tar.gz out/*.json --clobber
 
   publish-and-pr:
     name: publier releases et ouvrir PR contrats
