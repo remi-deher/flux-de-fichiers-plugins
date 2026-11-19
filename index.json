@@ -8,7 +8,7 @@
     "apps/mediainfo/distribution.v1.json": "e422d01c43709c2a635372c94fe8c92fcb7e04d7f8f0cb2e11b51a20229ef8d5",
     "apps/mkvtoolnix/distribution.v1.json": "2a583c692289f4d2ddd04bdc8a4d34d93d5c0996cda331d1c6137f9d7628bc79",
     "apps/mp4box/distribution.v1.json": "eac6cdc703dc16e2e4b4c9a08bc1a4351f1675fcbe4cc90bf624e016fe8ac754",
-    "apps/script-runners/distribution.v1.json": "48d0d846e1f835d310eac2f96d1c7373c57fec7e493d11569c648bdbd7f85c8f",
+    "apps/script-runners/distribution.v1.json": "db65438cce3c2fcb795d8df4478c22adaf11e9f6fc4f3ae77d9c8aa76e88c600",
     "packs/media/installation.json": "7c003d896ee911fd72695bd3d65694d5929e5535c1d6859c0ce81fd2b2e08469",
     "plugins/audio/operations/audio-encode.json": "894aa5921e84f375ecd9031e1d0a56e7f293922ee9834b5c4ec8293c45a7865f",
     "plugins/core/operations/condition.json": "52497af0dbdffd54166780028c4757d70c7f30a47c634a8125a2b72da7f13083",
