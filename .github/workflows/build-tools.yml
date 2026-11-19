@@ -438,6 +438,11 @@ jobs:
           git add apps/*/distribution.v1.json index.json
           git commit -m "chore(apps): mise à jour contrats de distribution immuables"
           git push origin "$BRANCH"
-          gh pr create --base dev --head "$BRANCH" \
+          # Corps entre apostrophes : des backticks entre guillemets seraient exécutés par bash.
+          BODY='Contrats `distribution.v1.json` et empreintes `index.json` mis à jour automatiquement après publication de releases immuables (sans `--clobber`).'
+          if ! gh pr create --base dev --head "$BRANCH" \
             --title "chore(apps): publication immuable des outils Option B" \
-            --body "Contrats `distribution.v1.json` et empreintes `catalogue/index.json` mis à jour automatiquement après publication de releases immuables (sans `--clobber`)."
+            --body "$BODY"; then
+            # Le dépôt peut interdire à GitHub Actions d'ouvrir des PR : la branche reste poussée.
+            echo "::warning::PR non créée par Actions ; ouvrez-la depuis https://github.com/${{ github.repository }}/compare/dev...$BRANCH"
+          fi
