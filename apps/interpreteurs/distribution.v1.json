@@ -3,20 +3,34 @@
   "toolId": "interpreteurs",
   "toolVersion": "1.1.0",
   "distributionMode": "autonomous-binary",
-  "releaseStatus": "contract-only",
+  "releaseStatus": "released",
   "artifacts": [
     {
       "arch": "x86_64",
       "os": "linux",
       "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-script-runners-1.1.0/interpreteurs-linux-x86_64.tar.gz",
       "archiveFormat": "tar.gz",
-      "archiveSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "archiveSha256": "71751e5c10a098481102274ec6c68185bea40af372991bee297936d2791b7fa5",
       "binaryRelativePath": "python3",
-      "binarySha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "binarySha256": "734a3a51210784e5da93d1534074075cc63cd558250e4a9d3ce5fd16d94046d1",
       "permissions": {
         "unixMode": "0755",
         "owner": "runtime-user",
         "executableBit": true
+      },
+      "binaries": {
+        "python3": {
+          "relativePath": "python3",
+          "sha256": "734a3a51210784e5da93d1534074075cc63cd558250e4a9d3ce5fd16d94046d1"
+        },
+        "node": {
+          "relativePath": "node",
+          "sha256": "8948a25a098fc64c48d03762fabddc84d874e9f032343da9af900ca185af81ae"
+        },
+        "jq": {
+          "relativePath": "jq",
+          "sha256": "b0816d9c49eb67916875154c1ac49db8722d2eb2c76970d51477a3c51a4e974e"
+        }
       }
     },
     {
@@ -24,13 +38,27 @@
       "os": "linux",
       "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-script-runners-1.1.0/interpreteurs-linux-aarch64.tar.gz",
       "archiveFormat": "tar.gz",
-      "archiveSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "archiveSha256": "7cfc47540ca2b1a2677b30ade544b92158fabd6c60b752a87f8ac9a28c602939",
       "binaryRelativePath": "python3",
-      "binarySha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "binarySha256": "734a3a51210784e5da93d1534074075cc63cd558250e4a9d3ce5fd16d94046d1",
       "permissions": {
         "unixMode": "0755",
         "owner": "runtime-user",
         "executableBit": true
+      },
+      "binaries": {
+        "python3": {
+          "relativePath": "python3",
+          "sha256": "734a3a51210784e5da93d1534074075cc63cd558250e4a9d3ce5fd16d94046d1"
+        },
+        "node": {
+          "relativePath": "node",
+          "sha256": "8948a25a098fc64c48d03762fabddc84d874e9f032343da9af900ca185af81ae"
+        },
+        "jq": {
+          "relativePath": "jq",
+          "sha256": "b0816d9c49eb67916875154c1ac49db8722d2eb2c76970d51477a3c51a4e974e"
+        }
       }
     }
   ],
@@ -50,5 +78,7 @@
     "Archive autonome Option B : CPython 3.14 (python-build-standalone), Node.js 26 LTS et jq 1.8.2, épinglés par SHA-256 dans build.json.",
     "Chaque outil est exposé par un lanceur sh à la racine (python3, node, jq) ; sh et bash proviennent de l'image de base.",
     "Empreintes et releaseStatus renseignés par build-tools.yml ; tant que le contrat est contract-only, le moteur se replie sur le PATH de l'hôte."
-  ]
+  ],
+  "upstreamVersion": "CPython 3.14.10 (python-build-standalone 20261110), Node.js 26.13.1 LTS, jq 1.8.2",
+  "releasedAt": "2026-11-19"
 }

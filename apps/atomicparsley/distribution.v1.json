@@ -3,20 +3,26 @@
   "toolId": "atomicparsley",
   "toolVersion": "1.0.0",
   "distributionMode": "autonomous-binary",
-  "releaseStatus": "contract-only",
+  "releaseStatus": "released",
   "artifacts": [
     {
       "arch": "x86_64",
       "os": "linux",
       "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-atomicparsley-1.0.0/atomicparsley-linux-x86_64.tar.gz",
       "archiveFormat": "tar.gz",
-      "archiveSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "archiveSha256": "6163bcef158c473d07a99a91936ac2884274d6ff8a5c1d945af5fde42ab56498",
       "binaryRelativePath": "AtomicParsley",
-      "binarySha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "binarySha256": "845fa3951cf417fd7efb01f4efddb9985cb966a2faa260f1a5c86ca50ad5d7b6",
       "permissions": {
         "unixMode": "0755",
         "owner": "runtime-user",
         "executableBit": true
+      },
+      "binaries": {
+        "AtomicParsley": {
+          "relativePath": "AtomicParsley",
+          "sha256": "845fa3951cf417fd7efb01f4efddb9985cb966a2faa260f1a5c86ca50ad5d7b6"
+        }
       }
     },
     {
@@ -24,13 +30,19 @@
       "os": "linux",
       "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-atomicparsley-1.0.0/atomicparsley-linux-aarch64.tar.gz",
       "archiveFormat": "tar.gz",
-      "archiveSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "archiveSha256": "0f3e11253bfd6272714f565cf4cf6f78d42b72cd473b8b7fbe432631be565236",
       "binaryRelativePath": "AtomicParsley",
-      "binarySha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "binarySha256": "0feba0b4cfc660d314d7f7f6fc430b25445704dd506af4f248c285db5752bfca",
       "permissions": {
         "unixMode": "0755",
         "owner": "runtime-user",
         "executableBit": true
+      },
+      "binaries": {
+        "AtomicParsley": {
+          "relativePath": "AtomicParsley",
+          "sha256": "0feba0b4cfc660d314d7f7f6fc430b25445704dd506af4f248c285db5752bfca"
+        }
       }
     }
   ],
@@ -46,5 +58,7 @@
   },
   "notes": [
     "Empreintes et releaseStatus renseignés par build-tools.yml à la première construction (recette build.json)."
-  ]
+  ],
+  "upstreamVersion": "20210715.151551.e7ad03a-1+b1",
+  "releasedAt": "2026-11-19"
 }
