@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "Sous-titres",
   "description": "Filtrage par langue, drapeaux par défaut/forcés, resynchronisation (alass) et OCR des sous-titres PGS (Tesseract).",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "GPL-2.0-or-later",
   "capability": "other",
   "files": [

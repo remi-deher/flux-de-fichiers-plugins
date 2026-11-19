@@ -2,7 +2,7 @@
 """Sous-titres : resynchronisation des pistes texte sur l'audio (alass) et conversion des pistes
 image PGS en SRT par OCR (Tesseract), dans un fichier Matroska.
 
-Protocole Flux de Fichiers : JSON sur stdin (workingFile, workDir, config), réponse JSON sur
+Protocole Forgearr : JSON sur stdin (workingFile, workDir, config), réponse JSON sur
 stdout (status, message, workingFile). Outils attendus dans le PATH : mkvmerge, mkvextract, et
 selon l'action alass-cli (+ ffmpeg) ou tesseract.
 """

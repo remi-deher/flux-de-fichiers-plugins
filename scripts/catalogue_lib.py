@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Utilitaires partagés pour la génération et la validation de catalogues Flux de Fichiers."""
+"""Utilitaires partagés pour la génération et la validation de catalogues Forgearr."""
 import hashlib
 import json
 import re

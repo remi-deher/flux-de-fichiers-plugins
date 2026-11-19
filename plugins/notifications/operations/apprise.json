@@ -18,7 +18,7 @@
         "method": "POST",
         "body": {
           "urls": "{$config.targets}",
-          "title": "{$config.title|Flux de Fichiers}",
+          "title": "{$config.title|Forgearr}",
           "body": "{$config.message|Traitement terminé : {$context.sourceName}}"
         },
         "successMessage": "notification Apprise envoyée"

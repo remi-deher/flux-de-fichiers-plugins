@@ -16,7 +16,7 @@ jobs:
       - name: Récupérer ce dépôt tiers
         uses: actions/checkout@v4
 
-      - name: Récupérer les schémas et outils officiels Flux de Fichiers
+      - name: Récupérer les schémas et outils officiels Forgearr
         uses: actions/checkout@v4
         with:
           repository: remi-deher/flux-de-fichiers-plugins

@@ -1,6 +1,6 @@
 # Pack Studio Multimédia (`media`)
 
-Pack fédérateur de traitement multimédia pour Flux de Fichiers, inspirée de l'architecture par nœuds de flux (FileFlows).
+Pack fédérateur de traitement multimédia pour Forgearr, inspirée de l'architecture par nœuds de flux (FileFlows).
 
 ## Plugins intégrés
 

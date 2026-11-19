@@ -5,7 +5,7 @@
   "version": "0.0.0",
   "name": "Exemple plugin remux MKV",
   "description": "Exemple illustratif de structure de plugin. Aucune logique d'exécution n'est fournie.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "UNLICENSED",
   "files": [
     {

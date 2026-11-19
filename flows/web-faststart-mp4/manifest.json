@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "MP4 Streaming",
   "description": "Convertit en MP4 optimisé pour le streaming web.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "GPL-2.0-or-later",
   "capability": "faststart",
   "fileMask": "*.mp4, *.m4v, *.mov",

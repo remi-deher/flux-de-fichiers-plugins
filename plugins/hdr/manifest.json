@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "HDR et Dolby Vision",
   "description": "Dolby Vision et HDR10+ : conversion en profil 8.1 et conservation des métadonnées dynamiques après réencodage.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "GPL-3.0-or-later",
   "capability": "hdr",
   "files": [

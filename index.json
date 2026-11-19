@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedFor": "flux-de-fichiers-plugins@multimedia",
+  "generatedFor": "forgearr-plugins@multimedia",
   "filesSha256": {
     "apps/7zip/build.json": "34e4f24a5045ce53ebdb3dcb5d7873c46abf168ad472bd4ae7060e65d5b5ec04",
     "apps/7zip/distribution.v1.json": "9a11724a38f1d1dc95ccd6cca508e23f90622b145b54f40dfe42e1dd98b7434a",
@@ -27,7 +27,7 @@
     "apps/tesseract/distribution.v1.json": "5c6aaa61d8207e4902a872cc7887f643ef8f1afbd53876366828298774451c7e",
     "packs/media/installation.json": "8c1ed54633d04701b75b38ddd9712f655426a33a37be567f5d72aa4e19ea0d85",
     "plugins/archives/operations/extract.json": "3e8d014fd2caf842b4eaff54acc915f89f6a16bde24192300ec77b9b50f168d6",
-    "plugins/archives/scripts/archives.py": "5bc77f47ec3fa1ea0f88321ca55b33865b33d2ad5f501464c84adecb8446aed5",
+    "plugins/archives/scripts/archives.py": "6ebfe8261b04a847a55052ca5a86c54b8b0ff531a83ecaaa2ba1bd8529664b55",
     "plugins/audio/operations/audio-encode.json": "2efdf9c8ceff442d9ecd19c0401c2faf59eb758ac6315fb20fb7e3f641675043",
     "plugins/emby/operations/refresh.json": "182b168df40183b4dc518ded1d4a21fdb1ddb67aaa1ab91f3086484ff33a20b5",
     "plugins/essentiel/operations/condition.json": "f5fa7c699aa55ff47c6bc73ff387e00e6cb8902080de3f096b88ef70ea02d149",
@@ -37,12 +37,12 @@
     "plugins/hdr/operations/dv-profile-8.json": "caf6b51821ad557e307e6993db0b89313fb11d706045a4dd22bea1e9dbe92489",
     "plugins/hdr/operations/dv-reinject.json": "26f4591639a04d14cf8543c19afdde8c0ac7152be1b1bd8faafc95c8ffa8508a",
     "plugins/hdr/operations/hdr10plus-reinject.json": "c7b64d53fbd04545ad0580e50ea4b2598ef34faacd7f9c8d596373ca713ed7ee",
-    "plugins/hdr/scripts/hdr.py": "32df529cd5acbbd4361434ed0fbd394f5b0f48ecc5295d46dc0695b873e730bb",
+    "plugins/hdr/scripts/hdr.py": "b7347e76a2008c46f7920590d1f506c0a6afd2e376b97f8bac62d2d3ed401519",
     "plugins/jellyfin/operations/refresh.json": "f35b32debaff03e92120e7ed9337f9608045654e1a9aa2444a6964b36111498d",
-    "plugins/notifications/operations/apprise.json": "86cca4a45843f4a5054e3f5b5a66d40d0610e935c0409a5e925c44b39cb77672",
-    "plugins/notifications/operations/discord.json": "ce101826d296a51e2132490d74632f5571545c36a2e8675d25dc02d8ca40ce66",
-    "plugins/notifications/operations/gotify.json": "ee8fdf0d63150bd521c4d1f69482a323ffa417b422df192d2b7d618a9e08d247",
-    "plugins/notifications/operations/ntfy.json": "f63e91a3018680b0fa97774b615b50b86ba9f425ccd455b2f94ff000340a5ffe",
+    "plugins/notifications/operations/apprise.json": "25d655a0a2f902550ad231dc64c44f8c50e633d0924a46a5c7125005fc071ee5",
+    "plugins/notifications/operations/discord.json": "9d75822465d93ab6f19a3735824baadb191b251bdc5aa7ba951ae43a780f577f",
+    "plugins/notifications/operations/gotify.json": "ad62abc80166ea736e91dfea82cfbd8581016a9c4f9b49029bb57b5497401ada",
+    "plugins/notifications/operations/ntfy.json": "3a14ad09e058669de46d65f5fdc7daa450cf1994fa6e381f821ad80dc0b1de04",
     "plugins/plex/operations/refresh.json": "f28f44564f669a93fa8af21b2c35a9f0675cb90a9409861063e8ab9ebfc33f4e",
     "plugins/radarr/operations/rename.json": "231aa65d7d72966184cfe39f866a7a3b680e10c2445a1d2d78a6f918368b113e",
     "plugins/radarr/operations/rescan.json": "d13ba0b8fa0ac1e6958643b414b73b22d7dcaf185cccfe0b6ee66acfef0e09ac",
@@ -53,7 +53,7 @@
     "plugins/sous-titres/operations/subtitles-clean.json": "bf9080f1e8e34ac05fa3ddfff5f206058afef1389365d176d4a785c7dd921e0e",
     "plugins/sous-titres/operations/subtitles-flags.json": "37b8a3ceb82e5578fd2838e6bd01ab5a0a431f10fcaa69f5311be9bb718b3183",
     "plugins/sous-titres/operations/sync.json": "773ea2a67a7f8462d949ee7a4532bf681a6dca52c2986b2faf0385b2b7335396",
-    "plugins/sous-titres/scripts/sous_titres.py": "6bac0dcce286deb3463dcbdc90b58ff4c44ea2b3e4e25c2d59f8233d30f0879b",
+    "plugins/sous-titres/scripts/sous_titres.py": "4eb1edb1565c4678895aa68e4a28ff2d876285fbab44fb34273af68b32670956",
     "plugins/video/operations/media-inspect.json": "9276ac96bbbf903504f8f0ef56e33253aecea9f50d7ab23ae5bb6a2c6521a365",
     "plugins/video/operations/mkvmerge-probe.json": "f74c03643b2657f3f4daed529de3cf64b0e338ea12cdb34b4f7c6112ddf713d7",
     "plugins/video/operations/mkvpropedit.json": "0183d695c83aaa2ba3ab4ba85974584e10f33a45ea24a94a0f1d7b671f26c65c",
@@ -63,7 +63,7 @@
     "plugins/video/operations/video-encode.json": "8a43316ce1880ad7e792f6abbf1280546188df1004c87e04476705ad27a4a2d0",
     "plugins/vmaf/operations/measure.json": "520c41a7a4a2bc679bb5bb235d51067c46782cc9787c2d2e4bde4baa0f26f730",
     "plugins/vmaf/operations/target-encode.json": "c1b3d663cf774e562f63e62ae266b75222c59748a4c4183d609b1c1db0f1d733",
-    "plugins/vmaf/scripts/vmaf.py": "cb40565f692532bef157fa7c5d87ff8d34daf03112f8d8eeba5aebb64197abf6"
+    "plugins/vmaf/scripts/vmaf.py": "f214aad456fd8097b30d03de4a518b3a01abf2724b5b7240f9bd9123a44b6f8a"
   },
   "entries": [
     {
@@ -75,8 +75,8 @@
       "capability": "analyze",
       "currentChoice": false,
       "distribution": "autonomous-binary",
-      "sha256": "13ecb39ff4ebd2271faa5aaef202a87aafc762c6dfb3eac5167753e1f0b3bd05",
-      "contentSha256": "f65d1f265bd6a5b84d1dbc53286a4da88e8de6c7428d6f4256a6bb3bcbb6d5f0",
+      "sha256": "07d77b2e5bef5d704f127f94977f7b02829604a2fedc8645059a5b8024524c0e",
+      "contentSha256": "69ebeeceef3db59f6e7047005394a0cbb73ebe241e359b723839cbf2c322402a",
       "updatedAt": "2026-11-19"
     },
     {
@@ -88,8 +88,8 @@
       "capability": "script",
       "currentChoice": false,
       "distribution": "autonomous-binary",
-      "sha256": "0359c143cf520f2a772bf9897256db9a37297f35407b87b4e96a7b9b11214ee2",
-      "contentSha256": "949096b6ebd72f929d9c813d2d03a15bb3395ebc0bc1d0d41b24106404c2db28",
+      "sha256": "075b50323f2c29270a75ba7c9a84e5f1bd0ae7bc9631db23fe904dfa6d48e8f7",
+      "contentSha256": "0937dc9e8e91302c195a0b56fc2389d14df659784e1b16a8a1153bf32753045f",
       "updatedAt": "2026-11-19"
     },
     {
@@ -101,8 +101,8 @@
       "capability": "probe",
       "currentChoice": true,
       "distribution": "autonomous-binary",
-      "sha256": "589d405ff884df9fc319cbe41229d86a0c6d9ed24c37cd03924e456a4dfc442d",
-      "contentSha256": "fda4156ccd1ec23ff56d085cc3746955f08a7c235671c435497e6b0ed0e64a0e",
+      "sha256": "b427cb31cfdb50c1fb044141913a76ff61cdd36f2ac37750e6735ee72962e538",
+      "contentSha256": "7818355f1251fcc080357427b5c96826aaf3362c53a9a15b5175653e285babf9",
       "updatedAt": "2026-11-19"
     },
     {
@@ -114,8 +114,8 @@
       "capability": "remux",
       "currentChoice": true,
       "distribution": "autonomous-binary",
-      "sha256": "2223c2fede84191a8ecae1016fcea7e7f20a9c68612287fd6dd2a1fcf2b1ee5d",
-      "contentSha256": "41947abee459764dd4fd694e690ea8958b0d3b479863db16ea1685a1aa603fe5",
+      "sha256": "d775c6d4512f44b169f069e285c39cfe755cc3657fe8ebf468c006b9f04f8432",
+      "contentSha256": "1a58c0b30c700cc2f343447b04a04d1ca6600a39dd489a6420ac9059cc7bb101",
       "updatedAt": "2026-11-19"
     },
     {
@@ -127,8 +127,8 @@
       "capability": "remux-mp4",
       "currentChoice": true,
       "distribution": "autonomous-binary",
-      "sha256": "926dbd00940f9d3599961beab07bb3611659650594163eb901db0823cce6448e",
-      "contentSha256": "b9f5cfdbcf429e3493e8d76040c016190d6e9a18853b2253f793c792a461d5ed",
+      "sha256": "2e361a95d92c0635ce12b25eb3ce9ca3122b37f54dd69fde5b4b60627151b296",
+      "contentSha256": "f7371a757769db948fc1f58ed7499839f31be9ce62d97e24d67dddd92d8ff502",
       "updatedAt": "2026-11-19"
     },
     {
@@ -140,8 +140,8 @@
       "capability": "other",
       "currentChoice": true,
       "distribution": "autonomous-binary",
-      "sha256": "8e17be7abc81401e1145318dd328f6027a5064dc8bd17b0193ec0bb23203187d",
-      "contentSha256": "3bd0a42c66a77f22576ad4bb64adbe4124fd0524f2177723618ad64551259964",
+      "sha256": "d9ee6fe6dace833a9c52460745d594be478ece48db797302579201d8ec9fda24",
+      "contentSha256": "0b4b1cff5fbbc6fb499e07eff2ffd4f468963a22fdf201661b4419bfcc73b299",
       "updatedAt": "2026-11-19"
     },
     {
@@ -153,8 +153,8 @@
       "capability": "archive",
       "currentChoice": false,
       "distribution": "autonomous-binary",
-      "sha256": "bf61f20fea4b523dd06866bc480aa7e884ad4fd674c9a580e0c010dfab535caf",
-      "contentSha256": "ec47d4100459b4adcb71d4c4e67a9d6e3d942b7460ee1d74b8e072a79596debb",
+      "sha256": "c0118c8fd601d38187d30b8249c030be7b559aec93fd8587011c9a2888a49cdf",
+      "contentSha256": "b0118e9976195a29e70978a20b84cb6dd50f60bd998e42f9011c8e2a69c08d17",
       "updatedAt": "2026-11-19"
     },
     {
@@ -166,8 +166,8 @@
       "capability": "encode",
       "currentChoice": false,
       "distribution": "autonomous-binary",
-      "sha256": "ce1241917ce30cef922a1ebf37db56691725b0d809b30450bcca28ed4035bd90",
-      "contentSha256": "7d94a8915975f5abfa79c7cfcb2ba594791aeed7b8b5c172a3c94112247f94b6",
+      "sha256": "025c2470dbc529a96efcc53c068c6d0985906c30cec46c69c9817ed612446b2c",
+      "contentSha256": "47433c226be06332362775947a359867a84bf1ea675930b968ca867772b709e7",
       "updatedAt": "2026-11-19"
     },
     {
@@ -179,8 +179,8 @@
       "capability": "subtitles",
       "currentChoice": false,
       "distribution": "autonomous-binary",
-      "sha256": "4ed592c1154db53cd17343f8abe9422de85001160221b35ee5e4a63601b734d8",
-      "contentSha256": "aa44de38d9e92c952642ebc291af596f6bf19893d4e972d3e094c6eeab2a0076",
+      "sha256": "0962053b7fed85cfdf1b433bbe3b1001302a4b0f8f110134e805269e6338082f",
+      "contentSha256": "d3c682437f9694ac8a9f215976e45a012c9d53944a7ff63d65ddc5711c2f8649",
       "updatedAt": "2026-11-19"
     },
     {
@@ -192,8 +192,8 @@
       "capability": "tags",
       "currentChoice": false,
       "distribution": "autonomous-binary",
-      "sha256": "1b57657b288bb1cc011c082be5db0d92b922004806f08feab113deb046bed9d4",
-      "contentSha256": "4dec978b898335ddd0de48bd4e645b0290e8b3b7393c6428668be318d5bf5f9b",
+      "sha256": "23c602970427c1043e8ab43aacdfe44170b8823dcd253b80d160fae7ed3709cb",
+      "contentSha256": "d4a5dad08b0a85fa0f887cb6ed30ca1cc901e507809dbd26d4d85fe01e8b13a4",
       "updatedAt": "2026-11-19"
     },
     {
@@ -205,8 +205,8 @@
       "capability": "hdr",
       "currentChoice": false,
       "distribution": "autonomous-binary",
-      "sha256": "99be29634821006b0edea4918e530dd21c3fd2e9b674be2b2eda4acc75366989",
-      "contentSha256": "265606c21a39a86ebc6d2345713c5a629b343c238c5cfc520a4284e3242ce924",
+      "sha256": "8ec1310fabbd7717de9296bae8668867aeca067c65479ebe2f97722db1fdcb5a",
+      "contentSha256": "1f3ed5f7a8c03cb3c968f442da8cfda9c2428ff21bc84cfe24b4c79a5d7191da",
       "updatedAt": "2026-11-19"
     },
     {
@@ -218,8 +218,8 @@
       "capability": "quality",
       "currentChoice": false,
       "distribution": "autonomous-binary",
-      "sha256": "7a0961635b61950e92f0e1e9a0c116a15ad7b945feeffa18dd99db4f1c539982",
-      "contentSha256": "f576bbff54ce1364a8a2f020a5aafb918022b8436a8f7eaa1641042f6489c9f8",
+      "sha256": "bc14fc486f39a29cbe5d2b5defd5d88ee5032ebd8bc867ea54515b4267e1e2c5",
+      "contentSha256": "da7f9baa0a527ac1ff934f72e9293c370f23629698fbe811e13a820f18f423c5",
       "updatedAt": "2026-11-19"
     },
     {
@@ -231,8 +231,8 @@
       "capability": "hdr",
       "currentChoice": false,
       "distribution": "autonomous-binary",
-      "sha256": "6587beee18a4cb598198561559de39bf5e2b7403164446bb7a1f4027a472ffbe",
-      "contentSha256": "590a85ad25153b69494f75fff7a21928a9a2e0ce1347c9796378954ca656da47",
+      "sha256": "3709cdd49ad2f1823afe32d4aab904c13a43a3b25e144fba05df6696ea57a0a9",
+      "contentSha256": "b716b97ca22d4b845034e590e0c6353a30428c40b5a1b133d7a9a201d74135eb",
       "updatedAt": "2026-11-19"
     },
     {
@@ -244,8 +244,8 @@
       "capability": "ocr",
       "currentChoice": false,
       "distribution": "autonomous-binary",
-      "sha256": "f11f81929f3fbe78a42fd257ad983ea6ff0734632e4b2ed07c4db3388fcc6b38",
-      "contentSha256": "232bfe6d97af48662c6eb92992318e43280b26f7ced3759461af7ba0868d64c5",
+      "sha256": "09b111e6670ce065b0f28c7290fa0747490a1bef6196146dda09a3c561aeedbc",
+      "contentSha256": "5c12d544956d4dbfd4e71510802da2f05e2e4cfddb7f67344e651a229413e883",
       "updatedAt": "2026-11-19"
     },
     {
@@ -255,8 +255,8 @@
       "name": "Audio",
       "manifestPath": "plugins/audio/manifest.json",
       "capability": "audio",
-      "sha256": "faa3e3cc30f460ecc129366d341f5e251830ff97916a29938719a1947f1c0317",
-      "contentSha256": "22746f2043066c483d4975090c5c325e51830f53de30cd4d5740c398c8dbe0fc",
+      "sha256": "071002b42e2ea36d68bc5a8780084fa218bfcbd7e00c7157d95b16d6d432f4e5",
+      "contentSha256": "155a5df0ef9305b1d6ab8d7b4685664fd2d42e8273ed881dc1367f8ea8fae03f",
       "updatedAt": "2026-11-19"
     },
     {
@@ -266,8 +266,8 @@
       "name": "Emby",
       "manifestPath": "plugins/emby/manifest.json",
       "capability": "integration",
-      "sha256": "6f24094c9380a51b3b4b316d83f81ebd6761359dc45f4b30a96ea951aac31d55",
-      "contentSha256": "62d82229f8c59b790a0a82fa7243280e838184bac98f1575d44af8b1c18cdfab",
+      "sha256": "37564448c478db641fd97ea5dd30a9c1c46759f901aca44d518dcad11421f088",
+      "contentSha256": "382f0f9b70228dd3ea04f6862901adc50158c5c0534874c8c7a7533c70f68230",
       "updatedAt": "2026-11-19"
     },
     {
@@ -277,8 +277,8 @@
       "name": "Essentiel",
       "manifestPath": "plugins/essentiel/manifest.json",
       "capability": "other",
-      "sha256": "7a6b1438f9ae75d310c8ba4a2a3dd000e6d9031a806e0e3bc8a69517a8da7824",
-      "contentSha256": "7c5d0942306a5938a22e011633432cd61777df685fc493104ef06c7420def9aa",
+      "sha256": "4d81654d07fa3d745e88ed41881e0684439163a191de465ff7de7976cdbdde21",
+      "contentSha256": "7a27d96f92ee511e9e8c5b64593360613b896f67f879d1684025003c8708699b",
       "updatedAt": "2026-11-19"
     },
     {
@@ -288,8 +288,8 @@
       "name": "Jellyfin",
       "manifestPath": "plugins/jellyfin/manifest.json",
       "capability": "integration",
-      "sha256": "882e62799c89deff888bcaae3b39d78578e3e4051c7979f89e6d528c83868859",
-      "contentSha256": "1de9ea4f4314a3bdda19116d7797281768eac3089af9f1b11b9e22f05e4301fb",
+      "sha256": "e10ede813f525445f29b1b2cdb153fbb3399049d0b0043c101cb23a5aa5874d5",
+      "contentSha256": "ae7fb58936d54867a35693b2357b3c5472cc75625e90b9a7c00b8e27c6d2376a",
       "updatedAt": "2026-11-19"
     },
     {
@@ -299,8 +299,8 @@
       "name": "Notifications",
       "manifestPath": "plugins/notifications/manifest.json",
       "capability": "notification",
-      "sha256": "ee017602e7dee95bb456de381089280a58a8812cda8f9195ff5e449672f38a94",
-      "contentSha256": "5fc5c32c6feebab2d6eee186919ad699169a1b5305cdc6f870b69e7bba2cde84",
+      "sha256": "88f640a1ae4364ae7b372e49d7a1f768b2ae5d14d70b3952281327010a3c9b1a",
+      "contentSha256": "98a1a6291041625d4653b1d719bc5fdb7e12925f7f7ad538325384f2a47831c5",
       "updatedAt": "2026-11-19"
     },
     {
@@ -310,8 +310,8 @@
       "name": "Plex",
       "manifestPath": "plugins/plex/manifest.json",
       "capability": "integration",
-      "sha256": "14574079adcecc0bf31f04ed43e09b2f996e18d407a6a54183c977265892a837",
-      "contentSha256": "e487c17b2a1de65716da3a489dad2be8d61b1e360aa564382d973f748008b9c2",
+      "sha256": "27141bc1e61bdf49e2be9938419a4a1b85ec497f1e9436b547201764d1dd5b1a",
+      "contentSha256": "3e309db896a27799669f4153d5d9bd223bd068d6e682caab99c6a6e88bd6ccf3",
       "updatedAt": "2026-11-19"
     },
     {
@@ -321,8 +321,8 @@
       "name": "Radarr",
       "manifestPath": "plugins/radarr/manifest.json",
       "capability": "integration",
-      "sha256": "a3238fbd08179368fbaa6db3affd938eb196b54b645c51ecbc18847ebd256361",
-      "contentSha256": "a50d6b15edd80ad9509821c2bcf6baf16bbfd2b47ac3909eddea5ce824731cb9",
+      "sha256": "1e6d41c74952f3018558ad25bd5468f7cfea961f2d01cbafb4afa003d3376e69",
+      "contentSha256": "837dd8a87b629bb8eb25f4b687cda21bbe9e20bd0d05763de9f48835b59300a3",
       "updatedAt": "2026-11-19"
     },
     {
@@ -333,8 +333,8 @@
       "manifestPath": "plugins/scripts/manifest.json",
       "capability": "script",
       "category": "data",
-      "sha256": "d9fbd01d2e6f31a23d100460b2a136d8fbf93d5993dcfcd15363110f26f6661e",
-      "contentSha256": "73f80c4351f6dca3db8ca480a2ba64f4b3b2bf08540d5b9b562bd2854cf5568e",
+      "sha256": "6637141c1dda4f7fc84a992aa95a08f2239071110c1f7315b4f072fde2d6fd81",
+      "contentSha256": "188568cfb346539986aa52c1e533cd3d35ebae0d0339864ec557c9b399e0ba26",
       "updatedAt": "2026-11-19"
     },
     {
@@ -344,8 +344,8 @@
       "name": "Sonarr",
       "manifestPath": "plugins/sonarr/manifest.json",
       "capability": "integration",
-      "sha256": "852b785b532d47fda41a12b7a4c40fcd7f54b81bd1f4788bd6b3fe57da685db2",
-      "contentSha256": "0680f67d404568104b1a2fbdc858c052595a02908e49525a34d521408bab4c6d",
+      "sha256": "05d8d28d911fceafa6006d918e2dc63195e7f156976406cf0fa0620b2055a7ab",
+      "contentSha256": "0fb9023dfec323663ed4db44b7afaaf0f29b47adb980b3fec0b119ccd9894eb7",
       "updatedAt": "2026-11-19"
     },
     {
@@ -355,8 +355,8 @@
       "name": "Sous-titres",
       "manifestPath": "plugins/sous-titres/manifest.json",
       "capability": "other",
-      "sha256": "ad6af8f0e29e534ed9fda605ae2f9cea0c95b4fa9ed566034dbac9d4721b96ce",
-      "contentSha256": "dd8689bcbda5993297d64c87e16e01cad311a28237d91f29331d0a9060c21b07",
+      "sha256": "891a1a7f4f510413422c5a257ffb700993dd0d42fb96f10c1600e1c71ac7033c",
+      "contentSha256": "9be4e0a1920cf5cd3ee4e2b61dbfd6906d3e5caedd9838bdf8acdd9c928b2df4",
       "updatedAt": "2026-11-19"
     },
     {
@@ -366,8 +366,8 @@
       "name": "Vidéo",
       "manifestPath": "plugins/video/manifest.json",
       "capability": "video",
-      "sha256": "17d95ae12acd4f9332258084d7410007c8d19d4ac233df2346c218342c15523a",
-      "contentSha256": "2afc832d996fa280e95ad81be81dee4d0994cf3485eea2ae9fa23bad5125dcc3",
+      "sha256": "8820de4557f6f8575dd7eb834a6615a6ffe967841ea5a4eb8c6da895c73af43f",
+      "contentSha256": "5216e77c5ad361bb8c247ce16e46982ca895e427da099f5601d2d7488a40f4e0",
       "updatedAt": "2026-11-19"
     },
     {
@@ -377,8 +377,8 @@
       "name": "Archives",
       "manifestPath": "plugins/archives/manifest.json",
       "capability": "archive",
-      "sha256": "59811aa56221ff0e155af15a82f01bd92e07c71d1089b26962531a066738d5ae",
-      "contentSha256": "89495a22b4176dc1f9fe2c56c6d60f7d60474b91ec4ac744b31429c812ea2e64",
+      "sha256": "609edf48006cab49339b4a4872f7edf9251db9d42c369db3efcdbfa4c8f1a0bb",
+      "contentSha256": "1862a5accbf63866498230816cb6504d2df6e709dce757547d6ab37807b30ad6",
       "updatedAt": "2026-11-19"
     },
     {
@@ -388,8 +388,8 @@
       "name": "HDR et Dolby Vision",
       "manifestPath": "plugins/hdr/manifest.json",
       "capability": "hdr",
-      "sha256": "638ed8d5d7373e10b8147720b35b62e51d4ba83ea0a6abaa1144759f80c45977",
-      "contentSha256": "85bfe7fea6e304e4854bd1e92b64c089f8adbf92d4be9fef4ed00243bf98c24e",
+      "sha256": "a979d0ae75d7122c13339662776f9aa27c43c6dcc82b6d8a66dd4b348c3e4466",
+      "contentSha256": "3f2cf0e528612c54733b7058b516e9a01f0b52b8f33bb319c9a4f8c20a2c630b",
       "updatedAt": "2026-11-19"
     },
     {
@@ -399,8 +399,8 @@
       "name": "Qualité VMAF",
       "manifestPath": "plugins/vmaf/manifest.json",
       "capability": "quality",
-      "sha256": "34d34e9b656837acd2ed80e6f86132bfd2f367460f79c0d42e0125d2a5c8e052",
-      "contentSha256": "f4172d4d5429ce9c75e1328c8d3d859cdde5ead93acbb61bacca11a1c59f2bcc",
+      "sha256": "92ea1e3cc0632ac6929f1ce7da4ca32b9f2b0645a1e505641cac0d5c5f43898a",
+      "contentSha256": "b9dbe64e6516c374a5c1c206236a82c93801c1342d3608f9f31b9f1623a066be",
       "updatedAt": "2026-11-19"
     },
     {
@@ -487,8 +487,8 @@
       "version": "1.0.0",
       "name": "Notification : Apprise",
       "manifestPath": "plugins/notifications/blocks/apprise.json",
-      "sha256": "71ffdcdd4f92c0c7151b13dc2b8d4d6dc514d55f44ec085febce1662ce19efc3",
-      "contentSha256": "23ed39aabe45b9b0db95384193fec4b068b89329e086c6872dd78788ec231f37",
+      "sha256": "051bcc50dce1f2224d376eb93caa0a39dff6a943bcc8b25d63bc339b591fb28b",
+      "contentSha256": "eed93628a623ea38630b9abf25005035786ffd1a80dfbb46f848f8c531303bbb",
       "updatedAt": "2026-11-19"
     },
     {
@@ -498,8 +498,8 @@
       "version": "1.0.0",
       "name": "Notification : Discord",
       "manifestPath": "plugins/notifications/blocks/discord.json",
-      "sha256": "c2726997a06a817a720b4b859d372c9b2a71f66640c24bea0cc7632fada22ed9",
-      "contentSha256": "23880aabc503c5e40cd36148f364b623ce1c8d27aaf9b866e4414b35c2925fca",
+      "sha256": "57ee3b5455c66d41b9619119cfeb2f616f30e266d0390daf9b4183ef3bfc028a",
+      "contentSha256": "cf86188ee14d81c0e4a94824f7c5b9aa0ca0b5aa280a936b0e15b29d89adab77",
       "updatedAt": "2026-11-19"
     },
     {
@@ -509,8 +509,8 @@
       "version": "1.0.0",
       "name": "Notification : Gotify",
       "manifestPath": "plugins/notifications/blocks/gotify.json",
-      "sha256": "186c02b95986fa112ff487e2c80b5544134accb7d533ca1e30329ee986562019",
-      "contentSha256": "aff5ec256270a765f92e148e89d21750e133090331c8b6ae31eeb86da7d34a0a",
+      "sha256": "35d09d50a3efd85a64b8fe94022cc87a899b7b76c932d998f9cef2fb69ca2ae7",
+      "contentSha256": "9db093643761a128bfe196d0f6a79dfbb35e5a3d8e89ea1f4be11cca6c7acb91",
       "updatedAt": "2026-11-19"
     },
     {
@@ -520,8 +520,8 @@
       "version": "1.0.0",
       "name": "Notification : Ntfy",
       "manifestPath": "plugins/notifications/blocks/ntfy.json",
-      "sha256": "083952f9ef47621efe0594d5f40180fa087912d27dbccc6f1285c3d9fb4c0c20",
-      "contentSha256": "ee8d2f80aeb1c4ede58378a3206bb22a2f4089d4bd2b7aec6932c66c1165614a",
+      "sha256": "159ecdd0fe91e6b8faa15b9f4004c0ff5e3166a00175b80d5b8c9e292ed6965b",
+      "contentSha256": "78a3610136a6831d09d9567007f024d8a53086fca2aeb10a9d222cf0dd93f2d3",
       "updatedAt": "2026-11-19"
     },
     {
@@ -773,8 +773,8 @@
       "name": "Normalisation audio EBU R128",
       "manifestPath": "flows/audio-loudnorm-mkv/manifest.json",
       "capability": "encode",
-      "sha256": "20ef0a26ce33107ad94b14ecf5bb06e1e8c55456cfb4e5490c7bc9c6ecc730ac",
-      "contentSha256": "9147d5b69b3c513c9611f4e8072ff3bb4c6d8a7e1f724bb7ee90c0802eef040e",
+      "sha256": "627e796a72ad4403cb503f76ad8e278a9b47aca08e38624930dd7b6a69d63ea9",
+      "contentSha256": "f4b4755aae7024ad67ab47b1f4e1b3c13a2d4a0c6b307359d11f3770478f96f1",
       "updatedAt": "2026-11-19"
     },
     {
@@ -784,8 +784,8 @@
       "name": "Nettoyage sous-titres & langues",
       "manifestPath": "flows/clean-subtitles-mkv/manifest.json",
       "capability": "remux",
-      "sha256": "83d946bddcb2070d3079be160f8fb1d6d807ce0b74733978a20038b1351208f5",
-      "contentSha256": "3d96df019fc76823cc5cf2555282d7348ad33c39ff236402de117f8de56b5684",
+      "sha256": "df0d3401d37f63bf90783d92d557d299e63dec9f137baf08bbbd9acd4e48dec3",
+      "contentSha256": "993796eeb1a16b45fdbf1ff87414418d70e418d764d22b1a4079e17205cc2b46",
       "updatedAt": "2026-11-19"
     },
     {
@@ -795,8 +795,8 @@
       "name": "Conversion MKV",
       "manifestPath": "flows/remux-matroska/manifest.json",
       "capability": "remux",
-      "sha256": "b77b14671de5eb4fa3b09d7296c9a84208b78027d3ac3ae61ac2b2950cb940f3",
-      "contentSha256": "3cdd36a8d3e259f290cdf3dfce7a17cea8c92ac3ae2080a86f164f2846b3481a",
+      "sha256": "65d4556d5402461fb5874be787fa084d13a9fcdcd6fde87c7d68113acdd1436b",
+      "contentSha256": "ecfed896cce9fcedfddb3539bb22f9fb228768cb63b3e43d128d541c3f3de3f6",
       "updatedAt": "2026-11-19"
     },
     {
@@ -806,8 +806,8 @@
       "name": "Encodage AV1 intelligent",
       "manifestPath": "flows/smart-av1-encode/manifest.json",
       "capability": "encode",
-      "sha256": "cdf201e6f244026788ea402832059dac0c09dd3c6547c642d2e878c1910fcd1d",
-      "contentSha256": "e7dad668c4d20f3fe8893dba3cd129ceb4cc32a1b364ec5bcc3775bfbf82af8a",
+      "sha256": "087ccee30e48364e5ffab94626bbec5347699d03bf0783953685f483b87cb54f",
+      "contentSha256": "2e277a2126a00ac78cf9bddac9bccbb9063e3b3c9ca90bc668f0c5166473fd8b",
       "updatedAt": "2026-11-19"
     },
     {
@@ -817,8 +817,8 @@
       "name": "Encodage HEVC intelligent",
       "manifestPath": "flows/smart-inplace-hevc/manifest.json",
       "capability": "in-place",
-      "sha256": "2e49a4af08da2dda940c09b2ad2a977734d9414638a649f0ad53600d2dbbcfb6",
-      "contentSha256": "5ef66000623c6280d90718c7bfd86d11755b969f06c682a126a36c29be8376dc",
+      "sha256": "19e72cac9c3e2051cb3af99b0e815554311c9c4e9fdf60ba31b8ba8ada748518",
+      "contentSha256": "a8775ed1f64df4d75f8112dbbb4714cb7b64219cb9c6048a5e789036d617a073",
       "updatedAt": "2026-11-19"
     },
     {
@@ -828,8 +828,8 @@
       "name": "MP4 Streaming",
       "manifestPath": "flows/web-faststart-mp4/manifest.json",
       "capability": "faststart",
-      "sha256": "97d1bb0e46de7b3f8d119278cb663ecae2cfcbddbede15ec416e01a79c8e3bc7",
-      "contentSha256": "de8618ca3a801c8435f7e7b3cf0e2b07d91561d607c9f4ffb0cae0a996840f5c",
+      "sha256": "be257eebab62bef7856750c382b2895119b433e5197a32a6100cc46ce13a7973",
+      "contentSha256": "618eac819e35be489616c1aef0ab39035eae18cc64d7968733d67eb594821bb1",
       "updatedAt": "2026-11-19"
     },
     {
@@ -838,8 +838,8 @@
       "version": "1.0.0",
       "name": "Pack Média",
       "manifestPath": "packs/media/manifest.json",
-      "sha256": "33007cf0a769d75efa4b4299e31fa0e237c089e1347d9ca92d64f869a20b5025",
-      "contentSha256": "5155838ad2d53499eb2eb76c90f69d1bb7875d0b70a1c65e37eafab3bf1291f1",
+      "sha256": "7c152f83c738663cb02aafec0b63729f0beb4e8ff7ec22a8f187cbd4c8dada0f",
+      "contentSha256": "6ded6903bcba08dc65fdf0790345388a9d12372501606fa142c70c5e92b1dda7",
       "updatedAt": "2026-11-19"
     }
   ]

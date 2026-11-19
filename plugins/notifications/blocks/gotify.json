@@ -21,7 +21,7 @@
     "fields": [
       { "name": "url", "label": "URL Gotify", "type": "string", "required": true },
       { "name": "custom_headers", "label": "En-têtes (X-Gotify-Key)", "type": "headers" },
-      { "name": "title", "label": "Titre", "type": "string", "default": "Flux de Fichiers" },
+      { "name": "title", "label": "Titre", "type": "string", "default": "Forgearr" },
       { "name": "message", "label": "Message", "type": "string", "default": "Traitement terminé : {$context.sourceName}" },
       { "name": "fail_on_error", "label": "Échec bloquant", "type": "boolean", "default": false }
     ]

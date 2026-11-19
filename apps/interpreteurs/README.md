@@ -1,6 +1,6 @@
 # Interpréteurs de scripts (`interpreteurs`)
 
-Application fournissant les interpréteurs des scripts `stdin`/`stdout` JSON de Flux de Fichiers
+Application fournissant les interpréteurs des scripts `stdin`/`stdout` JSON de Forgearr
 (bloc `scripts.run` du plugin `scripts`), sans embarquer de runtimes dans l'image Docker principale.
 
 | Interpréteur | Provenance | Version |

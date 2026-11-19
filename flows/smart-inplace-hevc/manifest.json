@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "name": "Encodage HEVC intelligent",
   "description": "Si la vidéo est déjà en HEVC, ajuste les pistes par défaut ; sinon, réencode en HEVC.",
-  "author": "flux-de-fichiers",
+  "author": "Forgearr",
   "license": "GPL-2.0-or-later",
   "capability": "in-place",
   "fileMask": "*.mkv, *.mp4, *.m2ts, *.ts",

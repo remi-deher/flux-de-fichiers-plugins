@@ -17,7 +17,7 @@
         "url": "{$config.webhook_url}",
         "method": "POST",
         "body": {
-          "username": "{$config.username|Flux de Fichiers}",
+          "username": "{$config.username|Forgearr}",
           "content": "{$config.message|Traitement terminé : {$context.sourceName}}"
         },
         "successMessage": "notification Discord envoyée"

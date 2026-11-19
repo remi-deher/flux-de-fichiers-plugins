@@ -20,7 +20,7 @@
     "suggestedNext": ["essentiel.file-output"],
     "fields": [
       { "name": "webhook_url", "label": "URL du Webhook Discord", "type": "string", "required": true },
-      { "name": "username", "label": "Nom affiché", "type": "string", "default": "Flux de Fichiers" },
+      { "name": "username", "label": "Nom affiché", "type": "string", "default": "Forgearr" },
       { "name": "message", "label": "Message", "type": "string", "default": "Traitement terminé : {$context.sourceName}" },
       { "name": "fail_on_error", "label": "Échec bloquant", "type": "boolean", "default": false }
     ]
