@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.notifications.ntfy",
+  "version": "1.0.0",
+  "name": "Notification Ntfy",
+  "providerId": "plugin.notifications",
+  "providerKind": "plugin",
+  "capability": "notification",
+  "status": "validated",
+  "runtime": {
+    "kind": "http",
+    "errorCode": "webhook_failed",
+    "failOnErrorParam": "fail_on_error",
+    "timeoutSeconds": 10,
+    "steps": [
+      {
+        "url": "{$config.server_url|https://ntfy.sh}",
+        "method": "POST",
+        "body": {
+          "topic": "{$config.topic}",
+          "title": "{$config.title|Flux de Fichiers}",
+          "message": "{$config.message|Traitement terminé : {$context.sourceName}}",
+          "priority": 3
+        },
+        "successMessage": "notification Ntfy envoyée"
+      }
+    ]
+  }
+}

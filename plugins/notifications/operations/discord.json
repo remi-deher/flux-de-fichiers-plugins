@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.notifications.discord",
+  "version": "1.0.0",
+  "name": "Notification Discord Webhook",
+  "providerId": "plugin.notifications",
+  "providerKind": "plugin",
+  "capability": "notification",
+  "status": "validated",
+  "runtime": {
+    "kind": "http",
+    "errorCode": "webhook_failed",
+    "failOnErrorParam": "fail_on_error",
+    "timeoutSeconds": 10,
+    "steps": [
+      {
+        "url": "{$config.webhook_url}",
+        "method": "POST",
+        "body": {
+          "username": "{$config.username|Flux de Fichiers}",
+          "content": "{$config.message|Traitement terminé : {$context.sourceName}}"
+        },
+        "successMessage": "notification Discord envoyée"
+      }
+    ]
+  }
+}

@@ -1,9 +1,11 @@
 {
   "schemaVersion": "1.1.0",
   "id": "block.core.file-output",
-  "aliases": ["file-output"],
+  "aliases": [
+    "file-output"
+  ],
   "version": "1.0.0",
-  "name": "Fin du flux",
+  "name": "Sortie fichier",
   "description": "Termine le flux : le fichier de travail devient le résultat de la tâche.",
   "category": "io",
   "operationId": "operation.core.file-output",

@@ -8,16 +8,27 @@
     "apps/mediainfo/distribution.v1.json": "e422d01c43709c2a635372c94fe8c92fcb7e04d7f8f0cb2e11b51a20229ef8d5",
     "apps/mkvtoolnix/distribution.v1.json": "2a583c692289f4d2ddd04bdc8a4d34d93d5c0996cda331d1c6137f9d7628bc79",
     "apps/mp4box/distribution.v1.json": "eac6cdc703dc16e2e4b4c9a08bc1a4351f1675fcbe4cc90bf624e016fe8ac754",
+    "apps/script-runners/distribution.v1.json": "db65438cce3c2fcb795d8df4478c22adaf11e9f6fc4f3ae77d9c8aa76e88c600",
     "packs/media/installation.json": "7c003d896ee911fd72695bd3d65694d5929e5535c1d6859c0ce81fd2b2e08469",
     "plugins/audio/operations/audio-encode.json": "894aa5921e84f375ecd9031e1d0a56e7f293922ee9834b5c4ec8293c45a7865f",
     "plugins/core/operations/condition.json": "52497af0dbdffd54166780028c4757d70c7f30a47c634a8125a2b72da7f13083",
     "plugins/core/operations/file-input.json": "2db314c0a0cc86470ddfb5589b5b337ecd0a2f7e37511b35eb2259245d1c16d4",
     "plugins/core/operations/file-output.json": "eacf34d36203e49c27462e14afeea65c29ff06bce82788da59689745ae0b5cbe",
     "plugins/core/operations/webhook.json": "f41e66c4c53db40c2692d1e0546b8bf9d18e4a0f87190946523aaf2c2fc47659",
+    "plugins/emby/operations/refresh.json": "ddd6ad813687118bee78fb04a3493a4556911e642ed464be66f13e38978b26b3",
+    "plugins/jellyfin/operations/refresh.json": "497276108dfe5d1e4ef3743c8918bdc7972975dbaf7d03963c7c70dc3b089ab0",
+    "plugins/notifications/operations/apprise.json": "a06d51212e3f30d21a33911bf2622021e15dd736f4e708bfac9a06e62b87dc3e",
+    "plugins/notifications/operations/discord.json": "b8e6e15ded6c3ce12a54bca850eb33cdd397dd21af351381f75b87be5389af4b",
+    "plugins/notifications/operations/gotify.json": "dd2f7f082f10706ab6065ca30cd15e0849006cf25a8ffdfbe396ea99dc8ae826",
+    "plugins/notifications/operations/ntfy.json": "c1ee83cf4ab5e28b096ce6f6db2beef11965281ef409f3ab8def18786d3d6aaa",
+    "plugins/plex/operations/refresh.json": "ddea7d7a7a3a15a7688960cd7ce394377fb8a1c37f184f6281ed479c7bef64e5",
     "plugins/radarr/operations/rename.json": "48c7cd1579a33e98d15661400935ecca85909cfa99e13a0453c6ad97a0d5743f",
     "plugins/radarr/operations/rescan.json": "44b77e15d299ea1af4374ee8bbac7c2dc933059c987d2f48dd8c6432c35c4bdf",
+    "plugins/scripts/operations/run.json": "6ed10063db42c14728f0968449513848087991a71131142af31ecb1a6813f8d1",
     "plugins/sonarr/operations/rename.json": "0cfe42506395cb33ab050d816f2bcdb81b9c29f763d559aa4d417856abe2aa85",
     "plugins/sonarr/operations/rescan.json": "6a3c289be88b0ca2792b1879f46a52997f28c089fb2ef93283ab1d06083d59e1",
+    "plugins/subtitles/operations/subtitles-clean.json": "fc47ece8f58339d2de46072b83358425a3a85dbb738917e95993b8869ef4de77",
+    "plugins/subtitles/operations/subtitles-flags.json": "f722fdd26074f59aef176f7f34fcb015422ae7c1b1be489f595d487b99b0dfda",
     "plugins/video/operations/media-inspect.json": "fc34cce2966531f763a4939a989b95860e39aa51ca3446a6b523b1f236ed089c",
     "plugins/video/operations/mkvmerge-probe.json": "19bd9a780ff43b7f0270f7dc87c19ee7e5e3a6ffdc3e006fa9c025a9ebe223ce",
     "plugins/video/operations/mkvpropedit.json": "33791cbcf3bb613dd66f1033920147a309df16ef04972390d3b57688bd5dec16",
@@ -30,101 +41,167 @@
       "id": "app.mkvtoolnix",
       "type": "app",
       "version": "1.0.0",
-      "name": "MKVToolNix (mkvmerge)",
+      "name": "MKVToolNix",
       "manifestPath": "apps/mkvtoolnix/manifest.json",
       "capability": "remux",
       "currentChoice": true,
       "distribution": "autonomous-binary",
-      "sha256": "365c2bd3fc35a5e1c2a19dc013395c021b4d63d950b06f2ce209cb9cb756765b"
+      "sha256": "92dc3b2aaba1db6e4c00d2f1f97e934674811c6461a665c7bd7f2dfa8a223f08"
     },
     {
       "id": "app.mp4box",
       "type": "app",
       "version": "1.0.0",
-      "name": "MP4Box (GPAC)",
+      "name": "MP4Box",
       "manifestPath": "apps/mp4box/manifest.json",
       "capability": "remux-mp4",
       "currentChoice": true,
       "distribution": "autonomous-binary",
-      "sha256": "861923f218b44dc1aad053eb594b9bb8ec98da75ad052a245c1cc7b083096013"
+      "sha256": "661a573c2873bd15791a31ac1d2631900f1c04ffc4533c91573412655366fd0d"
     },
     {
       "id": "app.mediainfo",
       "type": "app",
       "version": "1.0.0",
-      "name": "MediaInfo CLI",
+      "name": "MediaInfo",
       "manifestPath": "apps/mediainfo/manifest.json",
       "capability": "probe",
       "currentChoice": true,
       "distribution": "autonomous-binary",
-      "sha256": "539f8f49ad139dabaa52c5fccd7ab6edcf8bbbe27f0c5207a0c62ad703d03c72"
+      "sha256": "938354de284303775c29b735a1eb37e42a0850ddd945885a5096a03e90247c95"
     },
     {
       "id": "app.ffmpeg",
       "type": "app",
       "version": "1.0.0",
-      "name": "FFmpeg (distribué)",
+      "name": "FFmpeg",
       "manifestPath": "apps/ffmpeg/manifest.json",
       "capability": "analyze",
       "currentChoice": false,
       "distribution": "autonomous-binary",
-      "sha256": "bde2eda551541b12b25d4aa2fe4af09cf1aa3b3fc6ee56b2d307d7ca77b1d407"
+      "sha256": "1f369ba93836cf270d7498a6c7e16784a60b851b81a130b16c76fb7de9bc9410"
     },
     {
       "id": "app.internal.telemetry",
       "type": "app",
       "version": "0.1.0",
-      "name": "Sonde interne de télémétrie",
+      "name": "Telemetry",
       "manifestPath": "apps/internal-telemetry/manifest.json",
       "capability": "other",
       "currentChoice": true,
       "distribution": "autonomous-binary",
-      "sha256": "e92e661e831b5cd921b40c20784e22842f6a6d7fcba8b332f0dc5730d6966306"
+      "sha256": "3c0d2fe37057008442d90ec9c34b6657dca3c001865720552f225205c2d2b9b6"
+    },
+    {
+      "id": "app.script-runners",
+      "type": "app",
+      "version": "1.0.0",
+      "name": "Script Runners",
+      "manifestPath": "apps/script-runners/manifest.json",
+      "capability": "script",
+      "currentChoice": false,
+      "distribution": "autonomous-binary",
+      "sha256": "c509c8d3d9d17d8003f6e3c7bfbccc9b29dda591997dce055079963b269efef7"
     },
     {
       "id": "plugin.core",
       "type": "plugin",
       "version": "1.0.0",
-      "name": "Plugin Noyau & Contrôle de Flux",
+      "name": "Essentiel",
       "manifestPath": "plugins/core/manifest.json",
       "capability": "other",
-      "sha256": "04fc60463e417f1d6037b82c413f17c157dcd8c595a355b2904378045c0017fc"
+      "sha256": "8a95f1ed2d36cefed4f410058f475d2c3945a98247a3d310c4018cf27b16b5fe"
     },
     {
       "id": "plugin.video",
       "type": "plugin",
       "version": "1.0.0",
-      "name": "Plugin Traitement Vidéo",
+      "name": "Vidéo",
       "manifestPath": "plugins/video/manifest.json",
       "capability": "video",
-      "sha256": "4a4dc9e2efa5b5a4406bbd21cf7910814de9719d27f231ccd205b6c86ffe4a4b"
+      "sha256": "4ae1b8bea4ce0579ec30d7568c24fc51b19899c9e11c8b5b2711b148d75f049f"
     },
     {
       "id": "plugin.audio",
       "type": "plugin",
       "version": "1.0.0",
-      "name": "Plugin Traitement Audio",
+      "name": "Audio",
       "manifestPath": "plugins/audio/manifest.json",
       "capability": "audio",
-      "sha256": "694a63ddb14c3f2785d883da64d906d37469e8ba47cfc452a3f2b584ded47516"
+      "sha256": "8283c7489d4484dce2312a7415efb1075a923fb84cb5450f83517b26b2acfa0a"
     },
     {
       "id": "plugin.sonarr",
       "type": "plugin",
       "version": "1.0.0",
-      "name": "Sonarr Integration",
+      "name": "Sonarr",
       "manifestPath": "plugins/sonarr/manifest.json",
       "capability": "integration",
-      "sha256": "8e7fc0ac6653d41e5d09da1d3f2814f0a6ce3965605d3d5b8a5de1da51c9561a"
+      "sha256": "2637c09ae50ede997ee6f2e1c6263321cb9f2f8f25578d2a2c847f061513f15b"
     },
     {
       "id": "plugin.radarr",
       "type": "plugin",
       "version": "1.0.0",
-      "name": "Radarr Integration",
+      "name": "Radarr",
       "manifestPath": "plugins/radarr/manifest.json",
       "capability": "integration",
-      "sha256": "ba4bc8f840708fb147d90de628b127be366288656879d30ef8bf621fafae37d8"
+      "sha256": "22e9493d67c23742f7e450f9444de3e9e93aea8d33ac06ef8257e17c34f6452c"
+    },
+    {
+      "id": "plugin.scripts",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Scripts",
+      "manifestPath": "plugins/scripts/manifest.json",
+      "capability": "script",
+      "category": "data",
+      "sha256": "ee53872116aa316e17629162ac97f532d4af4f689da53559db7d8c5711b4f852"
+    },
+    {
+      "id": "plugin.emby",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Emby",
+      "manifestPath": "plugins/emby/manifest.json",
+      "capability": "integration",
+      "sha256": "f6631665418f13947a44f894440ffe453a998cb4a027a98bb56d3825546155aa"
+    },
+    {
+      "id": "plugin.jellyfin",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Jellyfin",
+      "manifestPath": "plugins/jellyfin/manifest.json",
+      "capability": "integration",
+      "sha256": "fd0c746575c2982de979c4eea8b05188eeb50dbb0b1cd3de9a1dcf44195b2b08"
+    },
+    {
+      "id": "plugin.notifications",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Notifications",
+      "manifestPath": "plugins/notifications/manifest.json",
+      "capability": "notification",
+      "sha256": "af7f8f7dea8ecea0e909f9ea19bbf0acb0e4c1f4f5de7801ac0f7a8c02db9879"
+    },
+    {
+      "id": "plugin.plex",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Plex",
+      "manifestPath": "plugins/plex/manifest.json",
+      "capability": "integration",
+      "sha256": "dfe189e08b1ef4ce4945fe161839ba569e12324942860ed4fe5b6f8559d8f873"
+    },
+    {
+      "id": "plugin.subtitles",
+      "type": "plugin",
+      "version": "1.0.0",
+      "name": "Sous-titres",
+      "manifestPath": "plugins/subtitles/manifest.json",
+      "capability": "other",
+      "sha256": "0cc6204649a970e4e659df0838d623807e4dcdfa697dc40fea26fc4ed7194ecb"
     },
     {
       "id": "block.core.file-input",
@@ -149,54 +226,54 @@
       "type": "block",
       "owner": "plugin.video",
       "version": "1.0.0",
-      "name": "Inspection Média Universelle (MediaInfo)",
+      "name": "MediaInfo",
       "manifestPath": "plugins/video/blocks/media-inspect.json",
-      "sha256": "36fb192272c7075166fde4702a0494a082986dad4fc3575bf42e6e2d4d68597f"
+      "sha256": "84d29cf840e057c67e3419f9444f94876e3fe26ee5c06428e7e6df355b09c8a7"
     },
     {
       "id": "block.metadata.mkvpropedit",
       "type": "block",
       "owner": "plugin.video",
       "version": "1.0.0",
-      "name": "Édition des en-têtes",
+      "name": "MKVPropEdit",
       "manifestPath": "plugins/video/blocks/mkvpropedit.json",
-      "sha256": "d46d4d5d35a8df37d2f99535bd7026563b832aad7aeecac8d49914fe6eced096"
+      "sha256": "999309aa46c16a09e53ad7c6bd0724f40b30623d264ac8b60ce5161acf676547"
     },
     {
       "id": "block.video.remux-mkv",
       "type": "block",
       "owner": "plugin.video",
       "version": "1.0.0",
-      "name": "Remuxage MKV (MKVToolNix)",
+      "name": "Remux MKV",
       "manifestPath": "plugins/video/blocks/remux-mkv.json",
-      "sha256": "f1362b15b41d3c92b555a3367c9d9dbf4c250abda3a70b0a848127af0bec760a"
+      "sha256": "273a3f07e29d80ffb1d196e66d1a484f17ca98e89a6f98340737891eadc1952e"
     },
     {
       "id": "block.video.remux-mp4",
       "type": "block",
       "owner": "plugin.video",
       "version": "1.0.0",
-      "name": "Remuxage & Optimisation MP4 (MP4Box)",
+      "name": "Remux MP4",
       "manifestPath": "plugins/video/blocks/remux-mp4.json",
-      "sha256": "c4f78f23211a3d72bcbb202efea757be4bba8d239ce5dc06f5fb5f60fcbdf501"
+      "sha256": "ddc3a3aa5ebf61a8d8587b330f5cbb3658a0522a5e8e6af97ff54db8e8b839a1"
     },
     {
       "id": "block.video.encode",
       "type": "block",
       "owner": "plugin.video",
       "version": "1.0.0",
-      "name": "Encodage Vidéo (FFMPEG Builder)",
+      "name": "Encodage Vidéo",
       "manifestPath": "plugins/video/blocks/video-encode.json",
-      "sha256": "ac3a0f3181033f44220469683bbcf4fec22a9c754851e7518e61314ddc9e9fa4"
+      "sha256": "95da34d8b38ef66df03775bd97ba336e1af14067a56f6ff9ff4a89196b4d82b7"
     },
     {
       "id": "block.audio.encode",
       "type": "block",
       "owner": "plugin.audio",
       "version": "1.0.0",
-      "name": "Encodage & Conversion Audio",
+      "name": "Encodage Audio",
       "manifestPath": "plugins/audio/blocks/audio-encode.json",
-      "sha256": "c52d9dab3a0026af11b30c4ac70e1e2d5a9166f330435dcef19d683f6fcac7ed"
+      "sha256": "fad72273a465c05ccfa2dc130db5a25a8c07d2f05a1025e94ad78b858a219c43"
     },
     {
       "id": "block.core.webhook",
@@ -212,80 +289,197 @@
       "type": "block",
       "owner": "plugin.sonarr",
       "version": "1.0.0",
-      "name": "Sonarr : réanalyser",
+      "name": "Sonarr : Rescan",
       "manifestPath": "plugins/sonarr/blocks/sonarr-rescan.json",
-      "sha256": "2d57b7bd519dbd44736a78e7caa2e3a66879602f28a418ead37fbca409303a67"
+      "sha256": "b6627deb25197aba81c01e8a390d59e1722984b833ba13f753bc0b7e7052ca55"
     },
     {
       "id": "block.sonarr.rename",
       "type": "block",
       "owner": "plugin.sonarr",
       "version": "1.0.0",
-      "name": "Sonarr : renommer",
+      "name": "Sonarr : Rename",
       "manifestPath": "plugins/sonarr/blocks/sonarr-rename.json",
-      "sha256": "4464148c39da7620f72c23aafc3905dd0f223a45cee7644b9bd4dbdbf61fc49b"
+      "sha256": "3a7831ce3ae93bfd8e45918e913701c5c22ac524765b5d0a395fe7c401ce7471"
     },
     {
       "id": "block.radarr.rescan",
       "type": "block",
       "owner": "plugin.radarr",
       "version": "1.0.0",
-      "name": "Radarr : réanalyser",
+      "name": "Radarr : Rescan",
       "manifestPath": "plugins/radarr/blocks/radarr-rescan.json",
-      "sha256": "a01de94bf7992e3e0f3e94730e6ec582e72dfa28354e47ced4d1ff5f95ddebdb"
+      "sha256": "8d454a3bbe09842a06ed2b32dc83e952f90deaa767efbf71244e28b41d199949"
     },
     {
       "id": "block.radarr.rename",
       "type": "block",
       "owner": "plugin.radarr",
       "version": "1.0.0",
-      "name": "Radarr : renommer",
+      "name": "Radarr : Rename",
       "manifestPath": "plugins/radarr/blocks/radarr-rename.json",
-      "sha256": "5f6d4ae85a427ef76369c17b7762fbdd878f0825630a69e2011caef7557e2006"
+      "sha256": "a683ffb7c7996f65e327e9831ba2f9142951f3ec9340b8cafdaad58e41d671f0"
     },
     {
       "id": "block.core.file-output",
       "type": "block",
       "owner": "plugin.core",
       "version": "1.0.0",
-      "name": "Fin du flux",
+      "name": "Sortie fichier",
       "manifestPath": "plugins/core/blocks/file-output.json",
-      "sha256": "02f89b5f50f338c8857b06d39986f0331689dcfb8e230dd3eca4021fbececfbb"
+      "sha256": "3534ba420514623b86bea3e8849bdf4b45809b38452fb8fe4f80a440618e45ba"
+    },
+    {
+      "id": "block.scripts.run",
+      "type": "block",
+      "owner": "plugin.scripts",
+      "version": "1.0.0",
+      "name": "Script",
+      "manifestPath": "plugins/scripts/blocks/run.json",
+      "sha256": "7eca293e617be9526489962b50240b83170cfbeebe5d15c59347e482cef555f1"
+    },
+    {
+      "id": "block.emby.refresh",
+      "type": "block",
+      "owner": "plugin.emby",
+      "version": "1.0.0",
+      "name": "Emby : Actualiser",
+      "manifestPath": "plugins/emby/blocks/emby-refresh.json",
+      "sha256": "47424a4327bc4b3752262adb8565bb8a4bc3419e112b721431e92f88c0f989c1"
+    },
+    {
+      "id": "block.jellyfin.refresh",
+      "type": "block",
+      "owner": "plugin.jellyfin",
+      "version": "1.0.0",
+      "name": "Jellyfin : Actualiser",
+      "manifestPath": "plugins/jellyfin/blocks/jellyfin-refresh.json",
+      "sha256": "e013f6a62e77670ac618cd0af1d7203f04b56dee75fba3170bf33a1be1bac649"
+    },
+    {
+      "id": "block.notifications.apprise",
+      "type": "block",
+      "owner": "plugin.notifications",
+      "version": "1.0.0",
+      "name": "Notification : Apprise",
+      "manifestPath": "plugins/notifications/blocks/apprise.json",
+      "sha256": "5a9e7bd24270a68ce97d83bef27f5293eb5ed647a924a7c6d651446a4214030a"
+    },
+    {
+      "id": "block.notifications.discord",
+      "type": "block",
+      "owner": "plugin.notifications",
+      "version": "1.0.0",
+      "name": "Notification : Discord",
+      "manifestPath": "plugins/notifications/blocks/discord.json",
+      "sha256": "c2540822d079f50a40e796a30227a1a23b892c5549f67bd09f76fe067b263f9a"
+    },
+    {
+      "id": "block.notifications.gotify",
+      "type": "block",
+      "owner": "plugin.notifications",
+      "version": "1.0.0",
+      "name": "Notification : Gotify",
+      "manifestPath": "plugins/notifications/blocks/gotify.json",
+      "sha256": "71300543fb9c2c14c3facaa1f6a3858c06a1ae3a29bd58d7122e04ceec177d03"
+    },
+    {
+      "id": "block.notifications.ntfy",
+      "type": "block",
+      "owner": "plugin.notifications",
+      "version": "1.0.0",
+      "name": "Notification : Ntfy",
+      "manifestPath": "plugins/notifications/blocks/ntfy.json",
+      "sha256": "72af9d9d926c5e8d3b1d958119d6a6d25a940f6870cfc9150dbefd878a01df0d"
+    },
+    {
+      "id": "block.plex.refresh",
+      "type": "block",
+      "owner": "plugin.plex",
+      "version": "1.0.0",
+      "name": "Plex : Actualiser",
+      "manifestPath": "plugins/plex/blocks/plex-refresh.json",
+      "sha256": "1da5c1fc8cbc8da298a0160f7e47d80e17a24c3e567f61c2fcd4ec79751266ef"
+    },
+    {
+      "id": "block.subtitles.clean",
+      "type": "block",
+      "owner": "plugin.subtitles",
+      "version": "1.0.0",
+      "name": "Sous-titres : Filtrer",
+      "manifestPath": "plugins/subtitles/blocks/subtitles-clean.json",
+      "sha256": "ecaa55ed13dc31cb052c67a89428d03f5711badb0dc2cf55cbe3cc897dddebdc"
+    },
+    {
+      "id": "block.subtitles.flags",
+      "type": "block",
+      "owner": "plugin.subtitles",
+      "version": "1.0.0",
+      "name": "Sous-titres : Drapeaux",
+      "manifestPath": "plugins/subtitles/blocks/subtitles-flags.json",
+      "sha256": "af0fffe01ce3c4933fa1dcfa442e957e2ba139122fa6315df64a0db82db90f55"
     },
     {
       "id": "flow.default.mkv",
       "type": "flow",
       "version": "1.0.0",
-      "name": "Remuxage Matroska propre",
+      "name": "Conversion MKV",
       "manifestPath": "flows/remux-matroska/manifest.json",
       "capability": "remux",
-      "sha256": "a062c0febb8e328bed5535a0c52dd376a5b61d052dca2bb2e67d81c1d4c1f507"
+      "sha256": "e24b5518d2146319e190a79cf456a4761606168697bd0962654b856f2d22368e"
     },
     {
       "id": "flow.smart.adr0008",
       "type": "flow",
       "version": "1.0.0",
-      "name": "Aiguillage conditionnel & In-Place (ADR-0008)",
+      "name": "Encodage HEVC intelligent",
       "manifestPath": "flows/smart-inplace-hevc/manifest.json",
       "capability": "in-place",
-      "sha256": "2326ca848a135cefe011473835a4420e38b0218edd9837310bbaeb6f257bc907"
+      "sha256": "e0b7f6e388903cb44748c18f81556c8290dd34df7a33e0d67d0c1097fb395037"
     },
     {
       "id": "flow.remux.mp4",
       "type": "flow",
       "version": "1.0.0",
-      "name": "Optimisation Web MP4 (FastStart)",
+      "name": "MP4 Streaming",
       "manifestPath": "flows/web-faststart-mp4/manifest.json",
       "capability": "faststart",
-      "sha256": "e80970a9eb8f65814b0c69eebeb2ecc7450431768365463c53ae4abd52d79ac5"
+      "sha256": "fb8f5aea8969f67e87c2c8bf06a4ab0ecb55881acce468c492dd8a114fa4e7ca"
+    },
+    {
+      "id": "flow.audio.loudnorm",
+      "type": "flow",
+      "version": "1.0.0",
+      "name": "Normalisation audio EBU R128",
+      "manifestPath": "flows/audio-loudnorm-mkv/manifest.json",
+      "capability": "encode",
+      "sha256": "454ded8460aa6ed9e9ddb83015561a711590aa820474128b965e3b355f3d7b91"
+    },
+    {
+      "id": "flow.clean.subtitles",
+      "type": "flow",
+      "version": "1.0.0",
+      "name": "Nettoyage sous-titres & langues",
+      "manifestPath": "flows/clean-subtitles-mkv/manifest.json",
+      "capability": "remux",
+      "sha256": "7027d2f052fbea5093066ddf4d176990c8492db1a84123d1e5f2022fb344e11f"
+    },
+    {
+      "id": "flow.smart.av1",
+      "type": "flow",
+      "version": "1.0.0",
+      "name": "Encodage AV1 intelligent",
+      "manifestPath": "flows/smart-av1-encode/manifest.json",
+      "capability": "encode",
+      "sha256": "b93b6859efaeb777644e4d2ab9ca3bac9f35714490c0a0c5fd51006286a44535"
     },
     {
       "id": "pack.media",
       "type": "pack",
       "version": "1.0.0",
-      "name": "Studio Multimédia (Flux de Fichiers)",
+      "name": "Pack Média",
       "manifestPath": "packs/media/manifest.json",
-      "sha256": "8339f8835389facbf23f03981ef3c6c7d657ed3ea4e130cb1d3922b842066035"
+      "sha256": "9f242642b5598f391d9b6dde2e4e4d2b8e3ef54070a16c2ff0d7fec84c64e4d4"
     }
   ]
 }

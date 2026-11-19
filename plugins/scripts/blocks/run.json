@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "block.scripts.run",
+  "version": "1.0.0",
+  "name": "Script",
+  "description": "Exécute un script personnalisé (existant ou saisi ici), avec branche Vrai / Faux.",
+  "category": "data",
+  "operationId": "operation.scripts.run",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier traité",
+        "dataType": "file",
+        "mediaType": "*/*"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "destination",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "*/*"
+      }
+    ]
+  },
+  "ui": {
+    "category": "Scripts",
+    "domain": "data",
+    "icon": "fas fa-terminal",
+    "color": "#22C55E",
+    "fields": []
+  }
+}

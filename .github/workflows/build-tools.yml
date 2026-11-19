@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       tool:
-        description: "Slug de l'app à construire (all, mkvtoolnix, mediainfo, ffmpeg, mp4box)"
+        description: "Slug de l'app à construire (all, mkvtoolnix, mediainfo, ffmpeg, mp4box, script-runners)"
         required: true
         default: 'all'
       release_tag_suffix:
@@ -41,12 +41,20 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - id: list
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           FILTER="${{ github.event.inputs.tool || 'all' }}"
           SUFFIX="${{ github.event.inputs.release_tag_suffix || '' }}"
-          python3 - "$FILTER" "$SUFFIX" <<'PY'
-          import json, os, pathlib, sys
-          filt, suffix = sys.argv[1], sys.argv[2]
+          python3 - "$FILTER" "$SUFFIX" "${{ github.event_name }}" <<'PY'
+          import json, os, pathlib, subprocess, sys
+          filt, suffix, event = sys.argv[1], sys.argv[2], sys.argv[3]
+
+          def published(tag):
+              res = subprocess.run(["gh", "release", "view", tag, "--json", "isDraft", "-q", ".isDraft"],
+                                   capture_output=True, text=True)
+              return res.returncode == 0 and res.stdout.strip() == "false"
+
           items = []
           for p in sorted(pathlib.Path("apps").glob("*/build.json")):
               d = json.loads(p.read_text())
@@ -56,8 +64,15 @@ jobs:
               tag = f"{d['releaseTagPrefix']}-{d['toolVersion']}"
               if suffix:
                   tag = f"{tag}-{suffix}"
+              # Sur push, seuls les outils pas encore distribués sont construits : un contrat
+              # déjà « released » ou une Release déjà publiée (immuable) est ignoré.
+              if event == "push":
+                  dist = json.loads((p.parent / "distribution.v1.json").read_text())
+                  if dist.get("releaseStatus") == "released" or published(tag):
+                      print(f"{slug} ({tag}) déjà distribué : ignoré")
+                      continue
               items.append({"slug": slug, "tag": tag})
-          if not items:
+          if not items and event != "push":
               raise SystemExit(f"Aucune recette trouvée pour tool={filt!r}")
           with open(os.environ["GITHUB_OUTPUT"], "a") as fh:
               fh.write("tools=" + json.dumps(items) + "\n")
@@ -66,6 +81,7 @@ jobs:
   preflight:
     name: vérifier immutabilité des tags
     needs: discover
+    if: needs.discover.outputs.tools != '[]'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -109,9 +125,10 @@ jobs:
           set -euo pipefail
           export DEBIAN_FRONTEND=noninteractive
           RECIPE="/work/apps/${SLUG}/build.json"
-          SOURCE_KIND=$(python3 -c "import json; print(json.load(open('$RECIPE'))['source']['kind'])")
+          # python3 est installé avant toute lecture de la recette (absent de debian:bookworm).
           apt-get update -qq
           apt-get install -y -qq --no-install-recommends patchelf python3 ca-certificates >/dev/null
+          SOURCE_KIND=$(python3 -c "import json; print(json.load(open('$RECIPE'))['source']['kind'])")
 
           if [ "$SOURCE_KIND" = "debian-bookworm" ]; then
             PKGS=$(python3 -c "import json; print(' '.join(json.load(open('$RECIPE'))['source']['packages']))")
@@ -131,6 +148,11 @@ jobs:
             )
             UPSTREAM_VER="${GPAC_TAG}"
             SOURCE_REF="https://github.com/gpac/gpac/tree/${GPAC_TAG}"
+          elif [ "$SOURCE_KIND" = "upstream-archives" ]; then
+            # libatomic1 : requise par Node.js, absente de bookworm et bookworm-slim (embarquée).
+            apt-get install -y -qq --no-install-recommends binutils libatomic1 >/dev/null
+            UPSTREAM_VER=$(python3 -c "import json; print(', '.join(a['upstreamVersion'] for a in json.load(open('$RECIPE'))['source']['archives']))")
+            SOURCE_REF="archives amont épinglées"
           else
             echo "Source inconnue : $SOURCE_KIND" >&2
             exit 1
@@ -143,12 +165,104 @@ jobs:
           mapfile -t BINS < <(python3 -c "import json; print('\n'.join(json.load(open('$RECIPE'))['binaries']))")
           mapfile -t PROBE < <(python3 -c "import json; print('\n'.join(json.load(open('$RECIPE'))['probeArgs']))")
 
-          for binary in "${BINS[@]}"; do
-            cp "$(command -v "$binary")" "$stage/$binary"
-            (ldd "$stage/$binary" 2>/dev/null || true) | awk '/=> \//{print $3}'
-          done | sort -u | { grep -Ev "$GLIBC" || true; } | while read -r library; do
-            [ -e "$library" ] && cp -L "$library" "$stage/lib/"
-          done
+          if [ "$SOURCE_KIND" = "upstream-archives" ]; then
+            # Télécharge chaque archive amont, vérifie son SHA-256 épinglé, l'extrait dans
+            # <extractTo>/, élague, remplace les liens symboliques (refusés par le cache du
+            # cœur) par des copies, puis expose chaque binaire par un lanceur sh à la racine.
+            python3 - "$RECIPE" "$ARCH" "$stage" <<'PY'
+          import hashlib, json, os, pathlib, re, shutil, subprocess, sys, urllib.request
+          recipe_path, arch, stage = sys.argv[1], sys.argv[2], pathlib.Path(sys.argv[3])
+          GLIBC = re.compile(r"/(ld-linux[^/]*|libc|libm|libdl|libpthread|librt|libresolv|libutil|libnsl|libanl)\.so")
+
+          def bundle_shared_libs(real):
+              """Copie dans <stage>/lib les dépendances hors glibc et pointe le rpath du binaire dessus."""
+              res = subprocess.run(["ldd", str(real)], capture_output=True, text=True)
+              if res.returncode != 0:
+                  return
+              deps = []
+              for line in res.stdout.splitlines():
+                  if "not found" in line:
+                      raise SystemExit(f"dépendance introuvable pour {real} : {line.strip()}")
+                  _, sep, rest = line.partition("=>")
+                  path = rest.split("(")[0].strip()
+                  if sep and path.startswith("/") and not GLIBC.search(path):
+                      deps.append(path)
+              if not deps:
+                  return
+              libdir = stage / "lib"
+              libdir.mkdir(exist_ok=True)
+              for dep in deps:
+                  shutil.copy2(os.path.realpath(dep), libdir / os.path.basename(dep))
+              rpath = "$ORIGIN/" + os.path.relpath(libdir, real.parent)
+              subprocess.run(["patchelf", "--force-rpath", "--set-rpath", rpath, str(real)], check=True)
+              print(f"{real.name} : {len(deps)} bibliothèque(s) embarquée(s), rpath {rpath}")
+          recipe = json.load(open(recipe_path))
+          wanted = set(recipe["binaries"])
+          exposed = set()
+          clashes = wanted & {a["extractTo"] for a in recipe["source"]["archives"]}
+          if clashes:
+              raise SystemExit(f"extractTo en collision avec un lanceur : {sorted(clashes)}")
+          for item in recipe["source"]["archives"]:
+              url, expected = item["urls"][arch], item["sha256"][arch]
+              archive = pathlib.Path("/tmp") / url.rsplit("/", 1)[-1]
+              with urllib.request.urlopen(url) as resp, open(archive, "wb") as out:
+                  shutil.copyfileobj(resp, out)
+              actual = hashlib.sha256(archive.read_bytes()).hexdigest()
+              if actual != expected:
+                  raise SystemExit(f"SHA-256 inattendu pour {url} : {actual} != {expected}")
+              root = stage / item["extractTo"]
+              root.mkdir(parents=True)
+              subprocess.run(["tar", "-xzf", str(archive), "-C", str(root), "--no-same-owner",
+                              f"--strip-components={item['stripComponents']}"], check=True)
+              for pattern in item.get("prune", []):
+                  for victim in sorted(root.glob(pattern), reverse=True):
+                      if victim.is_dir() and not victim.is_symlink():
+                          shutil.rmtree(victim)
+                      else:
+                          victim.unlink()
+              for dirpath, dirnames, filenames in os.walk(root):
+                  for name in dirnames + filenames:
+                      link = pathlib.Path(dirpath) / name
+                      if not link.is_symlink():
+                          continue
+                      target = link.resolve()
+                      if not target.exists():
+                          link.unlink()
+                      elif target.is_file() and target.is_relative_to(root):
+                          link.unlink()
+                          shutil.copy2(target, link)
+                      else:
+                          raise SystemExit(f"lien symbolique non pris en charge : {link} -> {target}")
+              if item.get("strip"):
+                  for dirpath, _, filenames in os.walk(root):
+                      for name in filenames:
+                          path = pathlib.Path(dirpath) / name
+                          with open(path, "rb") as fh:
+                              is_elf = fh.read(4) == b"\x7fELF"
+                          if is_elf:
+                              subprocess.run(["strip", "--strip-unneeded", str(path)], check=True)
+              for name, rel in item["entrypoints"].items():
+                  real = root / rel
+                  if not real.is_file():
+                      raise SystemExit(f"point d'entrée absent : {real}")
+                  bundle_shared_libs(real)
+                  launcher = stage / name
+                  # Concaténation volontaire : « $ » + « { » évite toute expression GitHub Actions.
+                  script_dir = "$" + "{0%/*}"
+                  launcher.write_text("#!/bin/sh\nexec \"" + script_dir + "/" + item["extractTo"] + "/" + rel + "\" \"$@\"\n")
+                  launcher.chmod(0o755)
+                  exposed.add(name)
+          if exposed != wanted:
+              raise SystemExit(f"binaires exposés {sorted(exposed)} != binaries {sorted(wanted)}")
+          PY
+          else
+            for binary in "${BINS[@]}"; do
+              cp "$(command -v "$binary")" "$stage/$binary"
+              (ldd "$stage/$binary" 2>/dev/null || true) | awk '/=> \//{print $3}'
+            done | sort -u | { grep -Ev "$GLIBC" || true; } | while read -r library; do
+              [ -e "$library" ] && cp -L "$library" "$stage/lib/"
+            done
+          fi
 
           for binary in "${BINS[@]}"; do
             if ldd "$stage/$binary" >/dev/null 2>&1; then
@@ -167,6 +281,9 @@ jobs:
             if [ "$SOURCE_KIND" = "debian-bookworm" ]; then
               echo "Outil : $SLUG (paquet Debian bookworm $SOURCE_REF $UPSTREAM_VER)"
               echo "Sources : https://sources.debian.org/src/$SOURCE_REF/"
+            elif [ "$SOURCE_KIND" = "upstream-archives" ]; then
+              echo "Outil : $SLUG ($SOURCE_REF)"
+              python3 -c "import json, sys; [print(f\"  {a['upstreamVersion']} : {a['urls'][sys.argv[1]]} (sha256 {a['sha256'][sys.argv[1]]})\") for a in json.load(open('$RECIPE'))['source']['archives']]" "$ARCH"
             else
               echo "Outil : $SLUG ($SOURCE_REF)"
             fi
@@ -211,16 +328,18 @@ jobs:
             -v "$PWD:/work:ro" -v "$PWD/out:/out" \
             debian:bookworm bash /work/bundle.sh
 
+          # bookworm-slim n'a pas python3 : binaires et arguments de sonde sont lus sur l'hôte.
+          RECIPE="apps/${{ matrix.tool.slug }}/build.json"
+          BINS=$(python3 -c "import json, sys; print(' '.join(json.load(open(sys.argv[1]))['binaries']))" "$RECIPE")
+          PROBE=$(python3 -c "import json, sys; print(' '.join(json.load(open(sys.argv[1]))['probeArgs']))" "$RECIPE")
           docker run --rm -e ARCH=${{ matrix.arch.arch }} -e SLUG=${{ matrix.tool.slug }} \
-            -v "$PWD:/work:ro" -v "$PWD/out:/out:ro" debian:bookworm-slim bash -euo pipefail -c '
+            -e BINS="$BINS" -e PROBE="$PROBE" \
+            -v "$PWD/out:/out:ro" debian:bookworm-slim bash -euo pipefail -c '
               mkdir -p "/t/$SLUG"
               tar -C "/t/$SLUG" -xzf "/out/$SLUG-linux-${ARCH}.tar.gz"
-              python3 - <<PY
-          import json, subprocess
-          recipe = json.load(open(f"/work/apps/{'''${{ matrix.tool.slug }}'''}/build.json"))
-          for b in recipe["binaries"]:
-              subprocess.run([f"/t/{recipe[\"slug\"]}/{b}", *recipe["probeArgs"]], env={}, check=True)
-          PY
+              for binary in $BINS; do
+                env -i "/t/$SLUG/$binary" $PROBE
+              done
             '
 
       - name: Publier les artefacts en brouillon (Release immuable)
@@ -319,6 +438,11 @@ jobs:
           git add apps/*/distribution.v1.json index.json
           git commit -m "chore(apps): mise à jour contrats de distribution immuables"
           git push origin "$BRANCH"
-          gh pr create --base dev --head "$BRANCH" \
+          # Corps entre apostrophes : des backticks entre guillemets seraient exécutés par bash.
+          BODY='Contrats `distribution.v1.json` et empreintes `index.json` mis à jour automatiquement après publication de releases immuables (sans `--clobber`).'
+          if ! gh pr create --base dev --head "$BRANCH" \
             --title "chore(apps): publication immuable des outils Option B" \
-            --body "Contrats `distribution.v1.json` et empreintes `catalogue/index.json` mis à jour automatiquement après publication de releases immuables (sans `--clobber`)."
+            --body "$BODY"; then
+            # Le dépôt peut interdire à GitHub Actions d'ouvrir des PR : la branche reste poussée.
+            echo "::warning::PR non créée par Actions ; ouvrez-la depuis https://github.com/${{ github.repository }}/compare/dev...$BRANCH"
+          fi

@@ -3,8 +3,8 @@
   "id": "app.mediainfo",
   "type": "app",
   "version": "1.0.0",
-  "name": "MediaInfo CLI",
-  "description": "Outil universel d'analyse et d'extraction de métadonnées techniques multimédias (codecs, résolutions, profils HDR10/Dolby Vision, canaux audio et sous-titres).",
+  "name": "MediaInfo",
+  "description": "Analyse les pistes vidéo, audio et sous-titres d'un fichier média.",
   "author": "flux-de-fichiers",
   "license": "BSD-2-Clause",
   "files": [
@@ -20,7 +20,10 @@
     }
   ],
   "compatibility": {
-    "platforms": ["linux/amd64", "linux/arm64"]
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
   },
   "dependencies": [],
   "tool": {

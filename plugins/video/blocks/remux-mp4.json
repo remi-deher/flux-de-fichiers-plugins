@@ -1,10 +1,12 @@
 {
   "schemaVersion": "1.1.0",
   "id": "block.video.remux-mp4",
-  "aliases": ["remux-mp4"],
+  "aliases": [
+    "remux-mp4"
+  ],
   "version": "1.0.0",
-  "name": "Remuxage & Optimisation MP4 (MP4Box)",
-  "description": "Remuxe sans réencodage vers un conteneur MP4/M4V et optimise les atomes de métadonnées (moov en début de fichier / faststart) pour la lecture fluide sur le web et les NAS.",
+  "name": "Remux MP4",
+  "description": "Convertit le fichier en MP4 optimisé pour la lecture en streaming.",
   "category": "media",
   "operationId": "operation.mp4box.remux",
   "operationVersion": "1.0.0",

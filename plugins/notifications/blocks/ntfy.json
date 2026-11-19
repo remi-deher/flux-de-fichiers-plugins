@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "block.notifications.ntfy",
+  "aliases": ["notify-ntfy"],
+  "version": "1.0.0",
+  "name": "Notification : Ntfy",
+  "description": "Publie une notification sur un sujet Ntfy.",
+  "category": "io",
+  "operationId": "operation.notifications.ntfy",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [{ "id": "source", "label": "Fichier courant", "dataType": "file", "mediaType": "*/*" }],
+    "outputs": [{ "id": "destination", "label": "Fichier courant", "dataType": "file", "mediaType": "*/*" }]
+  },
+  "ui": {
+    "category": "Notification",
+    "domain": "integration",
+    "icon": "fas fa-bell",
+    "color": "#14B8A6",
+    "suggestedNext": ["block.core.file-output"],
+    "fields": [
+      { "name": "server_url", "label": "URL du serveur Ntfy", "type": "string", "default": "https://ntfy.sh", "required": true },
+      { "name": "topic", "label": "Sujet (topic)", "type": "string", "required": true },
+      { "name": "title", "label": "Titre", "type": "string", "default": "Flux de Fichiers" },
+      { "name": "message", "label": "Message", "type": "string", "default": "Traitement terminé : {$context.sourceName}" },
+      { "name": "fail_on_error", "label": "Échec bloquant", "type": "boolean", "default": false }
+    ]
+  }
+}

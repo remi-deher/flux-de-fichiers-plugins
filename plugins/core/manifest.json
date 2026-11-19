@@ -3,8 +3,8 @@
   "id": "plugin.core",
   "type": "plugin",
   "version": "1.0.0",
-  "name": "Plugin Noyau & Contrôle de Flux",
-  "description": "Blocs fondamentaux de structure et d'intégration réseau pour les flux : point d'entrée, branchement conditionnel, notification Webhook et sortie finale.",
+  "name": "Essentiel",
+  "description": "Blocs essentiels : entrée, sortie, conditions et notifications.",
   "author": "flux-de-fichiers",
   "license": "GPL-2.0-or-later",
   "capability": "other",
@@ -57,6 +57,9 @@
   ],
   "compatibility": {
     "appMin": "1.0.0",
-    "platforms": ["linux/amd64", "linux/arm64"]
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
   }
 }

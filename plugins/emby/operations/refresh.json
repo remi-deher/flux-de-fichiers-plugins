@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.emby.refresh",
+  "version": "1.0.0",
+  "name": "Emby : actualiser la médiathèque",
+  "providerId": "plugin.emby",
+  "providerKind": "plugin",
+  "capability": "integration",
+  "status": "validated",
+  "runtime": {
+    "kind": "http",
+    "settingsPluginId": "plugin.emby",
+    "requiredSettings": ["url", "apiKey"],
+    "errorCode": "integration_failed",
+    "failOnErrorParam": "fail_on_error",
+    "timeoutSeconds": 15,
+    "steps": [
+      {
+        "url": "{$setting.url}/Library/Refresh",
+        "method": "POST",
+        "headers": {
+          "X-Emby-Token": "{$setting.apiKey}"
+        },
+        "successMessage": "actualisation Emby déclenchée"
+      }
+    ]
+  }
+}

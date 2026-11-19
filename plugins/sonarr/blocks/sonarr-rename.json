@@ -1,9 +1,11 @@
 {
   "schemaVersion": "1.1.0",
   "id": "block.sonarr.rename",
-  "aliases": ["sonarr-rename"],
+  "aliases": [
+    "sonarr-rename"
+  ],
   "version": "1.0.0",
-  "name": "Sonarr : renommer",
+  "name": "Sonarr : Rename",
   "description": "Demande à Sonarr de renommer les fichiers de la série.",
   "category": "io",
   "operationId": "operation.sonarr.rename",

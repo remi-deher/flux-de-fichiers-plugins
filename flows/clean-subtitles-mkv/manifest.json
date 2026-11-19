@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "flow.clean.subtitles",
+  "type": "flow",
+  "version": "1.0.0",
+  "name": "Nettoyage sous-titres & langues",
+  "description": "Ne conserve que les pistes de sous-titres françaises et anglaises et définit le français par défaut.",
+  "author": "flux-de-fichiers",
+  "license": "GPL-2.0-or-later",
+  "capability": "remux",
+  "fileMask": "*.mkv",
+  "isDefault": false,
+  "definition": {
+    "nodes": [
+      {
+        "id": "node-1",
+        "type": "file-input",
+        "name": "Fichier source"
+      },
+      {
+        "id": "node-2",
+        "type": "subtitles-clean",
+        "name": "Filtrer sous-titres (fre,eng)",
+        "config": {
+          "subtitle_languages": "fre,eng",
+          "audio_languages": "all",
+          "disable_track_stats": true
+        }
+      },
+      {
+        "id": "node-3",
+        "type": "subtitles-flags",
+        "name": "Définir fre par défaut",
+        "config": {
+          "subtitle_lang": "fre",
+          "flag_default": true,
+          "flag_forced": false
+        }
+      },
+      {
+        "id": "node-4",
+        "type": "file-output",
+        "name": "Sortie fichier",
+        "config": {
+          "mode": "replace"
+        }
+      }
+    ],
+    "connections": [
+      { "from": "node-1", "to": "node-2" },
+      { "from": "node-2", "to": "node-3" },
+      { "from": "node-3", "to": "node-4" }
+    ]
+  },
+  "dependencies": [
+    { "id": "plugin.subtitles", "versionRange": "^1.0.0", "kind": "plugin" },
+    { "id": "plugin.core", "versionRange": "^1.0.0", "kind": "plugin" }
+  ]
+}

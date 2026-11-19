@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "plugin.plex",
+  "type": "plugin",
+  "version": "1.0.0",
+  "name": "Plex",
+  "description": "Déclenche l'actualisation d'une section de bibliothèque Plex après traitement.",
+  "author": "flux-de-fichiers",
+  "license": "GPL-2.0-or-later",
+  "capability": "integration",
+  "files": [
+    { "path": "README.md", "role": "docs", "mediaType": "text/markdown" },
+    { "path": "blocks/plex-refresh.json", "role": "block", "mediaType": "application/json" },
+    { "path": "operations/refresh.json", "role": "operation", "mediaType": "application/json" }
+  ],
+  "settingsSchema": {
+    "fields": [
+      {
+        "name": "url",
+        "label": "URL du serveur Plex",
+        "type": "url",
+        "default": "http://192.168.1.50:32400",
+        "required": true,
+        "description": "Adresse HTTP/HTTPS de votre serveur Plex Media Server."
+      },
+      {
+        "name": "apiKey",
+        "label": "Jeton X-Plex-Token",
+        "type": "secret",
+        "required": true,
+        "description": "Jeton d'authentification Plex (X-Plex-Token)."
+      }
+    ]
+  },
+  "compatibility": { "platforms": ["linux/amd64", "linux/arm64"] }
+}

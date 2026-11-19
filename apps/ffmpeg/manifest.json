@@ -3,8 +3,8 @@
   "id": "app.ffmpeg",
   "type": "app",
   "version": "1.0.0",
-  "name": "FFmpeg (distribué)",
-  "description": "Outil FFmpeg déclaré pour distribution Option B (binaire autonome). Usage validé actuel : médias synthétiques de tests / analyse. Remux MP4 production = pending-decision.",
+  "name": "FFmpeg",
+  "description": "Encodeur et convertisseur vidéo/audio universel.",
   "author": "flux-de-fichiers",
   "license": "GPL-3.0-or-later",
   "files": [
@@ -20,7 +20,10 @@
     }
   ],
   "compatibility": {
-    "platforms": ["linux/amd64", "linux/arm64"]
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
   },
   "dependencies": [],
   "tool": {
