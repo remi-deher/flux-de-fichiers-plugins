@@ -290,7 +290,7 @@
       "manifestPath": "plugins/essentiel/manifest.json",
       "capability": "other",
       "sha256": "d8b3d09301de3c691b5c9221c65e9e49eaf02be2033ea7b31346cf46e32b3e25",
-      "contentSha256": "16fbd127db5528efeb523a99b7c6f32b6d9c6e29f55287346077902283c04c42",
+      "contentSha256": "83dfede1674b9ef19f2a56faa58ae840f7fba10709489a869b942c591b43cb84",
       "updatedAt": "2026-11-19"
     },
     {
@@ -818,8 +818,8 @@
       "version": "1.0.0",
       "name": "Relayer la tâche",
       "manifestPath": "plugins/essentiel/blocks/relay.json",
-      "sha256": "f61d596f6649cad4c3f25d6e5d4a9070a33db3630a7dde83351472d9bf27aa24",
-      "contentSha256": "ec66b15f702f3ddab777e8e788a32e8e1063a538761b9bcd7af44b516f23ec6f",
+      "sha256": "366ddec3ec6bad8b1ce45fa2f613eff8bb282d796c8c73170ff5515a7d974f5b",
+      "contentSha256": "971278bbc3135853b94835802854b1d9ed844a05b3bcc9387d8e0a1217c06c9b",
       "updatedAt": "2026-11-19"
     },
     {

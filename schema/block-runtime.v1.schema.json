@@ -259,7 +259,8 @@
             "boolean",
             "select",
             "range",
-            "headers"
+            "headers",
+            "worker"
           ]
         },
         "default": {

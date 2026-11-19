@@ -75,12 +75,11 @@
       },
       {
         "name": "workerId",
-        "label": "Identifiant du worker",
-        "type": "string",
+        "label": "Worker cible",
+        "type": "worker",
         "default": "",
         "required": false,
-        "description": "Pour « Un worker précis » : identifiant (UUID) du worker cible, visible sur sa fiche.",
-        "placeholder": "00000000-0000-0000-0000-000000000000"
+        "description": "Pour « Un worker précis » : la tâche attend dans la file de ce worker, même hors ligne."
       }
     ]
   }
