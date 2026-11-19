@@ -149,7 +149,8 @@ jobs:
             UPSTREAM_VER="${GPAC_TAG}"
             SOURCE_REF="https://github.com/gpac/gpac/tree/${GPAC_TAG}"
           elif [ "$SOURCE_KIND" = "upstream-archives" ]; then
-            apt-get install -y -qq --no-install-recommends binutils >/dev/null
+            # libatomic1 : requise par Node.js, absente de bookworm et bookworm-slim (embarquée).
+            apt-get install -y -qq --no-install-recommends binutils libatomic1 >/dev/null
             UPSTREAM_VER=$(python3 -c "import json; print(', '.join(a['upstreamVersion'] for a in json.load(open('$RECIPE'))['source']['archives']))")
             SOURCE_REF="archives amont épinglées"
           else
@@ -169,8 +170,32 @@ jobs:
             # <extractTo>/, élague, remplace les liens symboliques (refusés par le cache du
             # cœur) par des copies, puis expose chaque binaire par un lanceur sh à la racine.
             python3 - "$RECIPE" "$ARCH" "$stage" <<'PY'
-          import hashlib, json, os, pathlib, shutil, subprocess, sys, urllib.request
+          import hashlib, json, os, pathlib, re, shutil, subprocess, sys, urllib.request
           recipe_path, arch, stage = sys.argv[1], sys.argv[2], pathlib.Path(sys.argv[3])
+          GLIBC = re.compile(r"/(ld-linux[^/]*|libc|libm|libdl|libpthread|librt|libresolv|libutil|libnsl|libanl)\.so")
+
+          def bundle_shared_libs(real):
+              """Copie dans <stage>/lib les dépendances hors glibc et pointe le rpath du binaire dessus."""
+              res = subprocess.run(["ldd", str(real)], capture_output=True, text=True)
+              if res.returncode != 0:
+                  return
+              deps = []
+              for line in res.stdout.splitlines():
+                  if "not found" in line:
+                      raise SystemExit(f"dépendance introuvable pour {real} : {line.strip()}")
+                  _, sep, rest = line.partition("=>")
+                  path = rest.split("(")[0].strip()
+                  if sep and path.startswith("/") and not GLIBC.search(path):
+                      deps.append(path)
+              if not deps:
+                  return
+              libdir = stage / "lib"
+              libdir.mkdir(exist_ok=True)
+              for dep in deps:
+                  shutil.copy2(os.path.realpath(dep), libdir / os.path.basename(dep))
+              rpath = "$ORIGIN/" + os.path.relpath(libdir, real.parent)
+              subprocess.run(["patchelf", "--force-rpath", "--set-rpath", rpath, str(real)], check=True)
+              print(f"{real.name} : {len(deps)} bibliothèque(s) embarquée(s), rpath {rpath}")
           recipe = json.load(open(recipe_path))
           wanted = set(recipe["binaries"])
           exposed = set()
@@ -220,6 +245,7 @@ jobs:
                   real = root / rel
                   if not real.is_file():
                       raise SystemExit(f"point d'entrée absent : {real}")
+                  bundle_shared_libs(real)
                   launcher = stage / name
                   # Concaténation volontaire : « $ » + « { » évite toute expression GitHub Actions.
                   script_dir = "$" + "{0%/*}"
