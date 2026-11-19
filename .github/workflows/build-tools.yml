@@ -64,10 +64,13 @@ jobs:
               tag = f"{d['releaseTagPrefix']}-{d['toolVersion']}"
               if suffix:
                   tag = f"{tag}-{suffix}"
-              # Sur push, les Releases déjà publiées (immuables) sont ignorées au lieu de bloquer.
-              if event == "push" and published(tag):
-                  print(f"{tag} déjà publiée : ignorée")
-                  continue
+              # Sur push, seuls les outils pas encore distribués sont construits : un contrat
+              # déjà « released » ou une Release déjà publiée (immuable) est ignoré.
+              if event == "push":
+                  dist = json.loads((p.parent / "distribution.v1.json").read_text())
+                  if dist.get("releaseStatus") == "released" or published(tag):
+                      print(f"{slug} ({tag}) déjà distribué : ignoré")
+                      continue
               items.append({"slug": slug, "tag": tag})
           if not items and event != "push":
               raise SystemExit(f"Aucune recette trouvée pour tool={filt!r}")
@@ -122,9 +125,10 @@ jobs:
           set -euo pipefail
           export DEBIAN_FRONTEND=noninteractive
           RECIPE="/work/apps/${SLUG}/build.json"
-          SOURCE_KIND=$(python3 -c "import json; print(json.load(open('$RECIPE'))['source']['kind'])")
+          # python3 est installé avant toute lecture de la recette (absent de debian:bookworm).
           apt-get update -qq
           apt-get install -y -qq --no-install-recommends patchelf python3 ca-certificates >/dev/null
+          SOURCE_KIND=$(python3 -c "import json; print(json.load(open('$RECIPE'))['source']['kind'])")
 
           if [ "$SOURCE_KIND" = "debian-bookworm" ]; then
             PKGS=$(python3 -c "import json; print(' '.join(json.load(open('$RECIPE'))['source']['packages']))")
@@ -298,16 +302,18 @@ jobs:
             -v "$PWD:/work:ro" -v "$PWD/out:/out" \
             debian:bookworm bash /work/bundle.sh
 
+          # bookworm-slim n'a pas python3 : binaires et arguments de sonde sont lus sur l'hôte.
+          RECIPE="apps/${{ matrix.tool.slug }}/build.json"
+          BINS=$(python3 -c "import json, sys; print(' '.join(json.load(open(sys.argv[1]))['binaries']))" "$RECIPE")
+          PROBE=$(python3 -c "import json, sys; print(' '.join(json.load(open(sys.argv[1]))['probeArgs']))" "$RECIPE")
           docker run --rm -e ARCH=${{ matrix.arch.arch }} -e SLUG=${{ matrix.tool.slug }} \
-            -v "$PWD:/work:ro" -v "$PWD/out:/out:ro" debian:bookworm-slim bash -euo pipefail -c '
+            -e BINS="$BINS" -e PROBE="$PROBE" \
+            -v "$PWD/out:/out:ro" debian:bookworm-slim bash -euo pipefail -c '
               mkdir -p "/t/$SLUG"
               tar -C "/t/$SLUG" -xzf "/out/$SLUG-linux-${ARCH}.tar.gz"
-              python3 - <<PY
-          import json, subprocess
-          recipe = json.load(open(f"/work/apps/{'''${{ matrix.tool.slug }}'''}/build.json"))
-          for b in recipe["binaries"]:
-              subprocess.run([f"/t/{recipe[\"slug\"]}/{b}", *recipe["probeArgs"]], env={}, check=True)
-          PY
+              for binary in $BINS; do
+                env -i "/t/$SLUG/$binary" $PROBE
+              done
             '
 
       - name: Publier les artefacts en brouillon (Release immuable)
