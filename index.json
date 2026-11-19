@@ -37,7 +37,9 @@
     "plugins/essentiel/operations/condition.json": "f5fa7c699aa55ff47c6bc73ff387e00e6cb8902080de3f096b88ef70ea02d149",
     "plugins/essentiel/operations/file-input.json": "fb2120a8b119edb96838f50351d67448942e855e8cd147c8dc6b6c01be025792",
     "plugins/essentiel/operations/file-output.json": "f5ec36b5058ba1547cb221c20c2b2fa18609e916e1bf1ce6615091515c4d73d3",
+    "plugins/essentiel/operations/relay.json": "6516cd1296d5cba728bce3cdc84205acaad21b6dd54e9328c851dc2003f2821a",
     "plugins/essentiel/operations/webhook.json": "8c463c86297d1de6595a48dcf8264f662da1bae25c73765f7c638d9bcbbffee8",
+    "plugins/essentiel/operations/worker-capability.json": "d198086465ef9368d23554f16dc0338c4c6266f356eacf18b006b408d7722ba4",
     "plugins/hdr/operations/dv-profile-8.json": "caf6b51821ad557e307e6993db0b89313fb11d706045a4dd22bea1e9dbe92489",
     "plugins/hdr/operations/dv-reinject.json": "26f4591639a04d14cf8543c19afdde8c0ac7152be1b1bd8faafc95c8ffa8508a",
     "plugins/hdr/operations/hdr10plus-reinject.json": "c7b64d53fbd04545ad0580e50ea4b2598ef34faacd7f9c8d596373ca713ed7ee",
@@ -283,12 +285,12 @@
     {
       "id": "essentiel",
       "type": "plugin",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "name": "Essentiel",
       "manifestPath": "plugins/essentiel/manifest.json",
       "capability": "other",
-      "sha256": "4d81654d07fa3d745e88ed41881e0684439163a191de465ff7de7976cdbdde21",
-      "contentSha256": "7a27d96f92ee511e9e8c5b64593360613b896f67f879d1684025003c8708699b",
+      "sha256": "d8b3d09301de3c691b5c9221c65e9e49eaf02be2033ea7b31346cf46e32b3e25",
+      "contentSha256": "16fbd127db5528efeb523a99b7c6f32b6d9c6e29f55287346077902283c04c42",
       "updatedAt": "2026-11-19"
     },
     {
@@ -807,6 +809,28 @@
       "manifestPath": "scripts/route-by-hdr-format/blocks/run.json",
       "sha256": "51d06e1c7953f5c5714d68d3cdb144833b162090d87adc4fdfa44321b8e3b10d",
       "contentSha256": "638a04ca88d8eee83f58f997c6dc8334bb866778ea0319c8012a879d7aa74915",
+      "updatedAt": "2026-11-19"
+    },
+    {
+      "id": "essentiel.relay",
+      "type": "block",
+      "owner": "essentiel",
+      "version": "1.0.0",
+      "name": "Relayer la tâche",
+      "manifestPath": "plugins/essentiel/blocks/relay.json",
+      "sha256": "f61d596f6649cad4c3f25d6e5d4a9070a33db3630a7dde83351472d9bf27aa24",
+      "contentSha256": "ec66b15f702f3ddab777e8e788a32e8e1063a538761b9bcd7af44b516f23ec6f",
+      "updatedAt": "2026-11-19"
+    },
+    {
+      "id": "essentiel.worker-capability",
+      "type": "block",
+      "owner": "essentiel",
+      "version": "1.0.0",
+      "name": "Capacité du worker",
+      "manifestPath": "plugins/essentiel/blocks/worker-capability.json",
+      "sha256": "100bc48d6b2a3879a10a851f3bef9cd406ab8b72f678fab9100acf267d8c5af2",
+      "contentSha256": "755decdb5fddece63c544264c5a9e1158c2acaab1e83f859a478872cd90656b6",
       "updatedAt": "2026-11-19"
     },
     {

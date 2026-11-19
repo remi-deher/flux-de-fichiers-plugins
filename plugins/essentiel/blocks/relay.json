@@ -1,0 +1,87 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "essentiel.relay",
+  "aliases": ["relay"],
+  "version": "1.0.0",
+  "name": "Relayer la tâche",
+  "description": "Confie la tâche à un autre worker, dans sa file d'attente, avant tout traitement. Le worker repreneur continue à la sortie « Reprise ».",
+  "category": "data",
+  "operationId": "operation.core.relay",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "*/*"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "resume",
+        "label": "Reprise sur le worker cible",
+        "dataType": "file",
+        "mediaType": "*/*"
+      }
+    ]
+  },
+  "ui": {
+    "category": "Logique",
+    "domain": "logic",
+    "icon": "fas fa-share-from-square",
+    "color": "#F59E0B",
+    "suggestedNext": [
+      "video.encode"
+    ],
+    "fields": [
+      {
+        "name": "mode",
+        "label": "Cible",
+        "type": "select",
+        "default": "capable",
+        "required": true,
+        "description": "Un worker capable est choisi par le central (en ligne, le moins chargé) ; sinon un worker précis.",
+        "options": [
+          { "label": "Un worker capable", "value": "capable" },
+          { "label": "Un worker précis", "value": "worker" }
+        ]
+      },
+      {
+        "name": "codec",
+        "label": "Codec requis",
+        "type": "select",
+        "default": "h265",
+        "required": false,
+        "description": "Pour « Un worker capable » : codec que la cible doit encoder en matériel.",
+        "options": [
+          { "label": "H.264", "value": "h264" },
+          { "label": "H.265 (HEVC)", "value": "h265" },
+          { "label": "AV1", "value": "av1" }
+        ]
+      },
+      {
+        "name": "acceleration",
+        "label": "Accélérateur",
+        "type": "select",
+        "default": "",
+        "required": false,
+        "description": "Pour « Un worker capable » : accélérateur imposé ; vide pour n'importe lequel.",
+        "options": [
+          { "label": "Indifférent", "value": "" },
+          { "label": "NVIDIA NVENC", "value": "nvenc" },
+          { "label": "VA-API (Intel, AMD)", "value": "vaapi" }
+        ]
+      },
+      {
+        "name": "workerId",
+        "label": "Identifiant du worker",
+        "type": "string",
+        "default": "",
+        "required": false,
+        "description": "Pour « Un worker précis » : identifiant (UUID) du worker cible, visible sur sa fiche.",
+        "placeholder": "00000000-0000-0000-0000-000000000000"
+      }
+    ]
+  }
+}
