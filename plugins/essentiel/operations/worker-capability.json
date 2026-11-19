@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.core.worker-capability",
+  "version": "1.0.0",
+  "name": "Aiguillage selon les capacités du worker",
+  "providerId": "essentiel",
+  "providerKind": "plugin",
+  "capability": "control",
+  "status": "validated",
+  "runtime": {
+    "kind": "primitive",
+    "primitive": "capability",
+    "defaults": {
+      "codec": "h265"
+    }
+  }
+}
