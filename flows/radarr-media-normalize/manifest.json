@@ -1,0 +1,116 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "radarr-media-normalize",
+  "type": "flow",
+  "version": "1.0.0",
+  "name": "Radarr · Préparer les médias",
+  "description": "Conserve la vidéo HEVC ou encode en HEVC. Sélection des pistes et conversion audio dans le même passage FFmpeg.",
+  "author": "Forgearr",
+  "license": "GPL-2.0-or-later",
+  "capability": "in-place",
+  "fileMask": "*.mkv, *.mp4, *.m2ts, *.ts",
+  "isDefault": false,
+  "definition": {
+    "nodes": [
+      {
+        "id": "input",
+        "type": "essentiel.file-input",
+        "name": "Fichier importé"
+      },
+      {
+        "id": "inspect",
+        "type": "essentiel.condition",
+        "name": "Vidéo HEVC ?",
+        "config": {
+          "property": "tracks[type=video].codec",
+          "operator": "eq",
+          "target": "hevc"
+        }
+      },
+      {
+        "id": "remux",
+        "type": "video.encode",
+        "name": "Remux et pistes",
+        "config": {
+          "video_mode": "copy",
+          "codec": "h265",
+          "encoder": "auto",
+          "audio_codec": "copy",
+          "audio_language": "",
+          "keep_subtitles": true,
+          "subtitle_language": ""
+        }
+      },
+      {
+        "id": "encode",
+        "type": "video.encode",
+        "name": "Encodage HEVC et pistes",
+        "config": {
+          "video_mode": "encode",
+          "codec": "h265",
+          "encoder": "auto",
+          "audio_codec": "copy",
+          "audio_language": "",
+          "keep_subtitles": true,
+          "subtitle_language": ""
+        }
+      },
+      {
+        "id": "notify",
+        "type": "radarr.rescan",
+        "name": "Réanalyser dans Radarr",
+        "config": {
+          "fail_on_error": false,
+          "after_publication": true
+        }
+      },
+      {
+        "id": "output",
+        "type": "essentiel.file-output",
+        "name": "Publier le résultat"
+      }
+    ],
+    "connections": [
+      {
+        "from": "input",
+        "to": "inspect"
+      },
+      {
+        "from": "inspect",
+        "to": "remux",
+        "port": "true"
+      },
+      {
+        "from": "inspect",
+        "to": "encode",
+        "port": "false"
+      },
+      {
+        "from": "remux",
+        "to": "notify"
+      },
+      {
+        "from": "encode",
+        "to": "notify"
+      },
+      {
+        "from": "notify",
+        "to": "output"
+      }
+    ]
+  },
+  "dependencies": [
+    {
+      "id": "essentiel",
+      "kind": "plugin"
+    },
+    {
+      "id": "video",
+      "kind": "plugin"
+    },
+    {
+      "id": "radarr",
+      "kind": "plugin"
+    }
+  ]
+}
