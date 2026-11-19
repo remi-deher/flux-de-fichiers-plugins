@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "subtitles-pro",
+  "type": "pack",
+  "version": "1.0.0",
+  "name": "Pack Sous-titres Pro (OCR & Sync)",
+  "description": "Nettoyage des langues, conversion OCR PGS → SRT (Tesseract), resynchronisation automatique (alass) et drapeaux MKV.",
+  "author": "Forgearr",
+  "license": "GPL-2.0-or-later",
+  "category": "media",
+  "tags": [
+    "pack",
+    "sous-titres",
+    "ocr",
+    "alass",
+    "tesseract"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "installation.json",
+      "role": "config",
+      "mediaType": "application/json"
+    }
+  ],
+  "pack": {
+    "kind": "declarative-bundle",
+    "installation": "installation.json",
+    "runtimeImplemented": true
+  }
+}

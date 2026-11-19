@@ -61,8 +61,8 @@ jobs:
           fi
           mkdir -p dist
           cp index.json dist/index.json
-          tar --exclude='.git' --exclude='dist' -czf "dist/catalogue-${RELEASE_VERSION}.tar.gz" \
-            index.json apps plugins flows packs schema docs README.md
+          tar --exclude='.git' --exclude='dist' --exclude='__pycache__' -czf "dist/catalogue-${RELEASE_VERSION}.tar.gz" \
+            index.json apps plugins flows scripts packs schema docs README.md
           (cd dist && sha256sum index.json "catalogue-${RELEASE_VERSION}.tar.gz" > SHA256SUMS.txt)
 
           if ! gh release view "$RELEASE_TAG" >/dev/null 2>&1; then

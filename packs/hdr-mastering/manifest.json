@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "hdr-mastering",
+  "type": "pack",
+  "version": "1.0.0",
+  "name": "Pack HDR & Dolby Vision",
+  "description": "Outils, plugins, scripts de routage et flow complet pour encoder en HEVC tout en préservant les métadonnées dynamiques Dolby Vision et HDR10+.",
+  "author": "Forgearr",
+  "license": "GPL-2.0-or-later",
+  "category": "media",
+  "tags": [
+    "pack",
+    "hdr",
+    "dolby-vision",
+    "hdr10plus",
+    "hevc"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "installation.json",
+      "role": "config",
+      "mediaType": "application/json"
+    }
+  ],
+  "pack": {
+    "kind": "declarative-bundle",
+    "installation": "installation.json",
+    "runtimeImplemented": true
+  }
+}

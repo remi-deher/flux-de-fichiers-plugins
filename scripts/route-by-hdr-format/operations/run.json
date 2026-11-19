@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.script.route-by-hdr-format",
+  "version": "1.0.0",
+  "name": "Routage : format HDR / Dolby Vision",
+  "providerId": "route-by-hdr-format",
+  "providerKind": "script",
+  "capability": "script",
+  "status": "validated",
+  "runtime": {
+    "kind": "script",
+    "tool": {
+      "id": "interpreteurs",
+      "version": "1.1.0"
+    },
+    "pathTools": [
+      {
+        "id": "mediainfo",
+        "version": "1.0.0"
+      }
+    ],
+    "interpreter": "python3",
+    "entrypoint": "run.py",
+    "timeoutSeconds": 60,
+    "defaults": {
+      "target_format": "any-dynamic"
+    }
+  }
+}

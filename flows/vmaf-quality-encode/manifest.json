@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "vmaf-quality-encode",
+  "type": "flow",
+  "version": "1.0.0",
+  "name": "Encodage AV1 piloté par VMAF",
+  "description": "Encode en AV1 à qualité perceptuelle cible (ab-av1), vérifie le score VMAF, contrôle le gain de taille et l'intégrité avant publication.",
+  "author": "Forgearr",
+  "license": "GPL-2.0-or-later",
+  "capability": "vmaf",
+  "fileMask": "*.mkv, *.mp4, *.m2ts, *.ts",
+  "isDefault": false,
+  "definition": {
+    "nodes": [
+      {
+        "id": "input",
+        "type": "essentiel.file-input",
+        "name": "Fichier source"
+      },
+      {
+        "id": "target-encode",
+        "type": "vmaf.target-encode",
+        "name": "Encodage AV1 cible VMAF",
+        "config": {
+          "encoder": "libsvtav1",
+          "min_vmaf": 94,
+          "preset": "8",
+          "max_encoded_percent": 80
+        }
+      },
+      {
+        "id": "measure",
+        "type": "vmaf.measure",
+        "name": "Vérification VMAF",
+        "config": {
+          "threshold": 93,
+          "subsample": 5
+        }
+      },
+      {
+        "id": "guard-size",
+        "type": "guard-min-size-saving.run",
+        "name": "Vérifier le gain de taille",
+        "config": {
+          "min_saving_percent": 10,
+          "restore_source_on_reject": true
+        }
+      },
+      {
+        "id": "integrity",
+        "type": "integrity-check-media.run",
+        "name": "Contrôle d'intégrité",
+        "config": {
+          "require_video": true,
+          "require_audio": false,
+          "min_duration_seconds": 1
+        }
+      },
+      {
+        "id": "output",
+        "type": "essentiel.file-output",
+        "name": "Publier le résultat",
+        "config": {
+          "mode": "replace"
+        }
+      }
+    ],
+    "connections": [
+      { "from": "input", "to": "target-encode" },
+      { "from": "target-encode", "to": "measure" },
+      { "from": "measure", "to": "guard-size", "port": "true" },
+      { "from": "guard-size", "to": "integrity", "port": "true" },
+      { "from": "integrity", "to": "output", "port": "true" }
+    ]
+  },
+  "dependencies": [
+    { "id": "essentiel", "versionRange": "^1.0.0", "kind": "plugin" },
+    { "id": "vmaf", "versionRange": "^1.0.0", "kind": "plugin" },
+    { "id": "guard-min-size-saving", "versionRange": "^1.0.0", "kind": "script" },
+    { "id": "integrity-check-media", "versionRange": "^1.0.0", "kind": "script" }
+  ]
+}

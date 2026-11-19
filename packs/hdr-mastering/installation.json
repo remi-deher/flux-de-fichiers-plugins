@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0.0",
+  "packId": "hdr-mastering",
+  "packVersion": "1.0.0",
+  "kind": "declarative-bundle",
+  "components": [
+    { "id": "ffmpeg", "version": "1.0.0", "kind": "app" },
+    { "id": "mkvtoolnix", "version": "1.0.0", "kind": "app" },
+    { "id": "mediainfo", "version": "1.0.0", "kind": "app" },
+    { "id": "dovi-tool", "version": "1.0.0", "kind": "app" },
+    { "id": "hdr10plus-tool", "version": "1.0.0", "kind": "app" },
+    { "id": "interpreteurs", "version": "1.1.0", "kind": "app" },
+    { "id": "essentiel", "version": "1.0.0", "kind": "plugin" },
+    { "id": "video", "version": "1.1.0", "kind": "plugin" },
+    { "id": "hdr", "version": "1.0.0", "kind": "plugin" },
+    { "id": "route-by-hdr-format", "version": "1.0.0", "kind": "script" },
+    { "id": "guard-min-size-saving", "version": "1.0.0", "kind": "script" },
+    { "id": "hdr-dv-hevc-preserve", "version": "1.0.0", "kind": "flow" }
+  ],
+  "entrypoint": {
+    "kind": "flow",
+    "id": "hdr-dv-hevc-preserve",
+    "version": "1.0.0"
+  },
+  "permissions": {
+    "readInputs": true,
+    "writeOutputs": true,
+    "network": "none"
+  },
+  "updates": "manual",
+  "uninstallData": "preserve",
+  "runtimeImplemented": true
+}

@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "arr-stack",
+  "type": "pack",
+  "version": "1.0.0",
+  "name": "Pack Stack *arr (Radarr & Sonarr)",
+  "description": "Ensemble clé en main pour normaliser les médias importés par Radarr et Sonarr, gérer les sous-titres et envoyer des notifications.",
+  "author": "Forgearr",
+  "license": "GPL-2.0-or-later",
+  "category": "media",
+  "tags": [
+    "pack",
+    "radarr",
+    "sonarr",
+    "automatisation"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "installation.json",
+      "role": "config",
+      "mediaType": "application/json"
+    }
+  ],
+  "pack": {
+    "kind": "declarative-bundle",
+    "installation": "installation.json",
+    "runtimeImplemented": true
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "subtitles-pgs-to-srt-mkv",
+  "type": "flow",
+  "version": "1.0.0",
+  "name": "Sous-titres PGS → SRT (OCR)",
+  "description": "Convertit les pistes de sous-titres image PGS (Blu-ray) en pistes texte SRT via Tesseract, ajuste les drapeaux par défaut et contrôle l'intégrité du MKV.",
+  "author": "Forgearr",
+  "license": "GPL-2.0-or-later",
+  "capability": "subtitles",
+  "fileMask": "*.mkv",
+  "isDefault": false,
+  "definition": {
+    "nodes": [
+      {
+        "id": "input",
+        "type": "essentiel.file-input",
+        "name": "Fichier MKV source"
+      },
+      {
+        "id": "ocr",
+        "type": "sous-titres.ocr",
+        "name": "Conversion PGS → SRT",
+        "config": {
+          "languages": "fre,eng",
+          "replace": false
+        }
+      },
+      {
+        "id": "flags",
+        "type": "sous-titres.flags",
+        "name": "Définir les drapeaux sous-titres",
+        "config": {
+          "subtitle_lang": "fre",
+          "flag_default": true,
+          "flag_forced": false
+        }
+      },
+      {
+        "id": "integrity",
+        "type": "integrity-check-media.run",
+        "name": "Contrôle d'intégrité",
+        "config": {
+          "require_video": true,
+          "require_audio": false,
+          "min_duration_seconds": 1
+        }
+      },
+      {
+        "id": "output",
+        "type": "essentiel.file-output",
+        "name": "Publier le résultat",
+        "config": {
+          "mode": "replace"
+        }
+      }
+    ],
+    "connections": [
+      { "from": "input", "to": "ocr" },
+      { "from": "ocr", "to": "flags" },
+      { "from": "flags", "to": "integrity" },
+      { "from": "integrity", "to": "output", "port": "true" }
+    ]
+  },
+  "dependencies": [
+    { "id": "essentiel", "versionRange": "^1.0.0", "kind": "plugin" },
+    { "id": "sous-titres", "versionRange": "^1.0.0", "kind": "plugin" },
+    { "id": "integrity-check-media", "versionRange": "^1.0.0", "kind": "script" }
+  ]
+}

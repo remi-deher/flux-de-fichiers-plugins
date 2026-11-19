@@ -25,7 +25,11 @@
     "apps/telemetrie/distribution.v1.json": "c0d90648c1b82afe4c364ff5bccf7de5e998f168e26e72222dbf67c13ff3fa3d",
     "apps/tesseract/build.json": "bef329e1007086b6e903617adf2de41605254a645cf039789a4497e52a6111f9",
     "apps/tesseract/distribution.v1.json": "00254ced350b7400e996961efadf929b3b54e414688699713a988dce1c05433c",
+    "packs/arr-stack/installation.json": "410cf089933597c0d69b0795836a88a9ae3502b9571ce60143748027656e56d7",
+    "packs/hdr-mastering/installation.json": "72d7a66d929c7cf06c19c5b5b206c2a2c5753ac44b26b8353e4a5903a0e42141",
     "packs/media/installation.json": "8c1ed54633d04701b75b38ddd9712f655426a33a37be567f5d72aa4e19ea0d85",
+    "packs/subtitles-pro/installation.json": "cc7433999320dc9e6124cdd32005a54cc7f6e082cd0f02ce210dc0d97060e26e",
+    "packs/vmaf-av1/installation.json": "a7c69e1e67f9c7f684bdc1068317916e834d86b4c6cc88809cda240564e0bcc8",
     "plugins/archives/operations/extract.json": "3e8d014fd2caf842b4eaff54acc915f89f6a16bde24192300ec77b9b50f168d6",
     "plugins/archives/scripts/archives.py": "6ebfe8261b04a847a55052ca5a86c54b8b0ff531a83ecaaa2ba1bd8529664b55",
     "plugins/audio/operations/audio-encode.json": "2efdf9c8ceff442d9ecd19c0401c2faf59eb758ac6315fb20fb7e3f641675043",
@@ -63,7 +67,13 @@
     "plugins/video/operations/video-encode.json": "8620fba3fe9e1197447dc0eb460b1d8400b668a1b5a78abff35f20d0884c7225",
     "plugins/vmaf/operations/measure.json": "520c41a7a4a2bc679bb5bb235d51067c46782cc9787c2d2e4bde4baa0f26f730",
     "plugins/vmaf/operations/target-encode.json": "c1b3d663cf774e562f63e62ae266b75222c59748a4c4183d609b1c1db0f1d733",
-    "plugins/vmaf/scripts/vmaf.py": "f214aad456fd8097b30d03de4a518b3a01abf2724b5b7240f9bd9123a44b6f8a"
+    "plugins/vmaf/scripts/vmaf.py": "f214aad456fd8097b30d03de4a518b3a01abf2724b5b7240f9bd9123a44b6f8a",
+    "scripts/guard-min-size-saving/operations/run.json": "7d5554d217bc8e0f206c590739d00a29efd5cf9165392384025be765040658c5",
+    "scripts/guard-min-size-saving/run.py": "2a803a3ab579d52132c8168dad58d328a8725890b1507671e7c2fda1f6d17986",
+    "scripts/integrity-check-media/operations/run.json": "2a112d5f67d37c5ff3b305b54a31fd05702fc6dbcc463c85bc4ed55b09098388",
+    "scripts/integrity-check-media/run.py": "712a6b430a2b052a54e9f823d973415e6ecbb354b0d5264991cb2051291d3af0",
+    "scripts/route-by-hdr-format/operations/run.json": "2d1bc080c9a1462666b995e7915b063beea49ef03f2b0f69eac2958ec375ab1e",
+    "scripts/route-by-hdr-format/run.py": "e76d29d62dbb1ca1c6849da62eac875fd222e8a4e1d20f7dcf64c98fe07f8c10"
   },
   "entries": [
     {
@@ -767,6 +777,39 @@
       "updatedAt": "2026-11-19"
     },
     {
+      "id": "guard-min-size-saving.run",
+      "type": "block",
+      "owner": "guard-min-size-saving",
+      "version": "1.0.0",
+      "name": "Garde-fou : gain de taille",
+      "manifestPath": "scripts/guard-min-size-saving/blocks/run.json",
+      "sha256": "7f7bb924860b871aa2dce9ebdd92dcd0772e79ab7cb7605f099afa082b13a81e",
+      "contentSha256": "90ea18608dc3ddfb2a7d46d01cb722d4b16d5fdd9a02766fe3155a02adb2a0e1",
+      "updatedAt": "2026-11-19"
+    },
+    {
+      "id": "integrity-check-media.run",
+      "type": "block",
+      "owner": "integrity-check-media",
+      "version": "1.0.0",
+      "name": "Contrôle d'intégrité média",
+      "manifestPath": "scripts/integrity-check-media/blocks/run.json",
+      "sha256": "b3389dcdb50ac525a3cb08c9392074c9ec7a14fc0405fd207caf01cccdfb1116",
+      "contentSha256": "deab5650627fafd8897bf2fd9dca7f979321af522d2548f297df78c5632ee0d9",
+      "updatedAt": "2026-11-19"
+    },
+    {
+      "id": "route-by-hdr-format.run",
+      "type": "block",
+      "owner": "route-by-hdr-format",
+      "version": "1.0.0",
+      "name": "Routage : format HDR",
+      "manifestPath": "scripts/route-by-hdr-format/blocks/run.json",
+      "sha256": "51d06e1c7953f5c5714d68d3cdb144833b162090d87adc4fdfa44321b8e3b10d",
+      "contentSha256": "638a04ca88d8eee83f58f997c6dc8334bb866778ea0319c8012a879d7aa74915",
+      "updatedAt": "2026-11-19"
+    },
+    {
       "id": "audio-loudnorm-mkv",
       "type": "flow",
       "version": "1.0.0",
@@ -855,6 +898,94 @@
       "updatedAt": "2026-11-19"
     },
     {
+      "id": "hdr-dv-hevc-preserve",
+      "type": "flow",
+      "version": "1.0.0",
+      "name": "Encodage HEVC avec préservation Dolby Vision",
+      "manifestPath": "flows/hdr-dv-hevc-preserve/manifest.json",
+      "capability": "hdr",
+      "sha256": "3d9f4022b06078ee2af7a144d062cb60bdf582ae8016bfaf760279447c4a885f",
+      "contentSha256": "56d7371755bda9f0777d63a6e03f92ad548cadaa941e300168b3a978e06964ef",
+      "updatedAt": "2026-11-19"
+    },
+    {
+      "id": "subtitles-pgs-to-srt-mkv",
+      "type": "flow",
+      "version": "1.0.0",
+      "name": "Sous-titres PGS → SRT (OCR)",
+      "manifestPath": "flows/subtitles-pgs-to-srt-mkv/manifest.json",
+      "capability": "subtitles",
+      "sha256": "35a24379b1caaf849f02194799f5bb3ab5e7686c4d22047320ae8f9dfb719327",
+      "contentSha256": "44b5ddbdf91c7dcf58d03292533331e622778e1f712fd257a22b3bd7ed35030e",
+      "updatedAt": "2026-11-19"
+    },
+    {
+      "id": "vmaf-quality-encode",
+      "type": "flow",
+      "version": "1.0.0",
+      "name": "Encodage AV1 piloté par VMAF",
+      "manifestPath": "flows/vmaf-quality-encode/manifest.json",
+      "capability": "vmaf",
+      "sha256": "b0718b7d4692063ddcb4e03793c9e1bd5a7054b844cd46f7059f07a7ee043c62",
+      "contentSha256": "0b6d8ba95fdcd8f59fef51c2d0e1680068cd4e7028ba3a507972a8d8e8f9d86f",
+      "updatedAt": "2026-11-19"
+    },
+    {
+      "id": "guard-min-size-saving",
+      "type": "script",
+      "version": "1.0.0",
+      "name": "Garde-fou : gain de taille minimal",
+      "manifestPath": "scripts/guard-min-size-saving/manifest.json",
+      "capability": "script",
+      "category": "data",
+      "tags": [
+        "script",
+        "garde-fou",
+        "taille",
+        "encodage"
+      ],
+      "sha256": "c8a69fbe97c860f1948e1e8c6adda95d7a1a428d8a0b7081cd9b030e3265f3fe",
+      "contentSha256": "3d3bf22ae68f20e2062a63055277ae0787626fcaad06a4f2ae8579ed0628ae50",
+      "updatedAt": "2026-11-19"
+    },
+    {
+      "id": "integrity-check-media",
+      "type": "script",
+      "version": "1.0.0",
+      "name": "Contrôle d'intégrité média",
+      "manifestPath": "scripts/integrity-check-media/manifest.json",
+      "capability": "script",
+      "category": "media",
+      "tags": [
+        "script",
+        "integrite",
+        "validation",
+        "media"
+      ],
+      "sha256": "9f4e80a753232823b69420e0b3b1d1474c33098d7101b0120fb11e0c9080d98a",
+      "contentSha256": "5c9d393e2bd7cbd1bd397c4b19335671b27dbd6c94981f87f00393943b522bad",
+      "updatedAt": "2026-11-19"
+    },
+    {
+      "id": "route-by-hdr-format",
+      "type": "script",
+      "version": "1.0.0",
+      "name": "Routage : format HDR / Dolby Vision",
+      "manifestPath": "scripts/route-by-hdr-format/manifest.json",
+      "capability": "script",
+      "category": "media",
+      "tags": [
+        "script",
+        "hdr",
+        "dolby-vision",
+        "hdr10plus",
+        "routage"
+      ],
+      "sha256": "27fd5835b9f5167bfe9a8620e6fb18280f232057d4dc5f92a619e05858b6fb0f",
+      "contentSha256": "2b2058c49d0d8a02a743dddf8fdc908801a615ae34c0645422180c9c328ad2b2",
+      "updatedAt": "2026-11-19"
+    },
+    {
       "id": "media",
       "type": "pack",
       "version": "1.0.0",
@@ -862,6 +993,77 @@
       "manifestPath": "packs/media/manifest.json",
       "sha256": "7c152f83c738663cb02aafec0b63729f0beb4e8ff7ec22a8f187cbd4c8dada0f",
       "contentSha256": "6ded6903bcba08dc65fdf0790345388a9d12372501606fa142c70c5e92b1dda7",
+      "updatedAt": "2026-11-19"
+    },
+    {
+      "id": "arr-stack",
+      "type": "pack",
+      "version": "1.0.0",
+      "name": "Pack Stack *arr (Radarr & Sonarr)",
+      "manifestPath": "packs/arr-stack/manifest.json",
+      "category": "media",
+      "tags": [
+        "pack",
+        "radarr",
+        "sonarr",
+        "automatisation"
+      ],
+      "sha256": "d2b75432249ca85b0f07666e3ee3b8d6797f697394413b9848aab9f0b03bd370",
+      "contentSha256": "256667c20f030b581546a58dd65a1cd3293804a8e31ac497946ce56dadc3feb4",
+      "updatedAt": "2026-11-19"
+    },
+    {
+      "id": "hdr-mastering",
+      "type": "pack",
+      "version": "1.0.0",
+      "name": "Pack HDR & Dolby Vision",
+      "manifestPath": "packs/hdr-mastering/manifest.json",
+      "category": "media",
+      "tags": [
+        "pack",
+        "hdr",
+        "dolby-vision",
+        "hdr10plus",
+        "hevc"
+      ],
+      "sha256": "5c635c2926e647f8afb76ba972e0b341811e867dc98d43641606ae5fc90ea49d",
+      "contentSha256": "54676b477c0805fcd5b3dbaa04eb48c194c902796562ab301a48c0a35f536896",
+      "updatedAt": "2026-11-19"
+    },
+    {
+      "id": "subtitles-pro",
+      "type": "pack",
+      "version": "1.0.0",
+      "name": "Pack Sous-titres Pro (OCR & Sync)",
+      "manifestPath": "packs/subtitles-pro/manifest.json",
+      "category": "media",
+      "tags": [
+        "pack",
+        "sous-titres",
+        "ocr",
+        "alass",
+        "tesseract"
+      ],
+      "sha256": "e6aff3251d5af48228bb53df28f57102ee982d08d62a0af66e4e08aae8537ddd",
+      "contentSha256": "57b8d12dd5434232e82695f3a019e528f0fe9d52431ab99964df150469d40ace",
+      "updatedAt": "2026-11-19"
+    },
+    {
+      "id": "vmaf-av1",
+      "type": "pack",
+      "version": "1.0.0",
+      "name": "Pack Compression AV1 & VMAF",
+      "manifestPath": "packs/vmaf-av1/manifest.json",
+      "category": "media",
+      "tags": [
+        "pack",
+        "vmaf",
+        "av1",
+        "qualite",
+        "encodage"
+      ],
+      "sha256": "cdfb33dedba22339243067651e5ff90162b3377e5f88951255452ea2836a68dc",
+      "contentSha256": "bd598a271d03fd8e048b27247c3dcd59bcc1c4c1463e17d4b4a11e376d8f7a19",
       "updatedAt": "2026-11-19"
     }
   ]
