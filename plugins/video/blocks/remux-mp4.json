@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "block.video.remux-mp4",
+  "id": "video.remux-mp4",
   "aliases": [
     "remux-mp4"
   ],
@@ -34,10 +34,10 @@
     "icon": "fas fa-film",
     "color": "#3F51B5",
     "suggestedNext": [
-      "block.sonarr.rescan",
-      "block.radarr.rescan",
-      "block.core.webhook",
-      "block.core.file-output"
+      "sonarr.rescan",
+      "radarr.rescan",
+      "essentiel.webhook",
+      "essentiel.file-output"
     ],
     "fields": [
       {

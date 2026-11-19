@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "app.mkvtoolnix",
+  "id": "mkvtoolnix",
   "type": "app",
   "version": "1.0.0",
   "name": "MKVToolNix",

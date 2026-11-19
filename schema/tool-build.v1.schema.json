@@ -49,7 +49,8 @@
           "enum": [
             "debian-bookworm",
             "gpac-git",
-            "upstream-archives"
+            "upstream-archives",
+            "cargo-crate"
           ]
         },
         "packages": {
@@ -100,11 +101,11 @@
                 "properties": {
                   "x86_64": {
                     "type": "string",
-                    "pattern": "^https://[^\\s]+\\.tar\\.gz$"
+                    "pattern": "^https://[^\\s]+$"
                   },
                   "aarch64": {
                     "type": "string",
-                    "pattern": "^https://[^\\s]+\\.tar\\.gz$"
+                    "pattern": "^https://[^\\s]+$"
                   }
                 }
               },
@@ -155,9 +156,31 @@
               "strip": {
                 "type": "boolean",
                 "description": "Retire les symboles de débogage des fichiers ELF extraits."
+              },
+              "format": {
+                "enum": [
+                  "tar.gz",
+                  "tar.xz",
+                  "binary"
+                ],
+                "description": "tar.gz par défaut ; binary = exécutable téléchargé tel quel (entrypoints : nom → chemin cible)."
               }
             }
           }
+        },
+        "crate": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "maxLength": 64
+        },
+        "crateVersion": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "rustToolchain": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+          "description": "Version de l'image rust:<version>-bookworm utilisée pour compiler (glibc identique à l'image d'exécution)."
         }
       },
       "allOf": [
@@ -202,6 +225,22 @@
               "archives"
             ]
           }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "cargo-crate"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "crate",
+              "crateVersion",
+              "rustToolchain"
+            ]
+          }
         }
       ]
     },
@@ -220,6 +259,41 @@
       "items": {
         "type": "string",
         "minLength": 1
+      }
+    },
+    "dataPaths": {
+      "type": "array",
+      "maxItems": 16,
+      "description": "Dossiers de données copiés depuis le conteneur de construction dans l'archive (ex. tessdata).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "from",
+          "to"
+        ],
+        "properties": {
+          "from": {
+            "type": "string",
+            "pattern": "^/[A-Za-z0-9._+/-]+$"
+          },
+          "to": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9._+-]+(/[A-Za-z0-9._+-]+)*$"
+          }
+        }
+      }
+    },
+    "launcherEnv": {
+      "type": "object",
+      "maxProperties": 8,
+      "description": "Variables posées par un lanceur sh devant chaque binaire ; valeur relative à la racine de l'archive.",
+      "propertyNames": {
+        "pattern": "^[A-Z][A-Z0-9_]*$"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9._+-]+(/[A-Za-z0-9._+-]+)*$"
       }
     }
   }

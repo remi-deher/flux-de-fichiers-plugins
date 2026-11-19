@@ -3,14 +3,14 @@
   "id": "org.exemple.operation.mon-operation",
   "version": "1.0.0",
   "name": "Remux copie rapide (exemple tiers)",
-  "providerId": "org.exemple.plugin.mon-plugin",
+  "providerId": "org.exemple.mon-plugin",
   "providerKind": "plugin",
   "capability": "remux",
   "status": "example",
   "runtime": {
     "kind": "binary",
     "tool": {
-      "id": "app.ffmpeg",
+      "id": "ffmpeg",
       "version": "1.0.0"
     },
     "executable": "ffmpeg",

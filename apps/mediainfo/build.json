@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "slug": "mediainfo",
-  "toolId": "app.mediainfo",
+  "toolId": "mediainfo",
   "toolVersion": "1.0.0",
   "releaseTagPrefix": "tools-mediainfo",
   "source": {

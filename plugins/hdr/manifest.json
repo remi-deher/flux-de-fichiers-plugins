@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "hdr",
+  "type": "plugin",
+  "version": "1.0.0",
+  "name": "HDR et Dolby Vision",
+  "description": "Dolby Vision et HDR10+ : conversion en profil 8.1 et conservation des métadonnées dynamiques après réencodage.",
+  "author": "flux-de-fichiers",
+  "license": "GPL-3.0-or-later",
+  "capability": "hdr",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "blocks/dv-profile-8.json",
+      "role": "block",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "blocks/dv-reinject.json",
+      "role": "block",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "blocks/hdr10plus-reinject.json",
+      "role": "block",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/dv-profile-8.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/dv-reinject.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/hdr10plus-reinject.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "scripts/hdr.py",
+      "role": "script",
+      "mediaType": "text/x-python"
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "mkvtoolnix",
+      "versionRange": "^1.0.0",
+      "kind": "app",
+      "optional": true
+    },
+    {
+      "id": "dovi-tool",
+      "versionRange": "^1.0.0",
+      "kind": "app",
+      "optional": true
+    },
+    {
+      "id": "hdr10plus-tool",
+      "versionRange": "^1.0.0",
+      "kind": "app",
+      "optional": true
+    },
+    {
+      "id": "interpreteurs",
+      "versionRange": "^1.0.0",
+      "kind": "app",
+      "optional": true
+    }
+  ],
+  "compatibility": {
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
+  }
+}

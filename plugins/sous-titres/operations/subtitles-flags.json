@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.mkvpropedit.subtitles.flags",
+  "version": "1.0.0",
+  "name": "Marquage de la piste sous-titres (mkvpropedit)",
+  "providerId": "sous-titres",
+  "providerKind": "plugin",
+  "capability": "remux",
+  "status": "validated",
+  "runtime": {
+    "kind": "binary",
+    "tool": { "id": "mkvtoolnix", "version": "1.0.0" },
+    "executable": "mkvpropedit",
+    "envOverride": "MKVPROPEDIT",
+    "executionMode": "in-place",
+    "outputExtension": "mkv",
+    "outputContentType": "video/x-matroska",
+    "postValidate": "probe-preserve",
+    "postValidatePreservePaths": ["tracks[*].type", "tracks[*].codec"],
+    "skipWhenUnchanged": true,
+    "errorCode": "operation_failed",
+    "successMessage": "drapeaux sous-titres mis à jour",
+    "defaults": {
+      "subtitle_lang": "fre",
+      "flag_default": true,
+      "flag_forced": false
+    },
+    "argv": [
+      { "param": "source", "as": "filePath" },
+      "--edit",
+      "track:s1",
+      {
+        "when": { "param": "subtitle_lang", "nonEmpty": true },
+        "then": ["--set", { "format": "language={subtitle_lang}" }]
+      },
+      {
+        "when": { "param": "flag_default", "truthy": true },
+        "then": ["--set", "flag-default=1"],
+        "else": ["--set", "flag-default=0"]
+      },
+      {
+        "when": { "param": "flag_forced", "truthy": true },
+        "then": ["--set", "flag-forced=1"],
+        "else": ["--set", "flag-forced=0"]
+      }
+    ],
+    "console": {
+      "progressFormat": "none",
+      "progressStream": "stdout",
+      "successExitCodes": [0, 1],
+      "warningExitCodes": [1],
+      "timeoutSeconds": 60
+    }
+  }
+}

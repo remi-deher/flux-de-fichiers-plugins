@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "video.tags-mp4",
+  "version": "1.0.0",
+  "name": "MP4 : tags et métadonnées",
+  "description": "Écrit le titre, l'année, le genre et un commentaire d'un fichier MP4, ou efface ses métadonnées (AtomicParsley).",
+  "category": "media",
+  "operationId": "operation.atomicparsley.tags",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "video/mp4"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "destination",
+        "label": "MP4 mis à jour",
+        "dataType": "file",
+        "mediaType": "video/mp4"
+      }
+    ]
+  },
+  "ui": {
+    "category": "MP4",
+    "domain": "mp4",
+    "icon": "fas fa-tags",
+    "color": "#00BCD4",
+    "suggestedNext": [
+      "essentiel.file-output"
+    ],
+    "fields": [
+      {
+        "name": "clean",
+        "label": "Effacer les métadonnées existantes",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "title",
+        "label": "Titre",
+        "type": "string",
+        "default": ""
+      },
+      {
+        "name": "year",
+        "label": "Année",
+        "type": "string",
+        "default": ""
+      },
+      {
+        "name": "genre",
+        "label": "Genre",
+        "type": "string",
+        "default": ""
+      },
+      {
+        "name": "comment",
+        "label": "Commentaire",
+        "type": "string",
+        "default": ""
+      }
+    ]
+  }
+}

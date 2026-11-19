@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "flow.clean.subtitles",
+  "id": "clean-subtitles-mkv",
   "type": "flow",
   "version": "1.0.0",
   "name": "Nettoyage sous-titres & langues",
@@ -53,7 +53,7 @@
     ]
   },
   "dependencies": [
-    { "id": "plugin.subtitles", "versionRange": "^1.0.0", "kind": "plugin" },
-    { "id": "plugin.core", "versionRange": "^1.0.0", "kind": "plugin" }
+    { "id": "sous-titres", "versionRange": "^1.0.0", "kind": "plugin" },
+    { "id": "essentiel", "versionRange": "^1.0.0", "kind": "plugin" }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "block.radarr.rescan",
+  "id": "radarr.rescan",
   "aliases": [
     "radarr-rescan"
   ],
@@ -34,9 +34,9 @@
     "icon": "fas fa-film",
     "color": "#FFC230",
     "suggestedNext": [
-      "block.radarr.rename",
-      "block.core.webhook",
-      "block.core.file-output"
+      "radarr.rename",
+      "essentiel.webhook",
+      "essentiel.file-output"
     ],
     "fields": [
       {

@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "sous-titres.sync",
+  "version": "1.0.0",
+  "name": "Sous-titres : resynchroniser",
+  "description": "Recale les pistes de sous-titres texte (SRT, ASS) sur l'audio de la vidéo avec alass.",
+  "category": "media",
+  "operationId": "operation.sous-titres.sync",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "video/x-matroska"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "destination",
+        "label": "Fichier mis à jour",
+        "dataType": "file",
+        "mediaType": "video/x-matroska"
+      }
+    ]
+  },
+  "ui": {
+    "category": "Sous-titres",
+    "domain": "subtitles",
+    "icon": "fas fa-clock",
+    "color": "#0EA5E9",
+    "suggestedNext": [
+      "sous-titres.flags",
+      "essentiel.file-output"
+    ],
+    "fields": [
+      {
+        "name": "languages",
+        "label": "Langues",
+        "type": "string",
+        "default": "all",
+        "description": "Codes ISO séparés par des virgules (fre,eng) ou « all »."
+      },
+      {
+        "name": "split_penalty",
+        "label": "Pénalité de découpe",
+        "type": "range",
+        "min": 1,
+        "max": 30,
+        "default": 7,
+        "description": "Plus haut : moins de découpes (décalage global) ; plus bas : corrige des coupures publicitaires."
+      },
+      {
+        "name": "no_splits",
+        "label": "Décalage global uniquement",
+        "type": "boolean",
+        "default": false
+      }
+    ]
+  }
+}

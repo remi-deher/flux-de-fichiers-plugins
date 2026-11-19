@@ -1,43 +1,43 @@
 {
   "schemaVersion": "1.0.0",
-  "packId": "pack.media",
+  "packId": "media",
   "packVersion": "1.0.0",
   "kind": "declarative-bundle",
   "components": [
     {
-      "id": "app.mkvtoolnix",
+      "id": "mkvtoolnix",
       "version": "1.0.0",
       "kind": "app"
     },
     {
-      "id": "app.ffmpeg",
+      "id": "ffmpeg",
       "version": "1.0.0",
       "kind": "app"
     },
     {
-      "id": "app.mp4box",
+      "id": "mp4box",
       "version": "1.0.0",
       "kind": "app"
     },
     {
-      "id": "app.mediainfo",
+      "id": "mediainfo",
       "version": "1.0.0",
       "kind": "app"
     },
     {
-      "id": "plugin.video",
+      "id": "video",
       "version": "1.0.0",
       "kind": "plugin"
     },
     {
-      "id": "plugin.audio",
+      "id": "audio",
       "version": "1.0.0",
       "kind": "plugin"
     }
   ],
   "entrypoint": {
     "kind": "plugin",
-    "id": "plugin.video",
+    "id": "video",
     "version": "1.0.0"
   },
   "permissions": {

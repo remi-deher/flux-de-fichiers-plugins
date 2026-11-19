@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "block.jellyfin.refresh",
+  "id": "jellyfin.refresh",
   "aliases": ["jellyfin-refresh"],
   "version": "1.0.0",
   "name": "Jellyfin : Actualiser",
@@ -21,7 +21,7 @@
     "domain": "integration",
     "icon": "fas fa-tv",
     "color": "#8B5CF6",
-    "suggestedNext": ["block.core.file-output"],
+    "suggestedNext": ["essentiel.file-output"],
     "fields": [
       {
         "name": "fail_on_error",

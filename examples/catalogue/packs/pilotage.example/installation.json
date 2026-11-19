@@ -5,7 +5,7 @@
   "kind": "declarative-bundle",
   "components": [
     {
-      "id": "app.mkvtoolnix",
+      "id": "mkvtoolnix",
       "version": "1.0.0",
       "kind": "app"
     },

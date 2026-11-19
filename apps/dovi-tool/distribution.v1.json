@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "1.0.0",
+  "toolId": "dovi-tool",
+  "toolVersion": "1.0.0",
+  "distributionMode": "autonomous-binary",
+  "releaseStatus": "released",
+  "artifacts": [
+    {
+      "arch": "x86_64",
+      "os": "linux",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-dovi-tool-1.0.0/dovi-tool-linux-x86_64.tar.gz",
+      "archiveFormat": "tar.gz",
+      "archiveSha256": "fd1f02a8ce763a9721b054afb8c6008f09043cb266f23fed002818be2075dfd1",
+      "binaryRelativePath": "dovi_tool",
+      "binarySha256": "ed7ea26f72482d8de13579f6b4eac861d0f1b98b7557f7754cdde1c6fc5e68b3",
+      "permissions": {
+        "unixMode": "0755",
+        "owner": "runtime-user",
+        "executableBit": true
+      },
+      "binaries": {
+        "dovi_tool": {
+          "relativePath": "dovi_tool",
+          "sha256": "ed7ea26f72482d8de13579f6b4eac861d0f1b98b7557f7754cdde1c6fc5e68b3"
+        }
+      }
+    },
+    {
+      "arch": "aarch64",
+      "os": "linux",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-dovi-tool-1.0.0/dovi-tool-linux-aarch64.tar.gz",
+      "archiveFormat": "tar.gz",
+      "archiveSha256": "5af91440cfc2557ae6079b41014bdd58afced85269ed7ba69e8e2988642728d8",
+      "binaryRelativePath": "dovi_tool",
+      "binarySha256": "ed7ea26f72482d8de13579f6b4eac861d0f1b98b7557f7754cdde1c6fc5e68b3",
+      "permissions": {
+        "unixMode": "0755",
+        "owner": "runtime-user",
+        "executableBit": true
+      },
+      "binaries": {
+        "dovi_tool": {
+          "relativePath": "dovi_tool",
+          "sha256": "ed7ea26f72482d8de13579f6b4eac861d0f1b98b7557f7754cdde1c6fc5e68b3"
+        }
+      }
+    }
+  ],
+  "installPolicy": {
+    "verifySha256BeforeExec": true,
+    "refuseMismatchedDigest": true,
+    "cacheRootRelative": "tools-cache/dovi-tool/1.0.0",
+    "noShellUnpack": true,
+    "executableAllowlist": [
+      "dovi_tool"
+    ],
+    "networkAtInstall": "explicit-allowlist"
+  },
+  "notes": [
+    "Empreintes et releaseStatus renseignés par build-tools.yml à la première construction (recette build.json)."
+  ],
+  "upstreamVersion": "dovi_tool 2.3.4",
+  "releasedAt": "2026-11-19"
+}

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.core.file-output",
+  "version": "1.0.0",
+  "name": "Sortie finale du flux",
+  "providerId": "essentiel",
+  "providerKind": "plugin",
+  "capability": "control",
+  "status": "validated",
+  "runtime": {
+    "kind": "primitive",
+    "primitive": "terminal"
+  }
+}

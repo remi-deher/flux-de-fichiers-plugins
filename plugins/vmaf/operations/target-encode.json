@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.vmaf.target-encode",
+  "version": "1.0.0",
+  "name": "Encodage à qualité VMAF cible (ab-av1)",
+  "providerId": "vmaf",
+  "providerKind": "plugin",
+  "capability": "encode",
+  "status": "validated",
+  "runtime": {
+    "kind": "binary",
+    "tool": {
+      "id": "ab-av1",
+      "version": "1.0.0"
+    },
+    "pathTools": [
+      {
+        "id": "ffmpeg-vmaf",
+        "version": "1.0.0"
+      }
+    ],
+    "executable": "ab-av1",
+    "executionMode": "staged-output",
+    "outputExtension": "mkv",
+    "outputContentType": "video/x-matroska",
+    "outputFilename": "vmaf-cible.mkv",
+    "postValidate": "valid-probe",
+    "errorCode": "operation_failed",
+    "successMessage": "encodage à qualité VMAF cible terminé",
+    "defaults": {
+      "encoder": "libsvtav1",
+      "preset": "8",
+      "min_vmaf": 95,
+      "max_encoded_percent": 80
+    },
+    "argv": [
+      "auto-encode",
+      "-i",
+      {
+        "param": "source",
+        "as": "filePath"
+      },
+      "--encoder",
+      {
+        "param": "encoder",
+        "as": "string"
+      },
+      "--preset",
+      {
+        "param": "preset",
+        "as": "string"
+      },
+      "--min-vmaf",
+      {
+        "param": "min_vmaf",
+        "as": "string"
+      },
+      "--max-encoded-percent",
+      {
+        "param": "max_encoded_percent",
+        "as": "string"
+      },
+      "--verify",
+      "-o",
+      {
+        "param": "destination",
+        "as": "filePath"
+      }
+    ],
+    "console": {
+      "progressFormat": "none",
+      "progressStream": "stderr",
+      "successExitCodes": [
+        0
+      ],
+      "warningExitCodes": [],
+      "timeoutSeconds": 86400
+    }
+  }
+}

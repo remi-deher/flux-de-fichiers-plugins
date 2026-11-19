@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "app.mediainfo",
+  "id": "mediainfo",
   "type": "app",
   "version": "1.0.0",
   "name": "MediaInfo",

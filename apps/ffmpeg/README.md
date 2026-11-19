@@ -1,4 +1,4 @@
-# app.ffmpeg
+# ffmpeg
 
 Fiche de **distribution** Option B pour FFmpeg (hors conteneur applicatif).
 

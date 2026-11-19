@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "plugin.video",
+  "id": "video",
   "type": "plugin",
   "version": "1.0.0",
   "name": "Vidéo",
@@ -68,29 +68,45 @@
       "path": "operations/video-encode.json",
       "role": "operation",
       "mediaType": "application/json"
+    },
+    {
+      "path": "blocks/tags-mp4.json",
+      "role": "block",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/tags-mp4.json",
+      "role": "operation",
+      "mediaType": "application/json"
     }
   ],
   "dependencies": [
     {
-      "id": "app.ffmpeg",
+      "id": "ffmpeg",
       "versionRange": "^1.0.0",
       "kind": "app",
       "optional": true
     },
     {
-      "id": "app.mkvtoolnix",
+      "id": "mkvtoolnix",
       "versionRange": "^1.0.0",
       "kind": "app",
       "optional": true
     },
     {
-      "id": "app.mp4box",
+      "id": "mp4box",
       "versionRange": "^1.0.0",
       "kind": "app",
       "optional": true
     },
     {
-      "id": "app.mediainfo",
+      "id": "mediainfo",
+      "versionRange": "^1.0.0",
+      "kind": "app",
+      "optional": true
+    },
+    {
+      "id": "atomicparsley",
       "versionRange": "^1.0.0",
       "kind": "app",
       "optional": true

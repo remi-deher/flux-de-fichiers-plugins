@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.sous-titres.ocr",
+  "version": "1.0.0",
+  "name": "Convertir les sous-titres PGS en SRT (OCR)",
+  "providerId": "sous-titres",
+  "providerKind": "plugin",
+  "capability": "subtitles",
+  "status": "validated",
+  "runtime": {
+    "kind": "script",
+    "tool": {
+      "id": "interpreteurs",
+      "version": "1.1.0"
+    },
+    "pathTools": [
+      {
+        "id": "mkvtoolnix",
+        "version": "1.0.0"
+      },
+      {
+        "id": "tesseract",
+        "version": "1.0.0"
+      }
+    ],
+    "interpreter": "python3",
+    "entrypoint": "scripts/sous_titres.py",
+    "timeoutSeconds": 14400,
+    "defaults": {
+      "action": "ocr",
+      "languages": "all",
+      "replace": false
+    }
+  }
+}

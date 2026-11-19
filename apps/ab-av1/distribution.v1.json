@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "1.0.0",
+  "toolId": "ab-av1",
+  "toolVersion": "1.0.0",
+  "distributionMode": "autonomous-binary",
+  "releaseStatus": "released",
+  "artifacts": [
+    {
+      "arch": "x86_64",
+      "os": "linux",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-ab-av1-1.0.0/ab-av1-linux-x86_64.tar.gz",
+      "archiveFormat": "tar.gz",
+      "archiveSha256": "3d444010d364e34b5de24cf574f84a5d55a42bad3ed1570941e706318e6fe897",
+      "binaryRelativePath": "ab-av1",
+      "binarySha256": "caead1892dc604182ffc27285728a09a807ab40974c4a26367607b8c42388084",
+      "permissions": {
+        "unixMode": "0755",
+        "owner": "runtime-user",
+        "executableBit": true
+      },
+      "binaries": {
+        "ab-av1": {
+          "relativePath": "ab-av1",
+          "sha256": "caead1892dc604182ffc27285728a09a807ab40974c4a26367607b8c42388084"
+        }
+      }
+    },
+    {
+      "arch": "aarch64",
+      "os": "linux",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-ab-av1-1.0.0/ab-av1-linux-aarch64.tar.gz",
+      "archiveFormat": "tar.gz",
+      "archiveSha256": "0c046fbc5e40c42d708af315c2847b9ad3183b7b8854e797d3fe05be840ba219",
+      "binaryRelativePath": "ab-av1",
+      "binarySha256": "b3d1a36b3caca6e98f1b73b45a916d044cdf12f0e38178f29bb6648632847338",
+      "permissions": {
+        "unixMode": "0755",
+        "owner": "runtime-user",
+        "executableBit": true
+      },
+      "binaries": {
+        "ab-av1": {
+          "relativePath": "ab-av1",
+          "sha256": "b3d1a36b3caca6e98f1b73b45a916d044cdf12f0e38178f29bb6648632847338"
+        }
+      }
+    }
+  ],
+  "installPolicy": {
+    "verifySha256BeforeExec": true,
+    "refuseMismatchedDigest": true,
+    "cacheRootRelative": "tools-cache/ab-av1/1.0.0",
+    "noShellUnpack": true,
+    "executableAllowlist": [
+      "ab-av1"
+    ],
+    "networkAtInstall": "explicit-allowlist"
+  },
+  "notes": [
+    "Empreintes et releaseStatus renseignés par build-tools.yml à la première construction (recette build.json)."
+  ],
+  "upstreamVersion": "ab-av1 0.11.7 (rustc 1.99.0 (b940084d7 2026-09-28))",
+  "releasedAt": "2026-11-19"
+}

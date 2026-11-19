@@ -72,3 +72,13 @@ d'une recette `apps/*/build.json` sur `dev`, voir aussi [releases-immuables.md](
 
 La glibc n'est jamais embarquée : le nœud doit être basé sur Debian bookworm ou plus récent.
 
+Sources de construction (`apps/<slug>/build.json`, schéma `tool-build.v1`) :
+
+| `source.kind` | Usage |
+| --- | --- |
+| `debian-bookworm` | Paquets Debian ; binaires et bibliothèques hors glibc copiés, rpath `$ORIGIN/lib`. |
+| `gpac-git` | MP4Box compilé statiquement depuis GPAC. |
+| `upstream-archives` | Archives ou binaires amont (`format` : `tar.gz`, `tar.xz`, `binary`) épinglés par SHA-256, élagués (`prune`, `strip`), exposés par lanceurs `sh`. |
+| `cargo-crate` | Crate compilée dans `rust:<rustToolchain>-bookworm` (même glibc que l'image d'exécution), quand l'amont ne publie pas d'arm64. |
+
+`dataPaths` copie des données du conteneur de construction dans l'archive (ex. `tessdata`) ; `launcherEnv` place chaque binaire dans `libexec/` derrière un lanceur qui pose des variables relatives à l'archive (ex. `TESSDATA_PREFIX`).

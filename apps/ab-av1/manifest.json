@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "ab-av1",
+  "type": "app",
+  "version": "1.0.0",
+  "name": "ab-av1",
+  "description": "Encodage à qualité cible : cherche le CRF qui atteint un score VMAF minimal, puis encode.",
+  "author": "flux-de-fichiers",
+  "license": "MIT",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "build.json",
+      "role": "config",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "distribution.v1.json",
+      "role": "config",
+      "mediaType": "application/json"
+    }
+  ],
+  "compatibility": {
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
+  },
+  "dependencies": [],
+  "tool": {
+    "capability": "encode",
+    "interface": "QualityTargetEncoder",
+    "invocation": "host-binary",
+    "currentChoice": false
+  }
+}

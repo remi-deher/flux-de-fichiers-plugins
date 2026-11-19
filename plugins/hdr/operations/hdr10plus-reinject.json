@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.hdr.hdr10plus-reinject",
+  "version": "1.0.0",
+  "name": "HDR10+ : réinjecter l'original",
+  "providerId": "hdr",
+  "providerKind": "plugin",
+  "capability": "hdr",
+  "status": "validated",
+  "runtime": {
+    "kind": "script",
+    "tool": {
+      "id": "interpreteurs",
+      "version": "1.1.0"
+    },
+    "pathTools": [
+      {
+        "id": "mkvtoolnix",
+        "version": "1.0.0"
+      },
+      {
+        "id": "hdr10plus-tool",
+        "version": "1.0.0"
+      }
+    ],
+    "interpreter": "python3",
+    "entrypoint": "scripts/hdr.py",
+    "timeoutSeconds": 21600,
+    "defaults": {
+      "action": "hdr10plus-reinject"
+    }
+  }
+}

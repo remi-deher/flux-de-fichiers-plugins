@@ -1,0 +1,113 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.atomicparsley.tags",
+  "version": "1.0.0",
+  "name": "Tags MP4 (AtomicParsley)",
+  "providerId": "video",
+  "providerKind": "plugin",
+  "capability": "tags",
+  "status": "validated",
+  "runtime": {
+    "kind": "binary",
+    "tool": {
+      "id": "atomicparsley",
+      "version": "1.0.0"
+    },
+    "executable": "AtomicParsley",
+    "executionMode": "in-place",
+    "outputExtension": "mp4",
+    "outputContentType": "video/mp4",
+    "postValidate": "magic-bytes",
+    "postValidateMagic": {
+      "offset": 4,
+      "ascii": "ftyp"
+    },
+    "skipWhenUnchanged": true,
+    "errorCode": "operation_failed",
+    "successMessage": "tags MP4 écrits",
+    "defaults": {
+      "clean": false,
+      "title": "",
+      "year": "",
+      "genre": "",
+      "comment": ""
+    },
+    "argv": [
+      {
+        "param": "source",
+        "as": "filePath"
+      },
+      {
+        "when": {
+          "param": "clean",
+          "truthy": true
+        },
+        "then": [
+          "--metaEnema"
+        ]
+      },
+      {
+        "when": {
+          "param": "title",
+          "nonEmpty": true
+        },
+        "then": [
+          "--title",
+          {
+            "param": "title",
+            "as": "string"
+          }
+        ]
+      },
+      {
+        "when": {
+          "param": "year",
+          "nonEmpty": true
+        },
+        "then": [
+          "--year",
+          {
+            "param": "year",
+            "as": "string"
+          }
+        ]
+      },
+      {
+        "when": {
+          "param": "genre",
+          "nonEmpty": true
+        },
+        "then": [
+          "--genre",
+          {
+            "param": "genre",
+            "as": "string"
+          }
+        ]
+      },
+      {
+        "when": {
+          "param": "comment",
+          "nonEmpty": true
+        },
+        "then": [
+          "--comment",
+          {
+            "param": "comment",
+            "as": "string"
+          }
+        ]
+      },
+      "--overWrite"
+    ],
+    "console": {
+      "progressFormat": "none",
+      "progressStream": "stdout",
+      "successExitCodes": [
+        0
+      ],
+      "warningExitCodes": [],
+      "timeoutSeconds": 600
+    }
+  }
+}

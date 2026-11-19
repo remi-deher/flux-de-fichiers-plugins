@@ -1,5 +1,5 @@
 # Construit les artefacts réels des outils distribués (Option B) à partir des recettes
-# `apps/<outil>/build.json`, sans jamais écraser une Release publiée (`--clobber` interdit).
+# `apps/<outil>/build.json`, sans jamais écraser une Release publiée (`--clobber` réservé aux brouillons).
 #
 # Chaque outil est publié dans sa propre Release immuable (`<releaseTagPrefix>-<toolVersion>`),
 # créée en brouillon (--draft) puis publiée après téléversement des archives, des métadonnées
@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       tool:
-        description: "Slug de l'app à construire (all, mkvtoolnix, mediainfo, ffmpeg, mp4box, script-runners)"
+        description: "Slug de l'app à construire (all ou slug d'un dossier apps/<slug>/build.json)"
         required: true
         default: 'all'
       release_tag_suffix:
@@ -106,7 +106,8 @@ jobs:
     permissions:
       contents: write
     strategy:
-      fail-fast: true
+      # Chaque outil est indépendant : un échec n'annule pas les autres constructions.
+      fail-fast: false
       matrix:
         tool: ${{ fromJson(needs.discover.outputs.tools) }}
         arch:
@@ -148,9 +149,16 @@ jobs:
             )
             UPSTREAM_VER="${GPAC_TAG}"
             SOURCE_REF="https://github.com/gpac/gpac/tree/${GPAC_TAG}"
+          elif [ "$SOURCE_KIND" = "cargo-crate" ]; then
+            # Image rust:<rustToolchain>-bookworm : même glibc que l'image d'exécution.
+            CRATE=$(python3 -c "import json; print(json.load(open('$RECIPE'))['source']['crate'])")
+            CRATE_VER=$(python3 -c "import json; print(json.load(open('$RECIPE'))['source']['crateVersion'])")
+            cargo install --locked --root /usr/local "$CRATE" --version "$CRATE_VER"
+            UPSTREAM_VER="$CRATE $CRATE_VER ($(rustc --version))"
+            SOURCE_REF="https://crates.io/crates/$CRATE/$CRATE_VER"
           elif [ "$SOURCE_KIND" = "upstream-archives" ]; then
             # libatomic1 : requise par Node.js, absente de bookworm et bookworm-slim (embarquée).
-            apt-get install -y -qq --no-install-recommends binutils libatomic1 >/dev/null
+            apt-get install -y -qq --no-install-recommends binutils libatomic1 xz-utils >/dev/null
             UPSTREAM_VER=$(python3 -c "import json; print(', '.join(a['upstreamVersion'] for a in json.load(open('$RECIPE'))['source']['archives']))")
             SOURCE_REF="archives amont épinglées"
           else
@@ -212,8 +220,18 @@ jobs:
                   raise SystemExit(f"SHA-256 inattendu pour {url} : {actual} != {expected}")
               root = stage / item["extractTo"]
               root.mkdir(parents=True)
-              subprocess.run(["tar", "-xzf", str(archive), "-C", str(root), "--no-same-owner",
-                              f"--strip-components={item['stripComponents']}"], check=True)
+              archive_format = item.get("format", "tar.gz")
+              if archive_format == "binary":
+                  # Exécutable publié tel quel : chaque point d'entrée en reçoit une copie.
+                  for rel in item["entrypoints"].values():
+                      target = root / rel
+                      target.parent.mkdir(parents=True, exist_ok=True)
+                      shutil.copy(archive, target)
+                      target.chmod(0o755)
+              else:
+                  tar_flag = "-xJf" if archive_format == "tar.xz" else "-xzf"
+                  subprocess.run(["tar", tar_flag, str(archive), "-C", str(root), "--no-same-owner",
+                                  f"--strip-components={item['stripComponents']}"], check=True)
               for pattern in item.get("prune", []):
                   for victim in sorted(root.glob(pattern), reverse=True):
                       if victim.is_dir() and not victim.is_symlink():
@@ -273,14 +291,45 @@ jobs:
             [ -e "$library" ] || continue
             patchelf --set-rpath '$ORIGIN' "$library"
           done
+          # Données embarquées (ex. tessdata) puis lanceurs posant les variables d'environnement.
+          python3 - "$RECIPE" "$stage" <<'PY'
+          import json, pathlib, shutil, sys
+          recipe, stage = json.load(open(sys.argv[1])), pathlib.Path(sys.argv[2])
+          for data in recipe.get("dataPaths", []):
+              shutil.copytree(data["from"], stage / data["to"], symlinks=False, dirs_exist_ok=True)
+          env = recipe.get("launcherEnv", {})
+          if env:
+              libexec = stage / "libexec"
+              libexec.mkdir(exist_ok=True)
+              for binary in recipe["binaries"]:
+                  shutil.move(stage / binary, libexec / binary)
+                  exports = "".join(
+                      'export ' + name + '="${0%/*}/' + rel + '"\n' for name, rel in env.items()
+                  )
+                  launcher = stage / binary
+                  launcher.write_text("#!/bin/sh\n" + exports + 'exec "${0%/*}/libexec/' + binary + '" "$@"\n')
+                  launcher.chmod(0o755)
+          PY
+          if [ -d "$stage/libexec" ]; then
+            for binary in "${BINS[@]}"; do
+              if ldd "$stage/libexec/$binary" >/dev/null 2>&1; then
+                patchelf --force-rpath --set-rpath '$ORIGIN/../lib' "$stage/libexec/$binary"
+              fi
+            done
+          fi
+          # Sortie capturée puis tronquée : `| head` couperait le tuyau (SIGPIPE, code 141 sous pipefail).
           for binary in "${BINS[@]}"; do
-            env -i "$stage/$binary" "${PROBE[@]}" | head -n 1
+            env -i "$stage/$binary" "${PROBE[@]}" > /tmp/probe.out 2>&1
+            head -n 1 /tmp/probe.out
           done
 
           {
             if [ "$SOURCE_KIND" = "debian-bookworm" ]; then
               echo "Outil : $SLUG (paquet Debian bookworm $SOURCE_REF $UPSTREAM_VER)"
               echo "Sources : https://sources.debian.org/src/$SOURCE_REF/"
+            elif [ "$SOURCE_KIND" = "cargo-crate" ]; then
+              echo "Outil : $SLUG ($UPSTREAM_VER)"
+              echo "Sources : $SOURCE_REF"
             elif [ "$SOURCE_KIND" = "upstream-archives" ]; then
               echo "Outil : $SLUG ($SOURCE_REF)"
               python3 -c "import json, sys; [print(f\"  {a['upstreamVersion']} : {a['urls'][sys.argv[1]]} (sha256 {a['sha256'][sys.argv[1]]})\") for a in json.load(open('$RECIPE'))['source']['archives']]" "$ARCH"
@@ -324,9 +373,11 @@ jobs:
       - name: Construire et tester dans debian:bookworm / bookworm-slim
         run: |
           mkdir out
+          # Compilation cargo : image rust:<rustToolchain>-bookworm (glibc de bookworm) ; sinon Debian.
+          BUILD_IMAGE=$(python3 -c "import json, sys; s = json.load(open(sys.argv[1]))['source']; print(f\"rust:{s['rustToolchain']}-bookworm\" if s['kind'] == 'cargo-crate' else 'debian:bookworm')" "apps/${{ matrix.tool.slug }}/build.json")
           docker run --rm -e ARCH=${{ matrix.arch.arch }} -e SLUG=${{ matrix.tool.slug }} \
             -v "$PWD:/work:ro" -v "$PWD/out:/out" \
-            debian:bookworm bash /work/bundle.sh
+            "$BUILD_IMAGE" bash /work/bundle.sh
 
           # bookworm-slim n'a pas python3 : binaires et arguments de sonde sont lus sur l'hôte.
           RECIPE="apps/${{ matrix.tool.slug }}/build.json"
@@ -361,7 +412,8 @@ jobs:
             echo "::error::Refus d'écrire sur une release déjà publiée ($TAG)"
             exit 1
           fi
-          gh release upload "$TAG" out/*.tar.gz out/*.json
+          # Release encore en brouillon (vérifié ci-dessus) : une relance remplace ses fichiers.
+          gh release upload "$TAG" out/*.tar.gz out/*.json --clobber
 
   publish-and-pr:
     name: publier releases et ouvrir PR contrats
@@ -397,12 +449,13 @@ jobs:
             (cd "meta/$slug" && sha256sum *.tar.gz > SHA256SUMS.txt)
             gh release upload "$tag" "meta/$slug/SHA256SUMS.txt"
             gh release edit "$tag" --draft=false
+            released_at=$(gh release view "$tag" --json publishedAt -q '.publishedAt[:10]')
 
             file="apps/$slug/distribution.v1.json"
             for arch in x86_64 aarch64; do
               meta="meta/$slug/$slug-$arch.json"
               url="https://github.com/${{ github.repository }}/releases/download/$tag/$slug-linux-$arch.tar.gz"
-              jq --arg arch "$arch" --arg url "$url" \
+              jq --arg arch "$arch" --arg url "$url" --arg released "$released_at" \
                  --slurpfile m "$meta" \
                  '(.artifacts[] | select(.arch == $arch)) |= (
                     .archiveUrl = $url
@@ -412,7 +465,8 @@ jobs:
                     | .binaries = $m[0].binaries
                   )
                   | .upstreamVersion = $m[0].upstreamVersion
-                  | .releaseStatus = "released"' \
+                  | .releaseStatus = "released"
+                  | .releasedAt = $released' \
                  "$file" > "$file.tmp"
               mv "$file.tmp" "$file"
             done

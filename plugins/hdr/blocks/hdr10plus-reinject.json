@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "hdr.hdr10plus-reinject",
+  "version": "1.0.0",
+  "name": "HDR10+ : réinjecter l'original",
+  "description": "Après un réencodage HEVC, réinjecte les métadonnées dynamiques HDR10+ de l'original.",
+  "category": "media",
+  "operationId": "operation.hdr.hdr10plus-reinject",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "video/x-matroska"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "destination",
+        "label": "Fichier mis à jour",
+        "dataType": "file",
+        "mediaType": "video/x-matroska"
+      }
+    ]
+  },
+  "ui": {
+    "category": "HDR",
+    "domain": "hdr",
+    "icon": "fas fa-adjust",
+    "color": "#A855F7",
+    "suggestedNext": [
+      "vmaf.measure",
+      "essentiel.file-output"
+    ],
+    "fields": []
+  }
+}

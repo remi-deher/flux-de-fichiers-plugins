@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "block.radarr.rename",
+  "id": "radarr.rename",
   "aliases": [
     "radarr-rename"
   ],
@@ -34,8 +34,8 @@
     "icon": "fas fa-film",
     "color": "#FFC230",
     "suggestedNext": [
-      "block.core.webhook",
-      "block.core.file-output"
+      "essentiel.webhook",
+      "essentiel.file-output"
     ],
     "fields": [
       {

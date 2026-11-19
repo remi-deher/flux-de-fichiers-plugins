@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "1.0.0",
+  "toolId": "7zip",
+  "toolVersion": "1.0.0",
+  "distributionMode": "autonomous-binary",
+  "releaseStatus": "released",
+  "artifacts": [
+    {
+      "arch": "x86_64",
+      "os": "linux",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-7zip-1.0.0/7zip-linux-x86_64.tar.gz",
+      "archiveFormat": "tar.gz",
+      "archiveSha256": "db4abf811fda80a5b7fe05ac58a19ea57684bb2855880d41193fd3a8e9da205b",
+      "binaryRelativePath": "7zz",
+      "binarySha256": "46a0fcad63c7f2e9da7126b2767f010327b3716f5118f02a5ed86283940dceec",
+      "permissions": {
+        "unixMode": "0755",
+        "owner": "runtime-user",
+        "executableBit": true
+      },
+      "binaries": {
+        "7zz": {
+          "relativePath": "7zz",
+          "sha256": "46a0fcad63c7f2e9da7126b2767f010327b3716f5118f02a5ed86283940dceec"
+        }
+      }
+    },
+    {
+      "arch": "aarch64",
+      "os": "linux",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-7zip-1.0.0/7zip-linux-aarch64.tar.gz",
+      "archiveFormat": "tar.gz",
+      "archiveSha256": "978e3f71f0af7d0263a2b48a15ebf084edafddb361e4d1696cad7bff0bcff947",
+      "binaryRelativePath": "7zz",
+      "binarySha256": "416a7400220d733b9539f61a9c7b0280028cd0ec01af2149e38263d1241361b9",
+      "permissions": {
+        "unixMode": "0755",
+        "owner": "runtime-user",
+        "executableBit": true
+      },
+      "binaries": {
+        "7zz": {
+          "relativePath": "7zz",
+          "sha256": "416a7400220d733b9539f61a9c7b0280028cd0ec01af2149e38263d1241361b9"
+        }
+      }
+    }
+  ],
+  "installPolicy": {
+    "verifySha256BeforeExec": true,
+    "refuseMismatchedDigest": true,
+    "cacheRootRelative": "tools-cache/7zip/1.0.0",
+    "noShellUnpack": true,
+    "executableAllowlist": [
+      "7zz"
+    ],
+    "networkAtInstall": "explicit-allowlist"
+  },
+  "notes": [
+    "Empreintes et releaseStatus renseignés par build-tools.yml à la première construction (recette build.json)."
+  ],
+  "upstreamVersion": "22.01+really26.02+dfsg-0+deb12u1",
+  "releasedAt": "2026-11-19"
+}

@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "tesseract",
+  "type": "app",
+  "version": "1.0.0",
+  "name": "Tesseract OCR",
+  "description": "Reconnaissance de caractères, pour convertir les sous-titres image (PGS) en texte.",
+  "author": "flux-de-fichiers",
+  "license": "Apache-2.0",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "build.json",
+      "role": "config",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "distribution.v1.json",
+      "role": "config",
+      "mediaType": "application/json"
+    }
+  ],
+  "compatibility": {
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
+  },
+  "dependencies": [],
+  "tool": {
+    "capability": "ocr",
+    "interface": "Ocr",
+    "invocation": "host-binary",
+    "currentChoice": false
+  }
+}

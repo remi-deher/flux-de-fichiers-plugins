@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "essentiel",
+  "type": "plugin",
+  "version": "1.0.0",
+  "name": "Essentiel",
+  "description": "Blocs essentiels : entrée, sortie, conditions et notifications.",
+  "author": "flux-de-fichiers",
+  "license": "GPL-2.0-or-later",
+  "capability": "other",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "blocks/file-input.json",
+      "role": "block",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "blocks/condition.json",
+      "role": "block",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "blocks/webhook.json",
+      "role": "block",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "blocks/file-output.json",
+      "role": "block",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/file-input.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/condition.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/webhook.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/file-output.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    }
+  ],
+  "compatibility": {
+    "appMin": "1.0.0",
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "block.notifications.discord",
+  "id": "notifications.discord",
   "aliases": ["notify-discord"],
   "version": "1.0.0",
   "name": "Notification : Discord",
@@ -17,7 +17,7 @@
     "domain": "integration",
     "icon": "fab fa-discord",
     "color": "#5865F2",
-    "suggestedNext": ["block.core.file-output"],
+    "suggestedNext": ["essentiel.file-output"],
     "fields": [
       { "name": "webhook_url", "label": "URL du Webhook Discord", "type": "string", "required": true },
       { "name": "username", "label": "Nom affiché", "type": "string", "default": "Flux de Fichiers" },

@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.0.0",
+  "toolId": "ffmpeg-vmaf",
+  "toolVersion": "1.0.0",
+  "distributionMode": "autonomous-binary",
+  "releaseStatus": "released",
+  "artifacts": [
+    {
+      "arch": "x86_64",
+      "os": "linux",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-ffmpeg-vmaf-1.0.0/ffmpeg-vmaf-linux-x86_64.tar.gz",
+      "archiveFormat": "tar.gz",
+      "archiveSha256": "7df1e65e52a86e59eeb949eb78f97729b9dc173f615d70178484fa348a032012",
+      "binaryRelativePath": "ffmpeg",
+      "binarySha256": "a5d4bc16d1637abe15558cb3b4b3f166e7b60a6dbf8fad348abaef0498704543",
+      "permissions": {
+        "unixMode": "0755",
+        "owner": "runtime-user",
+        "executableBit": true
+      },
+      "binaries": {
+        "ffmpeg": {
+          "relativePath": "ffmpeg",
+          "sha256": "a5d4bc16d1637abe15558cb3b4b3f166e7b60a6dbf8fad348abaef0498704543"
+        },
+        "ffprobe": {
+          "relativePath": "ffprobe",
+          "sha256": "7af89a63ab939a218eeffcfe2af9ee31ed5c71a363aac88868dde5a0a8638cb3"
+        }
+      }
+    },
+    {
+      "arch": "aarch64",
+      "os": "linux",
+      "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-ffmpeg-vmaf-1.0.0/ffmpeg-vmaf-linux-aarch64.tar.gz",
+      "archiveFormat": "tar.gz",
+      "archiveSha256": "29e956c94f74f9e478ae8c25c9efb46c67e087c68a893844e884ec2864893200",
+      "binaryRelativePath": "ffmpeg",
+      "binarySha256": "a5d4bc16d1637abe15558cb3b4b3f166e7b60a6dbf8fad348abaef0498704543",
+      "permissions": {
+        "unixMode": "0755",
+        "owner": "runtime-user",
+        "executableBit": true
+      },
+      "binaries": {
+        "ffmpeg": {
+          "relativePath": "ffmpeg",
+          "sha256": "a5d4bc16d1637abe15558cb3b4b3f166e7b60a6dbf8fad348abaef0498704543"
+        },
+        "ffprobe": {
+          "relativePath": "ffprobe",
+          "sha256": "7af89a63ab939a218eeffcfe2af9ee31ed5c71a363aac88868dde5a0a8638cb3"
+        }
+      }
+    }
+  ],
+  "installPolicy": {
+    "verifySha256BeforeExec": true,
+    "refuseMismatchedDigest": true,
+    "cacheRootRelative": "tools-cache/ffmpeg-vmaf/1.0.0",
+    "noShellUnpack": true,
+    "executableAllowlist": [
+      "ffmpeg",
+      "ffprobe"
+    ],
+    "networkAtInstall": "explicit-allowlist"
+  },
+  "notes": [
+    "Empreintes et releaseStatus renseignés par build-tools.yml à la première construction (recette build.json)."
+  ],
+  "upstreamVersion": "FFmpeg n8.1.3 (BtbN autobuild-2026-11-18-12-39)",
+  "releasedAt": "2026-11-19"
+}

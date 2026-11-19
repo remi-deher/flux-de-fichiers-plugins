@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.0.0",
+  "slug": "hdr10plus-tool",
+  "toolId": "hdr10plus-tool",
+  "toolVersion": "1.0.0",
+  "releaseTagPrefix": "tools-hdr10plus-tool",
+  "source": {
+    "kind": "upstream-archives",
+    "archives": [
+      {
+        "extractTo": "hdr10plus-tool-runtime",
+        "upstreamVersion": "hdr10plus_tool 1.7.2",
+        "urls": {
+          "x86_64": "https://github.com/quietvoid/hdr10plus_tool/releases/download/1.7.2/hdr10plus_tool-1.7.2-x86_64-unknown-linux-musl.tar.gz",
+          "aarch64": "https://github.com/quietvoid/hdr10plus_tool/releases/download/1.7.2/hdr10plus_tool-1.7.2-aarch64-unknown-linux-musl.tar.gz"
+        },
+        "sha256": {
+          "x86_64": "06385f37a639d61ba21d4be3150c863846933bc3b58110e094d8fc8f1c2249f2",
+          "aarch64": "5fb90607cd94296640f1fc2355207b8107b67baac96d37481423d08a9fce437d"
+        },
+        "stripComponents": 0,
+        "entrypoints": {
+          "hdr10plus_tool": "hdr10plus_tool"
+        }
+      }
+    ]
+  },
+  "binaries": [
+    "hdr10plus_tool"
+  ],
+  "probeArgs": [
+    "--version"
+  ]
+}

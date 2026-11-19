@@ -134,6 +134,30 @@
             }
           }
         },
+        "pathTools": {
+          "type": "array",
+          "maxItems": 8,
+          "uniqueItems": true,
+          "description": "Outils du cache placés en tête du PATH de la commande (ex. ffmpeg appelé par l'outil principal) ; ils comptent parmi les outils requis du flux.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+                "maxLength": 128
+              },
+              "version": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+              }
+            }
+          }
+        },
         "executable": {
           "type": "string",
           "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$",
@@ -701,6 +725,30 @@
             }
           }
         },
+        "pathTools": {
+          "type": "array",
+          "maxItems": 8,
+          "uniqueItems": true,
+          "description": "Outils du cache placés en tête du PATH de la commande (ex. ffmpeg appelé par l'outil principal) ; ils comptent parmi les outils requis du flux.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$",
+                "maxLength": 128
+              },
+              "version": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+              }
+            }
+          }
+        },
         "executable": {
           "type": "string"
         },
@@ -736,6 +784,10 @@
         },
         "defaults": {
           "type": "object"
+        },
+        "acceptsNonMedia": {
+          "type": "boolean",
+          "description": "Le script accepte une entrée non média (ex. archive) : le flux tolère l'échec de la sonde initiale ; le fichier produit est inspecté ensuite."
         }
       }
     }

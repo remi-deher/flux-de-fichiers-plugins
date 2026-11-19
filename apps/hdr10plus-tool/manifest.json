@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "hdr10plus-tool",
+  "type": "app",
+  "version": "1.0.0",
+  "name": "hdr10plus_tool (HDR10+)",
+  "description": "Extraction et réinjection des métadonnées dynamiques HDR10+ d'un flux HEVC.",
+  "author": "flux-de-fichiers",
+  "license": "MIT",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "build.json",
+      "role": "config",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "distribution.v1.json",
+      "role": "config",
+      "mediaType": "application/json"
+    }
+  ],
+  "compatibility": {
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
+  },
+  "dependencies": [],
+  "tool": {
+    "capability": "hdr",
+    "interface": "Hdr10PlusTool",
+    "invocation": "host-binary",
+    "currentChoice": false
+  }
+}

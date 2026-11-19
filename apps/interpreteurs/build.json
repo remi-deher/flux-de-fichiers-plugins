@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "1.0.0",
+  "slug": "interpreteurs",
+  "toolId": "interpreteurs",
+  "toolVersion": "1.1.0",
+  "releaseTagPrefix": "tools-script-runners",
+  "source": {
+    "kind": "upstream-archives",
+    "archives": [
+      {
+        "extractTo": "python-runtime",
+        "upstreamVersion": "CPython 3.14.10 (python-build-standalone 20261110)",
+        "urls": {
+          "x86_64": "https://github.com/astral-sh/python-build-standalone/releases/download/20261110/cpython-3.14.10+20261110-x86_64-unknown-linux-gnu-install_only.tar.gz",
+          "aarch64": "https://github.com/astral-sh/python-build-standalone/releases/download/20261110/cpython-3.14.10+20261110-aarch64-unknown-linux-gnu-install_only.tar.gz"
+        },
+        "sha256": {
+          "x86_64": "3fe0d7c0538eb5d190c34582992d26230532551355cbd789fabc6591621cfc07",
+          "aarch64": "e59f83159984a55e719bb3805a0b2b5b281f645769222218084b78b92eedc07f"
+        },
+        "stripComponents": 1,
+        "prune": [
+          "include",
+          "share",
+          "bin/python",
+          "bin/python3",
+          "bin/python3*-config",
+          "bin/pip*",
+          "bin/idle*",
+          "bin/pydoc*",
+          "lib/libpython*",
+          "lib/pkgconfig",
+          "lib/python3.14/idlelib",
+          "lib/python3.14/tkinter",
+          "lib/python3.14/turtledemo",
+          "lib/python3.14/ensurepip",
+          "lib/libtcl*",
+          "lib/libtk*",
+          "lib/tcl*",
+          "lib/tk*",
+          "lib/itcl*",
+          "lib/thread*"
+        ],
+        "strip": true,
+        "entrypoints": {
+          "python3": "bin/python3.14"
+        }
+      },
+      {
+        "extractTo": "node-runtime",
+        "upstreamVersion": "Node.js 26.13.1 LTS",
+        "urls": {
+          "x86_64": "https://nodejs.org/dist/v26.13.1/node-v26.13.1-linux-x64.tar.gz",
+          "aarch64": "https://nodejs.org/dist/v26.13.1/node-v26.13.1-linux-arm64.tar.gz"
+        },
+        "sha256": {
+          "x86_64": "518674de2b621728a5e4486f5fb3b7d2900bb3cc4aa97969edaa463db99f9778",
+          "aarch64": "80a330b35415382878df18d41afbd106ea89bfb3be0087d6608e289a14c5cc7d"
+        },
+        "stripComponents": 1,
+        "prune": [
+          "include",
+          "share",
+          "lib",
+          "bin/npm",
+          "bin/npx",
+          "bin/corepack",
+          "*.md"
+        ],
+        "strip": true,
+        "entrypoints": {
+          "node": "bin/node"
+        }
+      },
+      {
+        "extractTo": "jq-runtime",
+        "upstreamVersion": "jq 1.8.2",
+        "urls": {
+          "x86_64": "https://github.com/jqlang/jq/releases/download/jq-1.8.2/jq-linux-amd64",
+          "aarch64": "https://github.com/jqlang/jq/releases/download/jq-1.8.2/jq-linux-arm64"
+        },
+        "sha256": {
+          "x86_64": "b1c22172dd303f3be49e935aa56aa48a8b7a46e0bc838b4997d3bb451495870f",
+          "aarch64": "8b85c817833814ddca00a144c33705546355afccf0cf39b188f3cdb48b852309"
+        },
+        "stripComponents": 0,
+        "format": "binary",
+        "entrypoints": {
+          "jq": "bin/jq"
+        }
+      }
+    ]
+  },
+  "binaries": [
+    "python3",
+    "node",
+    "jq"
+  ],
+  "probeArgs": [
+    "--version"
+  ]
+}

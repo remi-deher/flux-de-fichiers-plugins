@@ -3,15 +3,15 @@
   "id": "operation.scripts.run",
   "version": "1.0.0",
   "name": "Exécuter un script",
-  "providerId": "plugin.scripts",
+  "providerId": "scripts",
   "providerKind": "plugin",
   "capability": "script",
   "status": "validated",
   "runtime": {
     "kind": "script",
     "tool": {
-      "id": "app.script-runners",
-      "version": "1.0.0"
+      "id": "interpreteurs",
+      "version": "1.1.0"
     },
     "interpreter": "sh",
     "timeoutSeconds": 300

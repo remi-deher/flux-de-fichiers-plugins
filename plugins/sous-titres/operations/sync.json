@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.sous-titres.sync",
+  "version": "1.0.0",
+  "name": "Resynchroniser les sous-titres (alass)",
+  "providerId": "sous-titres",
+  "providerKind": "plugin",
+  "capability": "subtitles",
+  "status": "validated",
+  "runtime": {
+    "kind": "script",
+    "tool": {
+      "id": "interpreteurs",
+      "version": "1.1.0"
+    },
+    "pathTools": [
+      {
+        "id": "mkvtoolnix",
+        "version": "1.0.0"
+      },
+      {
+        "id": "alass",
+        "version": "1.0.0"
+      },
+      {
+        "id": "ffmpeg",
+        "version": "1.0.0"
+      }
+    ],
+    "interpreter": "python3",
+    "entrypoint": "scripts/sous_titres.py",
+    "timeoutSeconds": 14400,
+    "defaults": {
+      "action": "sync",
+      "languages": "all",
+      "split_penalty": 7,
+      "no_splits": false
+    }
+  }
+}

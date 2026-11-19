@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "slug": "mp4box",
-  "toolId": "app.mp4box",
+  "toolId": "mp4box",
   "toolVersion": "1.0.0",
   "releaseTagPrefix": "tools-mp4box",
   "source": {

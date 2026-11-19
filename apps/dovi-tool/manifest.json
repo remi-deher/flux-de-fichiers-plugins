@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "dovi-tool",
+  "type": "app",
+  "version": "1.0.0",
+  "name": "dovi_tool (Dolby Vision)",
+  "description": "Conversion et réinjection des métadonnées Dolby Vision (RPU) d'un flux HEVC.",
+  "author": "flux-de-fichiers",
+  "license": "MIT",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "build.json",
+      "role": "config",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "distribution.v1.json",
+      "role": "config",
+      "mediaType": "application/json"
+    }
+  ],
+  "compatibility": {
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
+  },
+  "dependencies": [],
+  "tool": {
+    "capability": "hdr",
+    "interface": "DolbyVisionTool",
+    "invocation": "host-binary",
+    "currentChoice": false
+  }
+}
