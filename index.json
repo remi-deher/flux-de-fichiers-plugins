@@ -60,7 +60,7 @@
     "plugins/video/operations/remux-mkv.json": "0c62af97b2c3f73f5189e77dcd9e63d4dabe2a32017d06d948adc2f61c66f747",
     "plugins/video/operations/remux-mp4.json": "67722869abf31915515d1351ace77d29f278eb5f95d82af387fb74465f40c311",
     "plugins/video/operations/tags-mp4.json": "a6e95e2bc66a7a19868370667f7a612e38e3b9c0608833b8b847d44dbadf8b39",
-    "plugins/video/operations/video-encode.json": "8a43316ce1880ad7e792f6abbf1280546188df1004c87e04476705ad27a4a2d0",
+    "plugins/video/operations/video-encode.json": "8620fba3fe9e1197447dc0eb460b1d8400b668a1b5a78abff35f20d0884c7225",
     "plugins/vmaf/operations/measure.json": "520c41a7a4a2bc679bb5bb235d51067c46782cc9787c2d2e4bde4baa0f26f730",
     "plugins/vmaf/operations/target-encode.json": "c1b3d663cf774e562f63e62ae266b75222c59748a4c4183d609b1c1db0f1d733",
     "plugins/vmaf/scripts/vmaf.py": "f214aad456fd8097b30d03de4a518b3a01abf2724b5b7240f9bd9123a44b6f8a"
@@ -362,12 +362,12 @@
     {
       "id": "video",
       "type": "plugin",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "name": "Vidéo",
       "manifestPath": "plugins/video/manifest.json",
       "capability": "video",
-      "sha256": "8820de4557f6f8575dd7eb834a6615a6ffe967841ea5a4eb8c6da895c73af43f",
-      "contentSha256": "5216e77c5ad361bb8c247ce16e46982ca895e427da099f5601d2d7488a40f4e0",
+      "sha256": "3184a7e36a0ac5062fca0e34d844c9da7c1cf8be4766e3142569ee89c0318e98",
+      "contentSha256": "d2dcda83cb8cdc7b970f54fd8d3b33992897e34e4ab1d1e536e73e93a8385656",
       "updatedAt": "2026-11-19"
     },
     {
@@ -660,11 +660,11 @@
       "id": "video.encode",
       "type": "block",
       "owner": "video",
-      "version": "1.0.0",
-      "name": "Encodage Vidéo",
+      "version": "1.1.0",
+      "name": "Traitement vidéo, audio et sous-titres",
       "manifestPath": "plugins/video/blocks/video-encode.json",
-      "sha256": "7f7e47f08d183bb58ddfa206c4319799715eb0a45e3075e3564e1116e5a04343",
-      "contentSha256": "f4992ee6cdf744fe85becbd3e6c14d8d2084198bd19e075489b779c77bb1a5ec",
+      "sha256": "4a8bdc675863b5d69a3c1fc0ea988ab67a21dc4b45e79c82bee1d8fd1f0b0c12",
+      "contentSha256": "5cc8bb191846575b2325ea4b34ff1a6685e42a6015ca72745da88702013d76d9",
       "updatedAt": "2026-11-19"
     },
     {
@@ -830,6 +830,28 @@
       "capability": "faststart",
       "sha256": "be257eebab62bef7856750c382b2895119b433e5197a32a6100cc46ce13a7973",
       "contentSha256": "618eac819e35be489616c1aef0ab39035eae18cc64d7968733d67eb594821bb1",
+      "updatedAt": "2026-11-19"
+    },
+    {
+      "id": "radarr-media-normalize",
+      "type": "flow",
+      "version": "1.0.0",
+      "name": "Radarr · Préparer les médias",
+      "manifestPath": "flows/radarr-media-normalize/manifest.json",
+      "capability": "in-place",
+      "sha256": "6c82278f363bac139963ef0a648409f12b01b282f887b79f5a45058be2ab3f1a",
+      "contentSha256": "3d7ac665aa9acef9ae77116a0e7d420d881d74d923ae3d1767d3b4548618ba36",
+      "updatedAt": "2026-11-19"
+    },
+    {
+      "id": "sonarr-media-normalize",
+      "type": "flow",
+      "version": "1.0.0",
+      "name": "Sonarr · Préparer les médias",
+      "manifestPath": "flows/sonarr-media-normalize/manifest.json",
+      "capability": "in-place",
+      "sha256": "3cc7f69f71506fb20713061a6efb3bb664a30347b4d9b3a5a445bec8e56378e0",
+      "contentSha256": "573f88dba097ab42c1b83787bd3c33fa6bad232bae01423dfc5c7296536e7666",
       "updatedAt": "2026-11-19"
     },
     {
