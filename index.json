@@ -3,28 +3,28 @@
   "generatedFor": "flux-de-fichiers-plugins@multimedia",
   "filesSha256": {
     "apps/7zip/build.json": "34e4f24a5045ce53ebdb3dcb5d7873c46abf168ad472bd4ae7060e65d5b5ec04",
-    "apps/7zip/distribution.v1.json": "9a11724a38f1d1dc95ccd6cca508e23f90622b145b54f40dfe42e1dd98b7434a",
+    "apps/7zip/distribution.v1.json": "22154333acfaa2b4b5b0bb1c8ac06681e1bd777818724f46bb7e98221f6f90d7",
     "apps/ab-av1/build.json": "932f2691d52b6d2c3fea1a3c813c50fcc7a256ecae02c4feccfc2d2fd0ffece8",
-    "apps/ab-av1/distribution.v1.json": "5a6a3eaf8f113f80af12212082b5cf6d60309846086b1e4f88db8522f3dc4c2c",
+    "apps/ab-av1/distribution.v1.json": "aa3194bf3096f7a7a4d55293a2fd5feb20dc3fa131452a2b650f77a5617c0f26",
     "apps/alass/build.json": "3e36faaf174c9e839694435ae7e1db310823525899d8f71598aa06e8b9f5a1d9",
-    "apps/alass/distribution.v1.json": "508fddec2a86e193a74673cbe6ff6b080e104cfbb01ccd06043e6a4c85857849",
+    "apps/alass/distribution.v1.json": "f458d2380254870ab3de946e64279cf2a649c42e1517f738ade2ebed9a1ba41a",
     "apps/atomicparsley/build.json": "21096c8af3a892ae2af6074d46134e5fd40a9f06ec73b17309498448a87f1528",
-    "apps/atomicparsley/distribution.v1.json": "b23a6ff29410330fc1e2ec161f4e3c26d0516743b05d52965a1a71bd268fd422",
+    "apps/atomicparsley/distribution.v1.json": "c5a04d28b6872ecece2ef2612bce9ce7bb33e8cbfa0b2488da556265aff24c4c",
     "apps/dovi-tool/build.json": "c5eb794aada480784b1c27fc57689f21680003e927c5ea9062ccba6cccd550fd",
-    "apps/dovi-tool/distribution.v1.json": "06cbaab847b7acdcf40a42166f9042e75cd525ce474bc20757ecab2a69efbbe7",
+    "apps/dovi-tool/distribution.v1.json": "5dcd6ec5d6d55f3204848f2b0988bee0d486cdf19cc2ac49176ee2e0502f3863",
     "apps/ffmpeg-vmaf/build.json": "0a4428fc360734fdd1feb3fbfff62ed59506c77b708d56a102b8b183e202eb92",
-    "apps/ffmpeg-vmaf/distribution.v1.json": "6af7625ddf826ff8659e16f43b181176d64cb55ef44fee8cca5801fed8e28642",
+    "apps/ffmpeg-vmaf/distribution.v1.json": "3a00072bee41ff567629d880371034186e51b553c07bd58aeda0dab35b2126a1",
     "apps/ffmpeg/distribution.v1.json": "eb44036f0519adf9171fd629e02ad391ab8540a39c25351de4b99118133a20eb",
     "apps/hdr10plus-tool/build.json": "e53a52e6a27f25471cf75dea4ea57515dcae7b39d3fe1fe5cac2cfa0ef4da1af",
-    "apps/hdr10plus-tool/distribution.v1.json": "e1271645c88e3272cf07590c7cb90468665cdf39c9ddb586c4de932305710404",
-    "apps/interpreteurs/distribution.v1.json": "bfc98e1b47e1cd57488a393e8f2622cf5b4ba84e5f30a2583840d937a96334dd",
+    "apps/hdr10plus-tool/distribution.v1.json": "9ea7b828a80f9637a3aaec035162947673844addcd32c938f789a4bcbba04ffd",
+    "apps/interpreteurs/distribution.v1.json": "ff06425f891039edefcedafcf74b42a7123ffd8373e4ed0d90ba3dc7a18af39b",
     "apps/mediainfo/distribution.v1.json": "d6be5192bf6585737bdeecbe27a315d5800fc025d3b650ea812b742c9257d72d",
     "apps/mkvtoolnix/distribution.v1.json": "4389338251d30c972256d6d7214bb7625b51a5ed1ef289f939436e6d16f8a423",
     "apps/mp4box/distribution.v1.json": "bfdbd4006c982e06b5ebd5e7b8a313a4612ef1f918bb56e072823f6795a6e62e",
     "apps/telemetrie/capabilities.v1.json": "fcc953aed29ab025e4bc8eeba0f59eb25244be1598bfc00e6064be09c2752ca1",
     "apps/telemetrie/distribution.v1.json": "c0d90648c1b82afe4c364ff5bccf7de5e998f168e26e72222dbf67c13ff3fa3d",
     "apps/tesseract/build.json": "bef329e1007086b6e903617adf2de41605254a645cf039789a4497e52a6111f9",
-    "apps/tesseract/distribution.v1.json": "5c6aaa61d8207e4902a872cc7887f643ef8f1afbd53876366828298774451c7e",
+    "apps/tesseract/distribution.v1.json": "00254ced350b7400e996961efadf929b3b54e414688699713a988dce1c05433c",
     "packs/media/installation.json": "8c1ed54633d04701b75b38ddd9712f655426a33a37be567f5d72aa4e19ea0d85",
     "plugins/archives/operations/extract.json": "3e8d014fd2caf842b4eaff54acc915f89f6a16bde24192300ec77b9b50f168d6",
     "plugins/archives/scripts/archives.py": "5bc77f47ec3fa1ea0f88321ca55b33865b33d2ad5f501464c84adecb8446aed5",
@@ -89,7 +89,7 @@
       "currentChoice": false,
       "distribution": "autonomous-binary",
       "sha256": "0359c143cf520f2a772bf9897256db9a37297f35407b87b4e96a7b9b11214ee2",
-      "contentSha256": "949096b6ebd72f929d9c813d2d03a15bb3395ebc0bc1d0d41b24106404c2db28",
+      "contentSha256": "3e5db432734e4f961d35c4e243aeaf3bcaf250fd1c60db373b99cedd3b7d2b55",
       "updatedAt": "2026-11-19"
     },
     {
@@ -154,7 +154,7 @@
       "currentChoice": false,
       "distribution": "autonomous-binary",
       "sha256": "bf61f20fea4b523dd06866bc480aa7e884ad4fd674c9a580e0c010dfab535caf",
-      "contentSha256": "ec47d4100459b4adcb71d4c4e67a9d6e3d942b7460ee1d74b8e072a79596debb",
+      "contentSha256": "b8b0d941edfe3fd57f75aa6bcbca7a31eabfa74b5ae1c1c4bec2ffd8d8ecd165",
       "updatedAt": "2026-11-19"
     },
     {
@@ -167,7 +167,7 @@
       "currentChoice": false,
       "distribution": "autonomous-binary",
       "sha256": "ce1241917ce30cef922a1ebf37db56691725b0d809b30450bcca28ed4035bd90",
-      "contentSha256": "7d94a8915975f5abfa79c7cfcb2ba594791aeed7b8b5c172a3c94112247f94b6",
+      "contentSha256": "1976766ee11b8749409cdf684a238e6e62d1c8a738de9e883e7e2577fda6cb17",
       "updatedAt": "2026-11-19"
     },
     {
@@ -180,7 +180,7 @@
       "currentChoice": false,
       "distribution": "autonomous-binary",
       "sha256": "4ed592c1154db53cd17343f8abe9422de85001160221b35ee5e4a63601b734d8",
-      "contentSha256": "aa44de38d9e92c952642ebc291af596f6bf19893d4e972d3e094c6eeab2a0076",
+      "contentSha256": "cbd648a5dddfaa640ee33b309879ada676781ececeaf48b5ddecb781b29f2cf8",
       "updatedAt": "2026-11-19"
     },
     {
@@ -193,7 +193,7 @@
       "currentChoice": false,
       "distribution": "autonomous-binary",
       "sha256": "1b57657b288bb1cc011c082be5db0d92b922004806f08feab113deb046bed9d4",
-      "contentSha256": "4dec978b898335ddd0de48bd4e645b0290e8b3b7393c6428668be318d5bf5f9b",
+      "contentSha256": "d6f2e80da0bb7c25a3e22cbccee09dfbf1dc91040c86c05a231f286b323a835c",
       "updatedAt": "2026-11-19"
     },
     {
@@ -206,7 +206,7 @@
       "currentChoice": false,
       "distribution": "autonomous-binary",
       "sha256": "99be29634821006b0edea4918e530dd21c3fd2e9b674be2b2eda4acc75366989",
-      "contentSha256": "265606c21a39a86ebc6d2345713c5a629b343c238c5cfc520a4284e3242ce924",
+      "contentSha256": "cdf97085cb123ea70f5842882be5750402953533c70845378a3875ac97059525",
       "updatedAt": "2026-11-19"
     },
     {
@@ -219,7 +219,7 @@
       "currentChoice": false,
       "distribution": "autonomous-binary",
       "sha256": "7a0961635b61950e92f0e1e9a0c116a15ad7b945feeffa18dd99db4f1c539982",
-      "contentSha256": "f576bbff54ce1364a8a2f020a5aafb918022b8436a8f7eaa1641042f6489c9f8",
+      "contentSha256": "8e25590c9a6d0d06f9e176d650a255083e6a6cc93491e9befe12e7a745cd0b62",
       "updatedAt": "2026-11-19"
     },
     {
@@ -232,7 +232,7 @@
       "currentChoice": false,
       "distribution": "autonomous-binary",
       "sha256": "6587beee18a4cb598198561559de39bf5e2b7403164446bb7a1f4027a472ffbe",
-      "contentSha256": "590a85ad25153b69494f75fff7a21928a9a2e0ce1347c9796378954ca656da47",
+      "contentSha256": "4def75ec8bdb3789ae8139a535b859f70168453c868ea1e57bab91cb4f068392",
       "updatedAt": "2026-11-19"
     },
     {
@@ -245,7 +245,7 @@
       "currentChoice": false,
       "distribution": "autonomous-binary",
       "sha256": "f11f81929f3fbe78a42fd257ad983ea6ff0734632e4b2ed07c4db3388fcc6b38",
-      "contentSha256": "232bfe6d97af48662c6eb92992318e43280b26f7ced3759461af7ba0868d64c5",
+      "contentSha256": "27bbcaa737a0e6b61d893ea032b326d4b3809b9dd6e2cb2046a52596af0d2c51",
       "updatedAt": "2026-11-19"
     },
     {
