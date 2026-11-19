@@ -1,4 +1,4 @@
-# MediaInfo CLI (`app.mediainfo`)
+# MediaInfo CLI (`mediainfo`)
 
 Outil en ligne de commande de référence mondiale pour la lecture et le parsing exhaustif de métadonnées techniques de conteneurs multimédias (MKV, MP4, AVI, MOV, TS, M2TS, WebM, etc.).
 

@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "plugin.audio",
+  "id": "audio",
   "type": "plugin",
   "version": "1.0.0",
   "name": "Audio",
@@ -27,7 +27,7 @@
   ],
   "dependencies": [
     {
-      "id": "app.ffmpeg",
+      "id": "ffmpeg",
       "versionRange": "^1.0.0",
       "kind": "app",
       "optional": true

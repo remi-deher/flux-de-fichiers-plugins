@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "flow.smart.adr0008",
+  "id": "smart-inplace-hevc",
   "type": "flow",
   "version": "1.0.0",
   "name": "Encodage HEVC intelligent",
@@ -83,7 +83,7 @@
   },
   "dependencies": [
     {
-      "id": "plugin.video",
+      "id": "video",
       "versionRange": "^1.0.0",
       "kind": "plugin"
     }

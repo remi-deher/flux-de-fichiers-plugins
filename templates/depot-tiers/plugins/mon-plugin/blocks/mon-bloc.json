@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "org.exemple.block.mon-bloc",
+  "id": "org.exemple.mon-plugin.mon-bloc",
   "version": "1.0.0",
   "name": "Mon Bloc Exemple",
   "description": "Bloc low-code tiers qui réutilise FFmpeg du catalogue officiel pour copier les flux vers MKV.",
@@ -31,7 +31,7 @@
     "icon": "fas fa-puzzle-piece",
     "color": "#0EA5E9",
     "suggestedNext": [
-      "block.core.file-output"
+      "essentiel.file-output"
     ],
     "fields": [
       {

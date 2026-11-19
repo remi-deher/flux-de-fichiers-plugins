@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "interpreteurs",
+  "type": "app",
+  "version": "1.0.0",
+  "name": "Interpréteurs de scripts",
+  "description": "Interpréteurs disponibles pour exécuter des scripts personnalisés.",
+  "author": "flux-de-fichiers",
+  "license": "MIT",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "distribution.v1.json",
+      "role": "config",
+      "mediaType": "application/json"
+    }
+  ],
+  "compatibility": {
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
+  },
+  "dependencies": [],
+  "tool": {
+    "capability": "script",
+    "interface": "ScriptRunner",
+    "invocation": "host-binary",
+    "currentChoice": false
+  }
+}

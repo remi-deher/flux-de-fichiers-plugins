@@ -3,7 +3,7 @@
   "id": "operation.notifications.gotify",
   "version": "1.0.0",
   "name": "Notification Gotify",
-  "providerId": "plugin.notifications",
+  "providerId": "notifications",
   "providerKind": "plugin",
   "capability": "notification",
   "status": "validated",

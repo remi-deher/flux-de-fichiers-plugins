@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "block.sonarr.rename",
+  "id": "sonarr.rename",
   "aliases": [
     "sonarr-rename"
   ],
@@ -34,8 +34,8 @@
     "icon": "fas fa-tv",
     "color": "#35C5F4",
     "suggestedNext": [
-      "block.core.webhook",
-      "block.core.file-output"
+      "essentiel.webhook",
+      "essentiel.file-output"
     ],
     "fields": [
       {

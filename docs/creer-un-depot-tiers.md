@@ -43,21 +43,21 @@ Quand plusieurs dépôts sont synchronisés sur une même instance Flux de Fichi
 dépôt qui déclare un `id` l'emporte**. Pour ne jamais masquer une pièce officielle ni entrer en
 conflit avec un autre auteur :
 
-- Réservez `app.*`, `plugin.core`, `plugin.video`, `plugin.audio`, `plugin.sonarr`, `plugin.radarr`, `pack.media` au catalogue officiel.
+- Les identifiants courts (`ffmpeg`, `essentiel`, `video`, `audio`, `sonarr`, `media`…) sont
+  réservés au catalogue officiel : le type est porté par le champ `type`, jamais par l'identifiant.
 - Préfixez tous vos identifiants avec un espace de noms inversé :
-  - `<namespace>.plugin.<nom>` (ex. `com.alice.plugin.subtitles`)
-  - `<namespace>.block.<nom>` (ex. `com.alice.block.extract-srt`)
-  - `<namespace>.operation.<nom>` (ex. `com.alice.operation.extract-srt`)
-  - `<namespace>.app.<nom>` (si vous distribuez votre propre binaire Option B)
+  - `<namespace>.<nom>` pour un plugin, une application ou un pack (ex. `com.alice.sous-titres`)
+  - `<namespace>.<plugin>.<action>` pour un bloc (ex. `com.alice.sous-titres.extract-srt`)
+  - `<namespace>.operation.<nom>` pour une opération (ex. `com.alice.operation.extract-srt`)
 
 ## 4. Dépendre d'une application ou d'un bloc officiel
 
-Vous n'avez **pas** besoin de recopier `app.ffmpeg`, `app.mkvtoolnix` ou `plugin.core` dans
+Vous n'avez **pas** besoin de recopier `ffmpeg`, `mkvtoolnix` ou `essentiel` dans
 votre dépôt :
 
-- Dans `manifest.json` → `dependencies` : référencez `app.ffmpeg` avec `"optional": true`.
-- Dans `operations/*.json` → `runtime.tool.id` : référencez `"app.ffmpeg"`.
-- Dans `blocks/*.json` → `ui.suggestedNext` : référencez `"block.core.file-output"`.
+- Dans `manifest.json` → `dependencies` : référencez `ffmpeg` avec `"optional": true`.
+- Dans `operations/*.json` → `runtime.tool.id` : référencez `"ffmpeg"`.
+- Dans `blocks/*.json` → `ui.suggestedNext` : référencez `"essentiel.file-output"`.
 
 ## 5. Valider son dépôt en local et en CI
 

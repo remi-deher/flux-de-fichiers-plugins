@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "flow.audio.loudnorm",
+  "id": "audio-loudnorm-mkv",
   "type": "flow",
   "version": "1.0.0",
   "name": "Normalisation audio EBU R128",
@@ -43,7 +43,7 @@
     ]
   },
   "dependencies": [
-    { "id": "plugin.audio", "versionRange": "^1.0.0", "kind": "plugin" },
-    { "id": "plugin.core", "versionRange": "^1.0.0", "kind": "plugin" }
+    { "id": "audio", "versionRange": "^1.0.0", "kind": "plugin" },
+    { "id": "essentiel", "versionRange": "^1.0.0", "kind": "plugin" }
   ]
 }

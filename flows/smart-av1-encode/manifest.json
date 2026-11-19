@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "flow.smart.av1",
+  "id": "smart-av1-encode",
   "type": "flow",
   "version": "1.0.0",
   "name": "Encodage AV1 intelligent",
@@ -65,7 +65,7 @@
     ]
   },
   "dependencies": [
-    { "id": "plugin.video", "versionRange": "^1.0.0", "kind": "plugin" },
-    { "id": "plugin.core", "versionRange": "^1.0.0", "kind": "plugin" }
+    { "id": "video", "versionRange": "^1.0.0", "kind": "plugin" },
+    { "id": "essentiel", "versionRange": "^1.0.0", "kind": "plugin" }
   ]
 }

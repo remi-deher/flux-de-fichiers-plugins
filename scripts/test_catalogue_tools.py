@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Tests unitaires et d'intégration des outils du catalogue (bibliothèque standard)."""
 import json
+import os
 import sys
 import tempfile
 import unittest
@@ -55,7 +56,7 @@ class CatalogueToolsTests(unittest.TestCase):
                         "--kind",
                         "binary",
                         "--tool-id",
-                        "app.ffmpeg",
+                        "ffmpeg",
                         "--executable",
                         "ffmpeg",
                     ]
@@ -93,7 +94,7 @@ class CatalogueToolsTests(unittest.TestCase):
                         "--name",
                         "Encode HEVC",
                         "--plugin-id",
-                        "com.alice.plugin.transcode-lite",
+                        "com.alice.transcode-lite",
                     ]
                 ),
                 0,
@@ -110,7 +111,7 @@ class CatalogueToolsTests(unittest.TestCase):
                         "--name",
                         "Suite Alice",
                         "--plugin-id",
-                        "com.alice.plugin.transcode-lite",
+                        "com.alice.transcode-lite",
                     ]
                 ),
                 0,
@@ -207,7 +208,7 @@ class CatalogueToolsTests(unittest.TestCase):
                     "--kind",
                     "binary",
                     "--tool-id",
-                    "app.ffmpeg",
+                    "ffmpeg",
                     "--executable",
                     "ffmpeg",
                 ]
@@ -300,6 +301,39 @@ class CatalogueToolsTests(unittest.TestCase):
             errs_mutable = checker_mutable.run()
             self.assertTrue(any("archiveUrl non immuable" in e for e in errs_mutable), errs_mutable)
 
+    def test_updated_at_follows_content_changes_only(self) -> None:
+        day_one, day_two = "1767225600", "1767312000"  # 2026-01-01 et 2026-01-02 (UTC)
+        previous = os.environ.get("SOURCE_DATE_EPOCH")
+        self.addCleanup(
+            lambda: os.environ.pop("SOURCE_DATE_EPOCH", None)
+            if previous is None
+            else os.environ.__setitem__("SOURCE_DATE_EPOCH", previous)
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = Path(tmp) / "depot"
+
+            def regenerate(epoch: str) -> dict:
+                os.environ["SOURCE_DATE_EPOCH"] = epoch
+                self.assertEqual(build_index.main(["--root", str(repo)]), 0)
+                entries = json.loads((repo / "index.json").read_text(encoding="utf-8"))["entries"]
+                return {entry["id"]: entry for entry in entries}
+
+            os.environ["SOURCE_DATE_EPOCH"] = day_one
+            scaffold.main(["--root", str(repo), "--namespace", "org.test", "init-repo"])
+            scaffold.main(["--root", str(repo), "--namespace", "org.test", "plugin", "demo", "--name", "Démo"])
+            first = regenerate(day_one)
+            self.assertEqual(first["org.test.demo"]["updatedAt"], "2026-01-01")
+            self.assertEqual(build_index.main(["--root", str(repo), "--check"]), 0)
+
+            unchanged = regenerate(day_two)
+            self.assertEqual(unchanged["org.test.demo"]["updatedAt"], "2026-01-01")
+
+            readme = repo / "plugins" / "demo" / "README.md"
+            readme.write_text(readme.read_text(encoding="utf-8") + "\nNote.\n", encoding="utf-8")
+            changed = regenerate(day_two)
+            self.assertEqual(changed["org.test.demo"]["updatedAt"], "2026-01-02")
+            self.assertEqual(changed["org.test.demo.demo"]["updatedAt"], "2026-01-01")
+            self.assertNotEqual(changed["org.test.demo"]["contentSha256"], first["org.test.demo"]["contentSha256"])
 
 if __name__ == "__main__":
     unittest.main()

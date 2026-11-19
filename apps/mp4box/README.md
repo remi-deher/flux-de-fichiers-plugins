@@ -1,4 +1,4 @@
-# MP4Box (`app.mp4box`)
+# MP4Box (`mp4box`)
 
 Outil en ligne de commande développé par le projet open-source **GPAC**, servant de référence mondiale pour le multiplexage, l'optimisation et la manipulation des conteneurs MP4 (ISO Base Media File Format).
 

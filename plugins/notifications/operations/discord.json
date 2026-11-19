@@ -3,7 +3,7 @@
   "id": "operation.notifications.discord",
   "version": "1.0.0",
   "name": "Notification Discord Webhook",
-  "providerId": "plugin.notifications",
+  "providerId": "notifications",
   "providerKind": "plugin",
   "capability": "notification",
   "status": "validated",

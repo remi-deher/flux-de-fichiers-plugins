@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "block.notifications.gotify",
+  "id": "notifications.gotify",
   "aliases": ["notify-gotify"],
   "version": "1.0.0",
   "name": "Notification : Gotify",
@@ -17,7 +17,7 @@
     "domain": "integration",
     "icon": "fas fa-bullhorn",
     "color": "#0EA5E9",
-    "suggestedNext": ["block.core.file-output"],
+    "suggestedNext": ["essentiel.file-output"],
     "fields": [
       { "name": "url", "label": "URL Gotify", "type": "string", "required": true },
       { "name": "custom_headers", "label": "En-têtes (X-Gotify-Key)", "type": "headers" },

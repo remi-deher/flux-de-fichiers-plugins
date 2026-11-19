@@ -7,16 +7,48 @@ Utilisable sur le dépôt officiel comme sur tout dépôt tiers autonome :
 - calcule le `sha256` de chaque manifeste/bloc ainsi que `filesSha256` pour tous
   les fichiers JSON annexes (`distribution.v1.json`, `operations/*.json`,
   `installation.json`, etc.) ;
-- préserve l'ordre existant des entrées et ajoute les nouvelles de façon déterministe.
+- préserve l'ordre existant des entrées et ajoute les nouvelles de façon déterministe ;
+- date chaque entrée (`updatedAt`) : la date ne change que si l'empreinte du contenu
+  (`contentSha256`, tous les fichiers de l'entrée) change, ce qui garde `--check` stable.
 """
 import argparse
+import hashlib
+import os
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 from catalogue_lib import SECTION_ORDER, is_safe_relative, load_json, sha256_file, write_json
 
 DEFAULT_ROOT = Path(__file__).resolve().parent.parent
+
+
+def _today() -> str:
+    """Date UTC du jour, figée par SOURCE_DATE_EPOCH pour des générations reproductibles."""
+    epoch = os.environ.get("SOURCE_DATE_EPOCH")
+    moment = datetime.fromtimestamp(int(epoch), timezone.utc) if epoch else datetime.now(timezone.utc)
+    return moment.date().isoformat()
+
+
+def _content_sha256(root: Path, paths: list[Path]) -> str:
+    """Empreinte stable d'un ensemble de fichiers (chemins relatifs et contenus)."""
+    digest = hashlib.sha256()
+    for path in sorted(paths):
+        digest.update(path.relative_to(root).as_posix().encode())
+        digest.update(b"\0")
+        digest.update(sha256_file(path).encode())
+        digest.update(b"\n")
+    return digest.hexdigest()
+
+
+def _entry_files(manifest_path: Path) -> list[Path]:
+    """Tous les fichiers du dossier d'une entrée, blocs compris : modifier un bloc date son plugin."""
+    return [
+        path
+        for path in manifest_path.parent.rglob("*")
+        if path.is_file() and "__pycache__" not in path.parts
+    ]
 
 
 def _discover_manifests(root: Path) -> list[Path]:
@@ -91,6 +123,7 @@ def _build_manifest_entry(
     if manifest.get("tags"):
         entry["tags"] = manifest["tags"]
     entry["sha256"] = sha256_file(manifest_path)
+    entry["contentSha256"] = _content_sha256(root, _entry_files(manifest_path))
 
     secondary_hashes = _collect_secondary_json(root, manifest_path, manifest)
 
@@ -109,6 +142,7 @@ def _build_manifest_entry(
                         "name": block["name"],
                         "manifestPath": block_path.relative_to(root).as_posix(),
                         "sha256": sha256_file(block_path),
+                        "contentSha256": _content_sha256(root, [block_path]),
                     }
                 )
     return entry, block_entries, secondary_hashes
@@ -122,6 +156,7 @@ def build_index_document(
 ) -> dict[str, Any]:
     index_path = root / "index.json"
     existing_order: dict[str, int] = {}
+    existing_dates: dict[str, tuple[str | None, str | None]] = {}
     existing_generated_for = None
     existing_release_version = None
     if index_path.is_file():
@@ -131,6 +166,7 @@ def build_index_document(
         for idx, item in enumerate(existing.get("entries", [])):
             if isinstance(item, dict) and isinstance(item.get("id"), str):
                 existing_order[item["id"]] = idx
+                existing_dates[item["id"]] = (item.get("contentSha256"), item.get("updatedAt"))
 
     collected: list[dict[str, Any]] = []
     files_sha256: dict[str, str] = {}
@@ -139,6 +175,12 @@ def build_index_document(
         collected.append(entry)
         collected.extend(blocks)
         files_sha256.update(secondary)
+
+    today = _today()
+    for entry in collected:
+        previous_digest, previous_date = existing_dates.get(entry["id"], (None, None))
+        unchanged = previous_digest == entry["contentSha256"] and previous_date
+        entry["updatedAt"] = previous_date if unchanged else today
 
     collected.sort(
         key=lambda e: (

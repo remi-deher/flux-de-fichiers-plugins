@@ -16,7 +16,7 @@
   ],
   "dependencies": [
     {
-      "id": "app.mkvtoolnix",
+      "id": "mkvtoolnix",
       "versionRange": "^1.0.0",
       "kind": "app",
       "optional": true

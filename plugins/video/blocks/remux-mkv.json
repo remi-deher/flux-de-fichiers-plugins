@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "block.video.remux-mkv",
+  "id": "video.remux-mkv",
   "aliases": [
     "remux-mkv"
   ],
@@ -34,10 +34,10 @@
     "icon": "fas fa-box-archive",
     "color": "#00BCD4",
     "suggestedNext": [
-      "block.sonarr.rescan",
-      "block.radarr.rescan",
-      "block.core.webhook",
-      "block.core.file-output"
+      "sonarr.rescan",
+      "radarr.rescan",
+      "essentiel.webhook",
+      "essentiel.file-output"
     ],
     "fields": [
       {

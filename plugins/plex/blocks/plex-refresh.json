@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "block.plex.refresh",
+  "id": "plex.refresh",
   "aliases": ["plex-refresh"],
   "version": "1.0.0",
   "name": "Plex : Actualiser",
@@ -21,7 +21,7 @@
     "domain": "integration",
     "icon": "fas fa-play-circle",
     "color": "#EAB308",
-    "suggestedNext": ["block.core.file-output"],
+    "suggestedNext": ["essentiel.file-output"],
     "fields": [
       {
         "name": "section_id",

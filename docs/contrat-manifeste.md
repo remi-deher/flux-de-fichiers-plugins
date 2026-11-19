@@ -45,7 +45,9 @@ sous `plugins/<nom>/blocks/`. Une dépendance de plugin vers une application por
 
 Compatibilité ascendante signifie donc qu'un nouveau lecteur lit l'ancien
 catalogue. Elle ne signifie pas qu'un ancien lecteur connaît les packs ou blocs. Le type
-historique `tool` est devenu `app` (ids `tool.*` → `app.*`, ancien `app.media` → `pack.media`).
+historique `tool` est devenu `app`. Depuis le catalogue 2.0.0, les identifiants ne portent plus
+de préfixe de type (`app.ffmpeg` → `ffmpeg`, `plugin.core` → `essentiel`, `pack.media` → `media`,
+`block.video.encode` → `video.encode`) ; seules les opérations gardent `operation.*`.
 Aucune migration des ressources ni nouvelle API applicative n'est livrée ici.
 
 ## Trois versions différentes
@@ -55,7 +57,7 @@ Aucune migration des ressources ni nouvelle API applicative n'est livrée ici.
 - `version` versionne le contenu d'un élément ; l'exemple vaut **0.0.0**, jamais
   une preuve de validation fonctionnelle. Une version publiée est immuable.
 - La version réelle du binaire apparaît dans `metadata.toolVersion`, indépendamment
-  de la version de fiche catalogue `app.mkvtoolnix@1.0.0`.
+  de la version de fiche catalogue `mkvtoolnix@1.0.0`.
 
 Le graphe, ses blocs, opérations et dépendances installées utilisent des versions
 **exactes** ; les plages des anciennes fiches restent des indications historiques.

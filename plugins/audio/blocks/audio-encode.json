@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "block.audio.encode",
+  "id": "audio.encode",
   "aliases": [
     "audio-encode"
   ],
@@ -34,11 +34,11 @@
     "icon": "fas fa-headphones",
     "color": "#4CAF50",
     "suggestedNext": [
-      "block.video.remux-mkv",
-      "block.metadata.mkvpropedit",
-      "block.sonarr.rescan",
-      "block.radarr.rescan",
-      "block.core.file-output"
+      "video.remux-mkv",
+      "video.mkvpropedit",
+      "sonarr.rescan",
+      "radarr.rescan",
+      "essentiel.file-output"
     ],
     "fields": [
       {

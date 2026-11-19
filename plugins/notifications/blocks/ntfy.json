@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "block.notifications.ntfy",
+  "id": "notifications.ntfy",
   "aliases": ["notify-ntfy"],
   "version": "1.0.0",
   "name": "Notification : Ntfy",
@@ -17,7 +17,7 @@
     "domain": "integration",
     "icon": "fas fa-bell",
     "color": "#14B8A6",
-    "suggestedNext": ["block.core.file-output"],
+    "suggestedNext": ["essentiel.file-output"],
     "fields": [
       { "name": "server_url", "label": "URL du serveur Ntfy", "type": "string", "default": "https://ntfy.sh", "required": true },
       { "name": "topic", "label": "Sujet (topic)", "type": "string", "required": true },

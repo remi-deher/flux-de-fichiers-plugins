@@ -3,7 +3,7 @@
   "id": "operation.notifications.apprise",
   "version": "1.0.0",
   "name": "Notification Apprise API",
-  "providerId": "plugin.notifications",
+  "providerId": "notifications",
   "providerKind": "plugin",
   "capability": "notification",
   "status": "validated",

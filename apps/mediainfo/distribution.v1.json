@@ -1,9 +1,10 @@
 {
   "schemaVersion": "1.0.0",
-  "toolId": "app.mediainfo",
+  "toolId": "mediainfo",
   "toolVersion": "1.0.0",
   "distributionMode": "autonomous-binary",
   "releaseStatus": "released",
+  "releasedAt": "2026-11-12",
   "artifacts": [
     {
       "arch": "x86_64",

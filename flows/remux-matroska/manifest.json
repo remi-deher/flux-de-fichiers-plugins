@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "id": "flow.default.mkv",
+  "id": "remux-matroska",
   "type": "flow",
   "version": "1.0.0",
   "name": "Conversion MKV",
@@ -50,7 +50,7 @@
   },
   "dependencies": [
     {
-      "id": "plugin.video",
+      "id": "video",
       "versionRange": "^1.0.0",
       "kind": "plugin"
     }
