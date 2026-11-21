@@ -1,12 +1,12 @@
 {
   "schemaVersion": "1.1.0",
   "id": "scripts.run",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "name": "Script",
-  "description": "Exécute un script personnalisé (existant ou saisi ici), avec branche Vrai / Faux.",
+  "description": "Exécute un script personnalisé (existant ou saisi ici), en sortie simple ou avec branche Vrai / Faux (nextPort ; par défaut ok → Vrai, skip → Faux).",
   "category": "data",
   "operationId": "operation.scripts.run",
-  "operationVersion": "1.0.0",
+  "operationVersion": "1.1.0",
   "sockets": {
     "inputs": [
       {
@@ -20,6 +20,18 @@
       {
         "id": "destination",
         "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "*/*"
+      },
+      {
+        "id": "true",
+        "label": "✓ Vrai",
+        "dataType": "file",
+        "mediaType": "*/*"
+      },
+      {
+        "id": "false",
+        "label": "✗ Faux",
         "dataType": "file",
         "mediaType": "*/*"
       }

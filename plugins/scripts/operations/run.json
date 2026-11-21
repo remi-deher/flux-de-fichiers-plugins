@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.1.0",
   "id": "operation.scripts.run",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "name": "Exécuter un script",
   "providerId": "scripts",
   "providerKind": "plugin",

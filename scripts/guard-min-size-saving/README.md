@@ -4,3 +4,5 @@ Script catalogue réutilisable (protocole `stdin`/`stdout` JSON) qui compare la 
 
 - **`true` (« Gain suffisant »)** : la réduction atteint au moins `min_saving_percent` %.
 - **`false` (« Gain insuffisant »)** : le fichier encodé n'économise pas assez d'espace (ou est plus lourd que la source). Si `restore_source_on_reject` est activé, le script remet `workingFile` sur `sourceFile` pour éviter d'écraser l'original avec un résultat moins bon.
+
+Compatible avec les schémas `1.0` et `1.1` du protocole (voir [le plugin Scripts](../../plugins/scripts/README.md)) : le champ `variables` reçu en entrée est ignoré.
