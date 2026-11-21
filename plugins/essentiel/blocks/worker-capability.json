@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "essentiel.worker-capability",
+  "aliases": ["worker-capability"],
+  "version": "1.0.0",
+  "name": "Capacité du worker",
+  "description": "Aiguille vers « Capable » ou « Incapable » selon les encodeurs matériels du worker qui exécute le flux.",
+  "category": "data",
+  "operationId": "operation.core.worker-capability",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "*/*"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "capable",
+        "label": "✓ Capable",
+        "dataType": "file",
+        "mediaType": "*/*"
+      },
+      {
+        "id": "incapable",
+        "label": "✗ Incapable",
+        "dataType": "file",
+        "mediaType": "*/*"
+      }
+    ]
+  },
+  "ui": {
+    "category": "Logique",
+    "domain": "logic",
+    "ports": [
+      { "id": "capable", "label": "✓ Capable" },
+      { "id": "incapable", "label": "✗ Incapable" }
+    ],
+    "icon": "fas fa-microchip",
+    "color": "#22C55E",
+    "suggestedNext": [
+      "video.encode",
+      "essentiel.relay",
+      "essentiel.file-output"
+    ],
+    "fields": [
+      {
+        "name": "codec",
+        "label": "Codec à encoder",
+        "type": "select",
+        "default": "h265",
+        "required": true,
+        "description": "Codec que le worker doit savoir encoder avec un accélérateur matériel.",
+        "options": [
+          { "label": "H.264", "value": "h264" },
+          { "label": "H.265 (HEVC)", "value": "h265" },
+          { "label": "AV1", "value": "av1" }
+        ]
+      },
+      {
+        "name": "acceleration",
+        "label": "Accélérateur",
+        "type": "select",
+        "default": "",
+        "required": false,
+        "description": "Imposer un accélérateur précis ; vide pour accepter n'importe lequel.",
+        "options": [
+          { "label": "Indifférent", "value": "" },
+          { "label": "NVIDIA NVENC", "value": "nvenc" },
+          { "label": "VA-API (Intel, AMD)", "value": "vaapi" }
+        ]
+      }
+    ]
+  }
+}

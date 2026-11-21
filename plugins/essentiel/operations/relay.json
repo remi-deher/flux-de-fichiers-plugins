@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.core.relay",
+  "version": "1.0.0",
+  "name": "Relais de la tâche vers un autre worker",
+  "providerId": "essentiel",
+  "providerKind": "plugin",
+  "capability": "control",
+  "status": "validated",
+  "runtime": {
+    "kind": "primitive",
+    "primitive": "relay",
+    "defaults": {
+      "mode": "capable",
+      "codec": "h265"
+    }
+  }
+}

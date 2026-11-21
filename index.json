@@ -37,7 +37,9 @@
     "plugins/essentiel/operations/condition.json": "f5fa7c699aa55ff47c6bc73ff387e00e6cb8902080de3f096b88ef70ea02d149",
     "plugins/essentiel/operations/file-input.json": "fb2120a8b119edb96838f50351d67448942e855e8cd147c8dc6b6c01be025792",
     "plugins/essentiel/operations/file-output.json": "f5ec36b5058ba1547cb221c20c2b2fa18609e916e1bf1ce6615091515c4d73d3",
+    "plugins/essentiel/operations/relay.json": "6516cd1296d5cba728bce3cdc84205acaad21b6dd54e9328c851dc2003f2821a",
     "plugins/essentiel/operations/webhook.json": "8c463c86297d1de6595a48dcf8264f662da1bae25c73765f7c638d9bcbbffee8",
+    "plugins/essentiel/operations/worker-capability.json": "d198086465ef9368d23554f16dc0338c4c6266f356eacf18b006b408d7722ba4",
     "plugins/hdr/operations/dv-profile-8.json": "caf6b51821ad557e307e6993db0b89313fb11d706045a4dd22bea1e9dbe92489",
     "plugins/hdr/operations/dv-reinject.json": "26f4591639a04d14cf8543c19afdde8c0ac7152be1b1bd8faafc95c8ffa8508a",
     "plugins/hdr/operations/hdr10plus-reinject.json": "c7b64d53fbd04545ad0580e50ea4b2598ef34faacd7f9c8d596373ca713ed7ee",
@@ -276,19 +278,21 @@
       "name": "Emby",
       "manifestPath": "plugins/emby/manifest.json",
       "capability": "integration",
-      "sha256": "37564448c478db641fd97ea5dd30a9c1c46759f901aca44d518dcad11421f088",
-      "contentSha256": "382f0f9b70228dd3ea04f6862901adc50158c5c0534874c8c7a7533c70f68230",
-      "updatedAt": "2026-11-19"
+      "category": "media",
+      "subcategory": "media-servers",
+      "sha256": "a89bcc16e3a7cfd8476b5d5e56e71a0d1678fbdbc862e829c4afda6fc8ae48f5",
+      "contentSha256": "2af210ae1b9c1f83611f403a2a96891056d1f3efa53473279816bd707bcf57d7",
+      "updatedAt": "2026-11-21"
     },
     {
       "id": "essentiel",
       "type": "plugin",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "name": "Essentiel",
       "manifestPath": "plugins/essentiel/manifest.json",
       "capability": "other",
-      "sha256": "4d81654d07fa3d745e88ed41881e0684439163a191de465ff7de7976cdbdde21",
-      "contentSha256": "7a27d96f92ee511e9e8c5b64593360613b896f67f879d1684025003c8708699b",
+      "sha256": "d8b3d09301de3c691b5c9221c65e9e49eaf02be2033ea7b31346cf46e32b3e25",
+      "contentSha256": "83dfede1674b9ef19f2a56faa58ae840f7fba10709489a869b942c591b43cb84",
       "updatedAt": "2026-11-19"
     },
     {
@@ -298,9 +302,11 @@
       "name": "Jellyfin",
       "manifestPath": "plugins/jellyfin/manifest.json",
       "capability": "integration",
-      "sha256": "e10ede813f525445f29b1b2cdb153fbb3399049d0b0043c101cb23a5aa5874d5",
-      "contentSha256": "ae7fb58936d54867a35693b2357b3c5472cc75625e90b9a7c00b8e27c6d2376a",
-      "updatedAt": "2026-11-19"
+      "category": "media",
+      "subcategory": "media-servers",
+      "sha256": "3ea4676b2de1b5784fa4f54c3bb3881978ff6ffa33a20cda6dc273ac8b0bf6e6",
+      "contentSha256": "aa766f9b8811837131430fa151d4e14f36ddd29708978663cfb2fb87aefddbd0",
+      "updatedAt": "2026-11-21"
     },
     {
       "id": "notifications",
@@ -309,9 +315,11 @@
       "name": "Notifications",
       "manifestPath": "plugins/notifications/manifest.json",
       "capability": "notification",
-      "sha256": "88f640a1ae4364ae7b372e49d7a1f768b2ae5d14d70b3952281327010a3c9b1a",
-      "contentSha256": "98a1a6291041625d4653b1d719bc5fdb7e12925f7f7ad538325384f2a47831c5",
-      "updatedAt": "2026-11-19"
+      "category": "io",
+      "subcategory": "notifications",
+      "sha256": "0672a42696bfbd1cc7d1a9859806ce83a3c36ebb020e8803fa0bd92e2bad8691",
+      "contentSha256": "118498312e9cb157b537be6bf870db480263d8af48acd5d129fc4a854ee015a4",
+      "updatedAt": "2026-11-21"
     },
     {
       "id": "plex",
@@ -320,9 +328,11 @@
       "name": "Plex",
       "manifestPath": "plugins/plex/manifest.json",
       "capability": "integration",
-      "sha256": "27141bc1e61bdf49e2be9938419a4a1b85ec497f1e9436b547201764d1dd5b1a",
-      "contentSha256": "3e309db896a27799669f4153d5d9bd223bd068d6e682caab99c6a6e88bd6ccf3",
-      "updatedAt": "2026-11-19"
+      "category": "media",
+      "subcategory": "media-servers",
+      "sha256": "16782693334d929154234a6826f075afcaf2bdb3f7d41bf6c9618e69537359e5",
+      "contentSha256": "fc3c577fa8214211e571cd22961f38c01331a081693ebb779382ee6c28a8c9cc",
+      "updatedAt": "2026-11-21"
     },
     {
       "id": "radarr",
@@ -331,9 +341,11 @@
       "name": "Radarr",
       "manifestPath": "plugins/radarr/manifest.json",
       "capability": "integration",
-      "sha256": "1e6d41c74952f3018558ad25bd5468f7cfea961f2d01cbafb4afa003d3376e69",
-      "contentSha256": "837dd8a87b629bb8eb25f4b687cda21bbe9e20bd0d05763de9f48835b59300a3",
-      "updatedAt": "2026-11-19"
+      "category": "media",
+      "subcategory": "media-managers",
+      "sha256": "e734938bda4b1672bc57f6eb411a8d675a3f65398183a66cd37a044fd15f02ca",
+      "contentSha256": "579c41fa41b47a0146a1e64ea8cc7cec6b9eb3b2c2dcf1a7fa805b2700157c0a",
+      "updatedAt": "2026-11-21"
     },
     {
       "id": "scripts",
@@ -354,9 +366,11 @@
       "name": "Sonarr",
       "manifestPath": "plugins/sonarr/manifest.json",
       "capability": "integration",
-      "sha256": "05d8d28d911fceafa6006d918e2dc63195e7f156976406cf0fa0620b2055a7ab",
-      "contentSha256": "0fb9023dfec323663ed4db44b7afaaf0f29b47adb980b3fec0b119ccd9894eb7",
-      "updatedAt": "2026-11-19"
+      "category": "media",
+      "subcategory": "media-managers",
+      "sha256": "a9b660f4dcba0396688898f66a11aa5cbb6b36422babe2b209d68acf52c90cf2",
+      "contentSha256": "8a1c3a0c6fa2efe1ef683fa7e7fc06d47cae9b5a64b43114433b73e456491fdb",
+      "updatedAt": "2026-11-21"
     },
     {
       "id": "sous-titres",
@@ -807,6 +821,28 @@
       "manifestPath": "scripts/route-by-hdr-format/blocks/run.json",
       "sha256": "51d06e1c7953f5c5714d68d3cdb144833b162090d87adc4fdfa44321b8e3b10d",
       "contentSha256": "638a04ca88d8eee83f58f997c6dc8334bb866778ea0319c8012a879d7aa74915",
+      "updatedAt": "2026-11-19"
+    },
+    {
+      "id": "essentiel.relay",
+      "type": "block",
+      "owner": "essentiel",
+      "version": "1.0.0",
+      "name": "Relayer la tâche",
+      "manifestPath": "plugins/essentiel/blocks/relay.json",
+      "sha256": "366ddec3ec6bad8b1ce45fa2f613eff8bb282d796c8c73170ff5515a7d974f5b",
+      "contentSha256": "971278bbc3135853b94835802854b1d9ed844a05b3bcc9387d8e0a1217c06c9b",
+      "updatedAt": "2026-11-19"
+    },
+    {
+      "id": "essentiel.worker-capability",
+      "type": "block",
+      "owner": "essentiel",
+      "version": "1.0.0",
+      "name": "Capacité du worker",
+      "manifestPath": "plugins/essentiel/blocks/worker-capability.json",
+      "sha256": "100bc48d6b2a3879a10a851f3bef9cd406ab8b72f678fab9100acf267d8c5af2",
+      "contentSha256": "755decdb5fddece63c544264c5a9e1158c2acaab1e83f859a478872cd90656b6",
       "updatedAt": "2026-11-19"
     },
     {

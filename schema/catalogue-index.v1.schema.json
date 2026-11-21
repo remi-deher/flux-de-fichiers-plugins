@@ -120,6 +120,13 @@
               "other"
             ]
           },
+          "subcategory": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+            "description": "Sous-catégorie officielle de Forgearr (registre versionné côté Forgearr). Exige `category` ; une valeur inconnue du registre est ignorée par Forgearr sans erreur."
+          },
           "tags": {
             "type": "array",
             "items": {

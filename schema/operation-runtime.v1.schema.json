@@ -92,7 +92,9 @@
           "enum": [
             "entry",
             "terminal",
-            "condition"
+            "condition",
+            "capability",
+            "relay"
           ]
         },
         "defaults": {

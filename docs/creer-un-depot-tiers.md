@@ -59,6 +59,23 @@ votre dépôt :
 - Dans `operations/*.json` → `runtime.tool.id` : référencez `"ffmpeg"`.
 - Dans `blocks/*.json` → `ui.suggestedNext` : référencez `"essentiel.file-output"`.
 
+### Classer son plugin : `category` et `subcategory`
+
+Le catalogue de Forgearr regroupe les plugins par **sous-catégorie**. Ce vocabulaire appartient à
+Forgearr (registre officiel versionné, [ADR 0023](https://github.com/remi-deher/flux-de-fichiers/blob/dev/docs/adr/0023-taxonomie-officielle-des-sous-categories-de-plugins.md)) :
+un dépôt **référence** un identifiant, il ne peut ni en créer ni fournir de libellé.
+
+```json
+{ "category": "media", "subcategory": "media-servers" }
+```
+
+- `subcategory` exige `category` et doit être rattachée à cette catégorie dans le registre.
+- Identifiants actuels : `media-servers` et `media-managers` (catégorie `media`), `notifications` (catégorie `io`).
+- Une valeur inconnue, mal formée ou rattachée à une autre catégorie **n'invalide pas le plugin** : il reste
+  simplement sous sa catégorie, et l'écran du dépôt dans Forgearr signale l'avertissement.
+- Il manque une famille ? Proposez-la par une PR sur le registre `subcategories.v1.json` du dépôt Forgearr.
+- Le hors-registre (mots libres) va dans `tags`, pas dans `subcategory`.
+
 ## 5. Valider son dépôt en local et en CI
 
 Générez ou vérifiez votre index et ses empreintes SHA-256 :

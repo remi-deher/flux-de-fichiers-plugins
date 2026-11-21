@@ -350,6 +350,8 @@ class CatalogueChecker:
                 continue
             ident, kind = entry.get("id"), entry.get("type")
             raw_manifest = entry.get("manifestPath")
+            if entry.get("subcategory") and not entry.get("category"):
+                self.fail(f"{ident} : subcategory exige une category dans le manifeste")
             if not is_safe_relative(raw_manifest):
                 self.fail(f"{ident} : manifestPath invalide ({raw_manifest!r})")
                 continue

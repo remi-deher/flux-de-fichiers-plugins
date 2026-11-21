@@ -120,6 +120,8 @@ def _build_manifest_entry(
 
     if manifest.get("category") and kind != "block":
         entry["category"] = manifest["category"]
+    if manifest.get("subcategory") and kind != "block":
+        entry["subcategory"] = manifest["subcategory"]
     if manifest.get("tags"):
         entry["tags"] = manifest["tags"]
     entry["sha256"] = sha256_file(manifest_path)

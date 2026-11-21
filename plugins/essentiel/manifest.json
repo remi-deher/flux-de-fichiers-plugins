@@ -2,9 +2,9 @@
   "schemaVersion": "1.1.0",
   "id": "essentiel",
   "type": "plugin",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "name": "Essentiel",
-  "description": "Blocs essentiels : entrée, sortie, conditions et notifications.",
+  "description": "Blocs essentiels : entrée, sortie, conditions, notifications et placement des tâches.",
   "author": "Forgearr",
   "license": "GPL-2.0-or-later",
   "capability": "other",
@@ -51,6 +51,26 @@
     },
     {
       "path": "operations/file-output.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "blocks/worker-capability.json",
+      "role": "block",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "blocks/relay.json",
+      "role": "block",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/worker-capability.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "operations/relay.json",
       "role": "operation",
       "mediaType": "application/json"
     }
