@@ -24,6 +24,10 @@ technique pour la communauté.
    ```
 4. Ouvrez une Pull Request vers `dev` (ne modifiez jamais `index.json` à la main sans
    relancer `build_index.py`).
+5. Après la fusion de `dev` dans `main`, la **Release du catalogue se publie automatiquement**
+   quand le catalogue a changé (`auto-release.yml`) : la version suit vos commits conventionnels
+   (`feat:` mineure, `fix:` correctif, `feat!:` majeure). Voir
+   [docs/releases-immuables.md](docs/releases-immuables.md).
 
 ## Conventions de structure
 

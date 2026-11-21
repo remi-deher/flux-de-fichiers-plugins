@@ -35,6 +35,23 @@ et tiers) garantissent qu'une version publiée ne peut jamais être altérée si
   `release-catalogue.yml` injecte `releaseVersion` via `--release-version` et contrôle le tout
   avec `check_catalogue.py --strict-immutable`.
 
+### Release automatique du dépôt officiel
+
+Après chaque fusion dans `main`, `auto-release.yml` publie la Release du catalogue sans action
+manuelle :
+
+1. `scripts/plan_release.py` lit les tags `catalogue-vX.Y.Z` et les commits conventionnels qui
+   modifient le catalogue (`plugins/`, `apps/`, `flows/`, `packs/`, `schema/`, `index.json`)
+   depuis la dernière release. `feat` donne une version mineure, `fix` et le reste un correctif,
+   `!` ou `BREAKING CHANGE` une version majeure ; la plus haute l'emporte.
+2. Si le catalogue n'a pas changé depuis la dernière release (documentation, scripts, modèles), ou
+   si le commit porte déjà un tag, **rien n'est publié** : une release est immuable.
+3. Sinon `release-catalogue.yml` est appelé avec la version calculée : mêmes contrôles
+   `--strict-immutable`, rien n'est publié s'ils échouent.
+
+La publication manuelle (déclenchement du workflow ou tag `catalogue-vX.Y.Z`) reste possible, par
+exemple pour forcer un numéro de version. Un dépôt tiers peut reprendre le même mécanisme.
+
 ## 3. Activer pour un dépôt tiers
 
 Copiez [templates/depot-tiers/.github/workflows/release-catalogue.yml](../templates/depot-tiers/.github/workflows/release-catalogue.yml)

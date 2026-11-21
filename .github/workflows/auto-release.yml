@@ -1,0 +1,46 @@
+# Release automatique du catalogue officiel : après chaque fusion dans `main`, calcule la prochaine
+# version (scripts/plan_release.py : commits conventionnels depuis la dernière release) et publie la
+# Release immuable avec release-catalogue.yml. Rien n'est publié si le catalogue n'a pas changé
+# depuis la dernière release. La publication reste possible à la main (release-catalogue.yml).
+#
+# La publication est appelée directement (et non par un tag) : un tag créé avec le jeton du workflow
+# ne déclencherait aucun autre workflow.
+name: auto-release
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: auto-release
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  plan:
+    name: version du catalogue
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.plan.outputs.version }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - id: plan
+        name: Calculer la prochaine version
+        run: python3 scripts/plan_release.py --github-output "$GITHUB_OUTPUT"
+
+  release:
+    name: release du catalogue
+    needs: plan
+    if: needs.plan.outputs.version != ''
+    permissions:
+      contents: write
+    uses: ./.github/workflows/release-catalogue.yml
+    with:
+      version: ${{ needs.plan.outputs.version }}
