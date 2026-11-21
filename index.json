@@ -30,36 +30,49 @@
     "packs/media/installation.json": "8c1ed54633d04701b75b38ddd9712f655426a33a37be567f5d72aa4e19ea0d85",
     "packs/subtitles-pro/installation.json": "cc7433999320dc9e6124cdd32005a54cc7f6e082cd0f02ce210dc0d97060e26e",
     "packs/vmaf-av1/installation.json": "a7c69e1e67f9c7f684bdc1068317916e834d86b4c6cc88809cda240564e0bcc8",
+    "plugins/archives/icon.svg": "d9677a4e1a25dc19b9d41c83a3f3dc014056efb201bd768340faa56dc0e6d09c",
     "plugins/archives/operations/extract.json": "3e8d014fd2caf842b4eaff54acc915f89f6a16bde24192300ec77b9b50f168d6",
     "plugins/archives/scripts/archives.py": "6ebfe8261b04a847a55052ca5a86c54b8b0ff531a83ecaaa2ba1bd8529664b55",
+    "plugins/audio/icon.svg": "acbd0062ee2f9915789141b71f40d3fcd9895ccf19a4626a663f9dc46ecd7ad4",
     "plugins/audio/operations/audio-encode.json": "2efdf9c8ceff442d9ecd19c0401c2faf59eb758ac6315fb20fb7e3f641675043",
+    "plugins/emby/icon.svg": "5d538c8fa37f421e8638a57be6dc391787f25c1ad1a262b68c34ab050c747efc",
     "plugins/emby/operations/refresh.json": "182b168df40183b4dc518ded1d4a21fdb1ddb67aaa1ab91f3086484ff33a20b5",
+    "plugins/essentiel/icon.svg": "12618b75c92f467b2797af75f29e136dc09e5c69d636036e419b255848ae6341",
     "plugins/essentiel/operations/condition.json": "f5fa7c699aa55ff47c6bc73ff387e00e6cb8902080de3f096b88ef70ea02d149",
     "plugins/essentiel/operations/file-input.json": "fb2120a8b119edb96838f50351d67448942e855e8cd147c8dc6b6c01be025792",
     "plugins/essentiel/operations/file-output.json": "f5ec36b5058ba1547cb221c20c2b2fa18609e916e1bf1ce6615091515c4d73d3",
     "plugins/essentiel/operations/relay.json": "6516cd1296d5cba728bce3cdc84205acaad21b6dd54e9328c851dc2003f2821a",
     "plugins/essentiel/operations/webhook.json": "8c463c86297d1de6595a48dcf8264f662da1bae25c73765f7c638d9bcbbffee8",
     "plugins/essentiel/operations/worker-capability.json": "d198086465ef9368d23554f16dc0338c4c6266f356eacf18b006b408d7722ba4",
+    "plugins/hdr/icon.svg": "2f0d3a6d1a0cde7afbcc5bba9fe740dccc400dd61682aba850d97ded84381651",
     "plugins/hdr/operations/dv-profile-8.json": "caf6b51821ad557e307e6993db0b89313fb11d706045a4dd22bea1e9dbe92489",
     "plugins/hdr/operations/dv-reinject.json": "26f4591639a04d14cf8543c19afdde8c0ac7152be1b1bd8faafc95c8ffa8508a",
     "plugins/hdr/operations/hdr10plus-reinject.json": "c7b64d53fbd04545ad0580e50ea4b2598ef34faacd7f9c8d596373ca713ed7ee",
     "plugins/hdr/scripts/hdr.py": "b7347e76a2008c46f7920590d1f506c0a6afd2e376b97f8bac62d2d3ed401519",
+    "plugins/jellyfin/icon.svg": "63f42fea2b4fdf44283a1e2ac1d1ca15a1b9971af3ca1de360dcbdeb23a3f55c",
     "plugins/jellyfin/operations/refresh.json": "f35b32debaff03e92120e7ed9337f9608045654e1a9aa2444a6964b36111498d",
+    "plugins/notifications/icon.svg": "35eae5f72f0572b1cc20af28ba6ed4d29cdc1417d164a2e72e0316509240ff40",
     "plugins/notifications/operations/apprise.json": "25d655a0a2f902550ad231dc64c44f8c50e633d0924a46a5c7125005fc071ee5",
     "plugins/notifications/operations/discord.json": "9d75822465d93ab6f19a3735824baadb191b251bdc5aa7ba951ae43a780f577f",
     "plugins/notifications/operations/gotify.json": "ad62abc80166ea736e91dfea82cfbd8581016a9c4f9b49029bb57b5497401ada",
     "plugins/notifications/operations/ntfy.json": "3a14ad09e058669de46d65f5fdc7daa450cf1994fa6e381f821ad80dc0b1de04",
+    "plugins/plex/icon.svg": "40e11b59c6ebaeaac2ea056b0da4c0f192a05568c48f1fa6b80b056f265fd6c2",
     "plugins/plex/operations/refresh.json": "f28f44564f669a93fa8af21b2c35a9f0675cb90a9409861063e8ab9ebfc33f4e",
+    "plugins/radarr/icon.svg": "e2ccf00a0b7f79fef51633ffe3c52c3ac71aac1cbcce9bfe523f4e70af09c396",
     "plugins/radarr/operations/rename.json": "231aa65d7d72966184cfe39f866a7a3b680e10c2445a1d2d78a6f918368b113e",
     "plugins/radarr/operations/rescan.json": "d13ba0b8fa0ac1e6958643b414b73b22d7dcaf185cccfe0b6ee66acfef0e09ac",
+    "plugins/scripts/icon.svg": "ecbb11184174aaadba060479dcfaf7a7b913b494c3c2e0de4a02203d36bc609d",
     "plugins/scripts/operations/run.json": "4f0949d9e5fa38c565978222a4c8e304f5c8a6702351d3cd4cf36b5cfcea5b2a",
+    "plugins/sonarr/icon.svg": "661d37f027ac4848d1761ddb86893d3af33b6454f7378c626c576fb4cacf3d49",
     "plugins/sonarr/operations/rename.json": "38184599e1baf2f23ee07af4f351f20d1715468434732e5f1dc4f54636ca1815",
     "plugins/sonarr/operations/rescan.json": "6dabf5aa2bfb4e140276bf5c10febc76f5aedf3b150f792f77a0469f203611be",
+    "plugins/sous-titres/icon.svg": "5aa67dc5152d9936cf88668560a96110d793b6fddb8f8fd887f5d2d2380cf099",
     "plugins/sous-titres/operations/ocr.json": "938d897d5409f722a299ae59b3af6d7ccfbe097e5b3bbec6f8c33ad42f56a501",
     "plugins/sous-titres/operations/subtitles-clean.json": "bf9080f1e8e34ac05fa3ddfff5f206058afef1389365d176d4a785c7dd921e0e",
     "plugins/sous-titres/operations/subtitles-flags.json": "37b8a3ceb82e5578fd2838e6bd01ab5a0a431f10fcaa69f5311be9bb718b3183",
     "plugins/sous-titres/operations/sync.json": "773ea2a67a7f8462d949ee7a4532bf681a6dca52c2986b2faf0385b2b7335396",
     "plugins/sous-titres/scripts/sous_titres.py": "4eb1edb1565c4678895aa68e4a28ff2d876285fbab44fb34273af68b32670956",
+    "plugins/video/icon.svg": "34ccedc640318872211aec81153b810e3c24acedc8c523b4614e5c0abd3a62e3",
     "plugins/video/operations/media-inspect.json": "9276ac96bbbf903504f8f0ef56e33253aecea9f50d7ab23ae5bb6a2c6521a365",
     "plugins/video/operations/mkvmerge-probe.json": "f74c03643b2657f3f4daed529de3cf64b0e338ea12cdb34b4f7c6112ddf713d7",
     "plugins/video/operations/mkvpropedit.json": "0183d695c83aaa2ba3ab4ba85974584e10f33a45ea24a94a0f1d7b671f26c65c",
@@ -67,6 +80,7 @@
     "plugins/video/operations/remux-mp4.json": "67722869abf31915515d1351ace77d29f278eb5f95d82af387fb74465f40c311",
     "plugins/video/operations/tags-mp4.json": "a6e95e2bc66a7a19868370667f7a612e38e3b9c0608833b8b847d44dbadf8b39",
     "plugins/video/operations/video-encode.json": "8620fba3fe9e1197447dc0eb460b1d8400b668a1b5a78abff35f20d0884c7225",
+    "plugins/vmaf/icon.svg": "691e44b3ce58c75cc70e50473b59b709140a58d13c861e88eff75ed2e24a91e8",
     "plugins/vmaf/operations/measure.json": "520c41a7a4a2bc679bb5bb235d51067c46782cc9787c2d2e4bde4baa0f26f730",
     "plugins/vmaf/operations/target-encode.json": "c1b3d663cf774e562f63e62ae266b75222c59748a4c4183d609b1c1db0f1d733",
     "plugins/vmaf/scripts/vmaf.py": "f214aad456fd8097b30d03de4a518b3a01abf2724b5b7240f9bd9123a44b6f8a",
@@ -269,8 +283,8 @@
       "capability": "audio",
       "category": "media",
       "subcategory": "media-encoding",
-      "sha256": "b7e784f9bfa3ce30931e855770333a2a37c2a88381a69b0230b5617274a81f69",
-      "contentSha256": "bbfcc3307cfe824721e1f1ef82366cbefc50a892966f95e8020ebdcb2ab32ea5",
+      "sha256": "5c030d2ff4e09a439d505249af03e83a52efda7990d9a7b55740121cf4002ba9",
+      "contentSha256": "eab2e731f818f7da73dd4533b2fdc3c0b69e07bef434bc348da389de6ade1822",
       "updatedAt": "2026-11-21"
     },
     {
@@ -282,8 +296,8 @@
       "capability": "integration",
       "category": "media",
       "subcategory": "media-servers",
-      "sha256": "a89bcc16e3a7cfd8476b5d5e56e71a0d1678fbdbc862e829c4afda6fc8ae48f5",
-      "contentSha256": "2af210ae1b9c1f83611f403a2a96891056d1f3efa53473279816bd707bcf57d7",
+      "sha256": "3cc085dff2378c63f0432ef490203c3b0fef625169bc09e2d51ba62586ae87c6",
+      "contentSha256": "bb8132fe22dbdfd89600e367b5e2072066155ad545573ba02d9b32439c97e58f",
       "updatedAt": "2026-11-21"
     },
     {
@@ -293,9 +307,11 @@
       "name": "Essentiel",
       "manifestPath": "plugins/essentiel/manifest.json",
       "capability": "other",
-      "sha256": "d8b3d09301de3c691b5c9221c65e9e49eaf02be2033ea7b31346cf46e32b3e25",
-      "contentSha256": "83dfede1674b9ef19f2a56faa58ae840f7fba10709489a869b942c591b43cb84",
-      "updatedAt": "2026-11-19"
+      "category": "other",
+      "subcategory": "core-blocks",
+      "sha256": "2a9d0ab0fb5f2ec9fb2106517561fa7fa96ea3a5c3632095f65cdda07ff78a46",
+      "contentSha256": "644fa5d9aa02e5f0887c6106d7464ec13c3b357481985d35517516937bd90e91",
+      "updatedAt": "2026-11-21"
     },
     {
       "id": "jellyfin",
@@ -306,8 +322,8 @@
       "capability": "integration",
       "category": "media",
       "subcategory": "media-servers",
-      "sha256": "3ea4676b2de1b5784fa4f54c3bb3881978ff6ffa33a20cda6dc273ac8b0bf6e6",
-      "contentSha256": "aa766f9b8811837131430fa151d4e14f36ddd29708978663cfb2fb87aefddbd0",
+      "sha256": "b9e37918c058a1282924a9abea39be3b1891f38f2a5ec5c4d25dfa360f09d56c",
+      "contentSha256": "fd16c009d25733464521499e4e00e3d3b27c824e58f2e3b3bb20ef6020936c72",
       "updatedAt": "2026-11-21"
     },
     {
@@ -319,8 +335,8 @@
       "capability": "notification",
       "category": "io",
       "subcategory": "notifications",
-      "sha256": "0672a42696bfbd1cc7d1a9859806ce83a3c36ebb020e8803fa0bd92e2bad8691",
-      "contentSha256": "118498312e9cb157b537be6bf870db480263d8af48acd5d129fc4a854ee015a4",
+      "sha256": "24f92646a368ebad86a743482d1a4a8c8fd0ce174b4ca096cb2b72bbf9922261",
+      "contentSha256": "18bf613e1940bc0e0b8f6156817caa977cfdf3bfe960a43226b5072f6816dec4",
       "updatedAt": "2026-11-21"
     },
     {
@@ -332,8 +348,8 @@
       "capability": "integration",
       "category": "media",
       "subcategory": "media-servers",
-      "sha256": "16782693334d929154234a6826f075afcaf2bdb3f7d41bf6c9618e69537359e5",
-      "contentSha256": "fc3c577fa8214211e571cd22961f38c01331a081693ebb779382ee6c28a8c9cc",
+      "sha256": "ee3107498b61145d24b01b9627b229a8dd26a76f416d4c46ec7afdd5688852b2",
+      "contentSha256": "334c1ac629aa61114a598bab268420277e476c4df923461a08035b358b323a91",
       "updatedAt": "2026-11-21"
     },
     {
@@ -345,8 +361,8 @@
       "capability": "integration",
       "category": "media",
       "subcategory": "media-managers",
-      "sha256": "e734938bda4b1672bc57f6eb411a8d675a3f65398183a66cd37a044fd15f02ca",
-      "contentSha256": "579c41fa41b47a0146a1e64ea8cc7cec6b9eb3b2c2dcf1a7fa805b2700157c0a",
+      "sha256": "24e5bc65c26bd02057f6ad62e95cbed5f959e52fe67d77419836490443a3af8d",
+      "contentSha256": "50cbfdc264a55dee548c1680f284284fa375129fb1508ec5579a83e4e7eeb406",
       "updatedAt": "2026-11-21"
     },
     {
@@ -357,9 +373,10 @@
       "manifestPath": "plugins/scripts/manifest.json",
       "capability": "script",
       "category": "data",
-      "sha256": "6637141c1dda4f7fc84a992aa95a08f2239071110c1f7315b4f072fde2d6fd81",
-      "contentSha256": "188568cfb346539986aa52c1e533cd3d35ebae0d0339864ec557c9b399e0ba26",
-      "updatedAt": "2026-11-19"
+      "subcategory": "scripting",
+      "sha256": "6b07fc9be955cb1794ddc18c67b651606855da7eafac77d6c47a2d81d9e6c776",
+      "contentSha256": "6afcc578ab398242b52bd8670c0cc9d617d91e50876ae120c1706b255bce5eac",
+      "updatedAt": "2026-11-21"
     },
     {
       "id": "sonarr",
@@ -370,8 +387,8 @@
       "capability": "integration",
       "category": "media",
       "subcategory": "media-managers",
-      "sha256": "a9b660f4dcba0396688898f66a11aa5cbb6b36422babe2b209d68acf52c90cf2",
-      "contentSha256": "8a1c3a0c6fa2efe1ef683fa7e7fc06d47cae9b5a64b43114433b73e456491fdb",
+      "sha256": "361c3bb1242eb938fcc4de9adc47388d6e0f62099f4f8a5685174a9fb0f6dc44",
+      "contentSha256": "c194d04c1b4b36403c5ea1522d753015563e8e4dd6b003f68b5a8881590e174c",
       "updatedAt": "2026-11-21"
     },
     {
@@ -383,8 +400,8 @@
       "capability": "other",
       "category": "media",
       "subcategory": "media-subtitles",
-      "sha256": "1b5c25faad52ad8213bd94b2e546ee61f9f67529945223fa3cf9efba60cf4f42",
-      "contentSha256": "2fbca5d23ab82ff3b681cc4e25e587838e597cfb606a2d86c65ea690e543ffa8",
+      "sha256": "2f714aef2babe3679141e83340acaa4ef2acb84a8ec1a30beea9446a3102fe40",
+      "contentSha256": "c681a6836b2485a88e7275b1dd4fc4246efbbc9cd2751849aaa68ca88b7d9633",
       "updatedAt": "2026-11-21"
     },
     {
@@ -396,8 +413,8 @@
       "capability": "video",
       "category": "media",
       "subcategory": "media-encoding",
-      "sha256": "a988012053dd324816e127c6cb88d96c8f031425a3b8fc4ad47694036503d090",
-      "contentSha256": "347279c530ba04a4c26f8b65d097b108294d8397ef7960e1fdfacc7e9466ce43",
+      "sha256": "7b5365a3cdde1ba44e4c71ce50c67aa60991cc60e59b07e0150f6f2ee9721fce",
+      "contentSha256": "10f9ba1e7e1062d471de018fe93927f9d19c0da95e57da1c617c003206b2d590",
       "updatedAt": "2026-11-21"
     },
     {
@@ -407,9 +424,11 @@
       "name": "Archives",
       "manifestPath": "plugins/archives/manifest.json",
       "capability": "archive",
-      "sha256": "609edf48006cab49339b4a4872f7edf9251db9d42c369db3efcdbfa4c8f1a0bb",
-      "contentSha256": "1862a5accbf63866498230816cb6504d2df6e709dce757547d6ab37807b30ad6",
-      "updatedAt": "2026-11-19"
+      "category": "io",
+      "subcategory": "archives",
+      "sha256": "df53d14887835d1228a57d3e4765b64ae4cf8609640e7100b53ca437f93e9664",
+      "contentSha256": "4c7c88c8bfbe1367bfd82f0f99fb65230028929b9c2dc8bfd99fed19373634ad",
+      "updatedAt": "2026-11-21"
     },
     {
       "id": "hdr",
@@ -420,8 +439,8 @@
       "capability": "hdr",
       "category": "media",
       "subcategory": "media-encoding",
-      "sha256": "f23b91b3a378d90087b642568146685a1a99d8c53a4f108f218795a5938179f3",
-      "contentSha256": "7dc3ecd8375108405323097bcf0b43fd7e7718ad906a21e0d92a462d180027c6",
+      "sha256": "d95382669be879728d49334cbac5a67488eb2691dc898f26a3c682fcaef74a52",
+      "contentSha256": "d35a56d43d5c85cd784caed49ed7f9e4dfc428df463ad9ea90df77ac2b44ab0a",
       "updatedAt": "2026-11-21"
     },
     {
@@ -433,8 +452,8 @@
       "capability": "quality",
       "category": "media",
       "subcategory": "media-encoding",
-      "sha256": "ee6848649accdcc9e23ab482c6c3d7d0cc42ce9058e57d386e1d0e862cfc44a4",
-      "contentSha256": "b3bffb6593c29d6c64135b1a62271503f4e56da71f455af6e50b8c64e85359a2",
+      "sha256": "7bb7dc7df1c4aae339607847e293e7fd71d7e8dbd945e0fafdc22eddad35e084",
+      "contentSha256": "17c1ecf7fa9b971df28f0f924cf6c9e91f790da744ae55a77aa7039a876fb730",
       "updatedAt": "2026-11-21"
     },
     {

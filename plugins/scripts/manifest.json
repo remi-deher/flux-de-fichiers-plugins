@@ -8,7 +8,9 @@
   "author": "Forgearr",
   "license": "GPL-3.0-or-later",
   "category": "data",
+  "subcategory": "scripting",
   "capability": "script",
+  "icon": "icon.svg",
   "files": [
     {
       "path": "README.md",

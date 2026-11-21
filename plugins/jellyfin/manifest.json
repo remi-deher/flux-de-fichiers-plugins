@@ -10,6 +10,7 @@
   "capability": "integration",
   "category": "media",
   "subcategory": "media-servers",
+  "icon": "icon.svg",
   "files": [
     { "path": "README.md", "role": "docs", "mediaType": "text/markdown" },
     { "path": "blocks/jellyfin-refresh.json", "role": "block", "mediaType": "application/json" },

@@ -8,6 +8,9 @@
   "author": "Forgearr",
   "license": "GPL-3.0-or-later",
   "capability": "archive",
+  "category": "io",
+  "subcategory": "archives",
+  "icon": "icon.svg",
   "files": [
     {
       "path": "README.md",

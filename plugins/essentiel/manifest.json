@@ -8,6 +8,9 @@
   "author": "Forgearr",
   "license": "GPL-2.0-or-later",
   "capability": "other",
+  "category": "other",
+  "subcategory": "core-blocks",
+  "icon": "icon.svg",
   "files": [
     {
       "path": "README.md",

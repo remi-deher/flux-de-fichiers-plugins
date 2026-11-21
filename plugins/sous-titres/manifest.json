@@ -10,6 +10,7 @@
   "capability": "other",
   "category": "media",
   "subcategory": "media-subtitles",
+  "icon": "icon.svg",
   "files": [
     {
       "path": "README.md",

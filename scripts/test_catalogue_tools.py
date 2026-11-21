@@ -13,6 +13,7 @@ if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 
 import build_index  # noqa: E402
+import catalogue_lib  # noqa: E402
 import check_catalogue  # noqa: E402
 import scaffold  # noqa: E402
 
@@ -354,6 +355,103 @@ class CatalogueToolsTests(unittest.TestCase):
             set_labels(category=None, subcategory="media-servers")
             errs = check()
             self.assertTrue(any("subcategory exige une category" in e for e in errs), errs)
+
+    def test_svg_icon_rules_accept_drawings_and_reject_active_content(self) -> None:
+        namespace = 'xmlns="http://www.w3.org/2000/svg"'
+        good = f'<svg {namespace} viewBox="0 0 24 24" fill="none" stroke="currentColor"><g><path d="M4 4h16v16H4z"/></g></svg>'
+        self.assertEqual(catalogue_lib.svg_icon_problems(good), [])
+        hostile = [
+            f"<svg {namespace}><script>alert(1)</script></svg>",
+            f'<svg {namespace} onload="alert(1)"/>',
+            f'<svg {namespace}><path d="M0 0" onclick="x"/></svg>',
+            f'<svg {namespace}><use href="#a"/></svg>',
+            f'<svg {namespace}><image href="https://x.test/a.png"/></svg>',
+            f"<svg {namespace}><foreignObject/></svg>",
+            f'<svg {namespace} style="fill:red"/>',
+            f"<svg {namespace}><style>*{{fill:red}}</style></svg>",
+            f'<svg {namespace}><path d="M0 0" fill="url(https://x.test/p)"/></svg>',
+            f'<svg {namespace}><path d="M0 0" fill="javascript:alert(1)"/></svg>',
+            f"<svg {namespace}>texte</svg>",
+            f"<svg {namespace}><svg/></svg>",
+            f"<!DOCTYPE svg><svg {namespace}/>",
+            f"<svg {namespace}><!-- commentaire --></svg>",
+            '<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg"/>',
+            '<svg viewBox="0 0 8 8"/>',
+            '<svg xmlns="http://evil.test/ns"/>',
+            "<svg",
+            "",
+        ]
+        for svg in hostile:
+            self.assertTrue(catalogue_lib.svg_icon_problems(svg), svg)
+        oversized = f"<svg {namespace}/>" + " " * catalogue_lib.MAX_ICON_BYTES
+        self.assertTrue(catalogue_lib.svg_icon_problems(oversized))
+
+    def test_icons_are_hashed_checked_and_must_be_safe(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = Path(tmp) / "icons-repo"
+            common = ["--root", str(repo), "--namespace", "com.dave"]
+            scaffold.main([*common, "init-repo", "--name", "Dave"])
+            scaffold.main(
+                [
+                    *common,
+                    "plugin",
+                    "demo",
+                    "--name",
+                    "Demo",
+                    "--kind",
+                    "binary",
+                    "--tool-id",
+                    "ffmpeg",
+                    "--executable",
+                    "ffmpeg",
+                ]
+            )
+            manifest_path = repo / "plugins" / "demo" / "manifest.json"
+            icon_path = manifest_path.parent / "icon.svg"
+            good = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/></svg>'
+
+            def declare(icon: str | None) -> None:
+                manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+                if icon is None:
+                    manifest.pop("icon", None)
+                else:
+                    manifest["icon"] = icon
+                manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+            def check() -> list[str]:
+                build_index.main(["--root", str(repo)])
+                checker = check_catalogue.CatalogueChecker(
+                    repo, REPO_ROOT / "schema", [REPO_ROOT / "index.json"], False, False
+                )
+                return checker.run()
+
+            # 1. Icône valide : acceptée et son empreinte entre dans filesSha256
+            icon_path.write_text(good, encoding="utf-8")
+            declare("icon.svg")
+            self.assertEqual(check(), [])
+            index = json.loads((repo / "index.json").read_text(encoding="utf-8"))
+            self.assertIn("plugins/demo/icon.svg", index["filesSha256"])
+
+            # 2. Contenu actif refusé
+            icon_path.write_text(good.replace("<path", '<path onclick="x"'), encoding="utf-8")
+            errors = check()
+            self.assertTrue(any("icône icon.svg refusée" in e for e in errors), errors)
+
+            # 3. Icône absente, chemin qui sort du dossier, extension autre que .svg
+            icon_path.write_text(good, encoding="utf-8")
+            declare("absente.svg")
+            errors = check()
+            self.assertTrue(any("icône absente" in e for e in errors), errors)
+            for unsafe in ("../icon.svg", "/etc/icon.svg", "icon.png"):
+                declare(unsafe)
+                errors = check()
+                self.assertTrue(any("icon" in e for e in errors), (unsafe, errors))
+
+            # 4. Fichier trop lourd
+            declare("icon.svg")
+            icon_path.write_text(good + " " * catalogue_lib.MAX_ICON_BYTES, encoding="utf-8")
+            errors = check()
+            self.assertTrue(any("trop lourde" in e for e in errors), errors)
 
     def test_updated_at_follows_content_changes_only(self) -> None:
         day_one, day_two = "1767225600", "1767312000"  # 2026-01-01 et 2026-01-02 (UTC)

@@ -10,6 +10,7 @@
   "capability": "integration",
   "category": "media",
   "subcategory": "media-managers",
+  "icon": "icon.svg",
   "files": [
     {
       "path": "README.md",
