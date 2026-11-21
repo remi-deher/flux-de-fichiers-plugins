@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.script.route-by-video-codec",
+  "version": "1.0.0",
+  "name": "Routage : codec vidéo",
+  "providerId": "route-by-video-codec",
+  "providerKind": "script",
+  "capability": "script",
+  "status": "validated",
+  "runtime": {
+    "kind": "script",
+    "tool": {
+      "id": "interpreteurs",
+      "version": "1.1.0"
+    },
+    "interpreter": "python3",
+    "entrypoint": "run.py",
+    "timeoutSeconds": 30,
+    "variables": [
+      {
+        "name": "codec",
+        "label": "Codec à tester",
+        "description": "Codec vidéo du fichier ; par défaut, la variable exposée par MediaInfo.",
+        "type": "text",
+        "required": true,
+        "default": "{{mediainfo.video.codec}}"
+      },
+      {
+        "name": "expected",
+        "label": "Codec attendu",
+        "description": "La branche « Codec attendu » est suivie quand le codec correspond.",
+        "type": "choice",
+        "required": true,
+        "options": ["HEVC", "AVC", "AV1", "VP9"],
+        "default": "HEVC"
+      }
+    ],
+    "requires": [
+      {
+        "variable": "mediainfo.video.codec",
+        "provider": "video",
+        "contractMajor": 1
+      }
+    ]
+  }
+}

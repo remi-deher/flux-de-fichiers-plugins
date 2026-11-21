@@ -96,6 +96,9 @@ Un script déclare, dans `runtime.requires` de son opération, les variables exp
 - `dependenciesUnverified: true` intègre le script sans ses dépendances : elles ne sont ni contrôlées
   ni installées et les valeurs se saisissent à la main.
 
+Exemple officiel complet : [`scripts/route-by-video-codec`](../scripts/route-by-video-codec/README.md)
+(variable `codec` par défaut `{{mediainfo.video.codec}}`, choix du codec attendu, dépendance sur le plugin `video`).
+
 Les variables saisissables d'un script se déclarent dans `runtime.variables` (types `text`,
 `multiline`, `number`, `boolean`, `choice`, `secret`) ; le script les lit dans `config` sur `stdin`.
 

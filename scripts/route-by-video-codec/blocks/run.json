@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "route-by-video-codec.run",
+  "version": "1.0.0",
+  "name": "Routage : codec vidéo",
+  "description": "Oriente le flux selon le codec vidéo du fichier (variable exposée par MediaInfo) : « Codec attendu » ou « Autre codec ».",
+  "category": "data",
+  "operationId": "operation.script.route-by-video-codec",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "*/*"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "destination",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "*/*"
+      }
+    ]
+  },
+  "ui": {
+    "category": "Scripts",
+    "domain": "media",
+    "icon": "fas fa-film",
+    "color": "#22C55E",
+    "ports": [
+      {
+        "id": "true",
+        "label": "✓ Codec attendu"
+      },
+      {
+        "id": "false",
+        "label": "✗ Autre codec"
+      }
+    ],
+    "suggestedNext": [
+      "essentiel.file-output"
+    ],
+    "fields": []
+  }
+}
