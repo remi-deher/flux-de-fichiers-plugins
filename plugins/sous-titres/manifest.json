@@ -8,6 +8,8 @@
   "author": "Forgearr",
   "license": "GPL-2.0-or-later",
   "capability": "other",
+  "category": "media",
+  "subcategory": "media-subtitles",
   "files": [
     {
       "path": "README.md",

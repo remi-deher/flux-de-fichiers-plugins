@@ -8,6 +8,8 @@
   "author": "Forgearr",
   "license": "GPL-2.0-or-later",
   "capability": "video",
+  "category": "media",
+  "subcategory": "media-encoding",
   "files": [
     {
       "path": "README.md",
