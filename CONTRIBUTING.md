@@ -33,5 +33,8 @@ technique pour la communauté.
 
 - **Applications (`apps/<slug>/`)** : `manifest.json` + `distribution.v1.json` (Option B) + `README.md`.
 - **Plugins (`plugins/<slug>/`)** : `manifest.json` (déclare les blocs avec `role: "block"` et les opérations avec `role: "operation"`), `blocks/*.json`, `operations/*.json`, `README.md`.
+- **Variables exposées** : une opération peut déclarer `exposes` (avec une fixture
+  `plugins/<slug>/fixtures/<opération>.json`) ; un script, `requires`. Voir
+  [docs/variables-exposees.md](docs/variables-exposees.md).
 - **Flows (`flows/<slug>/`)** : `manifest.json` (`schemaVersion: "1.1.0"`) + `README.md` éventuel.
 - **Packs (`packs/<slug>/`)** : `manifest.json` + `installation.json` + `README.md`.

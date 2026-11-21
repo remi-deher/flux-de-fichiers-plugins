@@ -1,0 +1,49 @@
+{
+  "mediainfo": {
+    "media": {
+      "@ref": "/exemple/film.mkv",
+      "track": [
+        {
+          "@type": "General",
+          "VideoCount": "1",
+          "AudioCount": "2",
+          "TextCount": "1",
+          "Format": "Matroska",
+          "FileSize": "4294967296",
+          "Duration": "7200.000",
+          "OverallBitRate": "4772000"
+        },
+        {
+          "@type": "Video",
+          "StreamOrder": "0",
+          "Format": "HEVC",
+          "Width": "3840",
+          "Height": "2160",
+          "FrameRate": "23.976",
+          "BitDepth": "10",
+          "HDR_Format": "Dolby Vision / SMPTE ST 2086"
+        },
+        {
+          "@type": "Audio",
+          "StreamOrder": "1",
+          "Format": "E-AC-3",
+          "Channels": "6",
+          "Language": "fr"
+        },
+        {
+          "@type": "Audio",
+          "StreamOrder": "2",
+          "Format": "AAC",
+          "Channels": "2",
+          "Language": "en"
+        },
+        {
+          "@type": "Text",
+          "StreamOrder": "3",
+          "Format": "UTF-8",
+          "Language": "fr"
+        }
+      ]
+    }
+  }
+}

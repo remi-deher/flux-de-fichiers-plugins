@@ -8,7 +8,10 @@ Conçu pour fonctionner aussi bien sur le dépôt officiel que sur un dépôt ti
 - mode `--strict-immutable` pour les builds de release (releaseVersion, empreintes complètes, URLs figées).
 """
 import argparse
+import json
+import os
 import re
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any
@@ -22,14 +25,24 @@ from catalogue_lib import (
     SHA256_RE,
     LocalSchemaValidator,
     MAX_ICON_BYTES,
+    contract_major,
+    exposes_breaking_changes,
+    exposes_problems,
+    first_value,
     is_icon_path,
     is_safe_relative,
     load_json,
+    requirements_problems,
     sha256_file,
     svg_icon_problems,
 )
 
 DEFAULT_ROOT = Path(__file__).resolve().parent.parent
+# Révision git (SHA ou référence) de la base de la PR : les contrats `exposes` de l'opération sont
+# comparés à cette version pour exiger une montée de version majeure sur changement cassant.
+BASE_REF_ENV = "CATALOGUE_BASE_REF"
+FIXTURES_DIR = "fixtures"
+GIT_TIMEOUT_SECONDS = 30
 MUTABLE_URL_RE = re.compile(r"/(?:refs/heads/|main/|dev/|master/)")
 
 
@@ -236,7 +249,83 @@ class CatalogueChecker:
                 elif skind != "plugin":
                     self.fail(f"{rel} : settingsPluginId doit être un 'plugin' ({settings_plugin!r})")
 
+        if "exposes" in op:
+            self._check_exposes(op_path, rel, op)
+        if rkind == "script" and "requires" in runtime:
+            for problem in requirements_problems(runtime["requires"]):
+                self.fail(f"{rel} : runtime.requires : {problem}")
+
         operations[op_id] = op
+
+    def _check_exposes(self, op_path: Path, rel: str, op: dict[str, Any]) -> None:
+        """Variables exposées : règles du central, chemins résolus sur la fixture, version de contrat."""
+        exposes = op["exposes"]
+        problems = exposes_problems(exposes)
+        for problem in problems:
+            self.fail(f"{rel} : exposes : {problem}")
+        if problems:
+            return
+        runtime = op.get("runtime") if isinstance(op.get("runtime"), dict) else {}
+        enrichment_key = runtime.get("probeEnrichmentKey")
+        for variable in exposes.get("variables", []):
+            root_key = re.split(r"[.\[]", variable["path"], maxsplit=1)[0]
+            if isinstance(enrichment_key, str) and root_key != enrichment_key:
+                self.fail(
+                    f"{rel} : exposes : le chemin de {variable['name']!r} doit commencer par la clé "
+                    f"d'enrichissement de la sonde ({enrichment_key!r}), pas {root_key!r}"
+                )
+        self._check_exposes_fixture(op_path, rel, exposes)
+        self._check_exposes_compat(rel, exposes)
+
+    def _check_exposes_fixture(self, op_path: Path, rel: str, exposes: dict[str, Any]) -> None:
+        """La fixture `<plugin>/fixtures/<opération>.json` est un `mediaInfo` d'exemple : chaque chemin doit s'y résoudre."""
+        fixture_path = op_path.parent.parent / FIXTURES_DIR / op_path.name
+        fixture_rel = fixture_path.relative_to(self.root).as_posix()
+        if not fixture_path.is_file():
+            self.fail(f"{rel} : exposes : fixture manquante ({fixture_rel})")
+            return
+        fixture = self.load(fixture_path)
+        for variable in exposes.get("variables", []):
+            if first_value(fixture, variable["path"]) is None:
+                self.fail(f"{rel} : exposes : {variable['name']!r} ne se résout pas sur {fixture_rel} ({variable['path']})")
+
+    def _git_show_json(self, ref: str, rel: str) -> Any:
+        """Contenu JSON de `rel` à la révision `ref`, ou None si git, la révision ou le fichier manque."""
+        try:
+            result = subprocess.run(
+                ["git", "-C", str(self.root), "show", f"{ref}:./{rel}"],
+                capture_output=True,
+                text=True,
+                timeout=GIT_TIMEOUT_SECONDS,
+                check=False,
+            )
+        except (OSError, subprocess.SubprocessError):
+            return None
+        if result.returncode != 0:
+            return None
+        try:
+            return json.loads(result.stdout)
+        except json.JSONDecodeError:
+            return None
+
+    def _check_exposes_compat(self, rel: str, exposes: dict[str, Any]) -> None:
+        """Un changement cassant du contrat exposé impose une montée de version majeure (ADR 0025)."""
+        base_ref = os.environ.get(BASE_REF_ENV, "").strip()
+        if not base_ref:
+            return
+        previous = self._git_show_json(base_ref, rel)
+        old = previous.get("exposes") if isinstance(previous, dict) else None
+        if not isinstance(old, dict):
+            return
+        old_major, new_major = contract_major(old.get("contractVersion")), contract_major(exposes.get("contractVersion"))
+        if old_major is not None and new_major is not None and new_major < old_major:
+            self.fail(f"{rel} : exposes : contractVersion diminue ({old.get('contractVersion')} → {exposes.get('contractVersion')})")
+        changes = exposes_breaking_changes(old, exposes)
+        if changes and (old_major is None or new_major is None or new_major <= old_major):
+            self.fail(
+                f"{rel} : exposes : changement cassant sans montée de version majeure du contrat "
+                f"({old.get('contractVersion')} → {exposes.get('contractVersion')}) : " + " ; ".join(changes)
+            )
 
     def _check_block(
         self,

@@ -19,6 +19,7 @@ SCRIPTS = {
     "guard_size": REPO_ROOT / "scripts/guard-min-size-saving/run.py",
     "integrity": REPO_ROOT / "scripts/integrity-check-media/run.py",
     "route_hdr": REPO_ROOT / "scripts/route-by-hdr-format/run.py",
+    "route_codec": REPO_ROOT / "scripts/route-by-video-codec/run.py",
 }
 
 
@@ -122,6 +123,30 @@ class PureFunctionsTests(unittest.TestCase):
         self.assertEqual(hdr.DV_PROFILE_RE.search("Summary:\n  Frames: 10\n  Profile: 7 (FEL)\n").group(1), "7")
         with self.assertRaises(hdr.Skip):
             hdr.hevc_track({"container": {"type": "MP4"}, "tracks": []}, "fichier")
+
+
+class RouteByVideoCodecTests(unittest.TestCase):
+    def test_names_of_the_same_codec_are_normalized(self) -> None:
+        codec = load("route_codec")
+        for alias, name in (("h265", "HEVC"), (" H.265 ", "HEVC"), ("avc", "AVC"), ("H.264", "AVC"), ("AV1", "AV1")):
+            self.assertEqual(codec.normalize(alias), name)
+        self.assertEqual(codec.normalize(None), "")
+
+    def test_routes_on_the_codec_and_refuses_missing_values(self) -> None:
+        codec = load("route_codec")
+        self.assertEqual(codec.route("HEVC", "H.265")["nextPort"], "true")
+        self.assertEqual(codec.route("AVC", "HEVC")["nextPort"], "false")
+        self.assertEqual(codec.route("", "HEVC")["status"], "error")
+        self.assertEqual(codec.route("HEVC", None)["status"], "error")
+
+    def test_reads_resolved_variables_from_config_on_stdin(self) -> None:
+        for detected, port in (("HEVC", "true"), ("AVC", "false")):
+            done = subprocess.run(
+                [sys.executable, str(SCRIPTS["route_codec"])],
+                input=json.dumps({"config": {"codec": detected, "expected": "HEVC"}}),
+                capture_output=True, text=True)
+            reply = json.loads(done.stdout.strip().splitlines()[-1])
+            self.assertEqual((done.returncode, reply["status"], reply["nextPort"]), (0, "ok", port), reply)
 
 
 class ScriptProtocolTests(unittest.TestCase):
