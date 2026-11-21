@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.core.set-variable",
+  "version": "1.0.0",
+  "name": "Définition d'une variable de flux",
+  "providerId": "essentiel",
+  "providerKind": "plugin",
+  "capability": "control",
+  "status": "validated",
+  "runtime": {
+    "kind": "primitive",
+    "primitive": "set-variable",
+    "defaults": {
+      "valueType": "text"
+    }
+  }
+}

@@ -260,7 +260,9 @@
             "select",
             "range",
             "headers",
-            "worker"
+            "worker",
+            "condition",
+            "flow"
           ]
         },
         "default": {

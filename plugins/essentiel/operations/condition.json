@@ -12,7 +12,7 @@
     "primitive": "condition",
     "defaults": {
       "property": "any",
-      "operator": "eq",
+      "operator": "contains",
       "target": ""
     }
   }

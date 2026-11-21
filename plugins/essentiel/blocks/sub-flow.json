@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "essentiel.sub-flow",
+  "aliases": ["sub-flow"],
+  "version": "1.0.0",
+  "name": "Aller au sous-flux",
+  "description": "Exécute un autre flux sur le fichier courant puis reprend à la sortie de ce bloc. La version du sous-flux est figée à la création de la tâche ; les appels circulaires sont refusés.",
+  "category": "data",
+  "operationId": "operation.core.sub-flow",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "*/*"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "next",
+        "label": "Après le sous-flux",
+        "dataType": "file",
+        "mediaType": "*/*"
+      }
+    ]
+  },
+  "ui": {
+    "category": "Logique",
+    "domain": "logic",
+    "icon": "fas fa-diagram-project",
+    "color": "#22C55E",
+    "fields": [
+      {
+        "name": "flowId",
+        "label": "Sous-flux",
+        "type": "flow",
+        "default": "",
+        "required": true,
+        "description": "Flux exécuté avant de continuer ; il partage le fichier de travail et les variables de la tâche."
+      }
+    ]
+  }
+}
