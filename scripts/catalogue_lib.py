@@ -335,6 +335,7 @@ MAX_EXPOSED_VARIABLES = 128
 MAX_REQUIREMENTS = 32
 MAX_PATH_SEGMENTS = 8
 MAX_NAME_LEN = 64
+MAX_DEPRECATION_LEN = 300
 EXPOSED_KINDS = {"text", "multiline", "number", "boolean", "choice"}
 IDENTIFIER_RE = re.compile(r"^[a-z][a-z0-9_]*$")
 CONTRACT_VERSION_RE = re.compile(r"^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$")
@@ -457,7 +458,33 @@ def exposes_problems(exposes: object) -> list[str]:
         elif any(_names_overlap(name, earlier) for earlier in seen):
             problems.append(f"{name!r} est à la fois une valeur et un groupe d'autres variables")
         seen.append(name)
+    names = {v.get("name") for v in variables if isinstance(v, dict)}
+    for variable in variables:
+        problem = _deprecation_problem(variable, names)
+        if problem:
+            problems.append(problem)
     return problems
+
+
+def _deprecation_problem(variable: object, names: set[Any]) -> str | None:
+    """`deprecated` : message non vide borné ; `replacedBy` exige `deprecated` et désigne une autre variable du contrat."""
+    if not isinstance(variable, dict) or not _is_dotted_identifier(variable.get("name")):
+        return None
+    name = variable["name"]
+    message = variable.get("deprecated")
+    replacement = variable.get("replacedBy")
+    message_ok = message is None or (
+        isinstance(message, str) and bool(message.strip()) and len(message) <= MAX_DEPRECATION_LEN
+    )
+    replacement_ok = replacement is None or (
+        message is not None and replacement != name and replacement in names
+    )
+    if message_ok and replacement_ok:
+        return None
+    return (
+        f"dépréciation invalide pour la variable exposée {name!r} (message non vide de "
+        f"{MAX_DEPRECATION_LEN} caractères au plus ; replacedBy exige deprecated et désigne une autre variable du contrat)"
+    )
 
 
 def requirements_problems(requirements: object) -> list[str]:
@@ -468,6 +495,7 @@ def requirements_problems(requirements: object) -> list[str]:
         return [f"au plus {MAX_REQUIREMENTS} dépendances"]
     problems: list[str] = []
     seen: set[str] = set()
+    bound: dict[str, tuple[Any, Any]] = {}
     for requirement in requirements:
         entry = requirement if isinstance(requirement, dict) else {}
         reference = entry.get("variable")
@@ -477,6 +505,13 @@ def requirements_problems(requirements: object) -> list[str]:
         if reference in seen:
             problems.append(f"dépendance {reference!r} déclarée deux fois")
         seen.add(reference)
+        # Un espace de noms ne se lie qu'à un fournisseur et à une version majeure (le script lit une seule exposition).
+        namespace = reference.split(".")[0]
+        contract = (entry.get("provider"), entry.get("contractMajor", 1))
+        if bound.setdefault(namespace, contract) != contract:
+            problems.append(
+                f"l'espace de noms {namespace!r} est lié à deux fournisseurs ou à deux versions de contrat différents"
+            )
         provider = entry.get("provider")
         if not isinstance(provider, str) or not SAFE_ID_RE.match(provider) or len(provider) > MAX_NAME_LEN:
             problems.append(f"fournisseur invalide pour {reference!r} ({provider!r})")
@@ -499,7 +534,8 @@ def requirements_problems(requirements: object) -> list[str]:
 def exposes_breaking_changes(old: object, new: object) -> list[str]:
     """Changements cassants entre deux versions d'un `exposes` : variable retirée, renommée ou de type changé.
 
-    Chacun impose une montée de version majeure du contrat (ADR 0025).
+    Chacun impose une montée de version majeure du contrat (ADR 0025). Retirer une variable déjà dépréciée
+    dans la version précédente n'en est pas un : c'est la fin de la fenêtre de dépréciation.
     """
     if not isinstance(old, dict) or not isinstance(new, dict):
         return []
@@ -513,7 +549,8 @@ def exposes_breaking_changes(old: object, new: object) -> list[str]:
         name = variable.get("name")
         current = new_by_name.get(name)
         if current is None:
-            changes.append(f"variable {name!r} retirée ou renommée")
+            if not variable.get("deprecated"):
+                changes.append(f"variable {name!r} retirée ou renommée sans avoir été dépréciée")
         elif current.get("type", "text") != variable.get("type", "text"):
             changes.append(f"variable {name!r} : type {variable.get('type', 'text')!r} → {current.get('type', 'text')!r}")
     if old.get("namespace") != new.get("namespace"):

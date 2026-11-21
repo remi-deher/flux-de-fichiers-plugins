@@ -885,6 +885,17 @@
           "type": "string",
           "pattern": "^[A-Za-z0-9_-]+(\\[(\\*|[0-9]+|@?[A-Za-z0-9_-]+=[A-Za-z0-9_ -]+)\\])?(\\.[A-Za-z0-9_-]+(\\[(\\*|[0-9]+|@?[A-Za-z0-9_-]+=[A-Za-z0-9_ -]+)\\])?){0,7}$",
           "description": "Requête dans mediaInfo : a.b, arr[0], arr[*] ou arr[clé=valeur] (ex. mediainfo.media.track[@type=Video].Format)."
+        },
+        "deprecated": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300,
+          "description": "Message de dépréciation : la variable reste lue mais les flux et scripts qui l'utilisent sont avertis. Un retrait n'est autorisé qu'après une version qui la déprécie, ou avec une montée de version majeure du contrat."
+        },
+        "replacedBy": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*){0,7}$",
+          "description": "Nom relatif de la variable qui la remplace dans le même contrat ; exige deprecated."
         }
       }
     },

@@ -53,6 +53,22 @@ Chaque opération qui expose des variables est accompagnée d'une **fixture** :
 l'opération. `check_catalogue.py` exige que chaque `path` s'y résolve. Les fixtures ne sont pas
 publiées (aucun manifeste ne les référence).
 
+### Déprécier une variable
+
+Pour renommer ou retirer une variable sans casser les scripts, **dépréciez-la d'abord** dans une version
+mineure du contrat :
+
+```json
+{ "name": "video.codec", "path": "mediainfo.media.track[@type=Video].Format",
+  "deprecated": "Renommée en video.codec_name.", "replacedBy": "video.codec_name" }
+```
+
+- `deprecated` : message non vide (300 caractères au plus). La variable reste lue ; Forgearr avertit,
+  sans bloquer, dans la fiche du plugin, le sélecteur de références, l'aperçu du nœud et la validation du flux.
+- `replacedBy` (facultatif) : nom relatif d'une autre variable du même contrat ; exige `deprecated`.
+- Retrait : autorisé à la version suivante si la variable était **déjà dépréciée** dans celle de la base ;
+  sinon il compte comme changement cassant et impose une montée de version majeure.
+
 ### Versionner le contrat
 
 `contractVersion` suit `MAJEUR.MINEUR.CORRECTIF`. Retirer, renommer ou changer le type d'une variable,
@@ -74,6 +90,9 @@ Un script déclare, dans `runtime.requires` de son opération, les variables exp
 - `contractMajor` : version majeure du contrat visée (1 par défaut).
 - `repository` (facultatif) : `{ "id": "…", "indexUrl": "https://…/index.json" }` si le fournisseur
   est publié dans un autre dépôt. Forgearr le signale sans jamais l'ajouter tout seul.
+- Un espace de noms ne se lie qu'à **un** fournisseur et à **une** version majeure par script : c'est la
+  dépendance qui décide quelle exposition le script lit quand plusieurs plugins déclarent le même espace
+  de noms (sans dépendance, la première par identifiant d'opération l'emporte).
 - `dependenciesUnverified: true` intègre le script sans ses dépendances : elles ne sont ni contrôlées
   ni installées et les valeurs se saisissent à la main.
 
