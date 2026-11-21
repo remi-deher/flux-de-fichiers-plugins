@@ -114,7 +114,9 @@
         },
         "icon": {
           "type": "string",
-          "description": "Chemin relatif vers une icône dans le paquet de l'élément."
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*\\\\)[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)*\\.svg$",
+          "maxLength": 200,
+          "description": "Chemin relatif d'une icône SVG du paquet (16 Kio au plus, dessin seul : voir docs/creer-un-depot-tiers.md)."
         },
         "previews": {
           "type": "array",

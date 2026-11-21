@@ -10,6 +10,7 @@
   "capability": "audio",
   "category": "media",
   "subcategory": "media-encoding",
+  "icon": "icon.svg",
   "files": [
     {
       "path": "README.md",

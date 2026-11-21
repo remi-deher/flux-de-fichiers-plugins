@@ -19,7 +19,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from catalogue_lib import SECTION_ORDER, is_safe_relative, load_json, sha256_file, write_json
+from catalogue_lib import SECTION_ORDER, is_icon_path, is_safe_relative, load_json, sha256_file, write_json
 
 DEFAULT_ROOT = Path(__file__).resolve().parent.parent
 
@@ -78,6 +78,10 @@ def _collect_secondary_json(root: Path, manifest_path: Path, manifest: dict[str,
         inst = (manifest.get("pack") or {}).get("installation")
         if is_safe_relative(inst):
             add_file(manifest_path.parent / inst)
+
+    icon = manifest.get("icon")
+    if is_icon_path(icon):
+        add_file(manifest_path.parent / icon)
 
     for item in manifest.get("files", []):
         if not isinstance(item, dict):
