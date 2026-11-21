@@ -76,6 +76,32 @@ un dépôt **référence** un identifiant, il ne peut ni en créer ni fournir de
 - Il manque une famille ? Proposez-la par une PR sur le registre `subcategories.v1.json` du dépôt Forgearr.
 - Le hors-registre (mots libres) va dans `tags`, pas dans `subcategory`.
 
+### Icône du plugin
+
+Un plugin peut déclarer une icône SVG, affichée sur sa carte du catalogue de Forgearr
+([ADR 0024](https://github.com/remi-deher/flux-de-fichiers/blob/dev/docs/adr/0024-icones-svg-des-plugins.md)).
+Sans icône, la carte garde l'icône générique.
+
+```json
+{ "icon": "icon.svg" }
+```
+
+- Chemin relatif au dossier du manifeste, terminé par `.svg`, sans `..` ni chemin absolu.
+- **16 Kio au plus**, un seul élément racine `<svg xmlns="http://www.w3.org/2000/svg" …>`
+  (sans `xmlns`, le navigateur n'affiche pas le fichier).
+- **Dessin seul** : éléments `g`, `path`, `circle`, `ellipse`, `rect`, `line`, `polyline`,
+  `polygon` ; attributs de géométrie (`viewBox`, `d`, `cx`, `cy`, `r`, `rx`, `ry`, `x`, `y`,
+  `x1`, `y1`, `x2`, `y2`, `points`, `width`, `height`, `transform`), de remplissage et de trait
+  (`fill`, `stroke`, `stroke-*`, `fill-*`, `fill-rule`, `clip-rule`, `opacity`).
+- **Refusés** : texte, commentaire, déclaration (`<?xml`, `<!DOCTYPE`), `style`, `href`,
+  gestionnaires d'événements (`onload`…), `use`, `image`, `foreignObject`, `script`, et toute
+  valeur d'attribut contenant `:`, `&`, `<`, `>` ou `\`.
+- **Couleur** : Forgearr colore l'icône comme le texte du thème (clair ou sombre). Dessinez avec
+  `stroke="currentColor"` ; les couleurs propres au dépôt ne sont pas conservées.
+- `check_catalogue.py` applique la même règle que Forgearr, et `build_index.py` ajoute
+  l'empreinte de l'icône à `filesSha256`. Une icône refusée n'est pas copiée par Forgearr : le
+  plugin garde simplement l'icône générique.
+
 ## 5. Valider son dépôt en local et en CI
 
 Générez ou vérifiez votre index et ses empreintes SHA-256 :

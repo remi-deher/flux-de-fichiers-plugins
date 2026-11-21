@@ -21,9 +21,12 @@ from catalogue_lib import (
     OP_ID_RE,
     SHA256_RE,
     LocalSchemaValidator,
+    MAX_ICON_BYTES,
+    is_icon_path,
     is_safe_relative,
     load_json,
     sha256_file,
+    svg_icon_problems,
 )
 
 DEFAULT_ROOT = Path(__file__).resolve().parent.parent
@@ -280,6 +283,30 @@ class CatalogueChecker:
                 if self._resolve_kind(nxt, local_kinds) is None and not self.allow_external_refs:
                     self.fail(f"{rel} : suggestedNext référence un identifiant inconnu ({nxt!r})")
 
+    def _check_icon(
+        self, raw_manifest: str, manifest_path: Path, icon: object, required_secondary: set[str]
+    ) -> None:
+        """L'icône déclarée existe, reste dans le dépôt et respecte la liste blanche SVG."""
+        if not is_icon_path(icon):
+            self.fail(f"{raw_manifest} : icon doit être un chemin relatif sûr terminé par .svg ({icon!r})")
+            return
+        target = (manifest_path.parent / str(icon)).resolve()
+        if not target.is_relative_to(self.root) or not target.is_file():
+            self.fail(f"{raw_manifest} : icône absente ou hors du dépôt ({icon})")
+            return
+        data = target.read_bytes()
+        if len(data) > MAX_ICON_BYTES:
+            self.fail(f"{raw_manifest} : icône {icon} trop lourde (plus de {MAX_ICON_BYTES} octets)")
+            return
+        try:
+            text = data.decode("utf-8")
+        except UnicodeDecodeError:
+            self.fail(f"{raw_manifest} : icône {icon} n'est pas en UTF-8")
+            return
+        for problem in svg_icon_problems(text):
+            self.fail(f"{raw_manifest} : icône {icon} refusée ({problem})")
+        required_secondary.add(target.relative_to(self.root).as_posix())
+
     def _check_files_sha256(self, index: dict[str, Any], required_secondary: set[str]) -> None:
         files_sha = index.get("filesSha256")
         if files_sha is None:
@@ -423,6 +450,8 @@ class CatalogueChecker:
                         required_secondary.add(rel_target)
                     if kind in {"plugin", "script"} and item.get("role") == "operation":
                         self._check_operation(target, ident, kinds, app_allowlists, operations)
+            if manifest.get("icon") is not None:
+                self._check_icon(raw_manifest, manifest_path, manifest["icon"], required_secondary)
             if kind in {"plugin", "script"}:
                 plugin_declared_files[ident] = declared_paths
                 plugin_declared_blocks[ident] = {

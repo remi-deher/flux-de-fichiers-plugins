@@ -5,6 +5,7 @@ import json
 import re
 from pathlib import Path
 from typing import Any
+from xml.etree import ElementTree
 
 OTHER_TYPES = {
     "preset",
@@ -57,6 +58,59 @@ def is_safe_relative(raw: object) -> bool:
         return False
     parts = Path(raw).parts
     return bool(parts) and all(part not in ("", ".", "..") for part in parts)
+
+
+MAX_ICON_BYTES = 16 * 1024
+SVG_NAMESPACE = "http://www.w3.org/2000/svg"
+ICON_ELEMENTS = {"g", "path", "circle", "ellipse", "rect", "line", "polyline", "polygon"}
+ICON_ATTRIBUTES = {
+    "viewBox", "width", "height", "fill", "stroke", "stroke-width", "stroke-linecap",
+    "stroke-linejoin", "stroke-miterlimit", "stroke-dasharray", "stroke-opacity",
+    "fill-opacity", "fill-rule", "clip-rule", "opacity", "transform", "d", "cx", "cy", "r",
+    "rx", "ry", "x", "y", "x1", "y1", "x2", "y2", "points",
+}
+ICON_FORBIDDEN_VALUE_CHARS = set(":&<>\\")
+
+
+def is_icon_path(raw: object) -> bool:
+    """Chemin relatif sûr d'un fichier d'icône : il se termine par .svg."""
+    return is_safe_relative(raw) and str(raw).endswith(".svg")
+
+
+def svg_icon_problems(text: str) -> list[str]:
+    """Liste blanche des icônes SVG (ADR 0024 de Forgearr) : même règle que le central.
+
+    Seuls des éléments de dessin et des attributs de géométrie, de remplissage et de trait sont
+    admis, sans texte, style, lien, script ni gestionnaire d'événement.
+    """
+    if len(text.encode("utf-8")) > MAX_ICON_BYTES:
+        return [f"plus de {MAX_ICON_BYTES} octets"]
+    if "<!" in text or "<?" in text:
+        return ["déclaration, commentaire ou instruction interdits"]
+    try:
+        root = ElementTree.fromstring(text)
+    except ElementTree.ParseError as error:
+        return [f"SVG mal formé ({error})"]
+    namespace = "{" + SVG_NAMESPACE + "}"
+    if root.tag != namespace + "svg":
+        return ["l'élément racine doit être svg dans l'espace de noms SVG (xmlns)"]
+    problems: list[str] = []
+    for element in root.iter():
+        if element is not root:
+            tag = element.tag if isinstance(element.tag, str) else ""
+            name = tag[len(namespace):] if tag.startswith(namespace) else tag
+            if name == "svg":
+                problems.append("svg imbriqué")
+            elif name not in ICON_ELEMENTS:
+                problems.append(f"élément interdit « {name} »")
+        for key, value in element.attrib.items():
+            if key not in ICON_ATTRIBUTES:
+                problems.append(f"attribut interdit « {key} »")
+            elif ICON_FORBIDDEN_VALUE_CHARS & set(value):
+                problems.append(f"valeur interdite pour « {key} »")
+        if (element.text or "").strip() or (element.tail or "").strip():
+            problems.append("texte interdit")
+    return problems
 
 
 def sha256_file(path: Path) -> str:

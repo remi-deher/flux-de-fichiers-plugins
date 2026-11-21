@@ -10,6 +10,7 @@
   "capability": "other",
   "category": "other",
   "subcategory": "core-blocks",
+  "icon": "icon.svg",
   "files": [
     {
       "path": "README.md",
