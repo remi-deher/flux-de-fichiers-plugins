@@ -89,7 +89,9 @@
     "scripts/integrity-check-media/operations/run.json": "2a112d5f67d37c5ff3b305b54a31fd05702fc6dbcc463c85bc4ed55b09098388",
     "scripts/integrity-check-media/run.py": "712a6b430a2b052a54e9f823d973415e6ecbb354b0d5264991cb2051291d3af0",
     "scripts/route-by-hdr-format/operations/run.json": "2d1bc080c9a1462666b995e7915b063beea49ef03f2b0f69eac2958ec375ab1e",
-    "scripts/route-by-hdr-format/run.py": "e76d29d62dbb1ca1c6849da62eac875fd222e8a4e1d20f7dcf64c98fe07f8c10"
+    "scripts/route-by-hdr-format/run.py": "e76d29d62dbb1ca1c6849da62eac875fd222e8a4e1d20f7dcf64c98fe07f8c10",
+    "scripts/route-by-video-codec/operations/run.json": "648fdcbae1865254ccaed32bfe9522539a7c00cd893942a916dff0de7877495f",
+    "scripts/route-by-video-codec/run.py": "82289a222e77208f512a376e1b37bbdc7c6bad31f6691eb178d5fcc4ebfb7ffa"
   },
   "entries": [
     {
@@ -875,6 +877,17 @@
       "updatedAt": "2026-11-19"
     },
     {
+      "id": "route-by-video-codec.run",
+      "type": "block",
+      "owner": "route-by-video-codec",
+      "version": "1.0.0",
+      "name": "Routage : codec vidéo",
+      "manifestPath": "scripts/route-by-video-codec/blocks/run.json",
+      "sha256": "ab2bdeb0935324eac2e825bc4d3f6795d285298ecdf0a174ac04fb853fb9953b",
+      "contentSha256": "8589055d74a2fd538ec7646f43b356b133fe8e3fd44fb059035dd5052f2d2ea9",
+      "updatedAt": "2026-11-21"
+    },
+    {
       "id": "audio-loudnorm-mkv",
       "type": "flow",
       "version": "1.0.0",
@@ -1049,6 +1062,24 @@
       "sha256": "27fd5835b9f5167bfe9a8620e6fb18280f232057d4dc5f92a619e05858b6fb0f",
       "contentSha256": "2b2058c49d0d8a02a743dddf8fdc908801a615ae34c0645422180c9c328ad2b2",
       "updatedAt": "2026-11-19"
+    },
+    {
+      "id": "route-by-video-codec",
+      "type": "script",
+      "version": "1.0.0",
+      "name": "Routage : codec vidéo",
+      "manifestPath": "scripts/route-by-video-codec/manifest.json",
+      "capability": "script",
+      "category": "media",
+      "tags": [
+        "script",
+        "codec",
+        "routage",
+        "mediainfo"
+      ],
+      "sha256": "65adebe09ec07f52067c9e6bcfb6552cd1b15c63aa6c875fd656917e2621351c",
+      "contentSha256": "932e8060a2f0f9074dacceb96c2c22de997725865d48e4abcca46fb3ee27d2da",
+      "updatedAt": "2026-11-21"
     },
     {
       "id": "media",

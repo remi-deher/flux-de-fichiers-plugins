@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "route-by-video-codec",
+  "type": "script",
+  "version": "1.0.0",
+  "name": "Routage : codec vidéo",
+  "description": "Oriente le flux selon le codec vidéo exposé par MediaInfo ({{mediainfo.video.codec}}) : exemple officiel de variables de script et de variable exposée.",
+  "author": "Forgearr",
+  "license": "GPL-2.0-or-later",
+  "category": "media",
+  "capability": "script",
+  "tags": [
+    "script",
+    "codec",
+    "routage",
+    "mediainfo"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "run.py",
+      "role": "script",
+      "mediaType": "text/plain"
+    },
+    {
+      "path": "operations/run.json",
+      "role": "operation",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "blocks/run.json",
+      "role": "block",
+      "mediaType": "application/json"
+    }
+  ]
+}
