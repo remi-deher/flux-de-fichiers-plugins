@@ -267,9 +267,11 @@
       "name": "Audio",
       "manifestPath": "plugins/audio/manifest.json",
       "capability": "audio",
-      "sha256": "071002b42e2ea36d68bc5a8780084fa218bfcbd7e00c7157d95b16d6d432f4e5",
-      "contentSha256": "155a5df0ef9305b1d6ab8d7b4685664fd2d42e8273ed881dc1367f8ea8fae03f",
-      "updatedAt": "2026-11-19"
+      "category": "media",
+      "subcategory": "media-encoding",
+      "sha256": "b7e784f9bfa3ce30931e855770333a2a37c2a88381a69b0230b5617274a81f69",
+      "contentSha256": "bbfcc3307cfe824721e1f1ef82366cbefc50a892966f95e8020ebdcb2ab32ea5",
+      "updatedAt": "2026-11-21"
     },
     {
       "id": "emby",
@@ -379,9 +381,11 @@
       "name": "Sous-titres",
       "manifestPath": "plugins/sous-titres/manifest.json",
       "capability": "other",
-      "sha256": "891a1a7f4f510413422c5a257ffb700993dd0d42fb96f10c1600e1c71ac7033c",
-      "contentSha256": "9be4e0a1920cf5cd3ee4e2b61dbfd6906d3e5caedd9838bdf8acdd9c928b2df4",
-      "updatedAt": "2026-11-19"
+      "category": "media",
+      "subcategory": "media-subtitles",
+      "sha256": "1b5c25faad52ad8213bd94b2e546ee61f9f67529945223fa3cf9efba60cf4f42",
+      "contentSha256": "2fbca5d23ab82ff3b681cc4e25e587838e597cfb606a2d86c65ea690e543ffa8",
+      "updatedAt": "2026-11-21"
     },
     {
       "id": "video",
@@ -390,9 +394,11 @@
       "name": "Vidéo",
       "manifestPath": "plugins/video/manifest.json",
       "capability": "video",
-      "sha256": "3184a7e36a0ac5062fca0e34d844c9da7c1cf8be4766e3142569ee89c0318e98",
-      "contentSha256": "d2dcda83cb8cdc7b970f54fd8d3b33992897e34e4ab1d1e536e73e93a8385656",
-      "updatedAt": "2026-11-19"
+      "category": "media",
+      "subcategory": "media-encoding",
+      "sha256": "a988012053dd324816e127c6cb88d96c8f031425a3b8fc4ad47694036503d090",
+      "contentSha256": "347279c530ba04a4c26f8b65d097b108294d8397ef7960e1fdfacc7e9466ce43",
+      "updatedAt": "2026-11-21"
     },
     {
       "id": "archives",
@@ -412,9 +418,11 @@
       "name": "HDR et Dolby Vision",
       "manifestPath": "plugins/hdr/manifest.json",
       "capability": "hdr",
-      "sha256": "a979d0ae75d7122c13339662776f9aa27c43c6dcc82b6d8a66dd4b348c3e4466",
-      "contentSha256": "3f2cf0e528612c54733b7058b516e9a01f0b52b8f33bb319c9a4f8c20a2c630b",
-      "updatedAt": "2026-11-19"
+      "category": "media",
+      "subcategory": "media-encoding",
+      "sha256": "f23b91b3a378d90087b642568146685a1a99d8c53a4f108f218795a5938179f3",
+      "contentSha256": "7dc3ecd8375108405323097bcf0b43fd7e7718ad906a21e0d92a462d180027c6",
+      "updatedAt": "2026-11-21"
     },
     {
       "id": "vmaf",
@@ -423,9 +431,11 @@
       "name": "Qualité VMAF",
       "manifestPath": "plugins/vmaf/manifest.json",
       "capability": "quality",
-      "sha256": "92ea1e3cc0632ac6929f1ce7da4ca32b9f2b0645a1e505641cac0d5c5f43898a",
-      "contentSha256": "b9dbe64e6516c374a5c1c206236a82c93801c1342d3608f9f31b9f1623a066be",
-      "updatedAt": "2026-11-19"
+      "category": "media",
+      "subcategory": "media-encoding",
+      "sha256": "ee6848649accdcc9e23ab482c6c3d7d0cc42ce9058e57d386e1d0e862cfc44a4",
+      "contentSha256": "b3bffb6593c29d6c64135b1a62271503f4e56da71f455af6e50b8c64e85359a2",
+      "updatedAt": "2026-11-21"
     },
     {
       "id": "audio.encode",
