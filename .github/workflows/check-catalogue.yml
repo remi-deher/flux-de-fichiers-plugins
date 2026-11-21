@@ -14,6 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # L'historique sert à comparer le contrat `exposes` à celui de la base (montée de version majeure).
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -22,6 +25,8 @@ jobs:
       - name: Vérifier que catalogue/index.json est synchronisé
         run: python3 scripts/build_index.py --check
       - name: Contrôler le catalogue, les schémas et le modèle tiers
+        env:
+          CATALOGUE_BASE_REF: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: python3 scripts/check_catalogue.py --require-jsonschema
       - name: Exécuter les tests des outils du catalogue
         run: python3 -m unittest discover -s scripts -p 'test_*.py' -v

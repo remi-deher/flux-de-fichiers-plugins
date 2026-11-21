@@ -73,7 +73,7 @@
     "plugins/sous-titres/operations/sync.json": "773ea2a67a7f8462d949ee7a4532bf681a6dca52c2986b2faf0385b2b7335396",
     "plugins/sous-titres/scripts/sous_titres.py": "4eb1edb1565c4678895aa68e4a28ff2d876285fbab44fb34273af68b32670956",
     "plugins/video/icon.svg": "34ccedc640318872211aec81153b810e3c24acedc8c523b4614e5c0abd3a62e3",
-    "plugins/video/operations/media-inspect.json": "9276ac96bbbf903504f8f0ef56e33253aecea9f50d7ab23ae5bb6a2c6521a365",
+    "plugins/video/operations/media-inspect.json": "453afd73ee1e6f7132e2cfa318dd1e7ea047bddef8eb7f631699fdcac61eb4a7",
     "plugins/video/operations/mkvmerge-probe.json": "f74c03643b2657f3f4daed529de3cf64b0e338ea12cdb34b4f7c6112ddf713d7",
     "plugins/video/operations/mkvpropedit.json": "0183d695c83aaa2ba3ab4ba85974584e10f33a45ea24a94a0f1d7b671f26c65c",
     "plugins/video/operations/remux-mkv.json": "0c62af97b2c3f73f5189e77dcd9e63d4dabe2a32017d06d948adc2f61c66f747",
@@ -414,7 +414,7 @@
       "category": "media",
       "subcategory": "media-encoding",
       "sha256": "7b5365a3cdde1ba44e4c71ce50c67aa60991cc60e59b07e0150f6f2ee9721fce",
-      "contentSha256": "10f9ba1e7e1062d471de018fe93927f9d19c0da95e57da1c617c003206b2d590",
+      "contentSha256": "30d2c27460d51c45eba4d74ee7a23c58f54a635489e7dff7b0cc57cdb7145979",
       "updatedAt": "2026-11-21"
     },
     {
