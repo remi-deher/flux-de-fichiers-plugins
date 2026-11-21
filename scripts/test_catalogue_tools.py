@@ -301,6 +301,60 @@ class CatalogueToolsTests(unittest.TestCase):
             errs_mutable = checker_mutable.run()
             self.assertTrue(any("archiveUrl non immuable" in e for e in errs_mutable), errs_mutable)
 
+    def test_subcategory_is_indexed_and_requires_a_category(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = Path(tmp) / "sub-repo"
+            common = ["--root", str(repo), "--namespace", "com.carol"]
+            scaffold.main([*common, "init-repo", "--name", "Carol"])
+            scaffold.main(
+                [
+                    *common,
+                    "plugin",
+                    "demo",
+                    "--name",
+                    "Demo",
+                    "--kind",
+                    "binary",
+                    "--tool-id",
+                    "ffmpeg",
+                    "--executable",
+                    "ffmpeg",
+                ]
+            )
+            manifest_path = repo / "plugins" / "demo" / "manifest.json"
+
+            def check() -> list[str]:
+                build_index.main(["--root", str(repo)])
+                checker = check_catalogue.CatalogueChecker(
+                    repo, REPO_ROOT / "schema", [REPO_ROOT / "index.json"], False, False
+                )
+                return checker.run()
+
+            def set_labels(**labels: str | None) -> None:
+                manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+                for key, value in labels.items():
+                    if value is None:
+                        manifest.pop(key, None)
+                    else:
+                        manifest[key] = value
+                manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+            # 1. Sous-catégorie sous sa catégorie : valide et reprise dans l'index
+            set_labels(category="media", subcategory="media-servers")
+            self.assertEqual(check(), [])
+            index = json.loads((repo / "index.json").read_text(encoding="utf-8"))
+            demo = next(e for e in index["entries"] if e["id"].endswith("demo") and e["type"] == "plugin")
+            self.assertEqual(demo["subcategory"], "media-servers")
+
+            # 2. Identifiant mal formé refusé par le schéma
+            set_labels(subcategory="Media Servers")
+            self.assertTrue(any("subcategory" in e for e in check()))
+
+            # 3. Sous-catégorie sans catégorie refusée
+            set_labels(category=None, subcategory="media-servers")
+            errs = check()
+            self.assertTrue(any("subcategory exige une category" in e for e in errs), errs)
+
     def test_updated_at_follows_content_changes_only(self) -> None:
         day_one, day_two = "1767225600", "1767312000"  # 2026-01-01 et 2026-01-02 (UTC)
         previous = os.environ.get("SOURCE_DATE_EPOCH")

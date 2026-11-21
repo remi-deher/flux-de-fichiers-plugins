@@ -8,6 +8,8 @@
   "author": "Forgearr",
   "license": "GPL-2.0-or-later",
   "capability": "notification",
+  "category": "io",
+  "subcategory": "notifications",
   "files": [
     { "path": "README.md", "role": "docs", "mediaType": "text/markdown" },
     { "path": "blocks/discord.json", "role": "block", "mediaType": "application/json" },
