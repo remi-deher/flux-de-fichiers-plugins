@@ -53,6 +53,22 @@ Chaque opération qui expose des variables est accompagnée d'une **fixture** :
 l'opération. `check_catalogue.py` exige que chaque `path` s'y résolve. Les fixtures ne sont pas
 publiées (aucun manifeste ne les référence).
 
+### Déprécier une variable
+
+Pour renommer ou retirer une variable sans casser les scripts, **dépréciez-la d'abord** dans une version
+mineure du contrat :
+
+```json
+{ "name": "video.codec", "path": "mediainfo.media.track[@type=Video].Format",
+  "deprecated": "Renommée en video.codec_name.", "replacedBy": "video.codec_name" }
+```
+
+- `deprecated` : message non vide (300 caractères au plus). La variable reste lue ; Forgearr avertit,
+  sans bloquer, dans la fiche du plugin, le sélecteur de références, l'aperçu du nœud et la validation du flux.
+- `replacedBy` (facultatif) : nom relatif d'une autre variable du même contrat ; exige `deprecated`.
+- Retrait : autorisé à la version suivante si la variable était **déjà dépréciée** dans celle de la base ;
+  sinon il compte comme changement cassant et impose une montée de version majeure.
+
 ### Versionner le contrat
 
 `contractVersion` suit `MAJEUR.MINEUR.CORRECTIF`. Retirer, renommer ou changer le type d'une variable,

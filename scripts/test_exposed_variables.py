@@ -109,6 +109,29 @@ class ExposesProblemsTests(unittest.TestCase):
         siblings = mediainfo([exposed("video.codec"), exposed("video.codecs")])
         self.assertEqual(lib.exposes_problems(siblings), [])
 
+    def test_deprecation_vectors(self) -> None:
+        def with_deprecation(deprecated: object = None, replaced_by: object = None) -> dict:
+            first = exposed("video.codec")
+            if deprecated is not None:
+                first["deprecated"] = deprecated
+            if replaced_by is not None:
+                first["replacedBy"] = replaced_by
+            return mediainfo([first, exposed("video.codec_name")])
+
+        self.assertEqual(lib.exposes_problems(with_deprecation()), [])
+        self.assertEqual(lib.exposes_problems(with_deprecation("Renommée.")), [])
+        self.assertEqual(lib.exposes_problems(with_deprecation("Renommée.", "video.codec_name")), [])
+        self.assertEqual(lib.exposes_problems(with_deprecation("x" * lib.MAX_DEPRECATION_LEN)), [])
+        for bad in [
+            with_deprecation("   "),
+            with_deprecation("x" * (lib.MAX_DEPRECATION_LEN + 1)),
+            with_deprecation(None, "video.codec_name"),
+            with_deprecation("Renommée.", "video.absente"),
+            with_deprecation("Renommée.", "video.codec"),
+        ]:
+            problems = lib.exposes_problems(bad)
+            self.assertTrue(any("dépréciation invalide" in p for p in problems), problems)
+
     def test_the_variable_count_is_capped(self) -> None:
         many = mediainfo([exposed(f"v{n}") for n in range(lib.MAX_EXPOSED_VARIABLES + 1)])
         self.assertTrue(lib.exposes_problems(many))
@@ -164,6 +187,15 @@ class BreakingChangesTests(unittest.TestCase):
         self.assertTrue(any("type" in c for c in lib.exposes_breaking_changes(old, retyped)))
         renamed = dict(old, namespace="autre")
         self.assertTrue(any("espace de noms" in c for c in lib.exposes_breaking_changes(old, renamed)))
+
+    def test_removing_a_variable_that_was_already_deprecated_ends_the_window_and_is_not_breaking(self) -> None:
+        deprecated = dict(exposed("video.codec"), deprecated="Renommée.", replacedBy="video.codec_name")
+        old = mediainfo([deprecated, exposed("video.codec_name")])
+        removed = mediainfo([exposed("video.codec_name")])
+        self.assertEqual(lib.exposes_breaking_changes(old, removed), [])
+        not_deprecated = mediainfo([exposed("video.codec"), exposed("video.codec_name")])
+        changes = lib.exposes_breaking_changes(not_deprecated, removed)
+        self.assertTrue(any("sans avoir été dépréciée" in c for c in changes), changes)
 
     def test_a_path_change_alone_is_not_breaking(self) -> None:
         old = mediainfo([exposed("video.codec", "a.b")])
@@ -238,6 +270,15 @@ class CatalogueChecksTests(unittest.TestCase):
         breaking = self.errors()
         self.assertTrue(any("changement cassant" in e and "retirée" in e for e in breaking), breaking)
         self.edit_operation(lambda e: e.update(contractVersion="2.0.0"))
+        self.assertEqual(self.errors(), [])
+
+    def test_a_variable_deprecated_in_the_base_may_be_removed_without_a_major_bump(self) -> None:
+        self.edit_operation(
+            lambda e: e["variables"][0].update(deprecated="Abandonnée.")
+        )
+        self.commit_base()
+        self.assertEqual(self.errors(), [])
+        self.edit_operation(lambda e: e["variables"].pop(0))
         self.assertEqual(self.errors(), [])
 
     def test_the_contract_version_cannot_decrease_and_additions_are_free(self) -> None:
