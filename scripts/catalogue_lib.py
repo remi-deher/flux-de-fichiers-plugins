@@ -468,6 +468,7 @@ def requirements_problems(requirements: object) -> list[str]:
         return [f"au plus {MAX_REQUIREMENTS} dépendances"]
     problems: list[str] = []
     seen: set[str] = set()
+    bound: dict[str, tuple[Any, Any]] = {}
     for requirement in requirements:
         entry = requirement if isinstance(requirement, dict) else {}
         reference = entry.get("variable")
@@ -477,6 +478,13 @@ def requirements_problems(requirements: object) -> list[str]:
         if reference in seen:
             problems.append(f"dépendance {reference!r} déclarée deux fois")
         seen.add(reference)
+        # Un espace de noms ne se lie qu'à un fournisseur et à une version majeure (le script lit une seule exposition).
+        namespace = reference.split(".")[0]
+        contract = (entry.get("provider"), entry.get("contractMajor", 1))
+        if bound.setdefault(namespace, contract) != contract:
+            problems.append(
+                f"l'espace de noms {namespace!r} est lié à deux fournisseurs ou à deux versions de contrat différents"
+            )
         provider = entry.get("provider")
         if not isinstance(provider, str) or not SAFE_ID_RE.match(provider) or len(provider) > MAX_NAME_LEN:
             problems.append(f"fournisseur invalide pour {reference!r} ({provider!r})")

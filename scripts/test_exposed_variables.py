@@ -136,6 +136,17 @@ class RequirementsProblemsTests(unittest.TestCase):
             bad_repo["repository"] = {"id": repo_id, "indexUrl": url}
             self.assertTrue(lib.requirements_problems([bad_repo]), (repo_id, url))
 
+    def test_one_namespace_cannot_be_bound_to_two_providers_or_two_contract_versions(self) -> None:
+        same = [requirement("mediainfo.video.codec"), requirement("mediainfo.audio.codec")]
+        self.assertEqual(lib.requirements_problems(same), [])
+        other_namespaces = [requirement("mediainfo.video.codec"), requirement("exiftool.camera", "app.exiftool")]
+        self.assertEqual(lib.requirements_problems(other_namespaces), [])
+        two_providers = [requirement("mediainfo.video.codec"), requirement("mediainfo.audio.codec", "app.fork")]
+        self.assertTrue(any("deux fournisseurs" in p for p in lib.requirements_problems(two_providers)))
+        second_major = dict(requirement("mediainfo.audio.codec"), contractMajor=2)
+        two_majors = [requirement("mediainfo.video.codec"), second_major]
+        self.assertTrue(any("deux fournisseurs" in p for p in lib.requirements_problems(two_majors)))
+
     def test_the_requirement_count_is_capped(self) -> None:
         many = [requirement(f"ns.v{n}") for n in range(lib.MAX_REQUIREMENTS + 1)]
         self.assertTrue(lib.requirements_problems(many))

@@ -74,6 +74,9 @@ Un script déclare, dans `runtime.requires` de son opération, les variables exp
 - `contractMajor` : version majeure du contrat visée (1 par défaut).
 - `repository` (facultatif) : `{ "id": "…", "indexUrl": "https://…/index.json" }` si le fournisseur
   est publié dans un autre dépôt. Forgearr le signale sans jamais l'ajouter tout seul.
+- Un espace de noms ne se lie qu'à **un** fournisseur et à **une** version majeure par script : c'est la
+  dépendance qui décide quelle exposition le script lit quand plusieurs plugins déclarent le même espace
+  de noms (sans dépendance, la première par identifiant d'opération l'emporte).
 - `dependenciesUnverified: true` intègre le script sans ses dépendances : elles ne sont ni contrôlées
   ni installées et les valeurs se saisissent à la main.
 
