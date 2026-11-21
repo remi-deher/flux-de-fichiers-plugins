@@ -32,5 +32,93 @@
       "warningExitCodes": [],
       "timeoutSeconds": 60
     }
+  },
+  "exposes": {
+    "namespace": "mediainfo",
+    "contractVersion": "1.0.0",
+    "variables": [
+      {
+        "name": "general.format",
+        "label": "Conteneur",
+        "type": "text",
+        "path": "mediainfo.media.track[@type=General].Format",
+        "description": "Format du conteneur détecté par MediaInfo (Matroska, MPEG-4…)."
+      },
+      {
+        "name": "general.duration",
+        "label": "Durée (secondes)",
+        "type": "number",
+        "path": "mediainfo.media.track[@type=General].Duration"
+      },
+      {
+        "name": "general.size",
+        "label": "Taille du fichier (octets)",
+        "type": "number",
+        "path": "mediainfo.media.track[@type=General].FileSize"
+      },
+      {
+        "name": "general.bitrate",
+        "label": "Débit global (bit/s)",
+        "type": "number",
+        "path": "mediainfo.media.track[@type=General].OverallBitRate"
+      },
+      {
+        "name": "video.codec",
+        "label": "Codec vidéo",
+        "type": "text",
+        "path": "mediainfo.media.track[@type=Video].Format",
+        "description": "Première piste vidéo (HEVC, AVC, AV1…)."
+      },
+      {
+        "name": "video.width",
+        "label": "Largeur (pixels)",
+        "type": "number",
+        "path": "mediainfo.media.track[@type=Video].Width"
+      },
+      {
+        "name": "video.height",
+        "label": "Hauteur (pixels)",
+        "type": "number",
+        "path": "mediainfo.media.track[@type=Video].Height"
+      },
+      {
+        "name": "video.framerate",
+        "label": "Fréquence d'images",
+        "type": "number",
+        "path": "mediainfo.media.track[@type=Video].FrameRate"
+      },
+      {
+        "name": "video.bitdepth",
+        "label": "Profondeur de bits",
+        "type": "number",
+        "path": "mediainfo.media.track[@type=Video].BitDepth"
+      },
+      {
+        "name": "video.hdr",
+        "label": "Format HDR",
+        "type": "text",
+        "path": "mediainfo.media.track[@type=Video].HDR_Format",
+        "description": "Absent si la vidéo n'est pas HDR."
+      },
+      {
+        "name": "audio.codec",
+        "label": "Codec audio",
+        "type": "text",
+        "path": "mediainfo.media.track[@type=Audio].Format",
+        "description": "Première piste audio."
+      },
+      {
+        "name": "audio.channels",
+        "label": "Canaux audio",
+        "type": "number",
+        "path": "mediainfo.media.track[@type=Audio].Channels"
+      },
+      {
+        "name": "audio.language",
+        "label": "Langue audio",
+        "type": "text",
+        "path": "mediainfo.media.track[@type=Audio].Language"
+      }
+    ]
   }
 }
