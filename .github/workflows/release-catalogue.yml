@@ -1,4 +1,5 @@
-# Publie une Release immuable complète du catalogue sur tag `catalogue-vX.Y.Z` (ou déclenchement manuel).
+# Publie une Release immuable complète du catalogue : sur tag `catalogue-vX.Y.Z`, sur déclenchement
+# manuel, ou appelée par `auto-release.yml` après chaque fusion dans `main` (version calculée).
 # Fige `releaseVersion`, vérifie l'intégralité des empreintes SHA-256 (`--strict-immutable`),
 # puis crée une Release GitHub en brouillon avant publication (compatible GitHub Immutable Releases).
 name: release-catalogue
@@ -12,6 +13,12 @@ on:
       version:
         description: "Version SemVer du catalogue à publier (ex. 1.0.0)"
         required: true
+  workflow_call:
+    inputs:
+      version:
+        description: "Version SemVer du catalogue à publier (ex. 1.0.0)"
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -33,13 +40,19 @@ jobs:
         run: python -m pip install --no-cache-dir jsonschema
 
       - name: Figer releaseVersion et valider en mode --strict-immutable
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
         run: |
-          if [ -n "${{ github.event.inputs.version }}" ]; then
-            VERSION="${{ github.event.inputs.version }}"
+          if [ -n "$INPUT_VERSION" ]; then
+            VERSION="$INPUT_VERSION"
             TAG="catalogue-v${VERSION}"
           else
             TAG="${GITHUB_REF_NAME}"
             VERSION="${TAG#catalogue-v}"
+          fi
+          if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Version invalide : '${VERSION}' (attendu X.Y.Z)"
+            exit 1
           fi
           echo "RELEASE_TAG=${TAG}" >> "$GITHUB_ENV"
           echo "RELEASE_VERSION=${VERSION}" >> "$GITHUB_ENV"
