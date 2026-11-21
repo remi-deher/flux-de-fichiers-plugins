@@ -70,7 +70,7 @@ un dépôt **référence** un identifiant, il ne peut ni en créer ni fournir de
 ```
 
 - `subcategory` exige `category` et doit être rattachée à cette catégorie dans le registre.
-- Identifiants actuels : `media-servers`, `media-managers`, `media-encoding` et `media-subtitles` (catégorie `media`), `notifications` (catégorie `io`).
+- Identifiants actuels : `media-servers`, `media-managers`, `media-encoding` et `media-subtitles` (catégorie `media`), `notifications` et `archives` (catégorie `io`), `scripting` (catégorie `data`), `core-blocks` (catégorie `other`).
 - Une valeur inconnue, mal formée ou rattachée à une autre catégorie **n'invalide pas le plugin** : il reste
   simplement sous sa catégorie, et l'écran du dépôt dans Forgearr signale l'avertissement.
 - Il manque une famille ? Proposez-la par une PR sur le registre `subcategories.v1.json` du dépôt Forgearr.

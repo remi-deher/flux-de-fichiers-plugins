@@ -293,9 +293,11 @@
       "name": "Essentiel",
       "manifestPath": "plugins/essentiel/manifest.json",
       "capability": "other",
-      "sha256": "d8b3d09301de3c691b5c9221c65e9e49eaf02be2033ea7b31346cf46e32b3e25",
-      "contentSha256": "83dfede1674b9ef19f2a56faa58ae840f7fba10709489a869b942c591b43cb84",
-      "updatedAt": "2026-11-19"
+      "category": "other",
+      "subcategory": "core-blocks",
+      "sha256": "b62405042b684573f3fac96f6f1731c262babb9abc8cedd821982e5b4f7c5782",
+      "contentSha256": "f740dbd1376557fbff9148d927ccf83b62e004d4a25054e1f9362a10f5b69b29",
+      "updatedAt": "2026-11-21"
     },
     {
       "id": "jellyfin",
@@ -357,9 +359,10 @@
       "manifestPath": "plugins/scripts/manifest.json",
       "capability": "script",
       "category": "data",
-      "sha256": "6637141c1dda4f7fc84a992aa95a08f2239071110c1f7315b4f072fde2d6fd81",
-      "contentSha256": "188568cfb346539986aa52c1e533cd3d35ebae0d0339864ec557c9b399e0ba26",
-      "updatedAt": "2026-11-19"
+      "subcategory": "scripting",
+      "sha256": "d8385fd9544e2c70034ecc682cf454cc494f5aeffe128afd7deb0c8703bde538",
+      "contentSha256": "4fc253d88a792b8bd800637ec5507850c8e5bfcc6e056f584564c98ae563f2fa",
+      "updatedAt": "2026-11-21"
     },
     {
       "id": "sonarr",
@@ -407,9 +410,11 @@
       "name": "Archives",
       "manifestPath": "plugins/archives/manifest.json",
       "capability": "archive",
-      "sha256": "609edf48006cab49339b4a4872f7edf9251db9d42c369db3efcdbfa4c8f1a0bb",
-      "contentSha256": "1862a5accbf63866498230816cb6504d2df6e709dce757547d6ab37807b30ad6",
-      "updatedAt": "2026-11-19"
+      "category": "io",
+      "subcategory": "archives",
+      "sha256": "0563c31d31277cf9999280a94eeaab88ea28acdc1511bc2f30759342be3595af",
+      "contentSha256": "cecce87384feb3edf4ac9a516c8a7b1dc884df15a67f6c19e8044987ef204770",
+      "updatedAt": "2026-11-21"
     },
     {
       "id": "hdr",

@@ -8,6 +8,7 @@
   "author": "Forgearr",
   "license": "GPL-3.0-or-later",
   "category": "data",
+  "subcategory": "scripting",
   "capability": "script",
   "files": [
     {
