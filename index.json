@@ -92,8 +92,8 @@
     "scripts/integrity-check-media/run.py": "712a6b430a2b052a54e9f823d973415e6ecbb354b0d5264991cb2051291d3af0",
     "scripts/route-by-hdr-format/operations/run.json": "2d1bc080c9a1462666b995e7915b063beea49ef03f2b0f69eac2958ec375ab1e",
     "scripts/route-by-hdr-format/run.py": "e76d29d62dbb1ca1c6849da62eac875fd222e8a4e1d20f7dcf64c98fe07f8c10",
-    "scripts/route-by-video-codec/operations/run.json": "648fdcbae1865254ccaed32bfe9522539a7c00cd893942a916dff0de7877495f",
-    "scripts/route-by-video-codec/run.py": "82289a222e77208f512a376e1b37bbdc7c6bad31f6691eb178d5fcc4ebfb7ffa"
+    "scripts/route-by-video-codec/operations/run.json": "24f68039db298b873473b92757f9921d9eeb5b9e5e32892f6af7342730af788b",
+    "scripts/route-by-video-codec/run.py": "bf947062605b9372db2ef035459c984774f41cc4a2517b176301ee717374e336"
   },
   "entries": [
     {
@@ -904,12 +904,12 @@
       "id": "route-by-video-codec.run",
       "type": "block",
       "owner": "route-by-video-codec",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "name": "Routage : codec vidéo",
       "manifestPath": "scripts/route-by-video-codec/blocks/run.json",
-      "sha256": "ab2bdeb0935324eac2e825bc4d3f6795d285298ecdf0a174ac04fb853fb9953b",
-      "contentSha256": "8589055d74a2fd538ec7646f43b356b133fe8e3fd44fb059035dd5052f2d2ea9",
-      "updatedAt": "2026-11-21"
+      "sha256": "124374573c5ed7b3cc9f1e52c1334ca308beb63670aab68a374046bfaac53990",
+      "contentSha256": "6523d08babbf4b133e3f5cc992511df7a4d82604203094c7261601f49d173fba",
+      "updatedAt": "2026-11-22"
     },
     {
       "id": "audio-loudnorm-mkv",
@@ -1090,7 +1090,7 @@
     {
       "id": "route-by-video-codec",
       "type": "script",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "name": "Routage : codec vidéo",
       "manifestPath": "scripts/route-by-video-codec/manifest.json",
       "capability": "script",
@@ -1101,9 +1101,9 @@
         "routage",
         "mediainfo"
       ],
-      "sha256": "65adebe09ec07f52067c9e6bcfb6552cd1b15c63aa6c875fd656917e2621351c",
-      "contentSha256": "932e8060a2f0f9074dacceb96c2c22de997725865d48e4abcca46fb3ee27d2da",
-      "updatedAt": "2026-11-21"
+      "sha256": "407524126e23f6f3f8a765fbd86bd5fdbb3885453384d41ef4a4a04ebb274021",
+      "contentSha256": "90fdebfc7b961f36da2c42882949fa91a2002be86739f69756178891c2dc19ba",
+      "updatedAt": "2026-11-22"
     },
     {
       "id": "media",

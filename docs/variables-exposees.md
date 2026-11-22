@@ -1,7 +1,7 @@
 # Variables exposées par les plugins
 
 Un plugin peut **exposer** des valeurs qu'il calcule (le codec d'un fichier, sa largeur…) pour que
-les scripts les utilisent dans leurs variables, avec `{{espace.nom}}`. Un script déclare les variables
+les scripts les utilisent dans leurs variables, avec `{$espace.nom}` (modèle unique, ADR 0026). Un script déclare les variables
 qu'il **consomme** : c'est une dépendance, contrôlée comme les autres.
 
 Ce contrat est celui de Forgearr (ADR 0025). Le central revalide ces déclarations à la
@@ -25,8 +25,10 @@ et non dans le manifeste : les workers ne reçoivent que les opérations.
 }
 ```
 
-- `namespace` : propre au plugin (`[a-z][a-z0-9_]*`), jamais `nodes`. La référence complète est
-  `namespace.name`, ici `{{mediainfo.video.codec}}`. Un plugin ne peut exposer que dans son espace.
+- `namespace` : propre au plugin (`[a-z][a-z0-9_]*`), jamais un espace réservé du moteur (`nodes`,
+  `media`, `vars`, `file`, `source`, `work`, `library`, `worker`, `job`, `flow`, `error`, `context`,
+  `var`, `setting`, `config`). La référence complète est `namespace.name`, ici
+  `{$mediainfo.video.codec}`. Un plugin ne peut exposer que dans son espace.
 - `name` : relatif à l'espace de noms, en identifiants séparés par des points. Un nom ne peut pas
   être à la fois une valeur et un groupe (`video` et `video.codec` ensemble sont refusés).
 - `type` : `text` (défaut), `multiline`, `number`, `boolean` ou `choice`. Jamais `secret`.
@@ -97,12 +99,33 @@ Un script déclare, dans `runtime.requires` de son opération, les variables exp
   ni installées et les valeurs se saisissent à la main.
 
 Exemple officiel complet : [`scripts/route-by-video-codec`](../scripts/route-by-video-codec/README.md)
-(variable `codec` par défaut `{{mediainfo.video.codec}}`, choix du codec attendu, dépendance sur le plugin `video`).
+(variable `codec` par défaut `{$mediainfo.video.codec}`, choix du codec attendu, dépendance sur le plugin `video`).
 
 Les variables saisissables d'un script se déclarent dans `runtime.variables` (types `text`,
 `multiline`, `number`, `boolean`, `choice`, `secret`) ; le script les lit dans `config` sur `stdin`.
 
 ## Compatibilité
+
+### Syntaxe des modèles
+
+Forgearr n'a plus qu'une syntaxe de modèle : `{$expr|défaut}` (ADR 0026). L'ancienne syntaxe
+`{{…}}` de l'ADR 0025 est convertie à la lecture et à l'exécution, puis réécrite à l'enregistrement :
+
+| Ancienne | Nouvelle |
+| --- | --- |
+| `{{workingFile}}` | `{$file.path}` |
+| `{{sourceFile}}` | `{$source.path}` |
+| `{{workDir}}` | `{$work.dir}` |
+| `{{mediaInfo.<chemin>}}` | `{$media.<chemin>}` |
+| `{{nodes.<id>.workingFile}}` | `{$nodes.<id>.file}` |
+| `{{espace.nom}}` (plugin) | `{$espace.nom}` |
+
+Écrivez `{$…}` dans tout nouveau contenu du catalogue. Un serveur antérieur à l'ADR 0026 ne résout
+pas `{$espace.nom}` dans le défaut d'une variable de script : il le transmet tel quel au script.
+Aucun champ de manifeste ne fixe de version minimale du serveur ; ne publiez un tel défaut qu'une
+fois les installations à jour.
+
+### Chemins à sélecteur
 
 Forgearr 0.70.0 lit `exposes`, `requires` et `variables`, mais n'accepte que des chemins sans sélecteur
 (`a.b`, `a.0.b`). Les chemins avec `[clé=valeur]` demandent la version suivante : **ne publiez pas une

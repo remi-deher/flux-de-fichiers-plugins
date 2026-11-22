@@ -1,12 +1,12 @@
 {
   "schemaVersion": "1.1.0",
   "id": "route-by-video-codec.run",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "name": "Routage : codec vidéo",
   "description": "Oriente le flux selon le codec vidéo du fichier (variable exposée par MediaInfo) : « Codec attendu » ou « Autre codec ».",
   "category": "data",
   "operationId": "operation.script.route-by-video-codec",
-  "operationVersion": "1.0.0",
+  "operationVersion": "1.1.0",
   "sockets": {
     "inputs": [
       {

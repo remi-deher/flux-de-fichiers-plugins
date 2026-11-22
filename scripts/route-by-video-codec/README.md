@@ -3,7 +3,7 @@
 Script d'exemple officiel des **variables de script** et des **variables exposées par un plugin** (ADR 0025).
 Il oriente le flux selon le codec vidéo du fichier, sans réimplémenter la lecture des métadonnées :
 
-- `codec` vaut par défaut `{{mediainfo.video.codec}}`, une variable **exposée par MediaInfo** (plugin `video`).
+- `codec` vaut par défaut `{$mediainfo.video.codec}`, une variable **exposée par MediaInfo** (plugin `video`).
   La valeur est résolue par Forgearr avant le script, qui la reçoit dans `config.codec`.
 - `expected` est un choix (HEVC, AVC, AV1, VP9) saisi dans le formulaire du nœud.
 - Sorties : **`true`** « Codec attendu » et **`false`** « Autre codec ». Les noms courants (H.265, H.264)
