@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "essentiel.set-variable",
+  "aliases": ["set-variable"],
+  "version": "1.0.0",
+  "name": "Définir une variable",
+  "description": "Écrit une variable de flux, lisible ensuite par {$vars.nom} dans les réglages des blocs et par les conditions (propriété vars.nom).",
+  "category": "data",
+  "operationId": "operation.core.set-variable",
+  "operationVersion": "1.0.0",
+  "sockets": {
+    "inputs": [
+      {
+        "id": "source",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "*/*"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "next",
+        "label": "Fichier courant",
+        "dataType": "file",
+        "mediaType": "*/*"
+      }
+    ]
+  },
+  "ui": {
+    "category": "Logique",
+    "domain": "logic",
+    "icon": "fas fa-tag",
+    "color": "#22C55E",
+    "suggestedNext": [
+      "essentiel.condition"
+    ],
+    "fields": [
+      {
+        "name": "name",
+        "label": "Nom",
+        "type": "string",
+        "default": "",
+        "required": true,
+        "description": "Lettres, chiffres, « _ » ou « - » (64 caractères au plus) ; lue ensuite sous vars.<nom>.",
+        "placeholder": "codec_cible"
+      },
+      {
+        "name": "value",
+        "label": "Valeur",
+        "type": "string",
+        "default": "",
+        "required": false,
+        "description": "Texte libre ou modèle, par exemple {$file.stem}-hevc ; {{$ pour un « {$ » littéral."
+      },
+      {
+        "name": "valueType",
+        "label": "Type",
+        "type": "select",
+        "default": "text",
+        "required": true,
+        "description": "Conversion appliquée à la valeur rendue.",
+        "options": [
+          { "label": "Texte", "value": "text" },
+          { "label": "Nombre", "value": "number" },
+          { "label": "Booléen (true, false, oui, non, 1, 0)", "value": "bool" }
+        ]
+      }
+    ]
+  }
+}

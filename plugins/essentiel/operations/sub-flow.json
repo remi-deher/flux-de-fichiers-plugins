@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "operation.core.sub-flow",
+  "version": "1.0.0",
+  "name": "Appel d'un sous-flux",
+  "providerId": "essentiel",
+  "providerKind": "plugin",
+  "capability": "control",
+  "status": "validated",
+  "runtime": {
+    "kind": "primitive",
+    "primitive": "sub-flow"
+  }
+}

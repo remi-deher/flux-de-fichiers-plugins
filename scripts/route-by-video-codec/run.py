@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Routage selon le codec vidéo, lu dans la variable exposée par MediaInfo (`{{mediainfo.video.codec}}`)."""
+"""Routage selon le codec vidéo, lu dans la variable exposée par MediaInfo (`{$mediainfo.video.codec}`)."""
 import json
 import sys
 

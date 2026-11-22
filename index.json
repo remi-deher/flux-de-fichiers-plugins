@@ -38,10 +38,12 @@
     "plugins/emby/icon.svg": "5d538c8fa37f421e8638a57be6dc391787f25c1ad1a262b68c34ab050c747efc",
     "plugins/emby/operations/refresh.json": "182b168df40183b4dc518ded1d4a21fdb1ddb67aaa1ab91f3086484ff33a20b5",
     "plugins/essentiel/icon.svg": "12618b75c92f467b2797af75f29e136dc09e5c69d636036e419b255848ae6341",
-    "plugins/essentiel/operations/condition.json": "f5fa7c699aa55ff47c6bc73ff387e00e6cb8902080de3f096b88ef70ea02d149",
+    "plugins/essentiel/operations/condition.json": "c262e4e4f53cff6562a83db96a23ab0cdfdbca46f7d8086a6b1d0660549a049a",
     "plugins/essentiel/operations/file-input.json": "fb2120a8b119edb96838f50351d67448942e855e8cd147c8dc6b6c01be025792",
     "plugins/essentiel/operations/file-output.json": "f5ec36b5058ba1547cb221c20c2b2fa18609e916e1bf1ce6615091515c4d73d3",
     "plugins/essentiel/operations/relay.json": "6516cd1296d5cba728bce3cdc84205acaad21b6dd54e9328c851dc2003f2821a",
+    "plugins/essentiel/operations/set-variable.json": "9c0b4d32ecce2cb3810160ede656e111e86f2446b3d840d3c90aa78c8c6d5f21",
+    "plugins/essentiel/operations/sub-flow.json": "00112b60185ec6a593885fa4fd4af2d37c15f7841dcc085cafcc89bb8c351757",
     "plugins/essentiel/operations/webhook.json": "8c463c86297d1de6595a48dcf8264f662da1bae25c73765f7c638d9bcbbffee8",
     "plugins/essentiel/operations/worker-capability.json": "d198086465ef9368d23554f16dc0338c4c6266f356eacf18b006b408d7722ba4",
     "plugins/hdr/icon.svg": "2f0d3a6d1a0cde7afbcc5bba9fe740dccc400dd61682aba850d97ded84381651",
@@ -62,7 +64,7 @@
     "plugins/radarr/operations/rename.json": "231aa65d7d72966184cfe39f866a7a3b680e10c2445a1d2d78a6f918368b113e",
     "plugins/radarr/operations/rescan.json": "d13ba0b8fa0ac1e6958643b414b73b22d7dcaf185cccfe0b6ee66acfef0e09ac",
     "plugins/scripts/icon.svg": "ecbb11184174aaadba060479dcfaf7a7b913b494c3c2e0de4a02203d36bc609d",
-    "plugins/scripts/operations/run.json": "4f0949d9e5fa38c565978222a4c8e304f5c8a6702351d3cd4cf36b5cfcea5b2a",
+    "plugins/scripts/operations/run.json": "a8e1148d8c2aa9dc4818d3ea54f8ae895f9f2f5eb17ed3be67c1f1db5e0310e9",
     "plugins/sonarr/icon.svg": "661d37f027ac4848d1761ddb86893d3af33b6454f7378c626c576fb4cacf3d49",
     "plugins/sonarr/operations/rename.json": "38184599e1baf2f23ee07af4f351f20d1715468434732e5f1dc4f54636ca1815",
     "plugins/sonarr/operations/rescan.json": "6dabf5aa2bfb4e140276bf5c10febc76f5aedf3b150f792f77a0469f203611be",
@@ -90,8 +92,8 @@
     "scripts/integrity-check-media/run.py": "712a6b430a2b052a54e9f823d973415e6ecbb354b0d5264991cb2051291d3af0",
     "scripts/route-by-hdr-format/operations/run.json": "2d1bc080c9a1462666b995e7915b063beea49ef03f2b0f69eac2958ec375ab1e",
     "scripts/route-by-hdr-format/run.py": "e76d29d62dbb1ca1c6849da62eac875fd222e8a4e1d20f7dcf64c98fe07f8c10",
-    "scripts/route-by-video-codec/operations/run.json": "648fdcbae1865254ccaed32bfe9522539a7c00cd893942a916dff0de7877495f",
-    "scripts/route-by-video-codec/run.py": "82289a222e77208f512a376e1b37bbdc7c6bad31f6691eb178d5fcc4ebfb7ffa"
+    "scripts/route-by-video-codec/operations/run.json": "24f68039db298b873473b92757f9921d9eeb5b9e5e32892f6af7342730af788b",
+    "scripts/route-by-video-codec/run.py": "bf947062605b9372db2ef035459c984774f41cc4a2517b176301ee717374e336"
   },
   "entries": [
     {
@@ -305,14 +307,14 @@
     {
       "id": "essentiel",
       "type": "plugin",
-      "version": "1.1.0",
+      "version": "1.3.0",
       "name": "Essentiel",
       "manifestPath": "plugins/essentiel/manifest.json",
       "capability": "other",
       "category": "other",
       "subcategory": "core-blocks",
-      "sha256": "2a9d0ab0fb5f2ec9fb2106517561fa7fa96ea3a5c3632095f65cdda07ff78a46",
-      "contentSha256": "644fa5d9aa02e5f0887c6106d7464ec13c3b357481985d35517516937bd90e91",
+      "sha256": "85071f641746ee57097861b5d8b7e29ed0b0bcfc7433d898db559c511c8143fc",
+      "contentSha256": "acf6ab5abb41c32fec1979b2337948e2af059723d10b9f0ec9041ac8e5893eac",
       "updatedAt": "2026-11-21"
     },
     {
@@ -370,14 +372,14 @@
     {
       "id": "scripts",
       "type": "plugin",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "name": "Scripts",
       "manifestPath": "plugins/scripts/manifest.json",
       "capability": "script",
       "category": "data",
       "subcategory": "scripting",
-      "sha256": "6b07fc9be955cb1794ddc18c67b651606855da7eafac77d6c47a2d81d9e6c776",
-      "contentSha256": "6afcc578ab398242b52bd8670c0cc9d617d91e50876ae120c1706b255bce5eac",
+      "sha256": "8cdd28ba4466feafa728984907dc1185e93c7d36538adb0e2c0d4e5d404d13df",
+      "contentSha256": "28b6f4710003dec98fc609aa8929860820af30751b7117551559fa094ba145f2",
       "updatedAt": "2026-11-21"
     },
     {
@@ -484,12 +486,12 @@
       "id": "essentiel.condition",
       "type": "block",
       "owner": "essentiel",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "name": "Condition",
       "manifestPath": "plugins/essentiel/blocks/condition.json",
-      "sha256": "f999d8bc7a6b53a6a8251ab1fd088dde35ce71503b6e728af4897b01381b3342",
-      "contentSha256": "8b0e0cd40258daac7838816e0cf2c1442df01426d9507e961d28415a005f8260",
-      "updatedAt": "2026-11-19"
+      "sha256": "ee9c2dd00a3e3dbbf1e0b0a142499e4e155d94c15e96e8f8e99d0f7a84c52975",
+      "contentSha256": "d16115a18f924ac9112e21312dd01f1f169eb8fcf188ebf00aa5ebf1c3809b04",
+      "updatedAt": "2026-11-21"
     },
     {
       "id": "essentiel.file-input",
@@ -616,12 +618,12 @@
       "id": "scripts.run",
       "type": "block",
       "owner": "scripts",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "name": "Script",
       "manifestPath": "plugins/scripts/blocks/run.json",
-      "sha256": "c31fe78868ebcd446272dce8a778c5bfc96a263b637ba4fd6b5fb27c82075ff8",
-      "contentSha256": "591442e4942fa4e13e717af508f270725d80c2cce81f41ff3a1c970f0861abe7",
-      "updatedAt": "2026-11-19"
+      "sha256": "eedbccfe17280d61dc14bd7424d28c82eec6caa6f5686addcd3ea53ab102aeb9",
+      "contentSha256": "c932cbdac669527e78eaa971de034c5f6b1e8725157441e05bd4e54c09c18851",
+      "updatedAt": "2026-11-21"
     },
     {
       "id": "sonarr.rename",
@@ -877,15 +879,37 @@
       "updatedAt": "2026-11-19"
     },
     {
+      "id": "essentiel.set-variable",
+      "type": "block",
+      "owner": "essentiel",
+      "version": "1.0.0",
+      "name": "Définir une variable",
+      "manifestPath": "plugins/essentiel/blocks/set-variable.json",
+      "sha256": "87c5deef0a87489d46135a0f94ba43b925c11f0a8b8d1af86df82ce4575a6dd0",
+      "contentSha256": "6b407d88b3db2ecb5f5ebbf16fbdd09be2806013e8080809a8bfdc2f45f76046",
+      "updatedAt": "2026-11-21"
+    },
+    {
+      "id": "essentiel.sub-flow",
+      "type": "block",
+      "owner": "essentiel",
+      "version": "1.0.0",
+      "name": "Aller au sous-flux",
+      "manifestPath": "plugins/essentiel/blocks/sub-flow.json",
+      "sha256": "6b04cf323e46a905840cc9dda09a67c00f02a565cd9660cf271fe691fa849f99",
+      "contentSha256": "cd5b32560b733ec5bbd4607e63e4a30c6195d6f077a5086e9414c7c192206252",
+      "updatedAt": "2026-11-21"
+    },
+    {
       "id": "route-by-video-codec.run",
       "type": "block",
       "owner": "route-by-video-codec",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "name": "Routage : codec vidéo",
       "manifestPath": "scripts/route-by-video-codec/blocks/run.json",
-      "sha256": "ab2bdeb0935324eac2e825bc4d3f6795d285298ecdf0a174ac04fb853fb9953b",
-      "contentSha256": "8589055d74a2fd538ec7646f43b356b133fe8e3fd44fb059035dd5052f2d2ea9",
-      "updatedAt": "2026-11-21"
+      "sha256": "124374573c5ed7b3cc9f1e52c1334ca308beb63670aab68a374046bfaac53990",
+      "contentSha256": "6523d08babbf4b133e3f5cc992511df7a4d82604203094c7261601f49d173fba",
+      "updatedAt": "2026-11-22"
     },
     {
       "id": "audio-loudnorm-mkv",
@@ -1023,8 +1047,8 @@
         "encodage"
       ],
       "sha256": "c8a69fbe97c860f1948e1e8c6adda95d7a1a428d8a0b7081cd9b030e3265f3fe",
-      "contentSha256": "3d3bf22ae68f20e2062a63055277ae0787626fcaad06a4f2ae8579ed0628ae50",
-      "updatedAt": "2026-11-19"
+      "contentSha256": "98775ab7b61592217d53a4b97ef8ffb30fe89637ba9a4603372ed793e8196f11",
+      "updatedAt": "2026-11-21"
     },
     {
       "id": "integrity-check-media",
@@ -1066,7 +1090,7 @@
     {
       "id": "route-by-video-codec",
       "type": "script",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "name": "Routage : codec vidéo",
       "manifestPath": "scripts/route-by-video-codec/manifest.json",
       "capability": "script",
@@ -1077,9 +1101,9 @@
         "routage",
         "mediainfo"
       ],
-      "sha256": "65adebe09ec07f52067c9e6bcfb6552cd1b15c63aa6c875fd656917e2621351c",
-      "contentSha256": "932e8060a2f0f9074dacceb96c2c22de997725865d48e4abcca46fb3ee27d2da",
-      "updatedAt": "2026-11-21"
+      "sha256": "407524126e23f6f3f8a765fbd86bd5fdbb3885453384d41ef4a4a04ebb274021",
+      "contentSha256": "90fdebfc7b961f36da2c42882949fa91a2002be86739f69756178891c2dc19ba",
+      "updatedAt": "2026-11-22"
     },
     {
       "id": "media",

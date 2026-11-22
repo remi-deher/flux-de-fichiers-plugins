@@ -2,9 +2,9 @@
   "schemaVersion": "1.1.0",
   "id": "essentiel.condition",
   "aliases": ["condition"],
-  "version": "1.0.0",
+  "version": "1.1.0",
   "name": "Condition",
-  "description": "Aiguille vers « Vrai » ou « Faux » selon les métadonnées de sonde.",
+  "description": "Aiguille vers « Vrai » ou « Faux » selon les métadonnées de sonde ou les variables du flux.",
   "category": "data",
   "operationId": "operation.core.condition",
   "operationVersion": "1.0.0",
@@ -54,26 +54,29 @@
         "type": "string",
         "default": "any",
         "required": true,
-        "description": "Chemin dans les métadonnées de sonde (ex. format, tracks[type=video].codec) ou any.",
+        "description": "Chemin dans les métadonnées de sonde (ex. format, tracks[type=video].codec), variable du flux sans {$…} (ex. vars.codec, file.ext) ou any.",
         "placeholder": "any"
       },
       {
         "name": "operator",
         "label": "Opérateur",
         "type": "select",
-        "default": "eq",
+        "default": "contains",
         "required": true,
-        "description": "Comparaison textuelle insensible à la casse ou numérique.",
+        "description": "Comparaison textuelle insensible à la casse ou numérique. Les anciennes valeurs eq / neq restent lues comme « contient » / « ne contient pas ».",
         "options": [
-          { "label": "Contient la valeur", "value": "eq" },
-          { "label": "Ne contient pas la valeur", "value": "neq" },
+          { "label": "Contient la valeur", "value": "contains" },
+          { "label": "Ne contient pas la valeur", "value": "not_contains" },
           { "label": "Correspond exactement", "value": "exact" },
+          { "label": "Différent exactement", "value": "not_exact" },
           { "label": "Est défini (non vide)", "value": "exists" },
           { "label": "Est absent (ou vide)", "value": "not_exists" },
           { "label": "Supérieur à (>)", "value": "gt" },
           { "label": "Supérieur ou égal (>=)", "value": "gte" },
           { "label": "Inférieur à (<)", "value": "lt" },
-          { "label": "Inférieur ou égal (<=)", "value": "lte" }
+          { "label": "Inférieur ou égal (<=)", "value": "lte" },
+          { "label": "Expression régulière", "value": "regex" },
+          { "label": "Fait partie de la liste (a, b, c)", "value": "in" }
         ]
       },
       {
@@ -82,7 +85,14 @@
         "type": "string",
         "default": "",
         "required": false,
-        "description": "Valeur attendue (inutile pour « Est défini » / « Est absent »)."
+        "description": "Valeur attendue (inutile pour « Est défini » / « Est absent ») ; accepte les modèles, ex. {$vars.codec}."
+      },
+      {
+        "name": "group",
+        "label": "Règles combinées",
+        "type": "condition",
+        "required": false,
+        "description": "Plusieurs règles combinées par ET / OU, imbriquées sur 4 niveaux au plus ; prioritaires sur la règle simple dès qu'elles sont renseignées."
       }
     ]
   }

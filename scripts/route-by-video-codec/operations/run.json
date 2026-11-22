@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.1.0",
   "id": "operation.script.route-by-video-codec",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "name": "Routage : codec vidéo",
   "providerId": "route-by-video-codec",
   "providerKind": "script",
@@ -23,7 +23,7 @@
         "description": "Codec vidéo du fichier ; par défaut, la variable exposée par MediaInfo.",
         "type": "text",
         "required": true,
-        "default": "{{mediainfo.video.codec}}"
+        "default": "{$mediainfo.video.codec}"
       },
       {
         "name": "expected",

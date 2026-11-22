@@ -97,7 +97,9 @@
             "terminal",
             "condition",
             "capability",
-            "relay"
+            "relay",
+            "set-variable",
+            "sub-flow"
           ]
         },
         "defaults": {
@@ -831,10 +833,24 @@
           "maxLength": 64,
           "not": {
             "enum": [
-              "nodes"
+              "nodes",
+              "media",
+              "vars",
+              "file",
+              "source",
+              "work",
+              "library",
+              "worker",
+              "job",
+              "flow",
+              "error",
+              "context",
+              "var",
+              "setting",
+              "config"
             ]
           },
-          "description": "Espace de noms des références : {{espace.nom}}. Propre au plugin, jamais « nodes »."
+          "description": "Espace de noms des références : {$espace.nom}. Propre au plugin, jamais un espace réservé du moteur (nodes, media, vars, file, source, work, library, worker, job, flow, error, context, var, setting, config)."
         },
         "contractVersion": {
           "type": "string",
