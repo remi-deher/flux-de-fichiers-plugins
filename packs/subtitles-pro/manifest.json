@@ -2,7 +2,7 @@
   "schemaVersion": "1.1.0",
   "id": "subtitles-pro",
   "type": "pack",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "Pack Sous-titres Pro (OCR & Sync)",
   "description": "Nettoyage des langues, conversion OCR PGS → SRT (Tesseract), resynchronisation automatique (alass) et drapeaux MKV.",
   "author": "Forgearr",

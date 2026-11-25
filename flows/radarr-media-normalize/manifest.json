@@ -2,7 +2,7 @@
   "schemaVersion": "1.1.0",
   "id": "radarr-media-normalize",
   "type": "flow",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "Radarr · Préparer les médias",
   "description": "Conserve la vidéo HEVC ou encode en HEVC. Sélection des pistes et conversion audio dans le même passage FFmpeg.",
   "author": "Forgearr",
@@ -102,14 +102,17 @@
   "dependencies": [
     {
       "id": "essentiel",
+      "versionRange": "^1.0.0",
       "kind": "plugin"
     },
     {
       "id": "video",
+      "versionRange": "^1.0.0",
       "kind": "plugin"
     },
     {
       "id": "radarr",
+      "versionRange": "^1.0.0",
       "kind": "plugin"
     }
   ]

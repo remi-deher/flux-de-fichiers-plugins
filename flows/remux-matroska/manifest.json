@@ -2,7 +2,7 @@
   "schemaVersion": "1.1.0",
   "id": "remux-matroska",
   "type": "flow",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "Conversion MKV",
   "description": "Convertit proprement le fichier au format MKV sans perte de qualité.",
   "author": "Forgearr",
@@ -49,6 +49,11 @@
     ]
   },
   "dependencies": [
+    {
+      "id": "essentiel",
+      "versionRange": "^1.0.0",
+      "kind": "plugin"
+    },
     {
       "id": "video",
       "versionRange": "^1.0.0",

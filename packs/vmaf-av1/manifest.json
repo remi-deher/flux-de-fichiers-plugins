@@ -2,7 +2,7 @@
   "schemaVersion": "1.1.0",
   "id": "vmaf-av1",
   "type": "pack",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "Pack Compression AV1 & VMAF",
   "description": "Encode en AV1 à qualité perceptuelle cible (ab-av1 + FFmpeg VMAF) avec garde-fous automatiques de taille et d'intégrité.",
   "author": "Forgearr",
