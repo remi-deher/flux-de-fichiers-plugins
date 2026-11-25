@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "packId": "hdr-mastering",
-  "packVersion": "1.0.0",
+  "packVersion": "1.0.1",
   "kind": "declarative-bundle",
   "components": [
     { "id": "ffmpeg", "version": "1.0.0", "kind": "app" },
@@ -10,7 +10,7 @@
     { "id": "dovi-tool", "version": "1.0.0", "kind": "app" },
     { "id": "hdr10plus-tool", "version": "1.0.0", "kind": "app" },
     { "id": "interpreteurs", "version": "1.1.0", "kind": "app" },
-    { "id": "essentiel", "version": "1.0.0", "kind": "plugin" },
+    { "id": "essentiel", "version": "1.3.0", "kind": "plugin" },
     { "id": "video", "version": "1.1.0", "kind": "plugin" },
     { "id": "hdr", "version": "1.0.0", "kind": "plugin" },
     { "id": "route-by-hdr-format", "version": "1.0.0", "kind": "script" },

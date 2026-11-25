@@ -2,7 +2,7 @@
   "schemaVersion": "1.1.0",
   "id": "arr-stack",
   "type": "pack",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "Pack Stack *arr (Radarr & Sonarr)",
   "description": "Ensemble clé en main pour normaliser les médias importés par Radarr et Sonarr, gérer les sous-titres et envoyer des notifications.",
   "author": "Forgearr",

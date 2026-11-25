@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "packId": "vmaf-av1",
-  "packVersion": "1.0.0",
+  "packVersion": "1.0.1",
   "kind": "declarative-bundle",
   "components": [
     { "id": "ffmpeg", "version": "1.0.0", "kind": "app" },
@@ -10,7 +10,7 @@
     { "id": "mkvtoolnix", "version": "1.0.0", "kind": "app" },
     { "id": "mediainfo", "version": "1.0.0", "kind": "app" },
     { "id": "interpreteurs", "version": "1.1.0", "kind": "app" },
-    { "id": "essentiel", "version": "1.0.0", "kind": "plugin" },
+    { "id": "essentiel", "version": "1.3.0", "kind": "plugin" },
     { "id": "video", "version": "1.1.0", "kind": "plugin" },
     { "id": "vmaf", "version": "1.0.0", "kind": "plugin" },
     { "id": "guard-min-size-saving", "version": "1.0.0", "kind": "script" },
