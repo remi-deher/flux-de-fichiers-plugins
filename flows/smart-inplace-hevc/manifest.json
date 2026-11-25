@@ -2,7 +2,7 @@
   "schemaVersion": "1.1.0",
   "id": "smart-inplace-hevc",
   "type": "flow",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "Encodage HEVC intelligent",
   "description": "Si la vidéo est déjà en HEVC, ajuste les pistes par défaut ; sinon, réencode en HEVC.",
   "author": "Forgearr",
@@ -82,6 +82,11 @@
     ]
   },
   "dependencies": [
+    {
+      "id": "essentiel",
+      "versionRange": "^1.0.0",
+      "kind": "plugin"
+    },
     {
       "id": "video",
       "versionRange": "^1.0.0",

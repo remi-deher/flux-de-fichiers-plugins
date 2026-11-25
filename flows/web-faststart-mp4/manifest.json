@@ -2,7 +2,7 @@
   "schemaVersion": "1.1.0",
   "id": "web-faststart-mp4",
   "type": "flow",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "MP4 Streaming",
   "description": "Convertit en MP4 optimisé pour le streaming web.",
   "author": "Forgearr",
@@ -46,6 +46,11 @@
     ]
   },
   "dependencies": [
+    {
+      "id": "essentiel",
+      "versionRange": "^1.0.0",
+      "kind": "plugin"
+    },
     {
       "id": "video",
       "versionRange": "^1.0.0",
