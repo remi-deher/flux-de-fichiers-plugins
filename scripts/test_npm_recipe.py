@@ -73,6 +73,11 @@ class NpmRecipeTests(unittest.TestCase):
         recipe["binaries"].remove("bash-language-server")
         self.assertTrue(any("binaires exposés" in error for error in self.failures(recipe)))
 
+    def test_a_folder_named_like_a_binary_is_refused(self) -> None:
+        recipe = self.recipe()
+        recipe["source"]["npmPackages"]["extractTo"] = "bash-language-server"
+        self.assertTrue(any("collision avec son lanceur" in error for error in self.failures(recipe)))
+
     def test_a_missing_lockfile_is_reported(self) -> None:
         recipe = self.recipe()
         recipe["source"]["npmPackages"]["projectDir"] = "apps/langages/absent"
