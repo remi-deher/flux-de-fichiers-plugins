@@ -1,0 +1,9 @@
+{
+  "name": "forgearr-langages-npm",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Paquets npm de l'application langages (verrou figé, installés sans script).",
+  "dependencies": {
+    "bash-language-server": "5.8.1"
+  }
+}

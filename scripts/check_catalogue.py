@@ -32,6 +32,7 @@ from catalogue_lib import (
     is_icon_path,
     is_safe_relative,
     load_json,
+    npm_lockfile_problems,
     requirements_problems,
     sha256_file,
     svg_icon_problems,
@@ -116,6 +117,34 @@ class CatalogueChecker:
             self.validate_schema("tool-build.v1.schema.json", recipe, rel)
             if recipe.get("slug") != recipe_path.parent.name:
                 self.fail(f"{rel} : slug ({recipe.get('slug')!r}) != dossier ({recipe_path.parent.name!r})")
+            self._check_npm_packages(rel, recipe)
+
+    def _check_npm_packages(self, rel: str, recipe: dict[str, Any]) -> None:
+        source = recipe.get("source")
+        npm = source.get("npmPackages") if isinstance(source, dict) else None
+        if not isinstance(npm, dict):
+            return
+        archives = source.get("archives") or []
+        runtime = next((a for a in archives if isinstance(a, dict) and a.get("extractTo") == npm.get("runtime")), None)
+        if runtime is None or "node" not in (runtime.get("entrypoints") or {}):
+            self.fail(f"{rel} : npmPackages.runtime doit désigner une archive dont le point d'entrée « node » existe")
+        extract_dirs = {a.get("extractTo") for a in archives if isinstance(a, dict)}
+        archive_binaries = {name for a in archives if isinstance(a, dict) for name in (a.get("entrypoints") or {})}
+        npm_binaries = set(npm.get("entrypoints") or {})
+        if npm.get("extractTo") in extract_dirs:
+            self.fail(f"{rel} : npmPackages.extractTo en collision avec une archive")
+        for name in sorted(npm_binaries & archive_binaries):
+            self.fail(f"{rel} : point d'entrée npm {name!r} déjà exposé par une archive")
+        declared = set(recipe.get("binaries") or [])
+        if declared != archive_binaries | npm_binaries:
+            self.fail(f"{rel} : binaries {sorted(declared)} != binaires exposés {sorted(archive_binaries | npm_binaries)}")
+        project = self.root / str(npm.get("projectDir", ""))
+        lock = project / "package-lock.json"
+        if not (project / "package.json").is_file() or not lock.is_file():
+            self.fail(f"{rel} : package.json et package-lock.json attendus dans {npm.get('projectDir')}")
+            return
+        for problem in npm_lockfile_problems(self.load(lock)):
+            self.fail(f"{lock.relative_to(self.root).as_posix()} : {problem}")
 
     def _check_distribution(self, app_entry: dict[str, Any], dist_path: Path) -> list[str]:
         rel = dist_path.relative_to(self.root).as_posix()

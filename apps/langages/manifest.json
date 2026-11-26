@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "langages",
+  "type": "app",
+  "version": "1.0.0",
+  "name": "Serveurs de langage (éditeur de script)",
+  "description": "Suggestions et diagnostics de l'éditeur de script : ty (Python), ShellCheck et bash-language-server (bash et sh), avec leur propre Node.js.",
+  "author": "Forgearr",
+  "license": "MIT AND GPL-3.0-only",
+  "files": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "build.json",
+      "role": "config",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "distribution.v1.json",
+      "role": "config",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "npm/package.json",
+      "role": "config",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "npm/package-lock.json",
+      "role": "config",
+      "mediaType": "application/json"
+    }
+  ],
+  "compatibility": {
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
+  },
+  "dependencies": [],
+  "tool": {
+    "capability": "language-server",
+    "interface": "LanguageServer",
+    "invocation": "host-binary",
+    "currentChoice": false
+  }
+}

@@ -113,6 +113,31 @@ def svg_icon_problems(text: str) -> list[str]:
     return problems
 
 
+NPM_REGISTRY_PREFIX = "https://registry.npmjs.org/"
+NPM_LOCKFILE_VERSION = 3
+NPM_INTEGRITY_RE = re.compile(r"^sha512-[A-Za-z0-9+/]{86}==$")
+
+
+def npm_lockfile_problems(lock: object) -> list[str]:
+    """Anomalies d'un `package-lock.json` destiné à `npm ci` : version, source et empreinte de chaque paquet."""
+    if not isinstance(lock, dict):
+        return ["verrou npm : objet JSON attendu"]
+    problems: list[str] = []
+    if lock.get("lockfileVersion") != NPM_LOCKFILE_VERSION:
+        problems.append(f"verrou npm : lockfileVersion {NPM_LOCKFILE_VERSION} attendu")
+    packages = lock.get("packages")
+    if not isinstance(packages, dict) or len(packages) < 2:
+        return problems + ["verrou npm : aucun paquet verrouillé"]
+    for name, entry in packages.items():
+        if name == "" or not isinstance(entry, dict):
+            continue
+        if entry.get("link") or not str(entry.get("resolved", "")).startswith(NPM_REGISTRY_PREFIX):
+            problems.append(f"verrou npm : {name} ne vient pas du registre npm")
+        if not NPM_INTEGRITY_RE.match(str(entry.get("integrity", ""))):
+            problems.append(f"verrou npm : {name} sans empreinte sha512 valide")
+    return problems
+
+
 def sha256_file(path: Path) -> str:
     """Calcule l'empreinte SHA-256 hexadécimale d'un fichier."""
     return hashlib.sha256(path.read_bytes()).hexdigest()

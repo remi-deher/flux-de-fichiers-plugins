@@ -79,6 +79,8 @@ Sources de construction (`apps/<slug>/build.json`, schéma `tool-build.v1`) :
 | `debian-bookworm` | Paquets Debian ; binaires et bibliothèques hors glibc copiés, rpath `$ORIGIN/lib`. |
 | `gpac-git` | MP4Box compilé statiquement depuis GPAC. |
 | `upstream-archives` | Archives ou binaires amont (`format` : `tar.gz`, `tar.xz`, `binary`) épinglés par SHA-256, élagués (`prune`, `strip`), exposés par lanceurs `sh`. |
+
+Une recette `upstream-archives` peut ajouter un bloc `npmPackages` : paquets npm installés par `npm ci --ignore-scripts --omit=dev` à partir d'un verrou figé du dépôt (`package.json` et `package-lock.json`, version 3, chaque paquet issu du registre npm avec son empreinte `sha512`), avec le Node.js d'une des archives (`runtime`, installé avant l'élagage de cette archive). Chaque entrée de `npmPackages.entrypoints` devient un lanceur `sh` qui appelle ce Node.js sur le script. `check_catalogue.py` contrôle le verrou et la cohérence avec `binaries`. Exemple : `apps/langages`.
 | `cargo-crate` | Crate compilée dans `rust:<rustToolchain>-bookworm` (même glibc que l'image d'exécution), quand l'amont ne publie pas d'arm64. |
 
 `dataPaths` copie des données du conteneur de construction dans l'archive (ex. `tessdata`) ; `launcherEnv` place chaque binaire dans `libexec/` derrière un lanceur qui pose des variables relatives à l'archive (ex. `TESSDATA_PREFIX`).
