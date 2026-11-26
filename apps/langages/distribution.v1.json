@@ -3,20 +3,38 @@
   "toolId": "langages",
   "toolVersion": "1.0.0",
   "distributionMode": "autonomous-binary",
-  "releaseStatus": "contract-only",
+  "releaseStatus": "released",
   "artifacts": [
     {
       "arch": "x86_64",
       "os": "linux",
       "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-langages-1.0.0/langages-linux-x86_64.tar.gz",
       "archiveFormat": "tar.gz",
-      "archiveSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "archiveSha256": "37d5d665fa102ed69f91c07ae5cd7dd43c14e938d6794f164c962af32fb2062f",
       "binaryRelativePath": "ty",
-      "binarySha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "binarySha256": "108b38f04e0dec25495a336b59a4ecab0060a42b1fbe14f36d22574774a32321",
       "permissions": {
         "unixMode": "0755",
         "owner": "runtime-user",
         "executableBit": true
+      },
+      "binaries": {
+        "ty": {
+          "relativePath": "ty",
+          "sha256": "108b38f04e0dec25495a336b59a4ecab0060a42b1fbe14f36d22574774a32321"
+        },
+        "shellcheck": {
+          "relativePath": "shellcheck",
+          "sha256": "33aa194d9c6ebf2f1678d6b56f9c180668964e95c998129bcb1e628bf576b02d"
+        },
+        "node": {
+          "relativePath": "node",
+          "sha256": "8948a25a098fc64c48d03762fabddc84d874e9f032343da9af900ca185af81ae"
+        },
+        "bash-language-server": {
+          "relativePath": "bash-language-server",
+          "sha256": "7bae29a3904e166f86d94632c23698c740b9efe8a39a6d3b945710e7a560857b"
+        }
       }
     },
     {
@@ -24,13 +42,31 @@
       "os": "linux",
       "archiveUrl": "https://github.com/remi-deher/flux-de-fichiers-plugins/releases/download/tools-langages-1.0.0/langages-linux-aarch64.tar.gz",
       "archiveFormat": "tar.gz",
-      "archiveSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "archiveSha256": "d3135af84e4dd9282d952441004bcf90ec1427132f0c0e4e6edc6070fc488768",
       "binaryRelativePath": "ty",
-      "binarySha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "binarySha256": "108b38f04e0dec25495a336b59a4ecab0060a42b1fbe14f36d22574774a32321",
       "permissions": {
         "unixMode": "0755",
         "owner": "runtime-user",
         "executableBit": true
+      },
+      "binaries": {
+        "ty": {
+          "relativePath": "ty",
+          "sha256": "108b38f04e0dec25495a336b59a4ecab0060a42b1fbe14f36d22574774a32321"
+        },
+        "shellcheck": {
+          "relativePath": "shellcheck",
+          "sha256": "33aa194d9c6ebf2f1678d6b56f9c180668964e95c998129bcb1e628bf576b02d"
+        },
+        "node": {
+          "relativePath": "node",
+          "sha256": "8948a25a098fc64c48d03762fabddc84d874e9f032343da9af900ca185af81ae"
+        },
+        "bash-language-server": {
+          "relativePath": "bash-language-server",
+          "sha256": "7bae29a3904e166f86d94632c23698c740b9efe8a39a6d3b945710e7a560857b"
+        }
       }
     }
   ],
@@ -49,5 +85,7 @@
   },
   "notes": [
     "Empreintes et releaseStatus renseignés par build-tools.yml à la première construction (recette build.json)."
-  ]
+  ],
+  "upstreamVersion": "ty 0.0.111, ShellCheck 0.11.0, Node.js 26.13.1 LTS",
+  "releasedAt": "2026-11-26"
 }
