@@ -71,7 +71,7 @@
       }
     ],
     "npmPackages": {
-      "extractTo": "bash-language-server",
+      "extractTo": "bash-language-server-runtime",
       "projectDir": "apps/langages/npm",
       "runtime": "node-runtime",
       "entrypoints": {

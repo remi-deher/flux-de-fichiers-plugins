@@ -136,6 +136,8 @@ class CatalogueChecker:
         for name in sorted(npm_binaries & archive_binaries):
             self.fail(f"{rel} : point d'entrée npm {name!r} déjà exposé par une archive")
         declared = set(recipe.get("binaries") or [])
+        for directory in sorted((extract_dirs | {npm.get("extractTo")}) & declared):
+            self.fail(f"{rel} : le dossier {directory!r} porte le nom d'un binaire exposé (collision avec son lanceur)")
         if declared != archive_binaries | npm_binaries:
             self.fail(f"{rel} : binaries {sorted(declared)} != binaires exposés {sorted(archive_binaries | npm_binaries)}")
         project = self.root / str(npm.get("projectDir", ""))
