@@ -168,6 +168,47 @@
             }
           }
         },
+        "npmPackages": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "extractTo",
+            "projectDir",
+            "runtime",
+            "entrypoints"
+          ],
+          "description": "Paquets npm installés à l'identique du verrou (npm ci, sans script ni dépendance de développement) avec le Node.js d'une des archives amont ; chaque point d'entrée devient un lanceur sh à la racine.",
+          "properties": {
+            "extractTo": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+              "maxLength": 64
+            },
+            "projectDir": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._+-]+(/[A-Za-z0-9._+-]+)*$",
+              "description": "Dossier du dépôt contenant package.json et package-lock.json (verrou figé, empreintes d'intégrité)."
+            },
+            "runtime": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+              "maxLength": 64,
+              "description": "extractTo de l'archive amont qui fournit Node.js (point d'entrée « node »)."
+            },
+            "entrypoints": {
+              "type": "object",
+              "minProperties": 1,
+              "description": "Nom du binaire exposé → script JavaScript relatif à extractTo/.",
+              "propertyNames": {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9._+-]+(/[A-Za-z0-9._+-]+)*$"
+              }
+            }
+          }
+        },
         "crate": {
           "type": "string",
           "pattern": "^[a-zA-Z0-9_-]+$",

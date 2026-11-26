@@ -18,6 +18,10 @@
     "apps/hdr10plus-tool/build.json": "e53a52e6a27f25471cf75dea4ea57515dcae7b39d3fe1fe5cac2cfa0ef4da1af",
     "apps/hdr10plus-tool/distribution.v1.json": "9ea7b828a80f9637a3aaec035162947673844addcd32c938f789a4bcbba04ffd",
     "apps/interpreteurs/distribution.v1.json": "ff06425f891039edefcedafcf74b42a7123ffd8373e4ed0d90ba3dc7a18af39b",
+    "apps/langages/build.json": "486a183a7ad652099e363b9d3b4b909e986703b8b4c29840e267a4fde06b15e3",
+    "apps/langages/distribution.v1.json": "cbfb43bdd4f3e665fe070918919917382a46a2db912e3ee535cceb4a59e85a90",
+    "apps/langages/npm/package-lock.json": "9f099f568716e7c5590216df03efc88ada685dc4c29120c4bfcac50b686dbf61",
+    "apps/langages/npm/package.json": "44a9eed2f37773d69668109a18274a4357d217832d5a3ffd3790a71835098d1a",
     "apps/mediainfo/distribution.v1.json": "d6be5192bf6585737bdeecbe27a315d5800fc025d3b650ea812b742c9257d72d",
     "apps/mkvtoolnix/distribution.v1.json": "4389338251d30c972256d6d7214bb7625b51a5ed1ef289f939436e6d16f8a423",
     "apps/mp4box/distribution.v1.json": "bfdbd4006c982e06b5ebd5e7b8a313a4612ef1f918bb56e072823f6795a6e62e",
@@ -277,6 +281,19 @@
       "sha256": "09b111e6670ce065b0f28c7290fa0747490a1bef6196146dda09a3c561aeedbc",
       "contentSha256": "4dfd720b33001fc01f45b83619e782bd96fa6f8c859c8e71c4289e5ab196327e",
       "updatedAt": "2026-11-19"
+    },
+    {
+      "id": "langages",
+      "type": "app",
+      "version": "1.0.0",
+      "name": "Serveurs de langage (éditeur de script)",
+      "manifestPath": "apps/langages/manifest.json",
+      "capability": "language-server",
+      "currentChoice": false,
+      "distribution": "autonomous-binary",
+      "sha256": "94c70056b07b5b6fd9b365ebfa8bea746eca4db02ea03cef5ab729072c17c929",
+      "contentSha256": "1c332fe38602e34afc48941618338ce563d19b06c4c91dce46965e5f8083cb33",
+      "updatedAt": "2026-11-26"
     },
     {
       "id": "audio",

@@ -63,3 +63,14 @@ Frontière stricte :
 
 Le schéma réserve `capability: transcode | analyze | other`. FFmpeg n’est pas
 le remuxer production ; MKVToolNix reste le choix remux.
+
+## `LanguageServer`
+
+Responsabilité : suggestions et diagnostics de l'éditeur de script, par un serveur de langage lancé à l'ouverture d'un
+éditeur (et jamais par un flux), sous confinement.
+
+| Élément | Valeur actuelle |
+|---------|-----------------|
+| Implémentation | `ty` (Python), `shellcheck` et `bash-language-server` (bash, sh) |
+| Invocation | Option B — binaire autonome hors image (`host-binary` + `distribution.v1.json`), Node.js embarqué |
+| Fiche catalogue | `langages` |

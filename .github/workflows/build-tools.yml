@@ -207,7 +207,28 @@ jobs:
           recipe = json.load(open(recipe_path))
           wanted = set(recipe["binaries"])
           exposed = set()
-          clashes = wanted & {a["extractTo"] for a in recipe["source"]["archives"]}
+          npm = recipe["source"].get("npmPackages")
+
+          def install_npm_packages(node_root):
+              """Installe les paquets npm du verrou figé (npm ci : empreintes d'intégrité vérifiées, aucun
+              script d'installation, aucune dépendance de développement) avec le Node.js de l'archive,
+              avant son élagage (npm y est encore présent)."""
+              project = pathlib.Path(recipe_path).parents[2] / npm["projectDir"]
+              target = stage / npm["extractTo"]
+              target.mkdir(parents=True)
+              for name in ("package.json", "package-lock.json"):
+                  shutil.copy(project / name, target / name)
+              npm_cli = node_root / "lib/node_modules/npm/bin/npm-cli.js"
+              env = {"PATH": str(node_root / "bin") + ":/usr/bin:/bin", "HOME": "/tmp/npm-home",
+                     "npm_config_cache": "/tmp/npm-cache"}
+              subprocess.run([str(node_root / "bin/node"), str(npm_cli), "ci", "--ignore-scripts", "--omit=dev",
+                              "--no-audit", "--no-fund", "--prefix", str(target)], check=True, env=env)
+              # Les liens de node_modules/.bin sont inutiles : les lanceurs appellent les scripts directement.
+              shutil.rmtree(target / "node_modules/.bin", ignore_errors=True)
+              for rel in npm["entrypoints"].values():
+                  if not (target / rel).is_file():
+                      raise SystemExit(f"point d'entrée npm absent : {target / rel}")
+          clashes = wanted & ({a["extractTo"] for a in recipe["source"]["archives"]} | ({npm["extractTo"]} if npm else set()))
           if clashes:
               raise SystemExit(f"extractTo en collision avec un lanceur : {sorted(clashes)}")
           for item in recipe["source"]["archives"]:
@@ -232,6 +253,8 @@ jobs:
                   tar_flag = "-xJf" if archive_format == "tar.xz" else "-xzf"
                   subprocess.run(["tar", tar_flag, str(archive), "-C", str(root), "--no-same-owner",
                                   f"--strip-components={item['stripComponents']}"], check=True)
+              if npm and item["extractTo"] == npm["runtime"]:
+                  install_npm_packages(root)
               for pattern in item.get("prune", []):
                   for victim in sorted(root.glob(pattern), reverse=True):
                       if victim.is_dir() and not victim.is_symlink():
@@ -268,6 +291,16 @@ jobs:
                   # Concaténation volontaire : « $ » + « { » évite toute expression GitHub Actions.
                   script_dir = "$" + "{0%/*}"
                   launcher.write_text("#!/bin/sh\nexec \"" + script_dir + "/" + item["extractTo"] + "/" + rel + "\" \"$@\"\n")
+                  launcher.chmod(0o755)
+                  exposed.add(name)
+          if npm:
+              script_dir = "$" + "{0%/*}"
+              node_launcher = script_dir + "/" + npm["runtime"] + "/" + next(
+                  a["entrypoints"]["node"] for a in recipe["source"]["archives"] if a["extractTo"] == npm["runtime"])
+              for name, rel in npm["entrypoints"].items():
+                  launcher = stage / name
+                  launcher.write_text("#!/bin/sh\nexec \"" + node_launcher + "\" \"" + script_dir + "/"
+                                      + npm["extractTo"] + "/" + rel + "\" \"$@\"\n")
                   launcher.chmod(0o755)
                   exposed.add(name)
           if exposed != wanted:
