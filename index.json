@@ -19,7 +19,7 @@
     "apps/hdr10plus-tool/distribution.v1.json": "9ea7b828a80f9637a3aaec035162947673844addcd32c938f789a4bcbba04ffd",
     "apps/interpreteurs/distribution.v1.json": "ff06425f891039edefcedafcf74b42a7123ffd8373e4ed0d90ba3dc7a18af39b",
     "apps/langages/build.json": "d582d622a97f393edbab6826dfafc41aa8f37c1f8a651893c3a19145ed5def2a",
-    "apps/langages/distribution.v1.json": "cbfb43bdd4f3e665fe070918919917382a46a2db912e3ee535cceb4a59e85a90",
+    "apps/langages/distribution.v1.json": "68802e3fb06cce10fdd1f84ef9996b1863f6184debabe15903485e52cdc1f3a3",
     "apps/langages/npm/package-lock.json": "9f099f568716e7c5590216df03efc88ada685dc4c29120c4bfcac50b686dbf61",
     "apps/langages/npm/package.json": "44a9eed2f37773d69668109a18274a4357d217832d5a3ffd3790a71835098d1a",
     "apps/mediainfo/distribution.v1.json": "d6be5192bf6585737bdeecbe27a315d5800fc025d3b650ea812b742c9257d72d",
@@ -292,7 +292,7 @@
       "currentChoice": false,
       "distribution": "autonomous-binary",
       "sha256": "94c70056b07b5b6fd9b365ebfa8bea746eca4db02ea03cef5ab729072c17c929",
-      "contentSha256": "0c6486f80d5e5fff78225820999a237db880e9392dd59c732529f406724bff69",
+      "contentSha256": "629fcecc0741cf7820ea8c93d281aeb96dacbb61d6da7ec435cc1ac7039f8555",
       "updatedAt": "2026-11-26"
     },
     {
